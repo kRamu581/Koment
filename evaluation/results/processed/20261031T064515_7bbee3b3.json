@@ -1,0 +1,196 @@
+{
+  "git": {
+    "name": "Git baseline",
+    "task_status": {
+      "intent": "complete",
+      "scope": "complete",
+      "recovery": "complete"
+    },
+    "intent": {
+      "accuracy": 0.0,
+      "cases": 23,
+      "correct": 0,
+      "incorrect": 23,
+      "introducing_commit_accuracy": 0.0
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 22,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 361,
+      "decision_accuracy": 0.0,
+      "cases": 18
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 9,
+      "predicted_ranking": [],
+      "ground_truth_ranking": [
+        "simple_cache_recovery",
+        "autoresearch_recovery",
+        "aicar_recovery",
+        "tinyhttpd_recovery",
+        "synx_recovery",
+        "codex_plugin_cc_recovery",
+        "capsule_identity_recovery",
+        "spank_recovery",
+        "java8_tutorial_recovery"
+      ]
+    },
+    "evidence": {
+      "supported": 23,
+      "total_verifiable": 23,
+      "rate": 1.0
+    },
+    "analysis_seconds": 0.009748600001330487,
+    "executed": 50,
+    "mode": "offline"
+  },
+  "git_script": {
+    "name": "Git log/blame script",
+    "task_status": {
+      "intent": "complete",
+      "scope": "complete",
+      "recovery": "complete"
+    },
+    "intent": {
+      "accuracy": 0.0,
+      "cases": 23,
+      "correct": 0,
+      "incorrect": 23,
+      "introducing_commit_accuracy": 0.9565217391304348
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 22,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 361,
+      "decision_accuracy": 0.0,
+      "cases": 18
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 9,
+      "predicted_ranking": [],
+      "ground_truth_ranking": [
+        "simple_cache_recovery",
+        "autoresearch_recovery",
+        "aicar_recovery",
+        "tinyhttpd_recovery",
+        "synx_recovery",
+        "codex_plugin_cc_recovery",
+        "capsule_identity_recovery",
+        "spank_recovery",
+        "java8_tutorial_recovery"
+      ]
+    },
+    "evidence": {
+      "supported": 23,
+      "total_verifiable": 23,
+      "rate": 1.0
+    },
+    "analysis_seconds": 0.00893000000542088,
+    "executed": 50,
+    "mode": "offline"
+  },
+  "llm": {
+    "name": "Single-prompt LLM",
+    "task_status": {
+      "intent": "unavailable: method skipped or failed",
+      "scope": "unavailable: method skipped or failed",
+      "recovery": "unavailable: method skipped or failed"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 0,
+      "decision_accuracy": null,
+      "cases": 0
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 0,
+      "predicted_ranking": [],
+      "ground_truth_ranking": []
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": null,
+    "executed": 0,
+    "mode": "offline"
+  },
+  "aicar": {
+    "name": "Proposed AICAR",
+    "task_status": {
+      "intent": "complete",
+      "scope": "complete",
+      "recovery": "complete"
+    },
+    "intent": {
+      "accuracy": 0.0,
+      "cases": 23,
+      "correct": 0,
+      "incorrect": 23,
+      "introducing_commit_accuracy": 0.0
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 22,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 361,
+      "decision_accuracy": 0.0,
+      "cases": 18
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 9,
+      "predicted_ranking": [],
+      "ground_truth_ranking": [
+        "simple_cache_recovery",
+        "autoresearch_recovery",
+        "aicar_recovery",
+        "tinyhttpd_recovery",
+        "synx_recovery",
+        "codex_plugin_cc_recovery",
+        "capsule_identity_recovery",
+        "spank_recovery",
+        "java8_tutorial_recovery"
+      ]
+    },
+    "evidence": {
+      "supported": 23,
+      "total_verifiable": 23,
+      "rate": 1.0
+    },
+    "analysis_seconds": 0.008935999998357147,
+    "executed": 50,
+    "mode": "offline"
+  }
+}

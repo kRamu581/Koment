@@ -50,10 +50,10 @@ def load_dataset(directory, allow_unlabelled=False, tasks=TASKS):
         require(origin not in origins, "Duplicate repository source/origin")
         origins.add(origin)
         repo_map[repo["id"]] = {**repo, "resolved_path": str(path)}
-    cases = {task: read_json(directory / f"{task}_cases.json") for task in TASKS}
+    cases = {task: read_json(directory / f"{task}_cases.json") for task in tasks}
     packs, ids, cache = {}, set(), {}
     pending = []
-    for task in TASKS:
+    for task in tasks:
         require(isinstance(cases[task], list), f"{task}: cases must be a JSON list")
         for case in cases[task]:
             cid = case.get("case_id")
@@ -106,7 +106,7 @@ def load_dataset(directory, allow_unlabelled=False, tasks=TASKS):
                 require(type(grade) is int and 0 <= grade <= 3, f"{cid}: recoverability grade must be integer 0..3")
                 require(type(case.get("gold_rank")) is int and case["gold_rank"] > 0, f"{cid}: positive gold_rank required")
                 require(case.get("unfinished") is True, f"{cid}: human confirmation that repository is unfinished required")
-    recovery = [c for c in cases["recovery"] if c["annotation"]["status"] == "labelled"]
+    recovery = [c for c in cases.get("recovery", []) if c["annotation"]["status"] == "labelled"]
     require(len({c["repository"] for c in recovery}) == len(recovery), "Recovery cohort must contain distinct repositories")
     for a in recovery:
         for b in recovery:
@@ -118,7 +118,7 @@ def load_dataset(directory, allow_unlabelled=False, tasks=TASKS):
             require(not missing, f"Missing ground truth: {task}: {', '.join(missing)}. Complete annotation or use --smoke (unscored).")
         if "recovery" in tasks:
             require(len(recovery) >= 2, "Recovery nDCG requires at least two distinct labelled repositories")
-    counts = {task: len(cases[task]) for task in TASKS}
+    counts = {task: len(cases.get(task, [])) for task in TASKS}
     counts.update({"repositories": len(repos), "commits": sum(len(git(r["resolved_path"], "rev-list", r["revision"]).splitlines()) for r in repo_map.values()),
                    "labelled": sum(c["annotation"]["status"] == "labelled" for rows in cases.values() for c in rows), "pending": len(pending)})
     return {"manifest": manifest, "repositories": repo_map, "cases": cases, "packs": packs, "counts": counts}

@@ -49,7 +49,7 @@ def snapshot(path, revision, file=None, region=None, as_of=None):
     history = []
     for sha in git(path, "rev-list", revision).splitlines():
         history.append({"hash": sha, "message": git(path, "show", "-s", "--format=%B", sha).strip()})
-    patch = git(path, "show", "--format=", "--root", "--first-parent", "--no-ext-diff", "--no-renames", "--unified=3", revision, "--")
+    patch = git(path, "show", "--format=", "--root", "--first-parent", "--no-ext-diff", "--no-renames", "--no-textconv", "--unified=3", revision, "--")
     changed = git(path, "diff-tree", "--root", "--no-commit-id", "--name-only", "-r", "--first-parent", revision).splitlines()
     commit = {"hash": revision, "message": history[0]["message"], "changed_files": changed,
               "diff": [{"file": "(complete commit patch)", "diff": patch}]}

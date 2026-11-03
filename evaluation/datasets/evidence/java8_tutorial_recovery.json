@@ -1,0 +1,743 @@
+{
+  "revision": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+    "message": "Update LICENSE",
+    "changed_files": [
+      "LICENSE"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/LICENSE b/LICENSE\nindex d82fe93..cc53a54 100644\n--- a/LICENSE\n+++ b/LICENSE\n@@ -1,6 +1,6 @@\n The MIT License (MIT)\n \n-Copyright (c) 2017 Benjamin Winterberg\n+Copyright (c) 2023 Benjamin Winterberg\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+      "message": "Update LICENSE"
+    },
+    {
+      "hash": "faf9793524cd6956428fa5d79e7fdce3a3184b56",
+      "message": "Add link to Java 11 Tutorial"
+    },
+    {
+      "hash": "f2d7b5b2ccf0ebd132cbcf162156706788e28cc3",
+      "message": "More Java 11 examples"
+    },
+    {
+      "hash": "4b92b43d53298652446651f94254341614c7873f",
+      "message": "Java 11 HttpClient examples"
+    },
+    {
+      "hash": "81a0fa3aa1d6ec2409e0226d3a6c2f5c2d19a41d",
+      "message": "Java 11 local variable samples"
+    },
+    {
+      "hash": "093d9a4af387eb4b713bfcb14c1baa686c27ac05",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "6ec91e6992e56b765b2ae2bcbf02733817acb844",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "7a076614461b6ef48e765441616bad0ffb446daa",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "bf469b4cb114fe59edf650600f09a05904ae246d",
+      "message": "Merge pull request #28 from fishercoder1534/master\n\nupdate License to 2017"
+    },
+    {
+      "hash": "b2cbf4f9b7752861eebf295b2f30dd8ba43ab639",
+      "message": "update License to 2017"
+    },
+    {
+      "hash": "85dae289bdc6903b651f35fe1010d387d78ff90f",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "23839f740ee1ec2025827452408de45f7bb6c754",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "26c0588e1c3098ec469f81d8171304336711bb3a",
+      "message": "Merge pull request #23 from sboekhoff/sboekhoff\n\nUse class instead of bean."
+    },
+    {
+      "hash": "642ce1c298acbd637aa3375084eb7a105881daeb",
+      "message": "Use class instead of bean.\n\nA class should only be called 'bean', if:\n\n* all properties are private (use getters/setters)\n* it implements the Serializable interface\n* it has a public default constructor\n\nSee: http://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly"
+    },
+    {
+      "hash": "6dd0e09f79cb53fdfa11851ec2afbf0c1664c20c",
+      "message": "Add link to stream tutorial"
+    },
+    {
+      "hash": "f4309c4bc85a8eb470ba65703ef333432ebdb4c2",
+      "message": "Merge pull request #21 from sectioneight/fix-whitespace\n\nFix whitespace in Default Interface Methods"
+    },
+    {
+      "hash": "ab7e2d2cc09fcb357701fe5d5ee4067ae2c542c6",
+      "message": "Fix whitespace in Default Interface Methods"
+    },
+    {
+      "hash": "3d878f673337ee05bd3cd3b98d3389b47783997e",
+      "message": "Happy new year 2016"
+    },
+    {
+      "hash": "d6c972191da3f22531e59fb8775e870f9cf15994",
+      "message": "Fix link #20"
+    },
+    {
+      "hash": "1a596004225564264c95f19464714fbdd092979c",
+      "message": "Merge pull request #16 from grijeshsaini/master\n\nBiConsumer Example"
+    },
+    {
+      "hash": "97e248905f238c32bef3779f425274fbd1b969a0",
+      "message": "BiConsumer Example"
+    },
+    {
+      "hash": "e204c0492d167f633b5b7e4dd46ee7316e07088a",
+      "message": "Merge pull request #12 from eranation/patch-1\n\njust a tiny grammar thing"
+    },
+    {
+      "hash": "995fc00ec5e09f909d508c92a7302461cb13c290",
+      "message": "just a tiny grammar thing"
+    },
+    {
+      "hash": "eca818f92634e0a079ee9c310c49d650572b4035",
+      "message": "Improve description about streaming maps"
+    },
+    {
+      "hash": "851b6490b14d23e0bd5d11bb755d2543c5814ebb",
+      "message": "Merge pull request #10 from chase-benson/patch-1\n\nReadme Typo Fix"
+    },
+    {
+      "hash": "870e1b11ca5b05ddf7bee67d828f92fc5627dab1",
+      "message": "Readme Typo Fix"
+    },
+    {
+      "hash": "1d8eb3f2ef423fdf4216121e2836e467d058901f",
+      "message": "Merge pull request #9 from rmtheis/patch-1\n\nFixed spelling"
+    },
+    {
+      "hash": "928b82471ed20a6696140d1493d16170baf5f922",
+      "message": "Fixed spelling"
+    },
+    {
+      "hash": "8ae6f10bd74e3903196907a8c2a95ace85f2bab6",
+      "message": "Merge pull request #8 from thefourtheye/patch-1\n\nFix typos and improve simple grammatical stuff"
+    },
+    {
+      "hash": "17ad55b5fb7eda2e03b2eae77e15dd1f95414261",
+      "message": "Fix typos and improve simple grammatical stuff"
+    },
+    {
+      "hash": "e0b308acf1e1977328d8871f7978f2879845ce4d",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "3a2d67fc24cbc4ad66e0d1f06e083a98296c14ac",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "48cf8541f4f799a0a3e4c0acd735365623352215",
+      "message": "Merge pull request #6 from aidendeom/master\n\nFix typo in README.md"
+    },
+    {
+      "hash": "150f70f2d03372fb66138cfca0e2b92855ff8d93",
+      "message": "Fix typo in README.md"
+    },
+    {
+      "hash": "c7d3ecf16ae1187a50b530f32594d08e85041148",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "82d57cd7c45d3774d545ee0cdfbf9811e25aaad3",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "6afcb082a58de258a6e368e7a63d8a1cb65053ab",
+      "message": "Use List.sort instead of Collections.sort"
+    },
+    {
+      "hash": "7fa21e257de5961ef4cac107be530a78395c73ae",
+      "message": "Fix link"
+    },
+    {
+      "hash": "bf86aa19d4d55239d53359cbcf80551b93c13f02",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "e08a3447f8f4e6299bb6a56dbc05fcf4c01085b0",
+      "message": "Add Stream.js link"
+    },
+    {
+      "hash": "0bc23c5c633f58c5c6f0d3f9d1c02ef5d11d47cd",
+      "message": "Fix"
+    },
+    {
+      "hash": "b49755311d196c1c3e8aac9f54093dfb3249a4a9",
+      "message": "Table of Contents"
+    },
+    {
+      "hash": "5ebecfcc8ce4b996bedc910c6edbea2c6ca04680",
+      "message": "Publish the original Java 8 Tutorial"
+    },
+    {
+      "hash": "9a57df95b40f9cf4f4d556ad3d3959db750e16ce",
+      "message": "Merge pull request #4 from shubhamyeole/master\n\nIgnore bin folder"
+    },
+    {
+      "hash": "4796f987691f9a4da5ddd68d548b69b9b6d4c95c",
+      "message": "Added package custom"
+    },
+    {
+      "hash": "9804c2e3b6bb2afd038dcc07e9c6820737b3aaab",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "0c6e52cdc9e0741c99fdbe4f88c0c86cebfd1733",
+      "message": "Nashorn scope samples"
+    },
+    {
+      "hash": "1c3eaf142f149faac609c4014b53a70b403c3895",
+      "message": "Nashorn scope samples"
+    },
+    {
+      "hash": "9501b001a3f3186a865fbfb12c722dea175153e1",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "4fa2b2b6d1c49a01661e66e35f9c090b76a6a178",
+      "message": "Cosmetics"
+    },
+    {
+      "hash": "c80d39b2560298e14a7f566779d9a6dbbe51d285",
+      "message": "ConcurrentHashMap examples"
+    },
+    {
+      "hash": "97c208191a129db9eca1e2df2768fa440e52ecc0",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "d3dda84ed7b4a204b6608b1d5dcb9652f145cbc8",
+      "message": "Cosmetics"
+    },
+    {
+      "hash": "780bfa6672699d24453b01349b682e5fc7efeccf",
+      "message": "ConcurrentHashMap examples"
+    },
+    {
+      "hash": "01dfc048f2f1ff68500f196114d2696423f3cd24",
+      "message": "Lock example"
+    },
+    {
+      "hash": "b2d20be9d1043a1af00746c94c0509a7bc5aa100",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "bbf062daea32c0b3f01a5346b0424be94488cbaf",
+      "message": "Semaphore example"
+    },
+    {
+      "hash": "f61cd1ba1df8377c236ca4af436a6dfe2ed6f39e",
+      "message": "Simplify code"
+    },
+    {
+      "hash": "e422b65b230eebaf0177225161da7ad3c486c251",
+      "message": "Simplify code"
+    },
+    {
+      "hash": "a636658e96dd3509dd4befd4dcdbf4c1fcd2a00c",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "fe20d0c0a5b3cd712c08e4e7ca4a26f8a8c1c724",
+      "message": "StampedLock examples"
+    },
+    {
+      "hash": "4a8a7e0a300030b0093993555401a61b7c5e86ec",
+      "message": "ReadWriteLock examples"
+    },
+    {
+      "hash": "2428f6294fe5d7582c8c4ebab2c0668926009feb",
+      "message": "Lock examples"
+    },
+    {
+      "hash": "83db0821847b37de9adc016bf0ebe3f3b9128eaf",
+      "message": "Lock examples"
+    },
+    {
+      "hash": "c1117a9fd147a5885290cdf21cccc782062c4d0f",
+      "message": "Synchronized statement example"
+    },
+    {
+      "hash": "402225560d7e1b4fe8cdb618c2e9ae0fcaeea4d9",
+      "message": "Add Semaphore example"
+    },
+    {
+      "hash": "eac9257fa6c9fdbfb1c29b41f78049e862d67451",
+      "message": "Add LongAccumulator example"
+    },
+    {
+      "hash": "e03420cd4136e2990e3b11fc52286e780c1f431f",
+      "message": "Add LongAdder example"
+    },
+    {
+      "hash": "fe4fd809cbad7dba00e50daf6c58677951092ac7",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "463a55e9d238161473964df8f47ec6f5fac825ea",
+      "message": "Atomic update"
+    },
+    {
+      "hash": "e98f201d77c00aa6f8e5983dac34fb935fd902f7",
+      "message": "Atomic accumulate"
+    },
+    {
+      "hash": "e8cc2fc68ce91bf441a985b86598db9e7d4f5614",
+      "message": "Test AtomicInteger"
+    },
+    {
+      "hash": "e7995a8f625c80a6534b9feb9e965b7c5ff891e2",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "b81681c36756124cc74db3ee6a7e3e841d247d75",
+      "message": "Test synchronized"
+    },
+    {
+      "hash": "89a257129873974e4beb658115e854649b9204b2",
+      "message": "Executors example"
+    },
+    {
+      "hash": "bd2e991b7d181bb18c62076dc5c359884dd0e50a",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "28e578227501a63c61b8ac8ad642508191933fc6",
+      "message": "Scheduled executors"
+    },
+    {
+      "hash": "15bf517ae667732621f86265e63badef2eb4505d",
+      "message": "Executors example"
+    },
+    {
+      "hash": "ca2c72389649da5688b780746570a9c621b21ac1",
+      "message": "Concurrency samples"
+    },
+    {
+      "hash": "d2b66c312c27fa9455358b37d9e00be2809351bf",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "6cc2d1ffc50e9f597cd6bf83baf9f842d1297ead",
+      "message": "CompletableFuture example"
+    },
+    {
+      "hash": "e3fa0ddde7bf895fc4babae6482c0c4258c785eb",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "48333293a3497405d6f1c7b7d8677e98d66f4f2e",
+      "message": "Utility for handling checked exceptions in lambdas"
+    },
+    {
+      "hash": "43128abc3cb15145eec8318503a84bbc7964d1c2",
+      "message": "Code samples"
+    },
+    {
+      "hash": "70a38ae1d04fe22a9fde47f6cbde6325f7d9b1d2",
+      "message": "Add proper try/with statements"
+    },
+    {
+      "hash": "0c4f633596379389fd98341e1e7137a6b5021684",
+      "message": "Files examples"
+    },
+    {
+      "hash": "fee263c24f185af1c8ffa08d4f049cca824ae6dc",
+      "message": "Files examples"
+    },
+    {
+      "hash": "e2b2a1fe02b890bea309fd8714cc6ba268d99a9d",
+      "message": "Chars as int stream"
+    },
+    {
+      "hash": "7e0da89e44caaef4b2ffd0053bbfe42c30cc8cf7",
+      "message": "Move to appropriate package"
+    },
+    {
+      "hash": "b9ac0f3093db53573e5ef4be8464fd7a34c05d37",
+      "message": "String stuff"
+    },
+    {
+      "hash": "34a42c5a181b1bddfc338ca407c94409fae4e416",
+      "message": "StrictMath and unsigned ints"
+    },
+    {
+      "hash": "83ded3744b1a399dcf7d86260aca32f8bdb03bd4",
+      "message": "Strict Math sample"
+    },
+    {
+      "hash": "f9271f14f543bc89ecf9b939aba110073ea8d75d",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "8927863c3c2d7e08c64565ec827cd2225e856f3f",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "b21213fb0530c52c6d9c04edb98560442df1ab3f",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "be4a4c8ce0a51352b4c5d3033f97b2f06c3b7dbd",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "0578acfb7fd525d7cd7b6cbb0fbf36379f61c88d",
+      "message": "Inroduce sub packages"
+    },
+    {
+      "hash": "bbf7c93b38eb5a4e903713d5f9052872880cb4fd",
+      "message": "Some is obsolete, can be replaced with Optional.map (see Optional2)"
+    },
+    {
+      "hash": "e2b0126f545e5ca94a38ee17b9cb055f4ebf96b1",
+      "message": "Rename to Some"
+    },
+    {
+      "hash": "76ff6b67a83a6985adb3f6c02a0539b43c053e6c",
+      "message": "More null safe operations"
+    },
+    {
+      "hash": "e7d913356545afbce7963e7d314a826738d89d43",
+      "message": "Simplified elvis-like operator"
+    },
+    {
+      "hash": "215aed960989cb08ac53a9d9f5c51abb949dcb87",
+      "message": "Another perf test to compare 8u31 vs 8u40"
+    },
+    {
+      "hash": "a42a7d4d37b69e44c4507eaef40707363434ab77",
+      "message": "Add perf test to compare 8u31 vs 8u40"
+    },
+    {
+      "hash": "ad3faa05a71aee6b8a2fbc6741f99ec90ac64ee6",
+      "message": "Add output as comments"
+    },
+    {
+      "hash": "84bb29d727af0adc5e0113cf257c173163dcc22b",
+      "message": "Test binding scope for eval"
+    },
+    {
+      "hash": "10e80025fc0883c5660b2b7ac2ec368bf38d0736",
+      "message": "Add another nashorn sample of dynamically invoking java code at runtime"
+    },
+    {
+      "hash": "a5aeb321a9a787505a70f5e2ac33589eb945e3d3",
+      "message": "Add sample for infinite streams"
+    },
+    {
+      "hash": "2a5896179e6fa8eef40498d430aaf42801ba2da8",
+      "message": "Add nashorn dialect sample file"
+    },
+    {
+      "hash": "2946422c4d62d4adb15424fe2cb3c7be568066fc",
+      "message": "Add link to Java 8 Stream Tutorial"
+    },
+    {
+      "hash": "67de25a8b72776d1e5f06de6d3385d439bdf32e0",
+      "message": "Add samples"
+    },
+    {
+      "hash": "0aac70031d7ac5fe1475f57149ab3aa4bd35bc17",
+      "message": "Add samples"
+    },
+    {
+      "hash": "3666ece94dd9841dc3e8ac4a2454a6e9cf0a17d2",
+      "message": "Add sample"
+    },
+    {
+      "hash": "38061648cca49a05918025d2a470944fc144064a",
+      "message": "Add parallelStream examples"
+    },
+    {
+      "hash": "4d556bddc3be3d4535876891ff0f6c1a2feab2bf",
+      "message": "Add reduce examples"
+    },
+    {
+      "hash": "3101b26b384e3401d7fbf41ec42608e0f84c1339",
+      "message": "Add collector examples"
+    },
+    {
+      "hash": "131d87df4633893b097b6bd0af3bda265c7e6b93",
+      "message": "Add more stream examples"
+    },
+    {
+      "hash": "8b960948feb04365aa01575470f5f2b2a3baf8c8",
+      "message": "Add more stream examples"
+    },
+    {
+      "hash": "30cf084458d88fe0ee5ff40cecf29aacf48a9f71",
+      "message": "minor changes"
+    },
+    {
+      "hash": "a3482003fd19f890f4235977ff7224797b7ba988",
+      "message": "Add more stream examples"
+    },
+    {
+      "hash": "c8d52047ea1c2148e635ef0dbc615f045360973f",
+      "message": "Rename class"
+    },
+    {
+      "hash": "0e21011ec92d791af52539db8aaf863f450a3ed8",
+      "message": "Add more stream examples"
+    },
+    {
+      "hash": "c89625c1d45accc7706b34cda652542953936f8e",
+      "message": "Add more stream examples"
+    },
+    {
+      "hash": "d42024814890b5d2a39dfada37382003a903b291",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "98ac2d02524a3c20d15917cd342d82f589e1b8ff",
+      "message": "add IntStream samples"
+    },
+    {
+      "hash": "ec86bddbb19947bc29179014c99bac09db934b09",
+      "message": "add link to backbone.js guide"
+    },
+    {
+      "hash": "7abc06eb9fe19b11b8defdbdd120cafb80309882",
+      "message": "add nashorn tutorial link"
+    },
+    {
+      "hash": "895575c2bb619ff8cf451e8f85963221f77159d4",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "7c2d82cac5cd6747d7ccd60b2c54da45c1426179",
+      "message": "minor changes in nashorn samples"
+    },
+    {
+      "hash": "b4c7dd783590d01c01ec9cb6eddffceb296ff203",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "ca52506a7f22218578ff0649c5a4b57b8a295a8a",
+      "message": "nashorn samples"
+    },
+    {
+      "hash": "ebe8ada20d20f55aa1ffd0d78ad8d6c68038f1fa",
+      "message": "use backbone models from nashorn"
+    },
+    {
+      "hash": "7172f3d8a521e9889eaf08e916b3bbacf3372aae",
+      "message": "bind java objects to custom js objects"
+    },
+    {
+      "hash": "bd4b8c35dd09927d047ac74cd01b582a86921ec3",
+      "message": "add more api extension samples"
+    },
+    {
+      "hash": "7d8c0cc422d47e10965d4cb51505366289778062",
+      "message": "playing around with nashorn javascript extensions"
+    },
+    {
+      "hash": "3d559e52ad59d9fd392b0719e1869dc372236998",
+      "message": "pass js objects to java and work with properties and members on java side"
+    },
+    {
+      "hash": "a6168ecd5ec92510c4505422c3d02ee9f5299d11",
+      "message": "pass java objects to javascript functions"
+    },
+    {
+      "hash": "28983b4c0d31d42b54e99acee857d284f0562096",
+      "message": "extending classes from javascript"
+    },
+    {
+      "hash": "423b9d3ac7367954f10f07cb7a27fdb24a1a50ec",
+      "message": "using collection streams from javascript with nashorn"
+    },
+    {
+      "hash": "56c19d786e49cf43e692db12a2326f464c13f34d",
+      "message": "use load function"
+    },
+    {
+      "hash": "7c319e39cfc6666ecebeea620cb43e782f8cc573",
+      "message": "working with java types from within javascript"
+    },
+    {
+      "hash": "f90fee06017cb8727e5b0bab61b2e07aec2768c2",
+      "message": "calling a java method from javascript"
+    },
+    {
+      "hash": "fafa0e0692addb10aa8f518aacc050ecf06161c9",
+      "message": "calling a javascript function from java with nashorn"
+    },
+    {
+      "hash": "3693f6b23064b4a4b0e8277081e9297182f342d6",
+      "message": "remove obsolete assert"
+    },
+    {
+      "hash": "e68ae18efd9bcf3b006933d9f1184ba77bfe960d",
+      "message": "add even more comparator stuff"
+    },
+    {
+      "hash": "1bb8e83b9762bf2ec0d15933c9a6badc6cb2683a",
+      "message": "Merge remote-tracking branch 'origin/master'"
+    },
+    {
+      "hash": "61164f22a8738bc96eafdbed67a83f7fd8e63fa8",
+      "message": "add more comparator samples as discussed on reddit: http://redd.it/20ng6r"
+    },
+    {
+      "hash": "c314179529c6b6ad3a14c9c015233bae342ef7b6",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "040f9b9984466e5250029d432db65504df92988a",
+      "message": "Merge branch 'master' of github.com:winterbe/java8-tutorial"
+    },
+    {
+      "hash": "ef919c8ea0d0f40b21113e15f400c3fbe979cf66",
+      "message": "first commit"
+    },
+    {
+      "hash": "2c70dd130d8856adbe645d6357fabed98a6135d7",
+      "message": "Initial commit"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "res/nashorn1.js",
+    "res/nashorn10.js",
+    "res/nashorn2.js",
+    "res/nashorn3.js",
+    "res/nashorn4.js",
+    "res/nashorn5.js",
+    "res/nashorn6.js",
+    "res/nashorn7.js",
+    "res/nashorn8.js",
+    "res/nashorn9.js",
+    "src/com/winterbe/java11/HttpClientExamples.java",
+    "src/com/winterbe/java11/LocalVariableSyntax.java",
+    "src/com/winterbe/java11/Misc.java",
+    "src/com/winterbe/java11/dummy.txt",
+    "src/com/winterbe/java8/samples/concurrent/Atomic1.java",
+    "src/com/winterbe/java8/samples/concurrent/CompletableFuture1.java",
+    "src/com/winterbe/java8/samples/concurrent/ConcurrentHashMap1.java",
+    "src/com/winterbe/java8/samples/concurrent/ConcurrentUtils.java",
+    "src/com/winterbe/java8/samples/concurrent/Executors1.java",
+    "src/com/winterbe/java8/samples/concurrent/Executors2.java",
+    "src/com/winterbe/java8/samples/concurrent/Executors3.java",
+    "src/com/winterbe/java8/samples/concurrent/Lock1.java",
+    "src/com/winterbe/java8/samples/concurrent/Lock2.java",
+    "src/com/winterbe/java8/samples/concurrent/Lock3.java",
+    "src/com/winterbe/java8/samples/concurrent/Lock4.java",
+    "src/com/winterbe/java8/samples/concurrent/Lock5.java",
+    "src/com/winterbe/java8/samples/concurrent/Lock6.java",
+    "src/com/winterbe/java8/samples/concurrent/LongAccumulator1.java",
+    "src/com/winterbe/java8/samples/concurrent/LongAdder1.java",
+    "src/com/winterbe/java8/samples/concurrent/Semaphore1.java",
+    "src/com/winterbe/java8/samples/concurrent/Semaphore2.java",
+    "src/com/winterbe/java8/samples/concurrent/Synchronized1.java",
+    "src/com/winterbe/java8/samples/concurrent/Synchronized2.java",
+    "src/com/winterbe/java8/samples/concurrent/Threads1.java",
+    "src/com/winterbe/java8/samples/lambda/Interface1.java",
+    "src/com/winterbe/java8/samples/lambda/Lambda1.java",
+    "src/com/winterbe/java8/samples/lambda/Lambda2.java",
+    "src/com/winterbe/java8/samples/lambda/Lambda3.java",
+    "src/com/winterbe/java8/samples/lambda/Lambda4.java",
+    "src/com/winterbe/java8/samples/lambda/Lambda5.java",
+    "src/com/winterbe/java8/samples/lambda/Person.java",
+    "src/com/winterbe/java8/samples/misc/Annotations1.java",
+    "src/com/winterbe/java8/samples/misc/CheckedFunctions.java",
+    "src/com/winterbe/java8/samples/misc/Concurrency1.java",
+    "src/com/winterbe/java8/samples/misc/Files1.java",
+    "src/com/winterbe/java8/samples/misc/Maps1.java",
+    "src/com/winterbe/java8/samples/misc/Math1.java",
+    "src/com/winterbe/java8/samples/misc/String1.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn1.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn10.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn11.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn2.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn3.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn4.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn5.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn6.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn7.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn8.java",
+    "src/com/winterbe/java8/samples/nashorn/Nashorn9.java",
+    "src/com/winterbe/java8/samples/nashorn/Product.java",
+    "src/com/winterbe/java8/samples/nashorn/SuperRunner.java",
+    "src/com/winterbe/java8/samples/stream/Optional1.java",
+    "src/com/winterbe/java8/samples/stream/Optional2.java",
+    "src/com/winterbe/java8/samples/stream/Streams1.java",
+    "src/com/winterbe/java8/samples/stream/Streams10.java",
+    "src/com/winterbe/java8/samples/stream/Streams11.java",
+    "src/com/winterbe/java8/samples/stream/Streams12.java",
+    "src/com/winterbe/java8/samples/stream/Streams13.java",
+    "src/com/winterbe/java8/samples/stream/Streams2.java",
+    "src/com/winterbe/java8/samples/stream/Streams3.java",
+    "src/com/winterbe/java8/samples/stream/Streams4.java",
+    "src/com/winterbe/java8/samples/stream/Streams5.java",
+    "src/com/winterbe/java8/samples/stream/Streams6.java",
+    "src/com/winterbe/java8/samples/stream/Streams7.java",
+    "src/com/winterbe/java8/samples/stream/Streams8.java",
+    "src/com/winterbe/java8/samples/stream/Streams9.java",
+    "src/com/winterbe/java8/samples/time/LocalDate1.java",
+    "src/com/winterbe/java8/samples/time/LocalDateTime1.java",
+    "src/com/winterbe/java8/samples/time/LocalTime1.java"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/LICENSE b/LICENSE\nindex d82fe93..cc53a54 100644\n--- a/LICENSE\n+++ b/LICENSE\n@@ -1,6 +1,6 @@\n The MIT License (MIT)\n \n-Copyright (c) 2017 Benjamin Winterberg\n+Copyright (c) 2023 Benjamin Winterberg\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/LICENSE b/LICENSE",
+      "header": "@@ -1,6 +1,6 @@",
+      "text": "@@ -1,6 +1,6 @@\n The MIT License (MIT)\n \n-Copyright (c) 2017 Benjamin Winterberg\n+Copyright (c) 2023 Benjamin Winterberg\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n",
+      "id": "hunk_9ca6b34f06513cdd7497"
+    }
+  ],
+  "features": {
+    "commit_count": 150,
+    "file_count": 82,
+    "last_commit_age_days": 1244.3899839501737,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "README.md"
+    ],
+    "dependency_manifests": [],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": []
+  },
+  "commit_count": 150,
+  "file_count": 82,
+  "todos": []
+}

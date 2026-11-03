@@ -431,8 +431,7 @@
       "9a7081cd253fc8404ee326f1763112e688d07edc"
     ],
     "supporting_commits": [
-      "9a7081cd253fc8404ee326f1763112e688d07edc",
-      "363b985b86118289691e41d9ebcffdd11be67025"
+      "9a7081cd253fc8404ee326f1763112e688d07edc"
     ]
   },
   {
@@ -517,9 +516,9 @@
     "repository": "simple_cache",
     "revision": "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e",
     "annotation": {
-      "status": "pending",
-      "annotator": null,
-      "rationale": null
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The commit adds explicit return type declarations across the `CacheInterface` methods for the v3 release. The selected line 18 adds the `: mixed` return type to `get(string $key, mixed $default = null): mixed;` to ensure strict typing compatibility under PHP 8+."
     },
     "case_id": "simple_cache_intent_19a4d7c04df3",
     "file": "src/CacheInterface.php",
@@ -527,21 +526,25 @@
       18,
       18
     ],
-    "gold_intent": null,
-    "accepted_intents": [],
-    "introducing_commit": null,
+    "gold_intent": "Add the explicit `: mixed` return type declaration to `CacheInterface::get()` to align with PHP 8 type system requirements for PSR Simple Cache v3.",
+    "accepted_intents": [
+      "Add the explicit `: mixed` return type declaration to `CacheInterface::get()` to align with PHP 8 type system requirements for PSR Simple Cache v3."
+    ],
+    "introducing_commit": "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e",
     "introducing_commit_candidates": [
       "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e"
     ],
-    "supporting_commits": []
+    "supporting_commits": [
+      "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e"
+    ]
   },
   {
     "repository": "synx",
     "revision": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
     "annotation": {
-      "status": "pending",
-      "annotator": null,
-      "rationale": null
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The commit updates the gem version constant `VERSION = \"0.1.0\"` in `lib/synx/version.rb` to release version 0.1.0 of the Synx tool."
     },
     "case_id": "synx_intent_3cf85cc33fee",
     "file": "lib/synx/version.rb",
@@ -549,21 +552,25 @@
       2,
       2
     ],
-    "gold_intent": null,
-    "accepted_intents": [],
-    "introducing_commit": null,
+    "gold_intent": "Bump the Synx gem version string from 0.0.61 to 0.1.0 in `version.rb` for the 0.1.0 release.",
+    "accepted_intents": [
+      "Bump the Synx gem version string from 0.0.61 to 0.1.0 in `version.rb` for the 0.1.0 release."
+    ],
+    "introducing_commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
     "introducing_commit_candidates": [
       "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f"
     ],
-    "supporting_commits": []
+    "supporting_commits": [
+      "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f"
+    ]
   },
   {
     "repository": "synx",
     "revision": "9efde0115e824442f0d65651c58429a3f025d633",
     "annotation": {
-      "status": "pending",
-      "annotator": null,
-      "rationale": null
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The commit introduces an invocation of `sort_by_name` on `main_group` inside `Synx::Project#sync`, ensuring groups and file entries are alphabetically organized within the Xcode project structure."
     },
     "case_id": "synx_intent_9efde0115e82",
     "file": "lib/synx/project.rb",
@@ -571,12 +578,16 @@
       24,
       24
     ],
-    "gold_intent": null,
-    "accepted_intents": [],
-    "introducing_commit": null,
+    "gold_intent": "Call `main_group.sort_by_name` during synchronization to sort Xcode project group entries by type and name.",
+    "accepted_intents": [
+      "Call `main_group.sort_by_name` during synchronization to sort Xcode project group entries by type and name."
+    ],
+    "introducing_commit": "9efde0115e824442f0d65651c58429a3f025d633",
     "introducing_commit_candidates": [
       "9efde0115e824442f0d65651c58429a3f025d633"
     ],
-    "supporting_commits": []
+    "supporting_commits": [
+      "9efde0115e824442f0d65651c58429a3f025d633"
+    ]
   }
 ]

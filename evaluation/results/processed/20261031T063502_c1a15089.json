@@ -1,0 +1,188 @@
+{
+  "git": {
+    "name": "Git baseline",
+    "task_status": {
+      "recovery": "complete"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 0,
+      "decision_accuracy": null,
+      "cases": 0
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 9,
+      "predicted_ranking": [],
+      "ground_truth_ranking": [
+        "simple_cache_recovery",
+        "autoresearch_recovery",
+        "aicar_recovery",
+        "tinyhttpd_recovery",
+        "synx_recovery",
+        "codex_plugin_cc_recovery",
+        "capsule_identity_recovery",
+        "spank_recovery",
+        "java8_tutorial_recovery"
+      ]
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": 0.0015786999992997153,
+    "executed": 9,
+    "mode": "offline"
+  },
+  "git_script": {
+    "name": "Git log/blame script",
+    "task_status": {
+      "recovery": "complete"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 0,
+      "decision_accuracy": null,
+      "cases": 0
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 9,
+      "predicted_ranking": [],
+      "ground_truth_ranking": [
+        "simple_cache_recovery",
+        "autoresearch_recovery",
+        "aicar_recovery",
+        "tinyhttpd_recovery",
+        "synx_recovery",
+        "codex_plugin_cc_recovery",
+        "capsule_identity_recovery",
+        "spank_recovery",
+        "java8_tutorial_recovery"
+      ]
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": 0.0014436000001296634,
+    "executed": 9,
+    "mode": "offline"
+  },
+  "llm": {
+    "name": "Single-prompt LLM",
+    "task_status": {
+      "recovery": "unavailable: method skipped or failed"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 0,
+      "decision_accuracy": null,
+      "cases": 0
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 0,
+      "predicted_ranking": [],
+      "ground_truth_ranking": []
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": null,
+    "executed": 0,
+    "mode": "offline"
+  },
+  "aicar": {
+    "name": "Proposed AICAR",
+    "task_status": {
+      "recovery": "complete"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 0,
+      "decision_accuracy": null,
+      "cases": 0
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 9,
+      "predicted_ranking": [],
+      "ground_truth_ranking": [
+        "simple_cache_recovery",
+        "autoresearch_recovery",
+        "aicar_recovery",
+        "tinyhttpd_recovery",
+        "synx_recovery",
+        "codex_plugin_cc_recovery",
+        "capsule_identity_recovery",
+        "spank_recovery",
+        "java8_tutorial_recovery"
+      ]
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": 0.0015038999981697998,
+    "executed": 9,
+    "mode": "offline"
+  }
+}

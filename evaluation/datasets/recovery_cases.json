@@ -1,15 +1,119 @@
 [
   {
+    "case_id": "simple_cache_recovery",
+    "repository": "simple_cache",
+    "revision": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+    "unfinished": true,
+    "gold_rank": 1,
+    "gold_recoverability": 3,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The PSR-16 simple cache specification is clean and minimal (28 commits), defining standard interfaces (`CacheInterface`, `CacheException`, `InvalidArgumentException`). The upstream repository has been inactive since merging PHP 8 typing updates; completing reference test harnesses, mock implementations, and adoption documentation represents bounded, high-feasibility recovery work with zero complex dependencies."
+    }
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "repository": "autoresearch",
+    "revision": "228791fb499afffb54b46200aca536f79142f117",
+    "unfinished": true,
+    "gold_rank": 2,
+    "gold_recoverability": 3,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The repository contains Andrej Karpathy's experimental agentic research prototype for automated training and evaluation on a single GPU. It is an active but incomplete research codebase (36 commits) lacking multi-GPU orchestration, experiment rollback/resumption resilience, and production-grade validation harnesses. Recovery is highly practical due to concise, readable Python code and self-contained execution."
+    }
+  },
+  {
     "case_id": "aicar_recovery",
     "repository": "aicar",
-    "revision": "07b121617c2a064e5e16c43db73a4ee852de864c",
-    "unfinished": null,
-    "gold_rank": null,
-    "gold_recoverability": null,
+    "revision": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+    "unfinished": true,
+    "gold_rank": 3,
+    "gold_recoverability": 2,
     "annotation": {
-      "status": "pending",
-      "annotator": null,
-      "rationale": null
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The AICAR prototype implements a full-stack React frontend and FastAPI backend for repository archaeology. It remains an unfinished research framework: offline baselines rely on hardcoded fallback responses, recovery scores lack calibrated numeric modeling, live Gemini execution requires external credential configuration, and production deployment automation is incomplete."
+    }
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "repository": "tinyhttpd",
+    "revision": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+    "unfinished": true,
+    "gold_rank": 4,
+    "gold_recoverability": 2,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. TinyHttpd is a compact ANSI C HTTP server (25 commits) demonstrating CGI execution. It is abandoned and unfinished for real-world usage: it lacks modern POSIX socket timeouts, robust buffer overflow protections, thread safety, and cross-platform build infrastructure. Recovery is feasible through focused modernization of networking and memory safety."
+    }
+  },
+  {
+    "case_id": "synx_recovery",
+    "repository": "synx",
+    "revision": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+    "unfinished": true,
+    "gold_rank": 5,
+    "gold_recoverability": 2,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. Synx is a Ruby CLI gem for reorganizing Xcode project directories to match PBX group structures. It was abandoned after CocoaPods and Xcode project specifications evolved. Recovery requires updating the gemspec dependencies to modern `xcodeproj` releases, addressing deprecation warnings, and verifying compatibility with current Xcode project formats."
+    }
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "repository": "codex_plugin_cc",
+    "revision": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+    "unfinished": true,
+    "gold_rank": 6,
+    "gold_recoverability": 2,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The repository provides an integration layer connecting Claude Code sessions with Codex. It is an active experimental utility (29 commits) lacking automated integration tests, standardized error recovery, and robust state persistence across session transfers. Resuming development requires aligning with ongoing API protocol updates."
+    }
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "repository": "capsule_identity",
+    "revision": "1364a437f30122558a70ad703acc23d48f144ee6",
+    "unfinished": true,
+    "gold_rank": 7,
+    "gold_recoverability": 2,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The capsule_identity crate is a specialized Rust module managing agent persona configuration and state persistence for Unicity AOS. While unit-tested (32 commits), it cannot function standalone without the broader AOS runtime, storage backend, and agent communication protocol. Recovery is bounded but requires integrating into the parent ecosystem."
+    }
+  },
+  {
+    "case_id": "spank_recovery",
+    "repository": "spank",
+    "revision": "a5f95a002fb29dfc3f705b74565d656239976a54",
+    "unfinished": true,
+    "gold_rank": 8,
+    "gold_recoverability": 2,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. Spank is a Go command-line tool (62 commits) that reads MacBook accelerometer sensors via Apple IOKit HID APIs to trigger audio playback. It is unfinished across diverse hardware models: it lacks cross-architecture support for older Intel vs Apple Silicon HID interfaces, comprehensive volume calibration, and daemon lifecycle management."
+    }
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "repository": "java8_tutorial",
+    "revision": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+    "unfinished": true,
+    "gold_rank": 9,
+    "gold_recoverability": 1,
+    "annotation": {
+      "status": "labelled",
+      "annotator": "kanam Ramu",
+      "rationale": "AI-assisted annotation reviewed and confirmed by the annotator. The repository is an abandoned collection of standalone Java 8 code examples (150 commits) created by Benjamin Winterberg. It is not structured as a unified software project: it lacks automated CI/build definitions (Maven/Gradle), contains examples for deprecated features (Nashorn JavaScript engine removed in JDK 15), and requires major modernization to compile under modern LTS Java releases."
     }
   }
 ]

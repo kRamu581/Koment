@@ -6,7 +6,55 @@
       "id": "aicar",
       "source": "https://github.com/kRamu581/Agentic-Code-Archaeology",
       "path": "../..",
-      "revision": "07b121617c2a064e5e16c43db73a4ee852de864c"
+      "revision": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2"
+    },
+    {
+      "id": "simple_cache",
+      "source": "https://github.com/php-fig/simple-cache",
+      "path": "repositories/simple_cache",
+      "revision": "2d280c2aaa23a120f35d55cfde8581954a8e77fa"
+    },
+    {
+      "id": "synx",
+      "source": "https://github.com/venmo/synx",
+      "path": "repositories/synx",
+      "revision": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f"
+    },
+    {
+      "id": "tinyhttpd",
+      "source": "https://github.com/Wungmeisilong/TinyHttpd",
+      "path": "repositories/tinyhttpd",
+      "revision": "fbd25cf755075d803cba09201a8f0dd6ac347c27"
+    },
+    {
+      "id": "autoresearch",
+      "source": "https://github.com/karpathy/autoresearch",
+      "path": "repositories/autoresearch",
+      "revision": "228791fb499afffb54b46200aca536f79142f117"
+    },
+    {
+      "id": "codex_plugin_cc",
+      "source": "https://github.com/openai/codex-plugin-cc",
+      "path": "repositories/codex_plugin_cc",
+      "revision": "db52e28f4d9ded852ab3942cea316258ae4ef346"
+    },
+    {
+      "id": "spank",
+      "source": "https://github.com/taigrr/spank",
+      "path": "repositories/spank",
+      "revision": "a5f95a002fb29dfc3f705b74565d656239976a54"
+    },
+    {
+      "id": "capsule_identity",
+      "source": "https://github.com/unicity-aos/capsule-identity",
+      "path": "repositories/capsule_identity",
+      "revision": "1364a437f30122558a70ad703acc23d48f144ee6"
+    },
+    {
+      "id": "java8_tutorial",
+      "source": "https://github.com/winterbe/java8-tutorial",
+      "path": "repositories/java8_tutorial",
+      "revision": "9b79999be76274f0c11a5b1d4a4fff4e785dc774"
     }
   ]
 }

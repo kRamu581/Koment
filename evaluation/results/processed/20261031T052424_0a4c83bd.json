@@ -1,0 +1,158 @@
+{
+  "git": {
+    "name": "Git baseline",
+    "task_status": {
+      "scope": "complete"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 20,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 94,
+      "decision_accuracy": 0.0,
+      "cases": 3
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 0,
+      "predicted_ranking": [],
+      "ground_truth_ranking": []
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": 0.0006066000000828353,
+    "executed": 3,
+    "mode": "offline"
+  },
+  "git_script": {
+    "name": "Git log/blame script",
+    "task_status": {
+      "scope": "complete"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 20,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 94,
+      "decision_accuracy": 0.0,
+      "cases": 3
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 0,
+      "predicted_ranking": [],
+      "ground_truth_ranking": []
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": 0.0004650000000765431,
+    "executed": 3,
+    "mode": "offline"
+  },
+  "llm": {
+    "name": "Single-prompt LLM",
+    "task_status": {
+      "scope": "unavailable: method skipped or failed"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 0,
+      "decision_accuracy": null,
+      "cases": 0
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 0,
+      "predicted_ranking": [],
+      "ground_truth_ranking": []
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": null,
+    "executed": 0,
+    "mode": "offline"
+  },
+  "aicar": {
+    "name": "Proposed AICAR",
+    "task_status": {
+      "scope": "complete"
+    },
+    "intent": {
+      "accuracy": null,
+      "cases": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "introducing_commit_accuracy": null
+    },
+    "scope": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 20,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gold_unclear_excluded": 0,
+      "predicted_unclear": 94,
+      "decision_accuracy": 0.0,
+      "cases": 3
+    },
+    "recovery": {
+      "ndcg": null,
+      "repositories": 0,
+      "predicted_ranking": [],
+      "ground_truth_ranking": []
+    },
+    "evidence": {
+      "supported": 0,
+      "total_verifiable": 0,
+      "rate": null
+    },
+    "analysis_seconds": 0.00047380000023622415,
+    "executed": 3,
+    "mode": "offline"
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "revision": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+    "message": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump",
+    "changed_files": [
+      ".claude-plugin/marketplace.json",
+      "package-lock.json",
+      "package.json",
+      "plugins/codex/.claude-plugin/plugin.json",
+      "plugins/codex/scripts/lib/git.mjs",
+      "plugins/codex/scripts/lib/process.mjs",
+      "tests/git.test.mjs",
+      "tests/helpers.mjs"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/.claude-plugin/marketplace.json b/.claude-plugin/marketplace.json\nindex 5e2ea5a..8702462 100644\n--- a/.claude-plugin/marketplace.json\n+++ b/.claude-plugin/marketplace.json\n@@ -5,13 +5,13 @@\n   },\n   \"metadata\": {\n     \"description\": \"Codex plugins to use in Claude Code for delegation and code review.\",\n-    \"version\": \"1.0.5\"\n+    \"version\": \"1.0.6\"\n   },\n   \"plugins\": [\n     {\n       \"name\": \"codex\",\n       \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n-      \"version\": \"1.0.5\",\n+      \"version\": \"1.0.6\",\n       \"author\": {\n         \"name\": \"OpenAI\"\n       },\ndiff --git a/package-lock.json b/package-lock.json\nindex 06f8922..0c919c3 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -1,12 +1,12 @@\n {\n   \"name\": \"@openai/codex-plugin-cc\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"@openai/codex-plugin-cc\",\n-      \"version\": \"1.0.5\",\n+      \"version\": \"1.0.6\",\n       \"license\": \"Apache-2.0\",\n       \"devDependencies\": {\n         \"@types/node\": \"^25.5.0\",\ndiff --git a/package.json b/package.json\nindex bfe52e0..b1d984d 100644\n--- a/package.json\n+++ b/package.json\n@@ -1,6 +1,6 @@\n {\n   \"name\": \"@openai/codex-plugin-cc\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"private\": true,\n   \"type\": \"module\",\n   \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\ndiff --git a/plugins/codex/.claude-plugin/plugin.json b/plugins/codex/.claude-plugin/plugin.json\nindex 168b342..e91e523 100644\n--- a/plugins/codex/.claude-plugin/plugin.json\n+++ b/plugins/codex/.claude-plugin/plugin.json\n@@ -1,6 +1,6 @@\n {\n   \"name\": \"codex\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n   \"author\": {\n     \"name\": \"OpenAI\"\ndiff --git a/plugins/codex/scripts/lib/git.mjs b/plugins/codex/scripts/lib/git.mjs\nindex 1749cfc..c401f0c 100644\n--- a/plugins/codex/scripts/lib/git.mjs\n+++ b/plugins/codex/scripts/lib/git.mjs\n@@ -8,12 +8,13 @@ const MAX_UNTRACKED_BYTES = 24 * 1024;\n const DEFAULT_INLINE_DIFF_MAX_FILES = 2;\n const DEFAULT_INLINE_DIFF_MAX_BYTES = 256 * 1024;\n \n+// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.\n function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function listUniqueFiles(...groups) {\ndiff --git a/plugins/codex/scripts/lib/process.mjs b/plugins/codex/scripts/lib/process.mjs\nindex af28d1c..dd8fc37 100644\n--- a/plugins/codex/scripts/lib/process.mjs\n+++ b/plugins/codex/scripts/lib/process.mjs\n@@ -9,7 +9,7 @@ export function runCommand(command, args = [], options = {}) {\n     input: options.input,\n     maxBuffer: options.maxBuffer,\n     stdio: options.stdio ?? \"pipe\",\n-    shell: process.platform === \"win32\" ? (process.env.SHELL || true) : false,\n+    shell: options.shell ?? (process.platform === \"win32\" ? (process.env.SHELL || true) : false),\n     windowsHide: true\n   });\n \ndiff --git a/tests/git.test.mjs b/tests/git.test.mjs\nindex 14ff257..5b5c266 100644\n--- a/tests/git.test.mjs\n+++ b/tests/git.test.mjs\n@@ -38,6 +38,35 @@ test(\"resolveReviewTarget falls back to branch diff when repo is clean\", () => {\n   assert.match(context.content, /Branch Diff/);\n });\n \n+test(\"default branch names with special characters are passed to git literally\", () => {\n+  const cwd = makeTempDir();\n+  const branchName = \"main&branch-helper&x\";\n+  const helperOutputPath = path.join(cwd, \"branch-helper-output\");\n+  initGitRepo(cwd);\n+  fs.writeFileSync(path.join(cwd, \"branch-helper.cmd\"), \"@echo branch-helper>branch-helper-output\\r\\n\");\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('base');\\n\");\n+  run(\"git\", [\"add\", \"app.js\", \"branch-helper.cmd\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"base\"], { cwd });\n+  run(\"git\", [\"branch\", \"-m\", branchName], { cwd, shell: false });\n+  run(\"git\", [\"update-ref\", `refs/remotes/origin/${branchName}`, branchName], { cwd, shell: false });\n+  run(\"git\", [\"symbolic-ref\", \"refs/remotes/origin/HEAD\", `refs/remotes/origin/${branchName}`], {\n+    cwd,\n+    shell: false\n+  });\n+  run(\"git\", [\"checkout\", \"-b\", \"feature/test\"], { cwd });\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('feature');\\n\");\n+  run(\"git\", [\"add\", \"app.js\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"feature\"], { cwd });\n+\n+  const target = resolveReviewTarget(cwd, {});\n+  const context = collectReviewContext(cwd, target);\n+\n+  assert.equal(target.mode, \"branch\");\n+  assert.equal(target.baseRef, branchName);\n+  assert.match(context.content, /Branch Diff/);\n+  assert.equal(fs.existsSync(helperOutputPath), false);\n+});\n+\n test(\"resolveReviewTarget honors explicit base overrides\", () => {\n   const cwd = makeTempDir();\n   initGitRepo(cwd);\ndiff --git a/tests/helpers.mjs b/tests/helpers.mjs\nindex 945ae0e..d698119 100644\n--- a/tests/helpers.mjs\n+++ b/tests/helpers.mjs\n@@ -18,7 +18,7 @@ export function run(command, args, options = {}) {\n     env: options.env,\n     encoding: \"utf8\",\n     input: options.input,\n-    shell: process.platform === \"win32\" && !path.isAbsolute(command),\n+    shell: options.shell ?? (process.platform === \"win32\" && !path.isAbsolute(command)),\n     windowsHide: true\n   });\n }\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+      "message": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump"
+    },
+    {
+      "hash": "80c31f99570876c3ef40327838b0a2ca1ae2cd9c",
+      "message": "fix: bump plugin version to 1.0.5 (#398)"
+    },
+    {
+      "hash": "430e2a8630f973382d10e336f2a64b611c84f9f3",
+      "message": "feat: add Claude session transfer command (#374)"
+    },
+    {
+      "hash": "807e03ac9d5aa23bc395fdec8c3767500a86b3cf",
+      "message": "fix: bump plugin version to 1.0.4 (#244)"
+    },
+    {
+      "hash": "bb38412a67537f483446c2af93d637f7892eb3d2",
+      "message": "fix: route /codex:rescue through the Agent tool to stop Skill recursion (#234) (#235)\n\n* fix: route /codex:rescue through the Agent tool to stop Skill recursion (#234)\n\n`/codex:rescue` previously combined two things that together caused a hang:\n\n- `context: fork` in the frontmatter, which spawns a `general-purpose`\n  subagent for the command body.\n- Body prose \"Route this request to the `codex:codex-rescue` subagent.\"\n  without naming the transport.\n\nWhen the main agent called `Skill(codex:rescue)` programmatically, the\nfork resolved the ambiguous prose by trying `Skill(codex:codex-rescue)`\n(unknown skill) and then falling back to `Skill(codex:rescue)`, which\nre-entered this command and hung the session until the user cancelled.\nNo Codex job was ever created.\n\nNaming the transport as `Agent(codex:codex-rescue)` alone is not enough:\nforked general-purpose subagents do not expose the `Agent` tool, so the\nforked runner cannot reach the subagent that way either. The minimal fix\nis therefore two coordinated changes:\n\n- Drop `context: fork` so the command body runs inline in the calling\n  agent's context, where `Agent` is in scope.\n- Say explicitly \"use the `Agent` tool with `subagent_type:\n  \"codex:codex-rescue\"`\", and call out that `Skill(codex:codex-rescue)`\n  and `Skill(codex:rescue)` are not valid routing paths. Add `Agent`\n  to `allowed-tools` so the call does not prompt for permission.\n\nEverything else in rescue.md (resume-candidate check, flag handling,\nbackground/foreground semantics, operating rules) is unchanged. The\n`codex:codex-rescue` subagent itself is unchanged.\n\nTests pin the new allow-list, the explicit `subagent_type`, the ban on\n`Skill(codex:codex-rescue)`, and the absence of `context: fork`. The\nexisting \"run the `codex:codex-rescue` subagent in the background\"\nassertion continues to hold since that sentence still reads correctly\nwith the Agent-tool transport.\n\nFixes openai/codex-plugin-cc#234\n\n* test: match quoted result and cancel command arguments\n\n---------\n\nCo-authored-by: Dominik Kundel <dkundel@openai.com>"
+    },
+    {
+      "hash": "6a5c2ba53b734f3cdd8daacbd49f68f3e6c8c167",
+      "message": "fix: quote \\$ARGUMENTS in cancel, result, and status commands (#168)\n\nUnquoted \\$ARGUMENTS in the ! shell commands allowed shell metacharacters\nin user-supplied job IDs to be expanded before Node received them (e.g.,\n`task-123; malicious-cmd` would execute the trailing command). This is\ninconsistent with review.md and adversarial-review.md, which both wrap\n\"$ARGUMENTS\" in double quotes.\n\nCo-authored-by: claude[bot] <claude-bot@anthropic.com>\nCo-authored-by: Claude Code <noreply@anthropic.com>"
+    },
+    {
+      "hash": "8e9a38cdfe25b6675ae8ebf520115d01d1b7ea99",
+      "message": "fix: correct invalid 'xhigh' reasoning effort in README (#99)\n\nCloses #77\n\nUpdated README to replace unsupported 'xhigh' value with 'high' to prevent configuration errors."
+    },
+    {
+      "hash": "b1156235e048fd018cc1741b355893800a20fd0a",
+      "message": "fix: declare model in codex-rescue agent frontmatter (#169)\n\n* fix: declare model in codex-rescue agent frontmatter\n\nThe codex-rescue agent had no model field, leaving Claude Code to assign\nwhatever default it chooses. As a thin forwarding wrapper that issues a\nsingle Bash call, this agent is well-suited to the haiku tier; declaring\nit explicitly ensures a predictable cost profile and tier guarantee.\n\nCo-Authored-By: Claude Code <noreply@anthropic.com>\n\n* Update codex-rescue.md\n\n---------\n\nCo-authored-by: claude[bot] <claude-bot@anthropic.com>\nCo-authored-by: Claude Code <noreply@anthropic.com>\nCo-authored-by: Dominik Kundel <dkundel@openai.com>"
+    },
+    {
+      "hash": "c24afe8404e576bb28706b0e840d241b13e48e2d",
+      "message": "codex: honor --cwd when reporting session runtime (#35)\n\n* codex: honor --cwd when reporting session runtime\n\n* codex: keep session runtime lookup scoped to callers\n\n---------\n\nCo-authored-by: VOIDXAI <VOIDXAI@users.noreply.github.com>"
+    },
+    {
+      "hash": "11a720b7db874ae5801607cafbde8d6885ce9022",
+      "message": "bump: update plugin version to 1.0.3 (#180)"
+    },
+    {
+      "hash": "bc8fa661a50998ead1c1164a94339fc9cab1d742",
+      "message": "fix: avoid embedding large adversarial review diffs (#179)\n\n* fix: avoid embedding large adversarial review diffs\n\n* fix: preserve untracked content in lightweight review\n\n* address comments\n\n* fix: handle ENOBUFS type check in git diff sizing"
+    },
+    {
+      "hash": "d216a5fdead7fdc6d081831d3d259d9fef70a8d4",
+      "message": "codex: scope default cancel selection to the current Claude session (#84)\n\nCo-authored-by: VOIDXAI <VOIDXAI@users.noreply.github.com>"
+    },
+    {
+      "hash": "40d213d13f71362ebd1033decf5616d97ad5b17d",
+      "message": "codex: scope implicit resume-last selection to the current Claude session (#83)\n\nCo-authored-by: VOIDXAI <VOIDXAI@users.noreply.github.com>"
+    },
+    {
+      "hash": "4bd783b7ce7feb19f61f461be21446a2587ec280",
+      "message": "fix: gracefully handle unsupported thread/name/set on older Codex CLI (#126)\n\n* fix: gracefully handle unsupported thread/name/set on older Codex CLI\n\nCodex CLI v0.118.0 does not recognize the thread/name/set JSON-RPC method,\ncausing startThread() to throw. Thread naming is cosmetic (for job log\nlabels) and should not block thread creation. Wraps the call in try/catch\nso it fails silently on older CLI versions.\n\nFixes #119\n\n* refactor: only suppress unsupported-method errors for thread/name/set\n\nAddress Codex review feedback: the bare catch swallowed all errors\nincluding auth, network, and server failures. Now only suppresses\nerrors containing 'unknown variant' or 'unknown method' (the specific\nerror older CLI versions return) and rethrows everything else."
+    },
+    {
+      "hash": "dd335cbc7609b03d12df7fa825257b8baa538dcd",
+      "message": "fix: inherit process.env in app-server spawn when no explicit env is provided (#159)\n\n`SpawnedCodexAppServerClient.initialize()` passes `this.options.env` to\n`spawn()`, but no caller ever sets `env` in options. In Node.js, passing\n`undefined` for `env` gives the child process **no** environment variables,\nbreaking any model provider that relies on env vars (e.g. DATABRICKS_TOKEN).\n\nFall back to `process.env` when `this.options.env` is not set, matching the\nexisting pattern in `broker-lifecycle.mjs` and `codex-companion.mjs`.\n\nCo-authored-by: Isaac\n\nCo-authored-by: Bhuvanesh Sridharan <bhuvanesh.sridharan@databricks.com>"
+    },
+    {
+      "hash": "62c351a7bfeb71024c21d3240a9abc8dcb6471df",
+      "message": "Use app-server auth status for Codex readiness (#177)\n\n* Use app-server auth status for Codex readiness\n\n* fix: reuse existing app server for auth checks"
+    },
+    {
+      "hash": "f17e7f848680bb558fbadab8584e1a2e7107e5f7",
+      "message": "fix: respect SHELL on Windows for Git Bash (#178)"
+    },
+    {
+      "hash": "594fd1e8da9befb42ab0a1fcf151e2b8d655e7ce",
+      "message": "Fix working-tree review crash on untracked directories (#166)\n\n* fix: skip untracked directories in review context\n\n* fix: skip broken untracked symlinks in reviews"
+    },
+    {
+      "hash": "8e403f9d4b496b0b0aff50fa3673f889f6a22cb1",
+      "message": "tests: reduce background task timing flakiness (#37)\n\nCo-authored-by: VOIDXAI <VOIDXAI@users.noreply.github.com>"
+    },
+    {
+      "hash": "6360899e1c7fca31fffaf41692ef9287fc9e2b1c",
+      "message": "chore: bump plugin version to 1.0.2 (#74)"
+    },
+    {
+      "hash": "65486f2878eeb392a43430097cd0e38a8f02e186",
+      "message": "ci: add pull request workflow for tests and build (#73)"
+    },
+    {
+      "hash": "64dc174d83eb097b789dfa8005ec98074f73cbe3",
+      "message": "Fix /codex:rescue AskUserQuestion contract (#43)"
+    },
+    {
+      "hash": "a1266348d68a406e4ee16bbc56ef790bde9db4d8",
+      "message": "fix: make test suite portable across platforms (#56)\n\n* fix: make test suite portable across platforms\n\nReplace hardcoded macOS path with fileURLToPath for cross-platform\ncompatibility. Add .cmd wrapper creation and platform-aware PATH\nseparator in test fixtures so the fake codex binary is discoverable\non Windows. Add shell and windowsHide options to the test helper\nrun() function to match production behavior.\n\nTest results on Windows improve from 12/64 pass to 59/64 pass.\n\nCo-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>\n\n* fix: skip shell for absolute-path commands to avoid Windows space-in-path breakage\n\nWhen `process.execPath` resolves to a path with spaces (e.g.,\n`C:\\Program Files\\nodejs\\node.exe`), `shell: true` causes cmd.exe\nto split the path at the space. Guard with `path.isAbsolute()` so\nonly bare command names (which need `.cmd` shim resolution) use the\nshell.\n\nCo-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Opus 4.6 (1M context) <noreply@anthropic.com>\nCo-authored-by: Dominik Kundel <dkundel@openai.com>"
+    },
+    {
+      "hash": "1a79ae57ec1cb0d848243aa5e57d97064985528f",
+      "message": "fix: resolve Windows ENOENT when spawning codex app-server (#55)\n\n* fix: add shell and windowsHide options for Windows spawn in app-server\n\nOn Windows, spawn(\"codex\", [\"app-server\"]) fails with ENOENT because\nNode.js cannot resolve .cmd shims without shell: true. This adds\nplatform-gated shell and windowsHide options to the app-server spawn\ncall, and uses terminateProcessTree for proper process tree cleanup\nsince shell: true wraps the child in cmd.exe.\n\nWithout terminateProcessTree, plain SIGTERM only kills cmd.exe and\nleaves the actual codex node process orphaned — verified with 274+\nzombie node.exe processes accumulating on Windows.\n\nFixes #32\nFixes #46\n\nCo-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>\n\n* fix: guard terminateProcessTree against PID reuse after process exit\n\nChildProcess.killed only reflects whether .kill() was called by this\nprocess — it stays false when the child exits on its own. On Windows,\nwhere PIDs are recycled quickly, the 50 ms timer could fire after\ncmd.exe has exited and its PID has been reassigned, causing taskkill\nto terminate an unrelated process.\n\nAdd an exitCode === null check so the tree-kill path is skipped once\nthe child has already exited.\n\nCo-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
+    },
+    {
+      "hash": "19642ad95f96a9d01a23da1e0ab568394f0e9c3e",
+      "message": "tests: derive repo roots from test file locations (#34)\n\nCo-authored-by: VOIDXAI <VOIDXAI@users.noreply.github.com>"
+    },
+    {
+      "hash": "9cb4fe4099195b2587c402117a3efce6ab5aac78",
+      "message": "Bump v1.0.1 (#22)\n\n* chore: bump plugin version to 1.0.1\n\n* chore: bump plugin metadata version to 1.0.1"
+    },
+    {
+      "hash": "cf6f8515d898ecb921c2da23d08235144fb16601",
+      "message": "fix: add `shell: true` on Windows so spawnSync can resolve .cmd shims (#13)\n\nOn Windows, Node.js `spawnSync` without `shell: true` uses\n`CreateProcess`, which only resolves `.exe` files. npm installs global\ntools (like `codex`) as `.cmd` shims, so `spawnSync(\"codex\", ...)`\nreturns ENOENT even when codex is correctly installed and on PATH.\n\nAdding `shell: process.platform === \"win32\"` routes through `cmd.exe`\non Windows, which properly resolves `.cmd`, `.bat`, and PATHEXT entries.\nNo behavior change on macOS/Linux since the condition evaluates to false."
+    },
+    {
+      "hash": "f4d65d9641fadc7632afecd5735daf8e16060c98",
+      "message": "docs: update README with plugin reload and setup instructions (#2)\n\nAdded instructions for reloading plugins and setup command."
+    },
+    {
+      "hash": "c69527eb18d0bdab92080487708381f95cf4c291",
+      "message": "Initial commit\n\nCo-authored-by: Codex <noreply@openai.com>"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".claude-plugin/marketplace.json",
+    ".github/workflows/pull-request-ci.yml",
+    ".gitignore",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "package-lock.json",
+    "package.json",
+    "plugins/codex/.claude-plugin/plugin.json",
+    "plugins/codex/CHANGELOG.md",
+    "plugins/codex/LICENSE",
+    "plugins/codex/NOTICE",
+    "plugins/codex/agents/codex-rescue.md",
+    "plugins/codex/commands/adversarial-review.md",
+    "plugins/codex/commands/cancel.md",
+    "plugins/codex/commands/rescue.md",
+    "plugins/codex/commands/result.md",
+    "plugins/codex/commands/review.md",
+    "plugins/codex/commands/setup.md",
+    "plugins/codex/commands/status.md",
+    "plugins/codex/commands/transfer.md",
+    "plugins/codex/hooks/hooks.json",
+    "plugins/codex/prompts/adversarial-review.md",
+    "plugins/codex/prompts/stop-review-gate.md",
+    "plugins/codex/schemas/review-output.schema.json",
+    "plugins/codex/scripts/app-server-broker.mjs",
+    "plugins/codex/scripts/codex-companion.mjs",
+    "plugins/codex/scripts/lib/app-server-protocol.d.ts",
+    "plugins/codex/scripts/lib/app-server.mjs",
+    "plugins/codex/scripts/lib/args.mjs",
+    "plugins/codex/scripts/lib/broker-endpoint.mjs",
+    "plugins/codex/scripts/lib/broker-lifecycle.mjs",
+    "plugins/codex/scripts/lib/claude-session-transfer.mjs",
+    "plugins/codex/scripts/lib/codex.mjs",
+    "plugins/codex/scripts/lib/fs.mjs",
+    "plugins/codex/scripts/lib/git.mjs",
+    "plugins/codex/scripts/lib/job-control.mjs",
+    "plugins/codex/scripts/lib/process.mjs",
+    "plugins/codex/scripts/lib/prompts.mjs",
+    "plugins/codex/scripts/lib/render.mjs",
+    "plugins/codex/scripts/lib/state.mjs",
+    "plugins/codex/scripts/lib/tracked-jobs.mjs",
+    "plugins/codex/scripts/lib/workspace.mjs",
+    "plugins/codex/scripts/session-lifecycle-hook.mjs",
+    "plugins/codex/scripts/stop-review-gate-hook.mjs",
+    "plugins/codex/skills/codex-cli-runtime/SKILL.md",
+    "plugins/codex/skills/codex-result-handling/SKILL.md",
+    "plugins/codex/skills/gpt-5-4-prompting/SKILL.md",
+    "plugins/codex/skills/gpt-5-4-prompting/references/codex-prompt-antipatterns.md",
+    "plugins/codex/skills/gpt-5-4-prompting/references/codex-prompt-recipes.md",
+    "plugins/codex/skills/gpt-5-4-prompting/references/prompt-blocks.md",
+    "scripts/bump-version.mjs",
+    "tests/broker-endpoint.test.mjs",
+    "tests/bump-version.test.mjs",
+    "tests/commands.test.mjs",
+    "tests/fake-codex-fixture.mjs",
+    "tests/git.test.mjs",
+    "tests/helpers.mjs",
+    "tests/process.test.mjs",
+    "tests/render.test.mjs",
+    "tests/runtime.test.mjs",
+    "tests/state.test.mjs",
+    "tsconfig.app-server.json"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/.claude-plugin/marketplace.json b/.claude-plugin/marketplace.json\nindex 5e2ea5a..8702462 100644\n--- a/.claude-plugin/marketplace.json\n+++ b/.claude-plugin/marketplace.json\n@@ -5,13 +5,13 @@\n   },\n   \"metadata\": {\n     \"description\": \"Codex plugins to use in Claude Code for delegation and code review.\",\n-    \"version\": \"1.0.5\"\n+    \"version\": \"1.0.6\"\n   },\n   \"plugins\": [\n     {\n       \"name\": \"codex\",\n       \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n-      \"version\": \"1.0.5\",\n+      \"version\": \"1.0.6\",\n       \"author\": {\n         \"name\": \"OpenAI\"\n       },\ndiff --git a/package-lock.json b/package-lock.json\nindex 06f8922..0c919c3 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -1,12 +1,12 @@\n {\n   \"name\": \"@openai/codex-plugin-cc\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"@openai/codex-plugin-cc\",\n-      \"version\": \"1.0.5\",\n+      \"version\": \"1.0.6\",\n       \"license\": \"Apache-2.0\",\n       \"devDependencies\": {\n         \"@types/node\": \"^25.5.0\",\ndiff --git a/package.json b/package.json\nindex bfe52e0..b1d984d 100644\n--- a/package.json\n+++ b/package.json\n@@ -1,6 +1,6 @@\n {\n   \"name\": \"@openai/codex-plugin-cc\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"private\": true,\n   \"type\": \"module\",\n   \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\ndiff --git a/plugins/codex/.claude-plugin/plugin.json b/plugins/codex/.claude-plugin/plugin.json\nindex 168b342..e91e523 100644\n--- a/plugins/codex/.claude-plugin/plugin.json\n+++ b/plugins/codex/.claude-plugin/plugin.json\n@@ -1,6 +1,6 @@\n {\n   \"name\": \"codex\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n   \"author\": {\n     \"name\": \"OpenAI\"\ndiff --git a/plugins/codex/scripts/lib/git.mjs b/plugins/codex/scripts/lib/git.mjs\nindex 1749cfc..c401f0c 100644\n--- a/plugins/codex/scripts/lib/git.mjs\n+++ b/plugins/codex/scripts/lib/git.mjs\n@@ -8,12 +8,13 @@ const MAX_UNTRACKED_BYTES = 24 * 1024;\n const DEFAULT_INLINE_DIFF_MAX_FILES = 2;\n const DEFAULT_INLINE_DIFF_MAX_BYTES = 256 * 1024;\n \n+// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.\n function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function listUniqueFiles(...groups) {\ndiff --git a/plugins/codex/scripts/lib/process.mjs b/plugins/codex/scripts/lib/process.mjs\nindex af28d1c..dd8fc37 100644\n--- a/plugins/codex/scripts/lib/process.mjs\n+++ b/plugins/codex/scripts/lib/process.mjs\n@@ -9,7 +9,7 @@ export function runCommand(command, args = [], options = {}) {\n     input: options.input,\n     maxBuffer: options.maxBuffer,\n     stdio: options.stdio ?? \"pipe\",\n-    shell: process.platform === \"win32\" ? (process.env.SHELL || true) : false,\n+    shell: options.shell ?? (process.platform === \"win32\" ? (process.env.SHELL || true) : false),\n     windowsHide: true\n   });\n \ndiff --git a/tests/git.test.mjs b/tests/git.test.mjs\nindex 14ff257..5b5c266 100644\n--- a/tests/git.test.mjs\n+++ b/tests/git.test.mjs\n@@ -38,6 +38,35 @@ test(\"resolveReviewTarget falls back to branch diff when repo is clean\", () => {\n   assert.match(context.content, /Branch Diff/);\n });\n \n+test(\"default branch names with special characters are passed to git literally\", () => {\n+  const cwd = makeTempDir();\n+  const branchName = \"main&branch-helper&x\";\n+  const helperOutputPath = path.join(cwd, \"branch-helper-output\");\n+  initGitRepo(cwd);\n+  fs.writeFileSync(path.join(cwd, \"branch-helper.cmd\"), \"@echo branch-helper>branch-helper-output\\r\\n\");\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('base');\\n\");\n+  run(\"git\", [\"add\", \"app.js\", \"branch-helper.cmd\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"base\"], { cwd });\n+  run(\"git\", [\"branch\", \"-m\", branchName], { cwd, shell: false });\n+  run(\"git\", [\"update-ref\", `refs/remotes/origin/${branchName}`, branchName], { cwd, shell: false });\n+  run(\"git\", [\"symbolic-ref\", \"refs/remotes/origin/HEAD\", `refs/remotes/origin/${branchName}`], {\n+    cwd,\n+    shell: false\n+  });\n+  run(\"git\", [\"checkout\", \"-b\", \"feature/test\"], { cwd });\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('feature');\\n\");\n+  run(\"git\", [\"add\", \"app.js\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"feature\"], { cwd });\n+\n+  const target = resolveReviewTarget(cwd, {});\n+  const context = collectReviewContext(cwd, target);\n+\n+  assert.equal(target.mode, \"branch\");\n+  assert.equal(target.baseRef, branchName);\n+  assert.match(context.content, /Branch Diff/);\n+  assert.equal(fs.existsSync(helperOutputPath), false);\n+});\n+\n test(\"resolveReviewTarget honors explicit base overrides\", () => {\n   const cwd = makeTempDir();\n   initGitRepo(cwd);\ndiff --git a/tests/helpers.mjs b/tests/helpers.mjs\nindex 945ae0e..d698119 100644\n--- a/tests/helpers.mjs\n+++ b/tests/helpers.mjs\n@@ -18,7 +18,7 @@ export function run(command, args, options = {}) {\n     env: options.env,\n     encoding: \"utf8\",\n     input: options.input,\n-    shell: process.platform === \"win32\" && !path.isAbsolute(command),\n+    shell: options.shell ?? (process.platform === \"win32\" && !path.isAbsolute(command)),\n     windowsHide: true\n   });\n }\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/.claude-plugin/marketplace.json b/.claude-plugin/marketplace.json",
+      "header": "@@ -5,13 +5,13 @@",
+      "text": "@@ -5,13 +5,13 @@\n   },\n   \"metadata\": {\n     \"description\": \"Codex plugins to use in Claude Code for delegation and code review.\",\n-    \"version\": \"1.0.5\"\n+    \"version\": \"1.0.6\"\n   },\n   \"plugins\": [\n     {\n       \"name\": \"codex\",\n       \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n-      \"version\": \"1.0.5\",\n+      \"version\": \"1.0.6\",\n       \"author\": {\n         \"name\": \"OpenAI\"\n       },\n",
+      "id": "hunk_0309871619d05687c2ef"
+    },
+    {
+      "file_header": "diff --git a/package-lock.json b/package-lock.json",
+      "header": "@@ -1,12 +1,12 @@",
+      "text": "@@ -1,12 +1,12 @@\n {\n   \"name\": \"@openai/codex-plugin-cc\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"@openai/codex-plugin-cc\",\n-      \"version\": \"1.0.5\",\n+      \"version\": \"1.0.6\",\n       \"license\": \"Apache-2.0\",\n       \"devDependencies\": {\n         \"@types/node\": \"^25.5.0\",\n",
+      "id": "hunk_17d59e070e1020d6cf71"
+    },
+    {
+      "file_header": "diff --git a/package.json b/package.json",
+      "header": "@@ -1,6 +1,6 @@",
+      "text": "@@ -1,6 +1,6 @@\n {\n   \"name\": \"@openai/codex-plugin-cc\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"private\": true,\n   \"type\": \"module\",\n   \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n",
+      "id": "hunk_69d98b904e5d3626a75d"
+    },
+    {
+      "file_header": "diff --git a/plugins/codex/.claude-plugin/plugin.json b/plugins/codex/.claude-plugin/plugin.json",
+      "header": "@@ -1,6 +1,6 @@",
+      "text": "@@ -1,6 +1,6 @@\n {\n   \"name\": \"codex\",\n-  \"version\": \"1.0.5\",\n+  \"version\": \"1.0.6\",\n   \"description\": \"Use Codex from Claude Code to review code or delegate tasks.\",\n   \"author\": {\n     \"name\": \"OpenAI\"\n",
+      "id": "hunk_c6f32796ec1e45e990cf"
+    },
+    {
+      "file_header": "diff --git a/plugins/codex/scripts/lib/git.mjs b/plugins/codex/scripts/lib/git.mjs",
+      "header": "@@ -8,12 +8,13 @@ const MAX_UNTRACKED_BYTES = 24 * 1024;",
+      "text": "@@ -8,12 +8,13 @@ const MAX_UNTRACKED_BYTES = 24 * 1024;\n const DEFAULT_INLINE_DIFF_MAX_FILES = 2;\n const DEFAULT_INLINE_DIFF_MAX_BYTES = 256 * 1024;\n \n+// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.\n function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function listUniqueFiles(...groups) {\n",
+      "id": "hunk_35e6075937fbda906d55"
+    },
+    {
+      "file_header": "diff --git a/plugins/codex/scripts/lib/process.mjs b/plugins/codex/scripts/lib/process.mjs",
+      "header": "@@ -9,7 +9,7 @@ export function runCommand(command, args = [], options = {}) {",
+      "text": "@@ -9,7 +9,7 @@ export function runCommand(command, args = [], options = {}) {\n     input: options.input,\n     maxBuffer: options.maxBuffer,\n     stdio: options.stdio ?? \"pipe\",\n-    shell: process.platform === \"win32\" ? (process.env.SHELL || true) : false,\n+    shell: options.shell ?? (process.platform === \"win32\" ? (process.env.SHELL || true) : false),\n     windowsHide: true\n   });\n \n",
+      "id": "hunk_7a18a364cbcc9233cf6a"
+    },
+    {
+      "file_header": "diff --git a/tests/git.test.mjs b/tests/git.test.mjs",
+      "header": "@@ -38,6 +38,35 @@ test(\"resolveReviewTarget falls back to branch diff when repo is clean\", () => {",
+      "text": "@@ -38,6 +38,35 @@ test(\"resolveReviewTarget falls back to branch diff when repo is clean\", () => {\n   assert.match(context.content, /Branch Diff/);\n });\n \n+test(\"default branch names with special characters are passed to git literally\", () => {\n+  const cwd = makeTempDir();\n+  const branchName = \"main&branch-helper&x\";\n+  const helperOutputPath = path.join(cwd, \"branch-helper-output\");\n+  initGitRepo(cwd);\n+  fs.writeFileSync(path.join(cwd, \"branch-helper.cmd\"), \"@echo branch-helper>branch-helper-output\\r\\n\");\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('base');\\n\");\n+  run(\"git\", [\"add\", \"app.js\", \"branch-helper.cmd\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"base\"], { cwd });\n+  run(\"git\", [\"branch\", \"-m\", branchName], { cwd, shell: false });\n+  run(\"git\", [\"update-ref\", `refs/remotes/origin/${branchName}`, branchName], { cwd, shell: false });\n+  run(\"git\", [\"symbolic-ref\", \"refs/remotes/origin/HEAD\", `refs/remotes/origin/${branchName}`], {\n+    cwd,\n+    shell: false\n+  });\n+  run(\"git\", [\"checkout\", \"-b\", \"feature/test\"], { cwd });\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('feature');\\n\");\n+  run(\"git\", [\"add\", \"app.js\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"feature\"], { cwd });\n+\n+  const target = resolveReviewTarget(cwd, {});\n+  const context = collectReviewContext(cwd, target);\n+\n+  assert.equal(target.mode, \"branch\");\n+  assert.equal(target.baseRef, branchName);\n+  assert.match(context.content, /Branch Diff/);\n+  assert.equal(fs.existsSync(helperOutputPath), false);\n+});\n+\n test(\"resolveReviewTarget honors explicit base overrides\", () => {\n   const cwd = makeTempDir();\n   initGitRepo(cwd);\n",
+      "id": "hunk_917d032c504699eb0bc8"
+    },
+    {
+      "file_header": "diff --git a/tests/helpers.mjs b/tests/helpers.mjs",
+      "header": "@@ -18,7 +18,7 @@ export function run(command, args, options = {}) {",
+      "text": "@@ -18,7 +18,7 @@ export function run(command, args, options = {}) {\n     env: options.env,\n     encoding: \"utf8\",\n     input: options.input,\n-    shell: process.platform === \"win32\" && !path.isAbsolute(command),\n+    shell: options.shell ?? (process.platform === \"win32\" && !path.isAbsolute(command)),\n     windowsHide: true\n   });\n }\n",
+      "id": "hunk_edb7da02d4fc461e627f"
+    }
+  ],
+  "features": {
+    "commit_count": 29,
+    "file_count": 63,
+    "last_commit_age_days": 76.70600246869213,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [
+      "tests/broker-endpoint.test.mjs",
+      "tests/bump-version.test.mjs",
+      "tests/commands.test.mjs",
+      "tests/fake-codex-fixture.mjs",
+      "tests/git.test.mjs",
+      "tests/helpers.mjs",
+      "tests/process.test.mjs",
+      "tests/render.test.mjs",
+      "tests/runtime.test.mjs",
+      "tests/state.test.mjs"
+    ],
+    "todo_count": 0,
+    "entrypoint_candidates": [
+      "package.json"
+    ],
+    "documentation_files": [
+      "README.md",
+      "plugins/codex/CHANGELOG.md",
+      "plugins/codex/agents/codex-rescue.md",
+      "plugins/codex/commands/adversarial-review.md",
+      "plugins/codex/commands/cancel.md",
+      "plugins/codex/commands/rescue.md",
+      "plugins/codex/commands/result.md",
+      "plugins/codex/commands/review.md",
+      "plugins/codex/commands/setup.md",
+      "plugins/codex/commands/status.md",
+      "plugins/codex/commands/transfer.md",
+      "plugins/codex/prompts/adversarial-review.md",
+      "plugins/codex/prompts/stop-review-gate.md",
+      "plugins/codex/skills/codex-cli-runtime/SKILL.md",
+      "plugins/codex/skills/codex-result-handling/SKILL.md",
+      "plugins/codex/skills/gpt-5-4-prompting/SKILL.md",
+      "plugins/codex/skills/gpt-5-4-prompting/references/codex-prompt-antipatterns.md",
+      "plugins/codex/skills/gpt-5-4-prompting/references/codex-prompt-recipes.md",
+      "plugins/codex/skills/gpt-5-4-prompting/references/prompt-blocks.md"
+    ],
+    "dependency_manifests": [
+      "package.json"
+    ],
+    "deployment_files": [
+      ".github/workflows/pull-request-ci.yml"
+    ],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": []
+  },
+  "commit_count": 29,
+  "file_count": 63,
+  "todos": []
+}

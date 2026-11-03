@@ -1,0 +1,507 @@
+{
+  "revision": "a5f95a002fb29dfc3f705b74565d656239976a54",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "a5f95a002fb29dfc3f705b74565d656239976a54",
+    "message": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>",
+    "changed_files": [
+      "README-zh.md",
+      "README.md"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/README-zh.md b/README-zh.md\nindex 51163fb..d736e25 100644\n--- a/README-zh.md\n+++ b/README-zh.md\n@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist\n \n ## Star History\n \n-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)\n \n ## 致谢\n \ndiff --git a/README.md b/README.md\nindex 8f0da08..97ab836 100644\n--- a/README.md\n+++ b/README.md\n@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist\n \n ## Star History\n \n-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)\n \n ## Credits\n \n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "a5f95a002fb29dfc3f705b74565d656239976a54",
+      "message": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>"
+    },
+    {
+      "hash": "17169e858cd645f7ee7264a7c9b2473298ad81aa",
+      "message": "fix: resample audio to speaker rate to fix custom pack speed/pitch issues (#73)\n\nThe speaker is initialized once with the first played file's sample rate,\nbut subsequent files were never resampled to it. Custom packs with mixed\nsample rates (common after WAV->MP3 conversion) therefore played sped up,\nslowed down, or distorted depending on which file initialized the speaker.\n\nResample every stream to the speaker's rate, folding the --speed flag into\nthe same resample. Also bump Go directive and update dependencies.\n\nFixes #60"
+    },
+    {
+      "hash": "47ad447f3965485e21cb339f2ef0ce8abdd33582",
+      "message": "Merge pull request #65 from chengyanqi123/master\n\nUpdate the \"Requirements\" section in the Chinese doc to align with the English version"
+    },
+    {
+      "hash": "459ec55027d14e5a0a229df3c844961790c4e5f1",
+      "message": "docs: Update the 'Requirements' section in the Chinese doc."
+    },
+    {
+      "hash": "64d1bd43b8ca695330e112990dcfd27e409da951",
+      "message": "Merge pull request #64 from timstrauss/addLizardAudio\n\nfeat: Add lizard sound"
+    },
+    {
+      "hash": "6cb0a739865d6dad674a60de3c3569e964719a71",
+      "message": "feat: Add lizard sound\n\nAdding a lizard sound from the Tom the Lizard meme. The sound is free\nfor use (https://lizardbutton.org/download/)."
+    },
+    {
+      "hash": "806ad4350b23a8c7f382a7b3d58abe0014f17183",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "f1202e981b4fa3573584f81e3cf53c6bbe015902",
+      "message": "Add logo"
+    },
+    {
+      "hash": "1633c5d5c56b85e82eda0c0d92de9637db11985b",
+      "message": "Merge pull request #49 from chengyanqi123/master\n\nAdd Simplified Chinese README Document"
+    },
+    {
+      "hash": "946ae7873c57ff009b034ab4266ed1858305b59e",
+      "message": "docs: Add Simplified Chinese README Document"
+    },
+    {
+      "hash": "233e232326a5b55163d6ca7b9f26cddcebe1f54c",
+      "message": "docs: Add Simplified Chinese README Document"
+    },
+    {
+      "hash": "c18caf033c53913d56b33ccbadebfd027fe13883",
+      "message": "Merge pull request #45 from Everoot/fix/stdio-set-live-tuning\n\nfix: apply stdio set command (amplitude/cooldown) in detection loop"
+    },
+    {
+      "hash": "dbde6a2172647a67bb75de57729336841d9fa493",
+      "message": "fix: apply stdio set command (amplitude/cooldown) in detection loop"
+    },
+    {
+      "hash": "8c14aea5ab9f0307ce3c78b6cf269b8888406c58",
+      "message": "Merge pull request #43 from tacheraSasi/master\n\nfix: optimize index clamping and use time.Equal for event comparison"
+    },
+    {
+      "hash": "c14c1f09102081954c9480e4559eef4f113c0c57",
+      "message": "fix: optimize index calculation and improve event time comparison"
+    },
+    {
+      "hash": "bedae99edcb286ebcfdcdb56bd696679ebc38837",
+      "message": "Merge pull request #42 from v-garzon/feature/speed-flag\n\nAdd --speed flag for playback speed control"
+    },
+    {
+      "hash": "f65a00d1da3388999eb2f7a03334a6f1aabb4bd1",
+      "message": "Add --speed flag for playback speed control"
+    },
+    {
+      "hash": "42b75a0a7e3bca22dbf112d55ef77e88d6ecdb93",
+      "message": "Merge pull request #40 from andreabadesso/nix-flake-hm-module\n\nfeat: add Nix flake with Home Manager module"
+    },
+    {
+      "hash": "3d582f8cd4f8ffbd7670d16850347bb900a4ce92",
+      "message": "feat: add nix flake with home-manager module\n\nAdd a Nix flake that builds the package and exposes a home-manager\nmodule for easy integration into nix-based system configs."
+    },
+    {
+      "hash": "0d11ad16626e431101234265c6bd4096de34db54",
+      "message": "Merge pull request #37 from taigrr/cd/volume-scaling-and-deps\n\nfeat(audio): scale volume by slap amplitude"
+    },
+    {
+      "hash": "64ffd49b9b60cbdab765cf5058a775c74bd520bb",
+      "message": "fix(audio): make volume scaling opt-in with --volume-scaling flag\n\nVolume scaling is now off by default instead of always-on.\nEnable with --volume-scaling flag or toggle at runtime via\nthe JSON stdin command {\"cmd\":\"volume-scaling\"}.\n\nThe status command now includes volume_scaling in its response."
+    },
+    {
+      "hash": "c95cd1fc71e37f2b34c03a020b47eacd95da24a7",
+      "message": "feat(audio): scale volume by slap amplitude\n\nHarder slaps now play louder sounds. Uses beep/effects.Volume with a\nlogarithmic curve mapping detected amplitude to playback volume:\n- Light taps (~0.05g): play at ~1/8 volume\n- Hard slaps (~0.8g+): play at full volume\n\nAlso updates deps and adds Go 1.26+ build requirement to README.\n\nCloses #32"
+    },
+    {
+      "hash": "0c6475a1627ffad0035fca08c3b3b6a7c6be0858",
+      "message": "Merge pull request #30 from taigrr/cd/fast-mode\n\nfeat: add --fast flag for responsive detection tuning"
+    },
+    {
+      "hash": "1fef01b8435b453f8f39d9b0e07e8a319e96565d",
+      "message": "added fast preset to it for more interesting"
+    },
+    {
+      "hash": "ae3e692a9482f3499522d4f765c8bb84f95bcbc3",
+      "message": "Merge pull request #28 from RJohnPaul/patch-1\n\nadded extra note mentioned in description as without it when i run su…"
+    },
+    {
+      "hash": "a1ff72ba8c9e25f4527b1ddb3f1b566daf925583",
+      "message": "Merge pull request #27 from chengyanqi123/master\n\nUpdate README to add explanation of the --cooldown parameter."
+    },
+    {
+      "hash": "47856dda81323e323cb7a583fe57e8aa01ab1f0c",
+      "message": "Apply suggestions from code review\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>"
+    },
+    {
+      "hash": "f507171af58724f9090ce3b484a3ce47af6fad86",
+      "message": "add stdin mode"
+    },
+    {
+      "hash": "7a2318605b32508c0c5d5ec769fa1c01359e333a",
+      "message": "added extra note mentioned in description as without it when i run sudo spank it returns as spank : command not found\n\n> **Note:** `go install` places the binary in `~/go/bin`, which `sudo` can't find by default. Copy it to a system path so `sudo spank` works:\n> ```bash\n> sudo cp ~/go/bin/spank /usr/local/bin/spank\n> ```"
+    },
+    {
+      "hash": "2b97d12c7c70cd8fff87e1a6b493922c60976ea1",
+      "message": "docs: Update README to add explanation of the --cooldown parameter."
+    },
+    {
+      "hash": "e80375609cda6c9f1a3309193563e85e42a93dcc",
+      "message": "add cooldown flag"
+    },
+    {
+      "hash": "5b421cd45a88ab23bb943978922ea65240dda8ad",
+      "message": "gitignore .crush"
+    },
+    {
+      "hash": "d56e6357b98f0c42bd888aae940b4225659b3d3a",
+      "message": "Merge pull request #20 from taigrr/cd/dep-updates\n\nchore(deps): update dependencies"
+    },
+    {
+      "hash": "dcba59f6b17399fa93d64c7ec0fefcec55b05dc8",
+      "message": "chore(deps): update charmbracelet/x/exp/charmtone"
+    },
+    {
+      "hash": "1b86dd50fbadb146d590fd4c3325783928dadfb3",
+      "message": "Add Star History section to README\n\nAdded a section for Star History with a chart link."
+    },
+    {
+      "hash": "52c05607efb6cecd36c31dc6ebcf0de06d3d8f16",
+      "message": "fix: increase cooldown to 750ms, make all sounds reachable\n\n- Cooldown 500ms → 750ms\n- Adjust escalation math so sustained max-rate slapping reaches the\n  final file instead of asymptotically approaching it"
+    },
+    {
+      "hash": "b543ede7d207d5d37f88cded96818ee47e68cfb2",
+      "message": "refactor: CQL cleanup — extract constants, validate inputs, surface errors\n\n- Extract magic numbers into named constants (cooldown, poll interval, etc.)\n- Validate empty audio directories early with clear error message\n- Consolidate mutually exclusive mode check (--sexy/--halo/--custom)\n- Extract event loop into listenForSlaps for readability\n- Flatten nested conditionals with early continues\n- Surface audio playback errors to stderr instead of silently dropping\n- Fix variable naming (e -> entry, s -> sample) per Go conventions\n- Run goimports formatting pass"
+    },
+    {
+      "hash": "19c5378abc92b029e41040e887254f0b7b5e621f",
+      "message": "Merge pull request #12 from criizx/master\n\nfeature: Added flag for custom audio"
+    },
+    {
+      "hash": "ca44daf78a5768c22d926f96067942b4b3baaadc",
+      "message": "Merge pull request #11 from masterkusok/master\n\nfeature: sensitivity flag"
+    },
+    {
+      "hash": "f0b35d1f3444578d5fbe0adc2bde88114646e63a",
+      "message": "Merge pull request #8 from ZenAlexa/fix/sexy-mode-escalation\n\nfix: sexy mode escalation caps at 20 slaps instead of using all 60 levels"
+    },
+    {
+      "hash": "dda2f1142242e04b4df5c93fd69faedcc222bfa6",
+      "message": "all: sensitivity flag"
+    },
+    {
+      "hash": "6d4f0db9640b1a87b7064d39a7b167faaa41c1b5",
+      "message": "added flag for custom audio"
+    },
+    {
+      "hash": "bfa9b918188c9cbe3e1ec3165eb46af3f77462ea",
+      "message": "fix: replace sexy mode escalation with exponential decay\n\nThe escalation algorithm had a hardcoded cap at 20 slaps, causing it\nto alternate between only the last two audio files for the rest of the\nsession. This meant ~40 of the 60 files were never played, despite the\nREADME advertising \"60 levels of escalation.\"\n\nReplace the fixed 5-minute sliding window + linear ratio mapping with\nexponential decay scoring and an asymptotic 1-exp(-x) curve:\n\n- Each slap adds 1 to a score that continuously decays (30s half-life)\n- The score maps to file index via 1-exp(-(score-1)/scale), which\n  asymptotically approaches but never reaches the last file\n- Scale is auto-derived from the half-life, cooldown, and file count\n- Intensity now reflects current slap *rate*, not just accumulated count\n- Slowing down naturally lowers the level; stopping resets to baseline\n- Zero per-slap allocations (replaces the []time.Time sliding window)"
+    },
+    {
+      "hash": "95e6b1df398377f03e5d9496746bc8cc2b37672a",
+      "message": "chore: add GitHub Sponsors funding config"
+    },
+    {
+      "hash": "99accb0decf4fefe6932289e836f28d21c2fb0a6",
+      "message": "Merge pull request #6 from taigrr/cd/service-docs\n\nCd/service docs"
+    },
+    {
+      "hash": "6a74f053d8ceb170315a5bda36ea136f76c82f03",
+      "message": "docs: collapsible plist blocks for all three modes"
+    },
+    {
+      "hash": "32b6f7a250a849dd7c38223cd2bc59869e4ffb7f",
+      "message": "docs: add instructions for running as a launchd service"
+    },
+    {
+      "hash": "ee39387b295faf81f5ae1a6af75300135715cf77",
+      "message": "fix for real"
+    },
+    {
+      "hash": "db4b3f9914c0ca61ac553dad5ade7fa7fd084406",
+      "message": "Merge pull request #3 from taigrr/cd/fix-event-detection-after-cap\n\nfix: detect new events after detector trims event buffer"
+    },
+    {
+      "hash": "4593b99caeb03ba58299f60652b961cdcecfa02c",
+      "message": "fix: detect new events after detector trims event buffer\n\nThe detector caps Events at 500 entries, trimming old ones from the\nfront. The previous check (len > prevCount) would fail once the slice\nwas trimmed, since the length could stay the same or decrease. This\ncaused spank to stop detecting slaps after ~500 events.\n\nSwitch to tracking lastEventIdx and using != instead of > to correctly\ndetect new events regardless of internal trimming.\n\nCloses #2"
+    },
+    {
+      "hash": "96333bfcdeef41419f8c229d6ab192c1de5e251b",
+      "message": "Merge pull request #1 from duncanlutz/master\n\nAdded Halo mode"
+    },
+    {
+      "hash": "bae2c20a25339ea2b7c1334ec9fbd6a6326bf499",
+      "message": "feat: added halo mode"
+    },
+    {
+      "hash": "479048352b0b1ca87b64a201433eae81a6c962e7",
+      "message": "docs: move quotes to top of README"
+    },
+    {
+      "hash": "143c1071defaa129eab42b88c40952e4bb6d8d48",
+      "message": "docs: add community quotes to README"
+    },
+    {
+      "hash": "d755f027bd22b8390c130c0931cb8e03cc54fd1c",
+      "message": "docs: remove GOPRIVATE from install instructions"
+    },
+    {
+      "hash": "191b0cc06290b014814fab51873c6e0f8a47cfa2",
+      "message": "feat: extend sexy mode window to 5 minutes"
+    },
+    {
+      "hash": "7f93ba74cc38d03b0cc98825dc5e0ab14d3d05ef",
+      "message": "chore: switch to MIT license, credit original author"
+    },
+    {
+      "hash": "e6b97f32dc3bda58d5d4997f6be0c0355a43e2f8",
+      "message": "refactor: single binary, no separate sensord required\n\nSpank now reads the accelerometer directly via IOKit HID instead\nof requiring a separate sensord process. Just run sudo spank.\n\n- Removed cmd/sensord (sensor worker runs in-process)\n- Creates shared memory internally, cleans up on exit\n- Simplified goreleaser to single build target"
+    },
+    {
+      "hash": "30311c6906a421a6d5687e309bf1deed5bb3c505",
+      "message": "fix: remove amd64 from goreleaser, Apple Silicon only"
+    },
+    {
+      "hash": "483eae863c06e9c9a0aef22c755b9c94b2e7bb59",
+      "message": "feat: bundle sensord binary in releases, update README\n\n- Add cmd/sensord so both binaries ship in the release archive\n- Update README to link to releases/latest instead of separate repo\n- Update goreleaser to build both spank and sensord"
+    },
+    {
+      "hash": "8277ad59fb165fa653935ff7b849a2405f6038d8",
+      "message": "feat: initial release — slap your MacBook, it yells back\n\nDetects physical impacts on Apple Silicon MacBooks via accelerometer\n(reads from sensord shared memory). Two modes:\n- Pain mode: random 'ow!' responses from 10 clips\n- Sexy mode (--sexy): escalating responses based on slap frequency\n\nUses embedded MP3 audio via go:embed, gopxl/beep for playback,\nand apple-silicon-accelerometer for vibration detection."
+    },
+    {
+      "hash": "b1263ca5f4937ff2df80b927a6b9de455c33cebe",
+      "message": "Initial commit"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".gitattributes",
+    ".github/FUNDING.yml",
+    ".github/workflows/release.yml",
+    ".gitignore",
+    ".goreleaser.yaml",
+    "AGENTS.md",
+    "LICENSE",
+    "README-zh.md",
+    "README.md",
+    "audio/halo/00.mp3",
+    "audio/halo/01.mp3",
+    "audio/halo/02.mp3",
+    "audio/halo/03.mp3",
+    "audio/halo/04.mp3",
+    "audio/halo/05.mp3",
+    "audio/halo/06.mp3",
+    "audio/halo/07.mp3",
+    "audio/halo/08.mp3",
+    "audio/lizard/00.mp3",
+    "audio/pain/00_Ow.mp3",
+    "audio/pain/01_Ouch.mp3",
+    "audio/pain/02_Owwie.mp3",
+    "audio/pain/03_Hey_that_hurts.mp3",
+    "audio/pain/04_Ow_stop_it.mp3",
+    "audio/pain/05_What_was_that_for.mp3",
+    "audio/pain/06_Ow_ow_ow.mp3",
+    "audio/pain/07_Hey.mp3",
+    "audio/pain/08_Yowch.mp3",
+    "audio/pain/09_That_stings.mp3",
+    "audio/sexy/00.mp3",
+    "audio/sexy/01.mp3",
+    "audio/sexy/02.mp3",
+    "audio/sexy/03.mp3",
+    "audio/sexy/04.mp3",
+    "audio/sexy/05.mp3",
+    "audio/sexy/06.mp3",
+    "audio/sexy/07.mp3",
+    "audio/sexy/08.mp3",
+    "audio/sexy/09.mp3",
+    "audio/sexy/10.mp3",
+    "audio/sexy/11.mp3",
+    "audio/sexy/12.mp3",
+    "audio/sexy/13.mp3",
+    "audio/sexy/14.mp3",
+    "audio/sexy/15.mp3",
+    "audio/sexy/16.mp3",
+    "audio/sexy/17.mp3",
+    "audio/sexy/18.mp3",
+    "audio/sexy/19.mp3",
+    "audio/sexy/20.mp3",
+    "audio/sexy/21.mp3",
+    "audio/sexy/22.mp3",
+    "audio/sexy/23.mp3",
+    "audio/sexy/24.mp3",
+    "audio/sexy/25.mp3",
+    "audio/sexy/26.mp3",
+    "audio/sexy/27.mp3",
+    "audio/sexy/28.mp3",
+    "audio/sexy/29.mp3",
+    "audio/sexy/30.mp3",
+    "audio/sexy/31.mp3",
+    "audio/sexy/32.mp3",
+    "audio/sexy/33.mp3",
+    "audio/sexy/34.mp3",
+    "audio/sexy/35.mp3",
+    "audio/sexy/36.mp3",
+    "audio/sexy/37.mp3",
+    "audio/sexy/38.mp3",
+    "audio/sexy/39.mp3",
+    "audio/sexy/40.mp3",
+    "audio/sexy/41.mp3",
+    "audio/sexy/42.mp3",
+    "audio/sexy/43.mp3",
+    "audio/sexy/44.mp3",
+    "audio/sexy/45.mp3",
+    "audio/sexy/46.mp3",
+    "audio/sexy/47.mp3",
+    "audio/sexy/48.mp3",
+    "audio/sexy/49.mp3",
+    "audio/sexy/50.mp3",
+    "audio/sexy/51.mp3",
+    "audio/sexy/52.mp3",
+    "audio/sexy/53.mp3",
+    "audio/sexy/54.mp3",
+    "audio/sexy/55.mp3",
+    "audio/sexy/56.mp3",
+    "audio/sexy/57.mp3",
+    "audio/sexy/58.mp3",
+    "audio/sexy/59.mp3",
+    "doc/logo.png",
+    "flake.lock",
+    "flake.nix",
+    "go.mod",
+    "go.sum",
+    "main.go",
+    "main_test.go",
+    "nix/hm-module.nix",
+    "nix/package.nix",
+    "stdin_test.go"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/README-zh.md b/README-zh.md\nindex 51163fb..d736e25 100644\n--- a/README-zh.md\n+++ b/README-zh.md\n@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist\n \n ## Star History\n \n-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)\n \n ## 致谢\n \ndiff --git a/README.md b/README.md\nindex 8f0da08..97ab836 100644\n--- a/README.md\n+++ b/README.md\n@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist\n \n ## Star History\n \n-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)\n \n ## Credits\n \n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/README-zh.md b/README-zh.md",
+      "header": "@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist",
+      "text": "@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist\n \n ## Star History\n \n-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)\n \n ## 致谢\n \n",
+      "id": "hunk_98a30b130750ddb8ecc6"
+    },
+    {
+      "file_header": "diff --git a/README.md b/README.md",
+      "header": "@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist",
+      "text": "@@ -223,7 +223,7 @@ sudo launchctl unload /Library/LaunchDaemons/com.taigrr.spank.plist\n \n ## Star History\n \n-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)\n \n ## Credits\n \n",
+      "id": "hunk_b2b86ff0ed8bb434648a"
+    }
+  ],
+  "features": {
+    "commit_count": 62,
+    "file_count": 99,
+    "last_commit_age_days": 30.611349690914352,
+    "readme_files": [
+      "README-zh.md",
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [
+      "main_test.go",
+      "stdin_test.go"
+    ],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "AGENTS.md",
+      "README-zh.md",
+      "README.md"
+    ],
+    "dependency_manifests": [
+      "go.mod"
+    ],
+    "deployment_files": [
+      ".github/workflows/release.yml"
+    ],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": [
+      "audio/halo/00.mp3",
+      "audio/halo/01.mp3",
+      "audio/halo/02.mp3",
+      "audio/halo/03.mp3",
+      "audio/halo/04.mp3",
+      "audio/halo/05.mp3",
+      "audio/halo/06.mp3",
+      "audio/halo/07.mp3",
+      "audio/halo/08.mp3",
+      "audio/lizard/00.mp3",
+      "audio/pain/00_Ow.mp3",
+      "audio/pain/01_Ouch.mp3",
+      "audio/pain/02_Owwie.mp3",
+      "audio/pain/03_Hey_that_hurts.mp3",
+      "audio/pain/04_Ow_stop_it.mp3",
+      "audio/pain/05_What_was_that_for.mp3",
+      "audio/pain/06_Ow_ow_ow.mp3",
+      "audio/pain/07_Hey.mp3",
+      "audio/pain/08_Yowch.mp3",
+      "audio/pain/09_That_stings.mp3",
+      "audio/sexy/00.mp3",
+      "audio/sexy/01.mp3",
+      "audio/sexy/02.mp3",
+      "audio/sexy/03.mp3",
+      "audio/sexy/04.mp3",
+      "audio/sexy/05.mp3",
+      "audio/sexy/06.mp3",
+      "audio/sexy/07.mp3",
+      "audio/sexy/08.mp3",
+      "audio/sexy/09.mp3",
+      "audio/sexy/10.mp3",
+      "audio/sexy/11.mp3",
+      "audio/sexy/12.mp3",
+      "audio/sexy/13.mp3",
+      "audio/sexy/14.mp3",
+      "audio/sexy/15.mp3",
+      "audio/sexy/16.mp3",
+      "audio/sexy/17.mp3",
+      "audio/sexy/18.mp3",
+      "audio/sexy/19.mp3",
+      "audio/sexy/20.mp3",
+      "audio/sexy/21.mp3",
+      "audio/sexy/22.mp3",
+      "audio/sexy/23.mp3",
+      "audio/sexy/24.mp3",
+      "audio/sexy/25.mp3",
+      "audio/sexy/26.mp3",
+      "audio/sexy/27.mp3",
+      "audio/sexy/28.mp3",
+      "audio/sexy/29.mp3",
+      "audio/sexy/30.mp3",
+      "audio/sexy/31.mp3",
+      "audio/sexy/32.mp3",
+      "audio/sexy/33.mp3",
+      "audio/sexy/34.mp3",
+      "audio/sexy/35.mp3",
+      "audio/sexy/36.mp3",
+      "audio/sexy/37.mp3",
+      "audio/sexy/38.mp3",
+      "audio/sexy/39.mp3",
+      "audio/sexy/40.mp3",
+      "audio/sexy/41.mp3",
+      "audio/sexy/42.mp3",
+      "audio/sexy/43.mp3",
+      "audio/sexy/44.mp3",
+      "audio/sexy/45.mp3",
+      "audio/sexy/46.mp3",
+      "audio/sexy/47.mp3",
+      "audio/sexy/48.mp3",
+      "audio/sexy/49.mp3",
+      "audio/sexy/50.mp3",
+      "audio/sexy/51.mp3",
+      "audio/sexy/52.mp3",
+      "audio/sexy/53.mp3",
+      "audio/sexy/54.mp3",
+      "audio/sexy/55.mp3",
+      "audio/sexy/56.mp3",
+      "audio/sexy/57.mp3",
+      "audio/sexy/58.mp3",
+      "audio/sexy/59.mp3",
+      "doc/logo.png"
+    ]
+  },
+  "commit_count": 62,
+  "file_count": 99,
+  "todos": []
+}
