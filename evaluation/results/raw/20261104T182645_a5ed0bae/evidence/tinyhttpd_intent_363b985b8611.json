@@ -1,0 +1,173 @@
+{
+  "revision": "363b985b86118289691e41d9ebcffdd11be67025",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "363b985b86118289691e41d9ebcffdd11be67025",
+    "message": "Revert \"rename seve_file to sever_file\"",
+    "changed_files": [
+      "httpd.c"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/httpd.c b/httpd.c\nindex 26462d2..d4eb456 100644\n--- a/httpd.c\n+++ b/httpd.c\n@@ -43,7 +43,7 @@ void execute_cgi(int, const char *, const char *, const char *);\n int get_line(int, char *, int);\n void headers(int, const char *);\n void not_found(int);\n-void sever_file(int, const char *);\n+void serve_file(int, const char *);\n int startup(u_short *);\n void unimplemented(int);\n \n@@ -125,7 +125,7 @@ void accept_request(void *arg)\n                 (st.st_mode & S_IXOTH)    )\n             cgi = 1;\n         if (!cgi)\n-            sever_file(client, path);\n+            serve_file(client, path);\n         else\n             execute_cgi(client, path, method, query_string);\n     }\n@@ -397,7 +397,7 @@ void not_found(int client)\n  *              file descriptor\n  *             the name of the file to serve */\n /**********************************************************************/\n-void sever_file(int client, const char *filename)\n+void serve_file(int client, const char *filename)\n {\n     FILE *resource = NULL;\n     int numchars = 1;\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "363b985b86118289691e41d9ebcffdd11be67025",
+      "message": "Revert \"rename seve_file to sever_file\""
+    },
+    {
+      "hash": "df7aa8bd2712f227a71c23e0bf8ebaf4bddfcd78",
+      "message": "Merge pull request #20 from MekaYangyi/master\n\nrename seve_file to sever_file"
+    },
+    {
+      "hash": "9a7081cd253fc8404ee326f1763112e688d07edc",
+      "message": "rename seve_file to sever_file"
+    },
+    {
+      "hash": "647e8c7bca9d8d68cad32ffa712199a911b0a1ed",
+      "message": "fix thread conflict when passing arg as pointer\n\nfix thread conflict when passing arg as pointer"
+    },
+    {
+      "hash": "7c550241583cdbf062c19a0ec1589a55e7da1a60",
+      "message": "Update httpd.c\n\nfie problem caused by intptr_t"
+    },
+    {
+      "hash": "7abf28eb0c4ce2258e433a2b921b0da94cee7d6f",
+      "message": "Merge pull request #8 from earlymeme/master\n\ncommit README,httpd"
+    },
+    {
+      "hash": "02f60dde1fa90e80a67c234c240216ad8389e409",
+      "message": "Merge branch 'master' into master"
+    },
+    {
+      "hash": "16510271651194ce94f7c9e5291da7aa9d858166",
+      "message": "Merge pull request #11 from hmybmny/master\n\nfix bug of bind API"
+    },
+    {
+      "hash": "3243adc05e7d4a98ac9ec930524bfa0da5e00ac3",
+      "message": "fix bug of bind API"
+    },
+    {
+      "hash": "c681efad61ff51d8d38afe2139d36e73ec9f417b",
+      "message": "Merge pull request #9 from huntinux/master\n\nfix thread conflict when passing local arg as pointer"
+    },
+    {
+      "hash": "fd4bc2f6320f61bbe4c9bd8496a532d127043c82",
+      "message": "fix thread conflict when passing arg as pointer"
+    },
+    {
+      "hash": "5ffc0df7d500c7d09af3a9fa3c26246ab486de2c",
+      "message": "commit README,httpd"
+    },
+    {
+      "hash": "75b9a061f6a33c1412aa2d1f5402bd3c6bdd6c52",
+      "message": "Merge pull request #3 from ZiWee/master\n\nwarning的修正，以及几个小地方修改"
+    },
+    {
+      "hash": "bc9dfb5065b7083589e5c9c4b09d438e6f64c402",
+      "message": "调整代码缩进\n\n修改了makefile：\n1. 去掉了makefile中的-lsocket\n2. 修改了书写方法\n\n修改了httpd.c:\n1. 对标准输入输出文件描述符加了宏定义，\n2. 修正了几个隐式类型转换导致warning的地方\n3. 增加了一处对请求类型是否是post的具体判断，之前仅将else判定为POST,忽略了HEAD等类型\n4. 执行CGI的execl语句的第二个参数是否有误?"
+    },
+    {
+      "hash": "16ee6843e8f5cbb2e93d5eb5097e3f51de667d83",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "e001b759569bea349975e5b9ebbe09fc5825f6e7",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "a09f9678ea7547037cf3147608f84fac7eab6d7c",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "e023266149bcde2d65799d19afe9482b1d11d7ba",
+      "message": "fork from sourceForge"
+    },
+    {
+      "hash": "5d26657261038f61d3f271329ea9c6e9f4120038",
+      "message": "Initial commit"
+    }
+  ],
+  "file_histories": [
+    {
+      "file": "httpd.c",
+      "introducing_commit": {
+        "hash": "e023266149bcde2d65799d19afe9482b1d11d7ba"
+      },
+      "total_changes": 10
+    }
+  ],
+  "files": [
+    "Makefile",
+    "README.md",
+    "htdocs/README",
+    "htdocs/check.cgi",
+    "htdocs/color.cgi",
+    "htdocs/index.html",
+    "httpd.c",
+    "simpleclient.c"
+  ],
+  "file": "httpd.c",
+  "region": [
+    46,
+    46
+  ],
+  "source": "void serve_file(int, const char *);",
+  "blame_commits": [
+    "363b985b86118289691e41d9ebcffdd11be67025"
+  ],
+  "diff": "diff --git a/httpd.c b/httpd.c\nindex 26462d2..d4eb456 100644\n--- a/httpd.c\n+++ b/httpd.c\n@@ -43,7 +43,7 @@ void execute_cgi(int, const char *, const char *, const char *);\n int get_line(int, char *, int);\n void headers(int, const char *);\n void not_found(int);\n-void sever_file(int, const char *);\n+void serve_file(int, const char *);\n int startup(u_short *);\n void unimplemented(int);\n \n@@ -125,7 +125,7 @@ void accept_request(void *arg)\n                 (st.st_mode & S_IXOTH)    )\n             cgi = 1;\n         if (!cgi)\n-            sever_file(client, path);\n+            serve_file(client, path);\n         else\n             execute_cgi(client, path, method, query_string);\n     }\n@@ -397,7 +397,7 @@ void not_found(int client)\n  *              file descriptor\n  *             the name of the file to serve */\n /**********************************************************************/\n-void sever_file(int client, const char *filename)\n+void serve_file(int client, const char *filename)\n {\n     FILE *resource = NULL;\n     int numchars = 1;\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/httpd.c b/httpd.c",
+      "header": "@@ -43,7 +43,7 @@ void execute_cgi(int, const char *, const char *, const char *);",
+      "text": "@@ -43,7 +43,7 @@ void execute_cgi(int, const char *, const char *, const char *);\n int get_line(int, char *, int);\n void headers(int, const char *);\n void not_found(int);\n-void sever_file(int, const char *);\n+void serve_file(int, const char *);\n int startup(u_short *);\n void unimplemented(int);\n \n",
+      "id": "hunk_96537272988f6960cc9b"
+    },
+    {
+      "file_header": "diff --git a/httpd.c b/httpd.c",
+      "header": "@@ -125,7 +125,7 @@ void accept_request(void *arg)",
+      "text": "@@ -125,7 +125,7 @@ void accept_request(void *arg)\n                 (st.st_mode & S_IXOTH)    )\n             cgi = 1;\n         if (!cgi)\n-            sever_file(client, path);\n+            serve_file(client, path);\n         else\n             execute_cgi(client, path, method, query_string);\n     }\n",
+      "id": "hunk_b4c0efe046bd6256b579"
+    },
+    {
+      "file_header": "diff --git a/httpd.c b/httpd.c",
+      "header": "@@ -397,7 +397,7 @@ void not_found(int client)",
+      "text": "@@ -397,7 +397,7 @@ void not_found(int client)\n  *              file descriptor\n  *             the name of the file to serve */\n /**********************************************************************/\n-void sever_file(int client, const char *filename)\n+void serve_file(int client, const char *filename)\n {\n     FILE *resource = NULL;\n     int numchars = 1;\n",
+      "id": "hunk_c49375403176bae88d30"
+    }
+  ],
+  "features": {
+    "commit_count": 19,
+    "file_count": 8,
+    "last_commit_age_days": 3317.6351459872108,
+    "readme_files": [
+      "README.md",
+      "htdocs/README"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "README.md"
+    ],
+    "dependency_manifests": [],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": []
+  },
+  "commit_count": 19,
+  "file_count": 8,
+  "todos": [],
+  "repository": "tinyhttpd",
+  "source_repository": "https://github.com/Wungmeisilong/TinyHttpd"
+}

@@ -1,0 +1,574 @@
+{
+  "revision": "17169e858cd645f7ee7264a7c9b2473298ad81aa",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "17169e858cd645f7ee7264a7c9b2473298ad81aa",
+    "message": "fix: resample audio to speaker rate to fix custom pack speed/pitch issues (#73)\n\nThe speaker is initialized once with the first played file's sample rate,\nbut subsequent files were never resampled to it. Custom packs with mixed\nsample rates (common after WAV->MP3 conversion) therefore played sped up,\nslowed down, or distorted depending on which file initialized the speaker.\n\nResample every stream to the speaker's rate, folding the --speed flag into\nthe same resample. Also bump Go directive and update dependencies.\n\nFixes #60",
+    "changed_files": [
+      "go.mod",
+      "go.sum",
+      "main.go",
+      "main_test.go"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/go.mod b/go.mod\nindex 14939a4..61046fb 100644\n--- a/go.mod\n+++ b/go.mod\n@@ -1,31 +1,31 @@\n module github.com/taigrr/spank\n \n-go 1.26\n+go 1.26.4\n \n require (\n-\tgithub.com/charmbracelet/fang v0.4.4\n+\tgithub.com/charmbracelet/fang v1.0.0\n \tgithub.com/gopxl/beep/v2 v2.1.1\n \tgithub.com/spf13/cobra v1.10.2\n \tgithub.com/taigrr/apple-silicon-accelerometer v0.1.0\n )\n \n require (\n-\tcharm.land/lipgloss/v2 v2.0.0 // indirect\n-\tgithub.com/charmbracelet/colorprofile v0.4.2 // indirect\n-\tgithub.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff // indirect\n-\tgithub.com/charmbracelet/x/ansi v0.11.6 // indirect\n-\tgithub.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185 // indirect\n+\tcharm.land/lipgloss/v2 v2.0.4 // indirect\n+\tgithub.com/charmbracelet/colorprofile v0.4.3 // indirect\n+\tgithub.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1 // indirect\n+\tgithub.com/charmbracelet/x/ansi v0.11.7 // indirect\n+\tgithub.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e // indirect\n \tgithub.com/charmbracelet/x/term v0.2.2 // indirect\n \tgithub.com/charmbracelet/x/termios v0.1.1 // indirect\n \tgithub.com/charmbracelet/x/windows v0.2.2 // indirect\n \tgithub.com/clipperhouse/displaywidth v0.11.0 // indirect\n \tgithub.com/clipperhouse/uax29/v2 v2.7.0 // indirect\n \tgithub.com/ebitengine/oto/v3 v3.4.0 // indirect\n-\tgithub.com/ebitengine/purego v0.10.0 // indirect\n+\tgithub.com/ebitengine/purego v0.10.1 // indirect\n \tgithub.com/hajimehoshi/go-mp3 v0.3.4 // indirect\n \tgithub.com/inconshreveable/mousetrap v1.1.0 // indirect\n-\tgithub.com/lucasb-eyer/go-colorful v1.3.0 // indirect\n-\tgithub.com/mattn/go-runewidth v0.0.20 // indirect\n+\tgithub.com/lucasb-eyer/go-colorful v1.4.0 // indirect\n+\tgithub.com/mattn/go-runewidth v0.0.24 // indirect\n \tgithub.com/muesli/cancelreader v0.2.2 // indirect\n \tgithub.com/muesli/mango v0.2.0 // indirect\n \tgithub.com/muesli/mango-cobra v1.3.0 // indirect\n@@ -35,7 +35,7 @@ require (\n \tgithub.com/rivo/uniseg v0.4.7 // indirect\n \tgithub.com/spf13/pflag v1.0.10 // indirect\n \tgithub.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect\n-\tgolang.org/x/sync v0.19.0 // indirect\n-\tgolang.org/x/sys v0.41.0 // indirect\n-\tgolang.org/x/text v0.34.0 // indirect\n+\tgolang.org/x/sync v0.21.0 // indirect\n+\tgolang.org/x/sys v0.46.0 // indirect\n+\tgolang.org/x/text v0.38.0 // indirect\n )\ndiff --git a/go.sum b/go.sum\nindex 33ea2f1..d106a6b 100644\n--- a/go.sum\n+++ b/go.sum\n@@ -1,17 +1,17 @@\n-charm.land/lipgloss/v2 v2.0.0 h1:sd8N/B3x892oiOjFfBQdXBQp3cAkvjGaU5TvVZC3ivo=\n-charm.land/lipgloss/v2 v2.0.0/go.mod h1:w6SnmsBFBmEFBodiEDurGS/sdUY/u1+v72DqUzc6J14=\n-github.com/aymanbagabas/go-udiff v0.4.0 h1:TKnLPh7IbnizJIBKFWa9mKayRUBQ9Kh1BPCk6w2PnYM=\n-github.com/aymanbagabas/go-udiff v0.4.0/go.mod h1:0L9PGwj20lrtmEMeyw4WKJ/TMyDtvAoK9bf2u/mNo3w=\n-github.com/charmbracelet/colorprofile v0.4.2 h1:BdSNuMjRbotnxHSfxy+PCSa4xAmz7szw70ktAtWRYrY=\n-github.com/charmbracelet/colorprofile v0.4.2/go.mod h1:0rTi81QpwDElInthtrQ6Ni7cG0sDtwAd4C4le060fT8=\n-github.com/charmbracelet/fang v0.4.4 h1:G4qKxF6or/eTPgmAolwPuRNyuci3hTUGGX1rj1YkHJY=\n-github.com/charmbracelet/fang v0.4.4/go.mod h1:P5/DNb9DddQ0Z0dbc0P3ol4/ix5Po7Ofr2KMBfAqoCo=\n-github.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff h1:uY7A6hTokHPJBHfq7rj9Y/wm+IAjOghZTxKfVW6QLvw=\n-github.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff/go.mod h1:E6/0abq9uG2SnM8IbLB9Y5SW09uIgfaFETk8aRzgXUQ=\n-github.com/charmbracelet/x/ansi v0.11.6 h1:GhV21SiDz/45W9AnV2R61xZMRri5NlLnl6CVF7ihZW8=\n-github.com/charmbracelet/x/ansi v0.11.6/go.mod h1:2JNYLgQUsyqaiLovhU2Rv/pb8r6ydXKS3NIttu3VGZQ=\n-github.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185 h1:/192monmpmRICpSPrFRzkIO+xfhioV6/nwrQdkDTj10=\n-github.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185/go.mod h1:nsExn0DGyX0lh9LwLHTn2Gg+hafdzfSXnC+QmEJTZFY=\n+charm.land/lipgloss/v2 v2.0.4 h1:lcPeVtcp23SNra7lHy8iYE4UC2aIipVQ47sbGyyxR5Q=\n+charm.land/lipgloss/v2 v2.0.4/go.mod h1:0653x8epbZSzdDfO/XPS1a/uYPOBeSsCssOpJOqDzik=\n+github.com/aymanbagabas/go-udiff v0.4.1 h1:OEIrQ8maEeDBXQDoGCbbTTXYJMYRCRO1fnodZ12Gv5o=\n+github.com/aymanbagabas/go-udiff v0.4.1/go.mod h1:0L9PGwj20lrtmEMeyw4WKJ/TMyDtvAoK9bf2u/mNo3w=\n+github.com/charmbracelet/colorprofile v0.4.3 h1:QPa1IWkYI+AOB+fE+mg/5/4HRMZcaXex9t5KX76i20Q=\n+github.com/charmbracelet/colorprofile v0.4.3/go.mod h1:/zT4BhpD5aGFpqQQqw7a+VtHCzu+zrQtt1zhMt9mR4Q=\n+github.com/charmbracelet/fang v1.0.0 h1:jESBY40agJOlLYnnv9jE0mLqDGTxEk0hkOnx7YGyRlQ=\n+github.com/charmbracelet/fang v1.0.0/go.mod h1:P5/DNb9DddQ0Z0dbc0P3ol4/ix5Po7Ofr2KMBfAqoCo=\n+github.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1 h1:4+r3uOJ69ueRBt4okgEfWZeXs3BD36HcDBmOIAUlETk=\n+github.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1/go.mod h1:f/jRa757WUmaOZrbPspXymbg/GnbF+rwe4OLsG7aXYo=\n+github.com/charmbracelet/x/ansi v0.11.7 h1:kzv1kJvjg2S3r9KHo8hDdHFQLEqn4RBCb39dAYC84jI=\n+github.com/charmbracelet/x/ansi v0.11.7/go.mod h1:9qGpnAVYz+8ACONkZBUWPtL7lulP9No6p1epAihUZwQ=\n+github.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e h1:y+RAZ0YSHgSrJsq3825iY/ElTQ701dpNGj2Pw81IfH8=\n+github.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e/go.mod h1:nsExn0DGyX0lh9LwLHTn2Gg+hafdzfSXnC+QmEJTZFY=\n github.com/charmbracelet/x/exp/golden v0.0.0-20250806222409-83e3a29d542f h1:pk6gmGpCE7F3FcjaOEKYriCvpmIN4+6OS/RD0vm4uIA=\n github.com/charmbracelet/x/exp/golden v0.0.0-20250806222409-83e3a29d542f/go.mod h1:IfZAMTHB6XkZSeXUqriemErjAWCCzT0LwjKFYCZyw0I=\n github.com/charmbracelet/x/term v0.2.2 h1:xVRT/S2ZcKdhhOuSP4t5cLi5o+JxklsoEObBSgfgZRk=\n@@ -29,8 +29,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c\n github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=\n github.com/ebitengine/oto/v3 v3.4.0 h1:br0PgASsEWaoWn38b2Goe7m1GKFYfNgnsjSd5Gg+/bQ=\n github.com/ebitengine/oto/v3 v3.4.0/go.mod h1:IOleLVD0m+CMak3mRVwsYY8vTctQgOM0iiL6S7Ar7eI=\n-github.com/ebitengine/purego v0.10.0 h1:QIw4xfpWT6GWTzaW5XEKy3HXoqrJGx1ijYHzTF0/ISU=\n-github.com/ebitengine/purego v0.10.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=\n+github.com/ebitengine/purego v0.10.1 h1:dewVBCBT2GaMu1SrNTYxQhgQBethzfhiwvZiLGP/qyY=\n+github.com/ebitengine/purego v0.10.1/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=\n github.com/gopxl/beep/v2 v2.1.1 h1:6FYIYMm2qPAdWkjX+7xwKrViS1x0Po5kDMdRkq8NVbU=\n github.com/gopxl/beep/v2 v2.1.1/go.mod h1:ZAm9TGQ9lvpoiFLd4zf5B1IuyxZhgRACMId1XJbaW0E=\n github.com/hajimehoshi/go-mp3 v0.3.4 h1:NUP7pBYH8OguP4diaTZ9wJbUbk3tC0KlfzsEpWmYj68=\n@@ -38,10 +38,10 @@ github.com/hajimehoshi/go-mp3 v0.3.4/go.mod h1:fRtZraRFcWb0pu7ok0LqyFhCUrPeMsGRS\n github.com/hajimehoshi/oto/v2 v2.3.1/go.mod h1:seWLbgHH7AyUMYKfKYT9pg7PhUu9/SisyJvNTT+ASQo=\n github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=\n github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=\n-github.com/lucasb-eyer/go-colorful v1.3.0 h1:2/yBRLdWBZKrf7gB40FoiKfAWYQ0lqNcbuQwVHXptag=\n-github.com/lucasb-eyer/go-colorful v1.3.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=\n-github.com/mattn/go-runewidth v0.0.20 h1:WcT52H91ZUAwy8+HUkdM3THM6gXqXuLJi9O3rjcQQaQ=\n-github.com/mattn/go-runewidth v0.0.20/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=\n+github.com/lucasb-eyer/go-colorful v1.4.0 h1:UtrWVfLdarDgc44HcS7pYloGHJUjHV/4FwW4TvVgFr4=\n+github.com/lucasb-eyer/go-colorful v1.4.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=\n+github.com/mattn/go-runewidth v0.0.24 h1:cpokDiIn0MGnhdHwuWnJBITySJ20QyNGnY2kR/ay2DU=\n+github.com/mattn/go-runewidth v0.0.24/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=\n github.com/muesli/cancelreader v0.2.2 h1:3I4Kt4BQjOR54NavqnDogx/MIoWBFa0StPA8ELUXHmA=\n github.com/muesli/cancelreader v0.2.2/go.mod h1:3XuTXfFS2VjM+HTLZY9Ak0l6eUKfijIfMUZ4EgX0QYo=\n github.com/muesli/mango v0.2.0 h1:iNNc0c5VLQ6fsMgAqGQofByNUBH2Q2nEbD6TaI+5yyQ=\n@@ -73,13 +73,13 @@ github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e/go.mod h1:RbqR21r5mrJu\n go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=\n golang.org/x/exp v0.0.0-20231006140011-7918f672742d h1:jtJma62tbqLibJ5sFQz8bKtEM8rJBtfilJ2qTU199MI=\n golang.org/x/exp v0.0.0-20231006140011-7918f672742d/go.mod h1:ldy0pHrwJyGW56pPQzzkH36rKxoZW1tw7ZJpeKx+hdo=\n-golang.org/x/sync v0.19.0 h1:vV+1eWNmZ5geRlYjzm2adRgW2/mcpevXNg50YZtPCE4=\n-golang.org/x/sync v0.19.0/go.mod h1:9KTHXmSnoGruLpwFjVSX0lNNA75CykiMECbovNTZqGI=\n+golang.org/x/sync v0.21.0 h1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=\n+golang.org/x/sync v0.21.0/go.mod h1:9xrNwdLfx4jkKbNva9FpL6vEN7evnE43NNNJQ2LF3+0=\n golang.org/x/sys v0.0.0-20220712014510-0a85c31ab51e/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=\n-golang.org/x/sys v0.41.0 h1:Ivj+2Cp/ylzLiEU89QhWblYnOE9zerudt9Ftecq2C6k=\n-golang.org/x/sys v0.41.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=\n-golang.org/x/text v0.34.0 h1:oL/Qq0Kdaqxa1KbNeMKwQq0reLCCaFtqu2eNuSeNHbk=\n-golang.org/x/text v0.34.0/go.mod h1:homfLqTYRFyVYemLBFl5GgL/DWEiH5wcsQ5gSh1yziA=\n+golang.org/x/sys v0.46.0 h1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=\n+golang.org/x/sys v0.46.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=\n+golang.org/x/text v0.38.0 h1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=\n+golang.org/x/text v0.38.0/go.mod h1:YXZt3QhHUKYT53r2lLKFIVi6Ao1jdzrTR/KQ09qyxF4=\n gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=\n gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=\n gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=\ndiff --git a/main.go b/main.go\nindex d1f4add..16def25 100644\n--- a/main.go\n+++ b/main.go\n@@ -470,6 +470,12 @@ func listenForSlaps(ctx context.Context, pack *soundPack, accelRing *shm.RingBuf\n \n var speakerMu sync.Mutex\n \n+// speakerSampleRate is the sample rate the speaker was initialized with.\n+// The speaker is initialized exactly once, using the rate of the first\n+// file played. Every subsequent file must be resampled to this rate or it\n+// will play at the wrong speed/pitch.\n+var speakerSampleRate beep.SampleRate\n+\n // amplitudeToVolume maps a detected amplitude to a beep/effects.Volume\n // level. Amplitude typically ranges from ~0.05 (light tap) to ~1.0+\n // (hard slap). The mapping uses a logarithmic curve so that light taps\n@@ -503,6 +509,23 @@ func amplitudeToVolume(amplitude float64) float64 {\n \treturn minVol + t*(maxVol-minVol)\n }\n \n+// resampleForPlayback wraps source so it is delivered at speakerRate, folding\n+// in an optional playback speed change. Files in a custom pack may have varied\n+// sample rates (e.g. mixed 44.1kHz/48kHz from WAV->MP3 conversion); without\n+// resampling to the speaker's fixed rate they play sped up or slowed down. The\n+// speed change reuses the same resample by claiming the source rate is\n+// fileRate*speed.\n+func resampleForPlayback(source beep.Streamer, fileRate, speakerRate beep.SampleRate, speed float64) beep.Streamer {\n+\tsrcRate := fileRate\n+\tif speed != 1.0 && speed > 0 {\n+\t\tsrcRate = beep.SampleRate(int(float64(fileRate) * speed))\n+\t}\n+\tif srcRate == speakerRate {\n+\t\treturn source\n+\t}\n+\treturn beep.Resample(4, srcRate, speakerRate, source)\n+}\n+\n func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *bool) {\n \tvar streamer beep.StreamSeekCloser\n \tvar format beep.Format\n@@ -536,8 +559,10 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo\n \tspeakerMu.Lock()\n \tif !*speakerInit {\n \t\tspeaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))\n+\t\tspeakerSampleRate = format.SampleRate\n \t\t*speakerInit = true\n \t}\n+\ttargetRate := speakerSampleRate\n \tspeakerMu.Unlock()\n \n \t// Optionally scale volume based on slap amplitude\n@@ -551,13 +576,11 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo\n \t\t}\n \t}\n \n-\t// Apply speed change via resampling trick:\n-\t// Claiming the audio is at rate*speed and resampling back to rate\n-\t// makes the speaker consume samples faster/slower.\n-\tif speedRatio != 1.0 && speedRatio > 0 {\n-\t\tfakeRate := beep.SampleRate(int(float64(format.SampleRate) * speedRatio))\n-\t\tsource = beep.Resample(4, fakeRate, format.SampleRate, source)\n-\t}\n+\t// Resample to the speaker's rate. The speaker is initialized once with\n+\t// the first file's rate; any file with a different rate would otherwise\n+\t// play at the wrong speed/pitch. The --speed flag is folded into the same\n+\t// resample by claiming the source is at fileRate*speed.\n+\tsource = resampleForPlayback(source, format.SampleRate, targetRate, speedRatio)\n \n \tdone := make(chan bool)\n \tspeaker.Play(beep.Seq(source, beep.Callback(func() {\ndiff --git a/main_test.go b/main_test.go\nnew file mode 100644\nindex 0000000..cd5495b\n--- /dev/null\n+++ b/main_test.go\n@@ -0,0 +1,93 @@\n+package main\n+\n+import (\n+\t\"testing\"\n+\n+\t\"github.com/gopxl/beep/v2\"\n+)\n+\n+// stubStreamer is a no-op beep.Streamer used to exercise resampling wiring.\n+type stubStreamer struct{}\n+\n+func (stubStreamer) Stream(samples [][2]float64) (int, bool) { return 0, false }\n+func (stubStreamer) Err() error                              { return nil }\n+\n+func TestResampleForPlayback(t *testing.T) {\n+\tsrc := stubStreamer{}\n+\n+\ttests := []struct {\n+\t\tname         string\n+\t\tfileRate     beep.SampleRate\n+\t\tspeakerRate  beep.SampleRate\n+\t\tspeed        float64\n+\t\twantResample bool\n+\t\twantRatio    float64\n+\t}{\n+\t\t{\n+\t\t\tname:         \"matching rate normal speed returns source unchanged\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: false,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"48k file on 44.1k speaker resamples down\",\n+\t\t\tfileRate:     48000,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    48000.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"44.1k file on 48k speaker resamples up\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  48000,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    44100.0 / 48000.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"speed change folds into resample even when rates match\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        2.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    88200.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"speed and rate mismatch combine\",\n+\t\t\tfileRate:     48000,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.5,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    72000.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"zero speed is ignored\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        0,\n+\t\t\twantResample: false,\n+\t\t},\n+\t}\n+\n+\tfor _, tt := range tests {\n+\t\tt.Run(tt.name, func(t *testing.T) {\n+\t\t\tgot := resampleForPlayback(src, tt.fileRate, tt.speakerRate, tt.speed)\n+\t\t\tr, isResampler := got.(*beep.Resampler)\n+\t\t\tif tt.wantResample != isResampler {\n+\t\t\t\tt.Fatalf(\"wantResample=%v, got *beep.Resampler=%v\", tt.wantResample, isResampler)\n+\t\t\t}\n+\t\t\tif !tt.wantResample {\n+\t\t\t\tif got != beep.Streamer(src) {\n+\t\t\t\t\tt.Fatalf(\"expected original source to be returned unchanged\")\n+\t\t\t\t}\n+\t\t\t\treturn\n+\t\t\t}\n+\t\t\tconst eps = 1e-9\n+\t\t\tif diff := r.Ratio() - tt.wantRatio; diff > eps || diff < -eps {\n+\t\t\t\tt.Fatalf(\"ratio = %v, want %v\", r.Ratio(), tt.wantRatio)\n+\t\t\t}\n+\t\t})\n+\t}\n+}\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "17169e858cd645f7ee7264a7c9b2473298ad81aa",
+      "message": "fix: resample audio to speaker rate to fix custom pack speed/pitch issues (#73)\n\nThe speaker is initialized once with the first played file's sample rate,\nbut subsequent files were never resampled to it. Custom packs with mixed\nsample rates (common after WAV->MP3 conversion) therefore played sped up,\nslowed down, or distorted depending on which file initialized the speaker.\n\nResample every stream to the speaker's rate, folding the --speed flag into\nthe same resample. Also bump Go directive and update dependencies.\n\nFixes #60"
+    },
+    {
+      "hash": "47ad447f3965485e21cb339f2ef0ce8abdd33582",
+      "message": "Merge pull request #65 from chengyanqi123/master\n\nUpdate the \"Requirements\" section in the Chinese doc to align with the English version"
+    },
+    {
+      "hash": "459ec55027d14e5a0a229df3c844961790c4e5f1",
+      "message": "docs: Update the 'Requirements' section in the Chinese doc."
+    },
+    {
+      "hash": "64d1bd43b8ca695330e112990dcfd27e409da951",
+      "message": "Merge pull request #64 from timstrauss/addLizardAudio\n\nfeat: Add lizard sound"
+    },
+    {
+      "hash": "6cb0a739865d6dad674a60de3c3569e964719a71",
+      "message": "feat: Add lizard sound\n\nAdding a lizard sound from the Tom the Lizard meme. The sound is free\nfor use (https://lizardbutton.org/download/)."
+    },
+    {
+      "hash": "806ad4350b23a8c7f382a7b3d58abe0014f17183",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "f1202e981b4fa3573584f81e3cf53c6bbe015902",
+      "message": "Add logo"
+    },
+    {
+      "hash": "1633c5d5c56b85e82eda0c0d92de9637db11985b",
+      "message": "Merge pull request #49 from chengyanqi123/master\n\nAdd Simplified Chinese README Document"
+    },
+    {
+      "hash": "946ae7873c57ff009b034ab4266ed1858305b59e",
+      "message": "docs: Add Simplified Chinese README Document"
+    },
+    {
+      "hash": "233e232326a5b55163d6ca7b9f26cddcebe1f54c",
+      "message": "docs: Add Simplified Chinese README Document"
+    },
+    {
+      "hash": "c18caf033c53913d56b33ccbadebfd027fe13883",
+      "message": "Merge pull request #45 from Everoot/fix/stdio-set-live-tuning\n\nfix: apply stdio set command (amplitude/cooldown) in detection loop"
+    },
+    {
+      "hash": "dbde6a2172647a67bb75de57729336841d9fa493",
+      "message": "fix: apply stdio set command (amplitude/cooldown) in detection loop"
+    },
+    {
+      "hash": "8c14aea5ab9f0307ce3c78b6cf269b8888406c58",
+      "message": "Merge pull request #43 from tacheraSasi/master\n\nfix: optimize index clamping and use time.Equal for event comparison"
+    },
+    {
+      "hash": "c14c1f09102081954c9480e4559eef4f113c0c57",
+      "message": "fix: optimize index calculation and improve event time comparison"
+    },
+    {
+      "hash": "bedae99edcb286ebcfdcdb56bd696679ebc38837",
+      "message": "Merge pull request #42 from v-garzon/feature/speed-flag\n\nAdd --speed flag for playback speed control"
+    },
+    {
+      "hash": "f65a00d1da3388999eb2f7a03334a6f1aabb4bd1",
+      "message": "Add --speed flag for playback speed control"
+    },
+    {
+      "hash": "42b75a0a7e3bca22dbf112d55ef77e88d6ecdb93",
+      "message": "Merge pull request #40 from andreabadesso/nix-flake-hm-module\n\nfeat: add Nix flake with Home Manager module"
+    },
+    {
+      "hash": "3d582f8cd4f8ffbd7670d16850347bb900a4ce92",
+      "message": "feat: add nix flake with home-manager module\n\nAdd a Nix flake that builds the package and exposes a home-manager\nmodule for easy integration into nix-based system configs."
+    },
+    {
+      "hash": "0d11ad16626e431101234265c6bd4096de34db54",
+      "message": "Merge pull request #37 from taigrr/cd/volume-scaling-and-deps\n\nfeat(audio): scale volume by slap amplitude"
+    },
+    {
+      "hash": "64ffd49b9b60cbdab765cf5058a775c74bd520bb",
+      "message": "fix(audio): make volume scaling opt-in with --volume-scaling flag\n\nVolume scaling is now off by default instead of always-on.\nEnable with --volume-scaling flag or toggle at runtime via\nthe JSON stdin command {\"cmd\":\"volume-scaling\"}.\n\nThe status command now includes volume_scaling in its response."
+    },
+    {
+      "hash": "c95cd1fc71e37f2b34c03a020b47eacd95da24a7",
+      "message": "feat(audio): scale volume by slap amplitude\n\nHarder slaps now play louder sounds. Uses beep/effects.Volume with a\nlogarithmic curve mapping detected amplitude to playback volume:\n- Light taps (~0.05g): play at ~1/8 volume\n- Hard slaps (~0.8g+): play at full volume\n\nAlso updates deps and adds Go 1.26+ build requirement to README.\n\nCloses #32"
+    },
+    {
+      "hash": "0c6475a1627ffad0035fca08c3b3b6a7c6be0858",
+      "message": "Merge pull request #30 from taigrr/cd/fast-mode\n\nfeat: add --fast flag for responsive detection tuning"
+    },
+    {
+      "hash": "1fef01b8435b453f8f39d9b0e07e8a319e96565d",
+      "message": "added fast preset to it for more interesting"
+    },
+    {
+      "hash": "ae3e692a9482f3499522d4f765c8bb84f95bcbc3",
+      "message": "Merge pull request #28 from RJohnPaul/patch-1\n\nadded extra note mentioned in description as without it when i run su…"
+    },
+    {
+      "hash": "a1ff72ba8c9e25f4527b1ddb3f1b566daf925583",
+      "message": "Merge pull request #27 from chengyanqi123/master\n\nUpdate README to add explanation of the --cooldown parameter."
+    },
+    {
+      "hash": "47856dda81323e323cb7a583fe57e8aa01ab1f0c",
+      "message": "Apply suggestions from code review\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>"
+    },
+    {
+      "hash": "f507171af58724f9090ce3b484a3ce47af6fad86",
+      "message": "add stdin mode"
+    },
+    {
+      "hash": "7a2318605b32508c0c5d5ec769fa1c01359e333a",
+      "message": "added extra note mentioned in description as without it when i run sudo spank it returns as spank : command not found\n\n> **Note:** `go install` places the binary in `~/go/bin`, which `sudo` can't find by default. Copy it to a system path so `sudo spank` works:\n> ```bash\n> sudo cp ~/go/bin/spank /usr/local/bin/spank\n> ```"
+    },
+    {
+      "hash": "2b97d12c7c70cd8fff87e1a6b493922c60976ea1",
+      "message": "docs: Update README to add explanation of the --cooldown parameter."
+    },
+    {
+      "hash": "e80375609cda6c9f1a3309193563e85e42a93dcc",
+      "message": "add cooldown flag"
+    },
+    {
+      "hash": "5b421cd45a88ab23bb943978922ea65240dda8ad",
+      "message": "gitignore .crush"
+    },
+    {
+      "hash": "d56e6357b98f0c42bd888aae940b4225659b3d3a",
+      "message": "Merge pull request #20 from taigrr/cd/dep-updates\n\nchore(deps): update dependencies"
+    },
+    {
+      "hash": "dcba59f6b17399fa93d64c7ec0fefcec55b05dc8",
+      "message": "chore(deps): update charmbracelet/x/exp/charmtone"
+    },
+    {
+      "hash": "1b86dd50fbadb146d590fd4c3325783928dadfb3",
+      "message": "Add Star History section to README\n\nAdded a section for Star History with a chart link."
+    },
+    {
+      "hash": "52c05607efb6cecd36c31dc6ebcf0de06d3d8f16",
+      "message": "fix: increase cooldown to 750ms, make all sounds reachable\n\n- Cooldown 500ms → 750ms\n- Adjust escalation math so sustained max-rate slapping reaches the\n  final file instead of asymptotically approaching it"
+    },
+    {
+      "hash": "b543ede7d207d5d37f88cded96818ee47e68cfb2",
+      "message": "refactor: CQL cleanup — extract constants, validate inputs, surface errors\n\n- Extract magic numbers into named constants (cooldown, poll interval, etc.)\n- Validate empty audio directories early with clear error message\n- Consolidate mutually exclusive mode check (--sexy/--halo/--custom)\n- Extract event loop into listenForSlaps for readability\n- Flatten nested conditionals with early continues\n- Surface audio playback errors to stderr instead of silently dropping\n- Fix variable naming (e -> entry, s -> sample) per Go conventions\n- Run goimports formatting pass"
+    },
+    {
+      "hash": "19c5378abc92b029e41040e887254f0b7b5e621f",
+      "message": "Merge pull request #12 from criizx/master\n\nfeature: Added flag for custom audio"
+    },
+    {
+      "hash": "ca44daf78a5768c22d926f96067942b4b3baaadc",
+      "message": "Merge pull request #11 from masterkusok/master\n\nfeature: sensitivity flag"
+    },
+    {
+      "hash": "f0b35d1f3444578d5fbe0adc2bde88114646e63a",
+      "message": "Merge pull request #8 from ZenAlexa/fix/sexy-mode-escalation\n\nfix: sexy mode escalation caps at 20 slaps instead of using all 60 levels"
+    },
+    {
+      "hash": "dda2f1142242e04b4df5c93fd69faedcc222bfa6",
+      "message": "all: sensitivity flag"
+    },
+    {
+      "hash": "6d4f0db9640b1a87b7064d39a7b167faaa41c1b5",
+      "message": "added flag for custom audio"
+    },
+    {
+      "hash": "bfa9b918188c9cbe3e1ec3165eb46af3f77462ea",
+      "message": "fix: replace sexy mode escalation with exponential decay\n\nThe escalation algorithm had a hardcoded cap at 20 slaps, causing it\nto alternate between only the last two audio files for the rest of the\nsession. This meant ~40 of the 60 files were never played, despite the\nREADME advertising \"60 levels of escalation.\"\n\nReplace the fixed 5-minute sliding window + linear ratio mapping with\nexponential decay scoring and an asymptotic 1-exp(-x) curve:\n\n- Each slap adds 1 to a score that continuously decays (30s half-life)\n- The score maps to file index via 1-exp(-(score-1)/scale), which\n  asymptotically approaches but never reaches the last file\n- Scale is auto-derived from the half-life, cooldown, and file count\n- Intensity now reflects current slap *rate*, not just accumulated count\n- Slowing down naturally lowers the level; stopping resets to baseline\n- Zero per-slap allocations (replaces the []time.Time sliding window)"
+    },
+    {
+      "hash": "95e6b1df398377f03e5d9496746bc8cc2b37672a",
+      "message": "chore: add GitHub Sponsors funding config"
+    },
+    {
+      "hash": "99accb0decf4fefe6932289e836f28d21c2fb0a6",
+      "message": "Merge pull request #6 from taigrr/cd/service-docs\n\nCd/service docs"
+    },
+    {
+      "hash": "6a74f053d8ceb170315a5bda36ea136f76c82f03",
+      "message": "docs: collapsible plist blocks for all three modes"
+    },
+    {
+      "hash": "32b6f7a250a849dd7c38223cd2bc59869e4ffb7f",
+      "message": "docs: add instructions for running as a launchd service"
+    },
+    {
+      "hash": "ee39387b295faf81f5ae1a6af75300135715cf77",
+      "message": "fix for real"
+    },
+    {
+      "hash": "db4b3f9914c0ca61ac553dad5ade7fa7fd084406",
+      "message": "Merge pull request #3 from taigrr/cd/fix-event-detection-after-cap\n\nfix: detect new events after detector trims event buffer"
+    },
+    {
+      "hash": "4593b99caeb03ba58299f60652b961cdcecfa02c",
+      "message": "fix: detect new events after detector trims event buffer\n\nThe detector caps Events at 500 entries, trimming old ones from the\nfront. The previous check (len > prevCount) would fail once the slice\nwas trimmed, since the length could stay the same or decrease. This\ncaused spank to stop detecting slaps after ~500 events.\n\nSwitch to tracking lastEventIdx and using != instead of > to correctly\ndetect new events regardless of internal trimming.\n\nCloses #2"
+    },
+    {
+      "hash": "96333bfcdeef41419f8c229d6ab192c1de5e251b",
+      "message": "Merge pull request #1 from duncanlutz/master\n\nAdded Halo mode"
+    },
+    {
+      "hash": "bae2c20a25339ea2b7c1334ec9fbd6a6326bf499",
+      "message": "feat: added halo mode"
+    },
+    {
+      "hash": "479048352b0b1ca87b64a201433eae81a6c962e7",
+      "message": "docs: move quotes to top of README"
+    },
+    {
+      "hash": "143c1071defaa129eab42b88c40952e4bb6d8d48",
+      "message": "docs: add community quotes to README"
+    },
+    {
+      "hash": "d755f027bd22b8390c130c0931cb8e03cc54fd1c",
+      "message": "docs: remove GOPRIVATE from install instructions"
+    },
+    {
+      "hash": "191b0cc06290b014814fab51873c6e0f8a47cfa2",
+      "message": "feat: extend sexy mode window to 5 minutes"
+    },
+    {
+      "hash": "7f93ba74cc38d03b0cc98825dc5e0ab14d3d05ef",
+      "message": "chore: switch to MIT license, credit original author"
+    },
+    {
+      "hash": "e6b97f32dc3bda58d5d4997f6be0c0355a43e2f8",
+      "message": "refactor: single binary, no separate sensord required\n\nSpank now reads the accelerometer directly via IOKit HID instead\nof requiring a separate sensord process. Just run sudo spank.\n\n- Removed cmd/sensord (sensor worker runs in-process)\n- Creates shared memory internally, cleans up on exit\n- Simplified goreleaser to single build target"
+    },
+    {
+      "hash": "30311c6906a421a6d5687e309bf1deed5bb3c505",
+      "message": "fix: remove amd64 from goreleaser, Apple Silicon only"
+    },
+    {
+      "hash": "483eae863c06e9c9a0aef22c755b9c94b2e7bb59",
+      "message": "feat: bundle sensord binary in releases, update README\n\n- Add cmd/sensord so both binaries ship in the release archive\n- Update README to link to releases/latest instead of separate repo\n- Update goreleaser to build both spank and sensord"
+    },
+    {
+      "hash": "8277ad59fb165fa653935ff7b849a2405f6038d8",
+      "message": "feat: initial release — slap your MacBook, it yells back\n\nDetects physical impacts on Apple Silicon MacBooks via accelerometer\n(reads from sensord shared memory). Two modes:\n- Pain mode: random 'ow!' responses from 10 clips\n- Sexy mode (--sexy): escalating responses based on slap frequency\n\nUses embedded MP3 audio via go:embed, gopxl/beep for playback,\nand apple-silicon-accelerometer for vibration detection."
+    },
+    {
+      "hash": "b1263ca5f4937ff2df80b927a6b9de455c33cebe",
+      "message": "Initial commit"
+    }
+  ],
+  "file_histories": [
+    {
+      "file": "main.go",
+      "introducing_commit": {
+        "hash": "8277ad59fb165fa653935ff7b849a2405f6038d8"
+      },
+      "total_changes": 23
+    }
+  ],
+  "files": [
+    ".gitattributes",
+    ".github/FUNDING.yml",
+    ".github/workflows/release.yml",
+    ".gitignore",
+    ".goreleaser.yaml",
+    "AGENTS.md",
+    "LICENSE",
+    "README-zh.md",
+    "README.md",
+    "audio/halo/00.mp3",
+    "audio/halo/01.mp3",
+    "audio/halo/02.mp3",
+    "audio/halo/03.mp3",
+    "audio/halo/04.mp3",
+    "audio/halo/05.mp3",
+    "audio/halo/06.mp3",
+    "audio/halo/07.mp3",
+    "audio/halo/08.mp3",
+    "audio/lizard/00.mp3",
+    "audio/pain/00_Ow.mp3",
+    "audio/pain/01_Ouch.mp3",
+    "audio/pain/02_Owwie.mp3",
+    "audio/pain/03_Hey_that_hurts.mp3",
+    "audio/pain/04_Ow_stop_it.mp3",
+    "audio/pain/05_What_was_that_for.mp3",
+    "audio/pain/06_Ow_ow_ow.mp3",
+    "audio/pain/07_Hey.mp3",
+    "audio/pain/08_Yowch.mp3",
+    "audio/pain/09_That_stings.mp3",
+    "audio/sexy/00.mp3",
+    "audio/sexy/01.mp3",
+    "audio/sexy/02.mp3",
+    "audio/sexy/03.mp3",
+    "audio/sexy/04.mp3",
+    "audio/sexy/05.mp3",
+    "audio/sexy/06.mp3",
+    "audio/sexy/07.mp3",
+    "audio/sexy/08.mp3",
+    "audio/sexy/09.mp3",
+    "audio/sexy/10.mp3",
+    "audio/sexy/11.mp3",
+    "audio/sexy/12.mp3",
+    "audio/sexy/13.mp3",
+    "audio/sexy/14.mp3",
+    "audio/sexy/15.mp3",
+    "audio/sexy/16.mp3",
+    "audio/sexy/17.mp3",
+    "audio/sexy/18.mp3",
+    "audio/sexy/19.mp3",
+    "audio/sexy/20.mp3",
+    "audio/sexy/21.mp3",
+    "audio/sexy/22.mp3",
+    "audio/sexy/23.mp3",
+    "audio/sexy/24.mp3",
+    "audio/sexy/25.mp3",
+    "audio/sexy/26.mp3",
+    "audio/sexy/27.mp3",
+    "audio/sexy/28.mp3",
+    "audio/sexy/29.mp3",
+    "audio/sexy/30.mp3",
+    "audio/sexy/31.mp3",
+    "audio/sexy/32.mp3",
+    "audio/sexy/33.mp3",
+    "audio/sexy/34.mp3",
+    "audio/sexy/35.mp3",
+    "audio/sexy/36.mp3",
+    "audio/sexy/37.mp3",
+    "audio/sexy/38.mp3",
+    "audio/sexy/39.mp3",
+    "audio/sexy/40.mp3",
+    "audio/sexy/41.mp3",
+    "audio/sexy/42.mp3",
+    "audio/sexy/43.mp3",
+    "audio/sexy/44.mp3",
+    "audio/sexy/45.mp3",
+    "audio/sexy/46.mp3",
+    "audio/sexy/47.mp3",
+    "audio/sexy/48.mp3",
+    "audio/sexy/49.mp3",
+    "audio/sexy/50.mp3",
+    "audio/sexy/51.mp3",
+    "audio/sexy/52.mp3",
+    "audio/sexy/53.mp3",
+    "audio/sexy/54.mp3",
+    "audio/sexy/55.mp3",
+    "audio/sexy/56.mp3",
+    "audio/sexy/57.mp3",
+    "audio/sexy/58.mp3",
+    "audio/sexy/59.mp3",
+    "doc/logo.png",
+    "flake.lock",
+    "flake.nix",
+    "go.mod",
+    "go.sum",
+    "main.go",
+    "main_test.go",
+    "nix/hm-module.nix",
+    "nix/package.nix",
+    "stdin_test.go"
+  ],
+  "file": "main.go",
+  "region": [
+    473,
+    478
+  ],
+  "source": "// speakerSampleRate is the sample rate the speaker was initialized with.\n// The speaker is initialized exactly once, using the rate of the first\n// file played. Every subsequent file must be resampled to this rate or it\n// will play at the wrong speed/pitch.\nvar speakerSampleRate beep.SampleRate\n",
+  "blame_commits": [
+    "17169e858cd645f7ee7264a7c9b2473298ad81aa"
+  ],
+  "diff": "diff --git a/go.mod b/go.mod\nindex 14939a4..61046fb 100644\n--- a/go.mod\n+++ b/go.mod\n@@ -1,31 +1,31 @@\n module github.com/taigrr/spank\n \n-go 1.26\n+go 1.26.4\n \n require (\n-\tgithub.com/charmbracelet/fang v0.4.4\n+\tgithub.com/charmbracelet/fang v1.0.0\n \tgithub.com/gopxl/beep/v2 v2.1.1\n \tgithub.com/spf13/cobra v1.10.2\n \tgithub.com/taigrr/apple-silicon-accelerometer v0.1.0\n )\n \n require (\n-\tcharm.land/lipgloss/v2 v2.0.0 // indirect\n-\tgithub.com/charmbracelet/colorprofile v0.4.2 // indirect\n-\tgithub.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff // indirect\n-\tgithub.com/charmbracelet/x/ansi v0.11.6 // indirect\n-\tgithub.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185 // indirect\n+\tcharm.land/lipgloss/v2 v2.0.4 // indirect\n+\tgithub.com/charmbracelet/colorprofile v0.4.3 // indirect\n+\tgithub.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1 // indirect\n+\tgithub.com/charmbracelet/x/ansi v0.11.7 // indirect\n+\tgithub.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e // indirect\n \tgithub.com/charmbracelet/x/term v0.2.2 // indirect\n \tgithub.com/charmbracelet/x/termios v0.1.1 // indirect\n \tgithub.com/charmbracelet/x/windows v0.2.2 // indirect\n \tgithub.com/clipperhouse/displaywidth v0.11.0 // indirect\n \tgithub.com/clipperhouse/uax29/v2 v2.7.0 // indirect\n \tgithub.com/ebitengine/oto/v3 v3.4.0 // indirect\n-\tgithub.com/ebitengine/purego v0.10.0 // indirect\n+\tgithub.com/ebitengine/purego v0.10.1 // indirect\n \tgithub.com/hajimehoshi/go-mp3 v0.3.4 // indirect\n \tgithub.com/inconshreveable/mousetrap v1.1.0 // indirect\n-\tgithub.com/lucasb-eyer/go-colorful v1.3.0 // indirect\n-\tgithub.com/mattn/go-runewidth v0.0.20 // indirect\n+\tgithub.com/lucasb-eyer/go-colorful v1.4.0 // indirect\n+\tgithub.com/mattn/go-runewidth v0.0.24 // indirect\n \tgithub.com/muesli/cancelreader v0.2.2 // indirect\n \tgithub.com/muesli/mango v0.2.0 // indirect\n \tgithub.com/muesli/mango-cobra v1.3.0 // indirect\n@@ -35,7 +35,7 @@ require (\n \tgithub.com/rivo/uniseg v0.4.7 // indirect\n \tgithub.com/spf13/pflag v1.0.10 // indirect\n \tgithub.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect\n-\tgolang.org/x/sync v0.19.0 // indirect\n-\tgolang.org/x/sys v0.41.0 // indirect\n-\tgolang.org/x/text v0.34.0 // indirect\n+\tgolang.org/x/sync v0.21.0 // indirect\n+\tgolang.org/x/sys v0.46.0 // indirect\n+\tgolang.org/x/text v0.38.0 // indirect\n )\ndiff --git a/go.sum b/go.sum\nindex 33ea2f1..d106a6b 100644\n--- a/go.sum\n+++ b/go.sum\n@@ -1,17 +1,17 @@\n-charm.land/lipgloss/v2 v2.0.0 h1:sd8N/B3x892oiOjFfBQdXBQp3cAkvjGaU5TvVZC3ivo=\n-charm.land/lipgloss/v2 v2.0.0/go.mod h1:w6SnmsBFBmEFBodiEDurGS/sdUY/u1+v72DqUzc6J14=\n-github.com/aymanbagabas/go-udiff v0.4.0 h1:TKnLPh7IbnizJIBKFWa9mKayRUBQ9Kh1BPCk6w2PnYM=\n-github.com/aymanbagabas/go-udiff v0.4.0/go.mod h1:0L9PGwj20lrtmEMeyw4WKJ/TMyDtvAoK9bf2u/mNo3w=\n-github.com/charmbracelet/colorprofile v0.4.2 h1:BdSNuMjRbotnxHSfxy+PCSa4xAmz7szw70ktAtWRYrY=\n-github.com/charmbracelet/colorprofile v0.4.2/go.mod h1:0rTi81QpwDElInthtrQ6Ni7cG0sDtwAd4C4le060fT8=\n-github.com/charmbracelet/fang v0.4.4 h1:G4qKxF6or/eTPgmAolwPuRNyuci3hTUGGX1rj1YkHJY=\n-github.com/charmbracelet/fang v0.4.4/go.mod h1:P5/DNb9DddQ0Z0dbc0P3ol4/ix5Po7Ofr2KMBfAqoCo=\n-github.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff h1:uY7A6hTokHPJBHfq7rj9Y/wm+IAjOghZTxKfVW6QLvw=\n-github.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff/go.mod h1:E6/0abq9uG2SnM8IbLB9Y5SW09uIgfaFETk8aRzgXUQ=\n-github.com/charmbracelet/x/ansi v0.11.6 h1:GhV21SiDz/45W9AnV2R61xZMRri5NlLnl6CVF7ihZW8=\n-github.com/charmbracelet/x/ansi v0.11.6/go.mod h1:2JNYLgQUsyqaiLovhU2Rv/pb8r6ydXKS3NIttu3VGZQ=\n-github.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185 h1:/192monmpmRICpSPrFRzkIO+xfhioV6/nwrQdkDTj10=\n-github.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185/go.mod h1:nsExn0DGyX0lh9LwLHTn2Gg+hafdzfSXnC+QmEJTZFY=\n+charm.land/lipgloss/v2 v2.0.4 h1:lcPeVtcp23SNra7lHy8iYE4UC2aIipVQ47sbGyyxR5Q=\n+charm.land/lipgloss/v2 v2.0.4/go.mod h1:0653x8epbZSzdDfO/XPS1a/uYPOBeSsCssOpJOqDzik=\n+github.com/aymanbagabas/go-udiff v0.4.1 h1:OEIrQ8maEeDBXQDoGCbbTTXYJMYRCRO1fnodZ12Gv5o=\n+github.com/aymanbagabas/go-udiff v0.4.1/go.mod h1:0L9PGwj20lrtmEMeyw4WKJ/TMyDtvAoK9bf2u/mNo3w=\n+github.com/charmbracelet/colorprofile v0.4.3 h1:QPa1IWkYI+AOB+fE+mg/5/4HRMZcaXex9t5KX76i20Q=\n+github.com/charmbracelet/colorprofile v0.4.3/go.mod h1:/zT4BhpD5aGFpqQQqw7a+VtHCzu+zrQtt1zhMt9mR4Q=\n+github.com/charmbracelet/fang v1.0.0 h1:jESBY40agJOlLYnnv9jE0mLqDGTxEk0hkOnx7YGyRlQ=\n+github.com/charmbracelet/fang v1.0.0/go.mod h1:P5/DNb9DddQ0Z0dbc0P3ol4/ix5Po7Ofr2KMBfAqoCo=\n+github.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1 h1:4+r3uOJ69ueRBt4okgEfWZeXs3BD36HcDBmOIAUlETk=\n+github.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1/go.mod h1:f/jRa757WUmaOZrbPspXymbg/GnbF+rwe4OLsG7aXYo=\n+github.com/charmbracelet/x/ansi v0.11.7 h1:kzv1kJvjg2S3r9KHo8hDdHFQLEqn4RBCb39dAYC84jI=\n+github.com/charmbracelet/x/ansi v0.11.7/go.mod h1:9qGpnAVYz+8ACONkZBUWPtL7lulP9No6p1epAihUZwQ=\n+github.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e h1:y+RAZ0YSHgSrJsq3825iY/ElTQ701dpNGj2Pw81IfH8=\n+github.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e/go.mod h1:nsExn0DGyX0lh9LwLHTn2Gg+hafdzfSXnC+QmEJTZFY=\n github.com/charmbracelet/x/exp/golden v0.0.0-20250806222409-83e3a29d542f h1:pk6gmGpCE7F3FcjaOEKYriCvpmIN4+6OS/RD0vm4uIA=\n github.com/charmbracelet/x/exp/golden v0.0.0-20250806222409-83e3a29d542f/go.mod h1:IfZAMTHB6XkZSeXUqriemErjAWCCzT0LwjKFYCZyw0I=\n github.com/charmbracelet/x/term v0.2.2 h1:xVRT/S2ZcKdhhOuSP4t5cLi5o+JxklsoEObBSgfgZRk=\n@@ -29,8 +29,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c\n github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=\n github.com/ebitengine/oto/v3 v3.4.0 h1:br0PgASsEWaoWn38b2Goe7m1GKFYfNgnsjSd5Gg+/bQ=\n github.com/ebitengine/oto/v3 v3.4.0/go.mod h1:IOleLVD0m+CMak3mRVwsYY8vTctQgOM0iiL6S7Ar7eI=\n-github.com/ebitengine/purego v0.10.0 h1:QIw4xfpWT6GWTzaW5XEKy3HXoqrJGx1ijYHzTF0/ISU=\n-github.com/ebitengine/purego v0.10.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=\n+github.com/ebitengine/purego v0.10.1 h1:dewVBCBT2GaMu1SrNTYxQhgQBethzfhiwvZiLGP/qyY=\n+github.com/ebitengine/purego v0.10.1/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=\n github.com/gopxl/beep/v2 v2.1.1 h1:6FYIYMm2qPAdWkjX+7xwKrViS1x0Po5kDMdRkq8NVbU=\n github.com/gopxl/beep/v2 v2.1.1/go.mod h1:ZAm9TGQ9lvpoiFLd4zf5B1IuyxZhgRACMId1XJbaW0E=\n github.com/hajimehoshi/go-mp3 v0.3.4 h1:NUP7pBYH8OguP4diaTZ9wJbUbk3tC0KlfzsEpWmYj68=\n@@ -38,10 +38,10 @@ github.com/hajimehoshi/go-mp3 v0.3.4/go.mod h1:fRtZraRFcWb0pu7ok0LqyFhCUrPeMsGRS\n github.com/hajimehoshi/oto/v2 v2.3.1/go.mod h1:seWLbgHH7AyUMYKfKYT9pg7PhUu9/SisyJvNTT+ASQo=\n github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=\n github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=\n-github.com/lucasb-eyer/go-colorful v1.3.0 h1:2/yBRLdWBZKrf7gB40FoiKfAWYQ0lqNcbuQwVHXptag=\n-github.com/lucasb-eyer/go-colorful v1.3.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=\n-github.com/mattn/go-runewidth v0.0.20 h1:WcT52H91ZUAwy8+HUkdM3THM6gXqXuLJi9O3rjcQQaQ=\n-github.com/mattn/go-runewidth v0.0.20/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=\n+github.com/lucasb-eyer/go-colorful v1.4.0 h1:UtrWVfLdarDgc44HcS7pYloGHJUjHV/4FwW4TvVgFr4=\n+github.com/lucasb-eyer/go-colorful v1.4.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=\n+github.com/mattn/go-runewidth v0.0.24 h1:cpokDiIn0MGnhdHwuWnJBITySJ20QyNGnY2kR/ay2DU=\n+github.com/mattn/go-runewidth v0.0.24/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=\n github.com/muesli/cancelreader v0.2.2 h1:3I4Kt4BQjOR54NavqnDogx/MIoWBFa0StPA8ELUXHmA=\n github.com/muesli/cancelreader v0.2.2/go.mod h1:3XuTXfFS2VjM+HTLZY9Ak0l6eUKfijIfMUZ4EgX0QYo=\n github.com/muesli/mango v0.2.0 h1:iNNc0c5VLQ6fsMgAqGQofByNUBH2Q2nEbD6TaI+5yyQ=\n@@ -73,13 +73,13 @@ github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e/go.mod h1:RbqR21r5mrJu\n go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=\n golang.org/x/exp v0.0.0-20231006140011-7918f672742d h1:jtJma62tbqLibJ5sFQz8bKtEM8rJBtfilJ2qTU199MI=\n golang.org/x/exp v0.0.0-20231006140011-7918f672742d/go.mod h1:ldy0pHrwJyGW56pPQzzkH36rKxoZW1tw7ZJpeKx+hdo=\n-golang.org/x/sync v0.19.0 h1:vV+1eWNmZ5geRlYjzm2adRgW2/mcpevXNg50YZtPCE4=\n-golang.org/x/sync v0.19.0/go.mod h1:9KTHXmSnoGruLpwFjVSX0lNNA75CykiMECbovNTZqGI=\n+golang.org/x/sync v0.21.0 h1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=\n+golang.org/x/sync v0.21.0/go.mod h1:9xrNwdLfx4jkKbNva9FpL6vEN7evnE43NNNJQ2LF3+0=\n golang.org/x/sys v0.0.0-20220712014510-0a85c31ab51e/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=\n-golang.org/x/sys v0.41.0 h1:Ivj+2Cp/ylzLiEU89QhWblYnOE9zerudt9Ftecq2C6k=\n-golang.org/x/sys v0.41.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=\n-golang.org/x/text v0.34.0 h1:oL/Qq0Kdaqxa1KbNeMKwQq0reLCCaFtqu2eNuSeNHbk=\n-golang.org/x/text v0.34.0/go.mod h1:homfLqTYRFyVYemLBFl5GgL/DWEiH5wcsQ5gSh1yziA=\n+golang.org/x/sys v0.46.0 h1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=\n+golang.org/x/sys v0.46.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=\n+golang.org/x/text v0.38.0 h1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=\n+golang.org/x/text v0.38.0/go.mod h1:YXZt3QhHUKYT53r2lLKFIVi6Ao1jdzrTR/KQ09qyxF4=\n gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=\n gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=\n gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=\ndiff --git a/main.go b/main.go\nindex d1f4add..16def25 100644\n--- a/main.go\n+++ b/main.go\n@@ -470,6 +470,12 @@ func listenForSlaps(ctx context.Context, pack *soundPack, accelRing *shm.RingBuf\n \n var speakerMu sync.Mutex\n \n+// speakerSampleRate is the sample rate the speaker was initialized with.\n+// The speaker is initialized exactly once, using the rate of the first\n+// file played. Every subsequent file must be resampled to this rate or it\n+// will play at the wrong speed/pitch.\n+var speakerSampleRate beep.SampleRate\n+\n // amplitudeToVolume maps a detected amplitude to a beep/effects.Volume\n // level. Amplitude typically ranges from ~0.05 (light tap) to ~1.0+\n // (hard slap). The mapping uses a logarithmic curve so that light taps\n@@ -503,6 +509,23 @@ func amplitudeToVolume(amplitude float64) float64 {\n \treturn minVol + t*(maxVol-minVol)\n }\n \n+// resampleForPlayback wraps source so it is delivered at speakerRate, folding\n+// in an optional playback speed change. Files in a custom pack may have varied\n+// sample rates (e.g. mixed 44.1kHz/48kHz from WAV->MP3 conversion); without\n+// resampling to the speaker's fixed rate they play sped up or slowed down. The\n+// speed change reuses the same resample by claiming the source rate is\n+// fileRate*speed.\n+func resampleForPlayback(source beep.Streamer, fileRate, speakerRate beep.SampleRate, speed float64) beep.Streamer {\n+\tsrcRate := fileRate\n+\tif speed != 1.0 && speed > 0 {\n+\t\tsrcRate = beep.SampleRate(int(float64(fileRate) * speed))\n+\t}\n+\tif srcRate == speakerRate {\n+\t\treturn source\n+\t}\n+\treturn beep.Resample(4, srcRate, speakerRate, source)\n+}\n+\n func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *bool) {\n \tvar streamer beep.StreamSeekCloser\n \tvar format beep.Format\n@@ -536,8 +559,10 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo\n \tspeakerMu.Lock()\n \tif !*speakerInit {\n \t\tspeaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))\n+\t\tspeakerSampleRate = format.SampleRate\n \t\t*speakerInit = true\n \t}\n+\ttargetRate := speakerSampleRate\n \tspeakerMu.Unlock()\n \n \t// Optionally scale volume based on slap amplitude\n@@ -551,13 +576,11 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo\n \t\t}\n \t}\n \n-\t// Apply speed change via resampling trick:\n-\t// Claiming the audio is at rate*speed and resampling back to rate\n-\t// makes the speaker consume samples faster/slower.\n-\tif speedRatio != 1.0 && speedRatio > 0 {\n-\t\tfakeRate := beep.SampleRate(int(float64(format.SampleRate) * speedRatio))\n-\t\tsource = beep.Resample(4, fakeRate, format.SampleRate, source)\n-\t}\n+\t// Resample to the speaker's rate. The speaker is initialized once with\n+\t// the first file's rate; any file with a different rate would otherwise\n+\t// play at the wrong speed/pitch. The --speed flag is folded into the same\n+\t// resample by claiming the source is at fileRate*speed.\n+\tsource = resampleForPlayback(source, format.SampleRate, targetRate, speedRatio)\n \n \tdone := make(chan bool)\n \tspeaker.Play(beep.Seq(source, beep.Callback(func() {\ndiff --git a/main_test.go b/main_test.go\nnew file mode 100644\nindex 0000000..cd5495b\n--- /dev/null\n+++ b/main_test.go\n@@ -0,0 +1,93 @@\n+package main\n+\n+import (\n+\t\"testing\"\n+\n+\t\"github.com/gopxl/beep/v2\"\n+)\n+\n+// stubStreamer is a no-op beep.Streamer used to exercise resampling wiring.\n+type stubStreamer struct{}\n+\n+func (stubStreamer) Stream(samples [][2]float64) (int, bool) { return 0, false }\n+func (stubStreamer) Err() error                              { return nil }\n+\n+func TestResampleForPlayback(t *testing.T) {\n+\tsrc := stubStreamer{}\n+\n+\ttests := []struct {\n+\t\tname         string\n+\t\tfileRate     beep.SampleRate\n+\t\tspeakerRate  beep.SampleRate\n+\t\tspeed        float64\n+\t\twantResample bool\n+\t\twantRatio    float64\n+\t}{\n+\t\t{\n+\t\t\tname:         \"matching rate normal speed returns source unchanged\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: false,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"48k file on 44.1k speaker resamples down\",\n+\t\t\tfileRate:     48000,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    48000.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"44.1k file on 48k speaker resamples up\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  48000,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    44100.0 / 48000.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"speed change folds into resample even when rates match\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        2.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    88200.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"speed and rate mismatch combine\",\n+\t\t\tfileRate:     48000,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.5,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    72000.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"zero speed is ignored\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        0,\n+\t\t\twantResample: false,\n+\t\t},\n+\t}\n+\n+\tfor _, tt := range tests {\n+\t\tt.Run(tt.name, func(t *testing.T) {\n+\t\t\tgot := resampleForPlayback(src, tt.fileRate, tt.speakerRate, tt.speed)\n+\t\t\tr, isResampler := got.(*beep.Resampler)\n+\t\t\tif tt.wantResample != isResampler {\n+\t\t\t\tt.Fatalf(\"wantResample=%v, got *beep.Resampler=%v\", tt.wantResample, isResampler)\n+\t\t\t}\n+\t\t\tif !tt.wantResample {\n+\t\t\t\tif got != beep.Streamer(src) {\n+\t\t\t\t\tt.Fatalf(\"expected original source to be returned unchanged\")\n+\t\t\t\t}\n+\t\t\t\treturn\n+\t\t\t}\n+\t\t\tconst eps = 1e-9\n+\t\t\tif diff := r.Ratio() - tt.wantRatio; diff > eps || diff < -eps {\n+\t\t\t\tt.Fatalf(\"ratio = %v, want %v\", r.Ratio(), tt.wantRatio)\n+\t\t\t}\n+\t\t})\n+\t}\n+}\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/go.mod b/go.mod",
+      "header": "@@ -1,31 +1,31 @@",
+      "text": "@@ -1,31 +1,31 @@\n module github.com/taigrr/spank\n \n-go 1.26\n+go 1.26.4\n \n require (\n-\tgithub.com/charmbracelet/fang v0.4.4\n+\tgithub.com/charmbracelet/fang v1.0.0\n \tgithub.com/gopxl/beep/v2 v2.1.1\n \tgithub.com/spf13/cobra v1.10.2\n \tgithub.com/taigrr/apple-silicon-accelerometer v0.1.0\n )\n \n require (\n-\tcharm.land/lipgloss/v2 v2.0.0 // indirect\n-\tgithub.com/charmbracelet/colorprofile v0.4.2 // indirect\n-\tgithub.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff // indirect\n-\tgithub.com/charmbracelet/x/ansi v0.11.6 // indirect\n-\tgithub.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185 // indirect\n+\tcharm.land/lipgloss/v2 v2.0.4 // indirect\n+\tgithub.com/charmbracelet/colorprofile v0.4.3 // indirect\n+\tgithub.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1 // indirect\n+\tgithub.com/charmbracelet/x/ansi v0.11.7 // indirect\n+\tgithub.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e // indirect\n \tgithub.com/charmbracelet/x/term v0.2.2 // indirect\n \tgithub.com/charmbracelet/x/termios v0.1.1 // indirect\n \tgithub.com/charmbracelet/x/windows v0.2.2 // indirect\n \tgithub.com/clipperhouse/displaywidth v0.11.0 // indirect\n \tgithub.com/clipperhouse/uax29/v2 v2.7.0 // indirect\n \tgithub.com/ebitengine/oto/v3 v3.4.0 // indirect\n-\tgithub.com/ebitengine/purego v0.10.0 // indirect\n+\tgithub.com/ebitengine/purego v0.10.1 // indirect\n \tgithub.com/hajimehoshi/go-mp3 v0.3.4 // indirect\n \tgithub.com/inconshreveable/mousetrap v1.1.0 // indirect\n-\tgithub.com/lucasb-eyer/go-colorful v1.3.0 // indirect\n-\tgithub.com/mattn/go-runewidth v0.0.20 // indirect\n+\tgithub.com/lucasb-eyer/go-colorful v1.4.0 // indirect\n+\tgithub.com/mattn/go-runewidth v0.0.24 // indirect\n \tgithub.com/muesli/cancelreader v0.2.2 // indirect\n \tgithub.com/muesli/mango v0.2.0 // indirect\n \tgithub.com/muesli/mango-cobra v1.3.0 // indirect\n",
+      "id": "hunk_86f3eb1182d4202ca6cc"
+    },
+    {
+      "file_header": "diff --git a/go.mod b/go.mod",
+      "header": "@@ -35,7 +35,7 @@ require (",
+      "text": "@@ -35,7 +35,7 @@ require (\n \tgithub.com/rivo/uniseg v0.4.7 // indirect\n \tgithub.com/spf13/pflag v1.0.10 // indirect\n \tgithub.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect\n-\tgolang.org/x/sync v0.19.0 // indirect\n-\tgolang.org/x/sys v0.41.0 // indirect\n-\tgolang.org/x/text v0.34.0 // indirect\n+\tgolang.org/x/sync v0.21.0 // indirect\n+\tgolang.org/x/sys v0.46.0 // indirect\n+\tgolang.org/x/text v0.38.0 // indirect\n )\n",
+      "id": "hunk_77a1340fe5a7ad1b14da"
+    },
+    {
+      "file_header": "diff --git a/go.sum b/go.sum",
+      "header": "@@ -1,17 +1,17 @@",
+      "text": "@@ -1,17 +1,17 @@\n-charm.land/lipgloss/v2 v2.0.0 h1:sd8N/B3x892oiOjFfBQdXBQp3cAkvjGaU5TvVZC3ivo=\n-charm.land/lipgloss/v2 v2.0.0/go.mod h1:w6SnmsBFBmEFBodiEDurGS/sdUY/u1+v72DqUzc6J14=\n-github.com/aymanbagabas/go-udiff v0.4.0 h1:TKnLPh7IbnizJIBKFWa9mKayRUBQ9Kh1BPCk6w2PnYM=\n-github.com/aymanbagabas/go-udiff v0.4.0/go.mod h1:0L9PGwj20lrtmEMeyw4WKJ/TMyDtvAoK9bf2u/mNo3w=\n-github.com/charmbracelet/colorprofile v0.4.2 h1:BdSNuMjRbotnxHSfxy+PCSa4xAmz7szw70ktAtWRYrY=\n-github.com/charmbracelet/colorprofile v0.4.2/go.mod h1:0rTi81QpwDElInthtrQ6Ni7cG0sDtwAd4C4le060fT8=\n-github.com/charmbracelet/fang v0.4.4 h1:G4qKxF6or/eTPgmAolwPuRNyuci3hTUGGX1rj1YkHJY=\n-github.com/charmbracelet/fang v0.4.4/go.mod h1:P5/DNb9DddQ0Z0dbc0P3ol4/ix5Po7Ofr2KMBfAqoCo=\n-github.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff h1:uY7A6hTokHPJBHfq7rj9Y/wm+IAjOghZTxKfVW6QLvw=\n-github.com/charmbracelet/ultraviolet v0.0.0-20260303162955-0b88c25f3fff/go.mod h1:E6/0abq9uG2SnM8IbLB9Y5SW09uIgfaFETk8aRzgXUQ=\n-github.com/charmbracelet/x/ansi v0.11.6 h1:GhV21SiDz/45W9AnV2R61xZMRri5NlLnl6CVF7ihZW8=\n-github.com/charmbracelet/x/ansi v0.11.6/go.mod h1:2JNYLgQUsyqaiLovhU2Rv/pb8r6ydXKS3NIttu3VGZQ=\n-github.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185 h1:/192monmpmRICpSPrFRzkIO+xfhioV6/nwrQdkDTj10=\n-github.com/charmbracelet/x/exp/charmtone v0.0.0-20260305213658-fe36e8c10185/go.mod h1:nsExn0DGyX0lh9LwLHTn2Gg+hafdzfSXnC+QmEJTZFY=\n+charm.land/lipgloss/v2 v2.0.4 h1:lcPeVtcp23SNra7lHy8iYE4UC2aIipVQ47sbGyyxR5Q=\n+charm.land/lipgloss/v2 v2.0.4/go.mod h1:0653x8epbZSzdDfO/XPS1a/uYPOBeSsCssOpJOqDzik=\n+github.com/aymanbagabas/go-udiff v0.4.1 h1:OEIrQ8maEeDBXQDoGCbbTTXYJMYRCRO1fnodZ12Gv5o=\n+github.com/aymanbagabas/go-udiff v0.4.1/go.mod h1:0L9PGwj20lrtmEMeyw4WKJ/TMyDtvAoK9bf2u/mNo3w=\n+github.com/charmbracelet/colorprofile v0.4.3 h1:QPa1IWkYI+AOB+fE+mg/5/4HRMZcaXex9t5KX76i20Q=\n+github.com/charmbracelet/colorprofile v0.4.3/go.mod h1:/zT4BhpD5aGFpqQQqw7a+VtHCzu+zrQtt1zhMt9mR4Q=\n+github.com/charmbracelet/fang v1.0.0 h1:jESBY40agJOlLYnnv9jE0mLqDGTxEk0hkOnx7YGyRlQ=\n+github.com/charmbracelet/fang v1.0.0/go.mod h1:P5/DNb9DddQ0Z0dbc0P3ol4/ix5Po7Ofr2KMBfAqoCo=\n+github.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1 h1:4+r3uOJ69ueRBt4okgEfWZeXs3BD36HcDBmOIAUlETk=\n+github.com/charmbracelet/ultraviolet v0.0.0-20260615092913-2399af76d5b1/go.mod h1:f/jRa757WUmaOZrbPspXymbg/GnbF+rwe4OLsG7aXYo=\n+github.com/charmbracelet/x/ansi v0.11.7 h1:kzv1kJvjg2S3r9KHo8hDdHFQLEqn4RBCb39dAYC84jI=\n+github.com/charmbracelet/x/ansi v0.11.7/go.mod h1:9qGpnAVYz+8ACONkZBUWPtL7lulP9No6p1epAihUZwQ=\n+github.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e h1:y+RAZ0YSHgSrJsq3825iY/ElTQ701dpNGj2Pw81IfH8=\n+github.com/charmbracelet/x/exp/charmtone v0.0.0-20260621010513-945fab64fd3e/go.mod h1:nsExn0DGyX0lh9LwLHTn2Gg+hafdzfSXnC+QmEJTZFY=\n github.com/charmbracelet/x/exp/golden v0.0.0-20250806222409-83e3a29d542f h1:pk6gmGpCE7F3FcjaOEKYriCvpmIN4+6OS/RD0vm4uIA=\n github.com/charmbracelet/x/exp/golden v0.0.0-20250806222409-83e3a29d542f/go.mod h1:IfZAMTHB6XkZSeXUqriemErjAWCCzT0LwjKFYCZyw0I=\n github.com/charmbracelet/x/term v0.2.2 h1:xVRT/S2ZcKdhhOuSP4t5cLi5o+JxklsoEObBSgfgZRk=\n",
+      "id": "hunk_6aa42401a486696a586f"
+    },
+    {
+      "file_header": "diff --git a/go.sum b/go.sum",
+      "header": "@@ -29,8 +29,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c",
+      "text": "@@ -29,8 +29,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c\n github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=\n github.com/ebitengine/oto/v3 v3.4.0 h1:br0PgASsEWaoWn38b2Goe7m1GKFYfNgnsjSd5Gg+/bQ=\n github.com/ebitengine/oto/v3 v3.4.0/go.mod h1:IOleLVD0m+CMak3mRVwsYY8vTctQgOM0iiL6S7Ar7eI=\n-github.com/ebitengine/purego v0.10.0 h1:QIw4xfpWT6GWTzaW5XEKy3HXoqrJGx1ijYHzTF0/ISU=\n-github.com/ebitengine/purego v0.10.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=\n+github.com/ebitengine/purego v0.10.1 h1:dewVBCBT2GaMu1SrNTYxQhgQBethzfhiwvZiLGP/qyY=\n+github.com/ebitengine/purego v0.10.1/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=\n github.com/gopxl/beep/v2 v2.1.1 h1:6FYIYMm2qPAdWkjX+7xwKrViS1x0Po5kDMdRkq8NVbU=\n github.com/gopxl/beep/v2 v2.1.1/go.mod h1:ZAm9TGQ9lvpoiFLd4zf5B1IuyxZhgRACMId1XJbaW0E=\n github.com/hajimehoshi/go-mp3 v0.3.4 h1:NUP7pBYH8OguP4diaTZ9wJbUbk3tC0KlfzsEpWmYj68=\n",
+      "id": "hunk_489bb643db4338f21430"
+    },
+    {
+      "file_header": "diff --git a/go.sum b/go.sum",
+      "header": "@@ -38,10 +38,10 @@ github.com/hajimehoshi/go-mp3 v0.3.4/go.mod h1:fRtZraRFcWb0pu7ok0LqyFhCUrPeMsGRS",
+      "text": "@@ -38,10 +38,10 @@ github.com/hajimehoshi/go-mp3 v0.3.4/go.mod h1:fRtZraRFcWb0pu7ok0LqyFhCUrPeMsGRS\n github.com/hajimehoshi/oto/v2 v2.3.1/go.mod h1:seWLbgHH7AyUMYKfKYT9pg7PhUu9/SisyJvNTT+ASQo=\n github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=\n github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=\n-github.com/lucasb-eyer/go-colorful v1.3.0 h1:2/yBRLdWBZKrf7gB40FoiKfAWYQ0lqNcbuQwVHXptag=\n-github.com/lucasb-eyer/go-colorful v1.3.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=\n-github.com/mattn/go-runewidth v0.0.20 h1:WcT52H91ZUAwy8+HUkdM3THM6gXqXuLJi9O3rjcQQaQ=\n-github.com/mattn/go-runewidth v0.0.20/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=\n+github.com/lucasb-eyer/go-colorful v1.4.0 h1:UtrWVfLdarDgc44HcS7pYloGHJUjHV/4FwW4TvVgFr4=\n+github.com/lucasb-eyer/go-colorful v1.4.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=\n+github.com/mattn/go-runewidth v0.0.24 h1:cpokDiIn0MGnhdHwuWnJBITySJ20QyNGnY2kR/ay2DU=\n+github.com/mattn/go-runewidth v0.0.24/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=\n github.com/muesli/cancelreader v0.2.2 h1:3I4Kt4BQjOR54NavqnDogx/MIoWBFa0StPA8ELUXHmA=\n github.com/muesli/cancelreader v0.2.2/go.mod h1:3XuTXfFS2VjM+HTLZY9Ak0l6eUKfijIfMUZ4EgX0QYo=\n github.com/muesli/mango v0.2.0 h1:iNNc0c5VLQ6fsMgAqGQofByNUBH2Q2nEbD6TaI+5yyQ=\n",
+      "id": "hunk_16995372fad1bdb1fdbd"
+    },
+    {
+      "file_header": "diff --git a/go.sum b/go.sum",
+      "header": "@@ -73,13 +73,13 @@ github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e/go.mod h1:RbqR21r5mrJu",
+      "text": "@@ -73,13 +73,13 @@ github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e/go.mod h1:RbqR21r5mrJu\n go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=\n golang.org/x/exp v0.0.0-20231006140011-7918f672742d h1:jtJma62tbqLibJ5sFQz8bKtEM8rJBtfilJ2qTU199MI=\n golang.org/x/exp v0.0.0-20231006140011-7918f672742d/go.mod h1:ldy0pHrwJyGW56pPQzzkH36rKxoZW1tw7ZJpeKx+hdo=\n-golang.org/x/sync v0.19.0 h1:vV+1eWNmZ5geRlYjzm2adRgW2/mcpevXNg50YZtPCE4=\n-golang.org/x/sync v0.19.0/go.mod h1:9KTHXmSnoGruLpwFjVSX0lNNA75CykiMECbovNTZqGI=\n+golang.org/x/sync v0.21.0 h1:HLII4xRRTtCRkxYp4HNFF0Js/Og6q2i++KXbg0gHCwM=\n+golang.org/x/sync v0.21.0/go.mod h1:9xrNwdLfx4jkKbNva9FpL6vEN7evnE43NNNJQ2LF3+0=\n golang.org/x/sys v0.0.0-20220712014510-0a85c31ab51e/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=\n-golang.org/x/sys v0.41.0 h1:Ivj+2Cp/ylzLiEU89QhWblYnOE9zerudt9Ftecq2C6k=\n-golang.org/x/sys v0.41.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=\n-golang.org/x/text v0.34.0 h1:oL/Qq0Kdaqxa1KbNeMKwQq0reLCCaFtqu2eNuSeNHbk=\n-golang.org/x/text v0.34.0/go.mod h1:homfLqTYRFyVYemLBFl5GgL/DWEiH5wcsQ5gSh1yziA=\n+golang.org/x/sys v0.46.0 h1:noSf2Fq6F8DBgS+LysIkx7rIExoNHJsxOAtPp4rthXw=\n+golang.org/x/sys v0.46.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=\n+golang.org/x/text v0.38.0 h1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE=\n+golang.org/x/text v0.38.0/go.mod h1:YXZt3QhHUKYT53r2lLKFIVi6Ao1jdzrTR/KQ09qyxF4=\n gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=\n gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=\n gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=\n",
+      "id": "hunk_0760d64fd1005af9afd7"
+    },
+    {
+      "file_header": "diff --git a/main.go b/main.go",
+      "header": "@@ -470,6 +470,12 @@ func listenForSlaps(ctx context.Context, pack *soundPack, accelRing *shm.RingBuf",
+      "text": "@@ -470,6 +470,12 @@ func listenForSlaps(ctx context.Context, pack *soundPack, accelRing *shm.RingBuf\n \n var speakerMu sync.Mutex\n \n+// speakerSampleRate is the sample rate the speaker was initialized with.\n+// The speaker is initialized exactly once, using the rate of the first\n+// file played. Every subsequent file must be resampled to this rate or it\n+// will play at the wrong speed/pitch.\n+var speakerSampleRate beep.SampleRate\n+\n // amplitudeToVolume maps a detected amplitude to a beep/effects.Volume\n // level. Amplitude typically ranges from ~0.05 (light tap) to ~1.0+\n // (hard slap). The mapping uses a logarithmic curve so that light taps\n",
+      "id": "hunk_366b78e12ab7ac329168"
+    },
+    {
+      "file_header": "diff --git a/main.go b/main.go",
+      "header": "@@ -503,6 +509,23 @@ func amplitudeToVolume(amplitude float64) float64 {",
+      "text": "@@ -503,6 +509,23 @@ func amplitudeToVolume(amplitude float64) float64 {\n \treturn minVol + t*(maxVol-minVol)\n }\n \n+// resampleForPlayback wraps source so it is delivered at speakerRate, folding\n+// in an optional playback speed change. Files in a custom pack may have varied\n+// sample rates (e.g. mixed 44.1kHz/48kHz from WAV->MP3 conversion); without\n+// resampling to the speaker's fixed rate they play sped up or slowed down. The\n+// speed change reuses the same resample by claiming the source rate is\n+// fileRate*speed.\n+func resampleForPlayback(source beep.Streamer, fileRate, speakerRate beep.SampleRate, speed float64) beep.Streamer {\n+\tsrcRate := fileRate\n+\tif speed != 1.0 && speed > 0 {\n+\t\tsrcRate = beep.SampleRate(int(float64(fileRate) * speed))\n+\t}\n+\tif srcRate == speakerRate {\n+\t\treturn source\n+\t}\n+\treturn beep.Resample(4, srcRate, speakerRate, source)\n+}\n+\n func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *bool) {\n \tvar streamer beep.StreamSeekCloser\n \tvar format beep.Format\n",
+      "id": "hunk_89e0b6e6dcaf2df6d717"
+    },
+    {
+      "file_header": "diff --git a/main.go b/main.go",
+      "header": "@@ -536,8 +559,10 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo",
+      "text": "@@ -536,8 +559,10 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo\n \tspeakerMu.Lock()\n \tif !*speakerInit {\n \t\tspeaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))\n+\t\tspeakerSampleRate = format.SampleRate\n \t\t*speakerInit = true\n \t}\n+\ttargetRate := speakerSampleRate\n \tspeakerMu.Unlock()\n \n \t// Optionally scale volume based on slap amplitude\n",
+      "id": "hunk_b857d81674afe020273b"
+    },
+    {
+      "file_header": "diff --git a/main.go b/main.go",
+      "header": "@@ -551,13 +576,11 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo",
+      "text": "@@ -551,13 +576,11 @@ func playAudio(pack *soundPack, path string, amplitude float64, speakerInit *boo\n \t\t}\n \t}\n \n-\t// Apply speed change via resampling trick:\n-\t// Claiming the audio is at rate*speed and resampling back to rate\n-\t// makes the speaker consume samples faster/slower.\n-\tif speedRatio != 1.0 && speedRatio > 0 {\n-\t\tfakeRate := beep.SampleRate(int(float64(format.SampleRate) * speedRatio))\n-\t\tsource = beep.Resample(4, fakeRate, format.SampleRate, source)\n-\t}\n+\t// Resample to the speaker's rate. The speaker is initialized once with\n+\t// the first file's rate; any file with a different rate would otherwise\n+\t// play at the wrong speed/pitch. The --speed flag is folded into the same\n+\t// resample by claiming the source is at fileRate*speed.\n+\tsource = resampleForPlayback(source, format.SampleRate, targetRate, speedRatio)\n \n \tdone := make(chan bool)\n \tspeaker.Play(beep.Seq(source, beep.Callback(func() {\n",
+      "id": "hunk_e19893d81053bbc0b23b"
+    },
+    {
+      "file_header": "diff --git a/main_test.go b/main_test.go",
+      "header": "@@ -0,0 +1,93 @@",
+      "text": "@@ -0,0 +1,93 @@\n+package main\n+\n+import (\n+\t\"testing\"\n+\n+\t\"github.com/gopxl/beep/v2\"\n+)\n+\n+// stubStreamer is a no-op beep.Streamer used to exercise resampling wiring.\n+type stubStreamer struct{}\n+\n+func (stubStreamer) Stream(samples [][2]float64) (int, bool) { return 0, false }\n+func (stubStreamer) Err() error                              { return nil }\n+\n+func TestResampleForPlayback(t *testing.T) {\n+\tsrc := stubStreamer{}\n+\n+\ttests := []struct {\n+\t\tname         string\n+\t\tfileRate     beep.SampleRate\n+\t\tspeakerRate  beep.SampleRate\n+\t\tspeed        float64\n+\t\twantResample bool\n+\t\twantRatio    float64\n+\t}{\n+\t\t{\n+\t\t\tname:         \"matching rate normal speed returns source unchanged\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: false,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"48k file on 44.1k speaker resamples down\",\n+\t\t\tfileRate:     48000,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    48000.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"44.1k file on 48k speaker resamples up\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  48000,\n+\t\t\tspeed:        1.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    44100.0 / 48000.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"speed change folds into resample even when rates match\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        2.0,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    88200.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"speed and rate mismatch combine\",\n+\t\t\tfileRate:     48000,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        1.5,\n+\t\t\twantResample: true,\n+\t\t\twantRatio:    72000.0 / 44100.0,\n+\t\t},\n+\t\t{\n+\t\t\tname:         \"zero speed is ignored\",\n+\t\t\tfileRate:     44100,\n+\t\t\tspeakerRate:  44100,\n+\t\t\tspeed:        0,\n+\t\t\twantResample: false,\n+\t\t},\n+\t}\n+\n+\tfor _, tt := range tests {\n+\t\tt.Run(tt.name, func(t *testing.T) {\n+\t\t\tgot := resampleForPlayback(src, tt.fileRate, tt.speakerRate, tt.speed)\n+\t\t\tr, isResampler := got.(*beep.Resampler)\n+\t\t\tif tt.wantResample != isResampler {\n+\t\t\t\tt.Fatalf(\"wantResample=%v, got *beep.Resampler=%v\", tt.wantResample, isResampler)\n+\t\t\t}\n+\t\t\tif !tt.wantResample {\n+\t\t\t\tif got != beep.Streamer(src) {\n+\t\t\t\t\tt.Fatalf(\"expected original source to be returned unchanged\")\n+\t\t\t\t}\n+\t\t\t\treturn\n+\t\t\t}\n+\t\t\tconst eps = 1e-9\n+\t\t\tif diff := r.Ratio() - tt.wantRatio; diff > eps || diff < -eps {\n+\t\t\t\tt.Fatalf(\"ratio = %v, want %v\", r.Ratio(), tt.wantRatio)\n+\t\t\t}\n+\t\t})\n+\t}\n+}\n",
+      "id": "hunk_c890897b255493a9af73"
+    }
+  ],
+  "features": {
+    "commit_count": 61,
+    "file_count": 99,
+    "last_commit_age_days": 93.43013441313657,
+    "readme_files": [
+      "README-zh.md",
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [
+      "main_test.go",
+      "stdin_test.go"
+    ],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "AGENTS.md",
+      "README-zh.md",
+      "README.md"
+    ],
+    "dependency_manifests": [
+      "go.mod"
+    ],
+    "deployment_files": [
+      ".github/workflows/release.yml"
+    ],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": [
+      "audio/halo/00.mp3",
+      "audio/halo/01.mp3",
+      "audio/halo/02.mp3",
+      "audio/halo/03.mp3",
+      "audio/halo/04.mp3",
+      "audio/halo/05.mp3",
+      "audio/halo/06.mp3",
+      "audio/halo/07.mp3",
+      "audio/halo/08.mp3",
+      "audio/lizard/00.mp3",
+      "audio/pain/00_Ow.mp3",
+      "audio/pain/01_Ouch.mp3",
+      "audio/pain/02_Owwie.mp3",
+      "audio/pain/03_Hey_that_hurts.mp3",
+      "audio/pain/04_Ow_stop_it.mp3",
+      "audio/pain/05_What_was_that_for.mp3",
+      "audio/pain/06_Ow_ow_ow.mp3",
+      "audio/pain/07_Hey.mp3",
+      "audio/pain/08_Yowch.mp3",
+      "audio/pain/09_That_stings.mp3",
+      "audio/sexy/00.mp3",
+      "audio/sexy/01.mp3",
+      "audio/sexy/02.mp3",
+      "audio/sexy/03.mp3",
+      "audio/sexy/04.mp3",
+      "audio/sexy/05.mp3",
+      "audio/sexy/06.mp3",
+      "audio/sexy/07.mp3",
+      "audio/sexy/08.mp3",
+      "audio/sexy/09.mp3",
+      "audio/sexy/10.mp3",
+      "audio/sexy/11.mp3",
+      "audio/sexy/12.mp3",
+      "audio/sexy/13.mp3",
+      "audio/sexy/14.mp3",
+      "audio/sexy/15.mp3",
+      "audio/sexy/16.mp3",
+      "audio/sexy/17.mp3",
+      "audio/sexy/18.mp3",
+      "audio/sexy/19.mp3",
+      "audio/sexy/20.mp3",
+      "audio/sexy/21.mp3",
+      "audio/sexy/22.mp3",
+      "audio/sexy/23.mp3",
+      "audio/sexy/24.mp3",
+      "audio/sexy/25.mp3",
+      "audio/sexy/26.mp3",
+      "audio/sexy/27.mp3",
+      "audio/sexy/28.mp3",
+      "audio/sexy/29.mp3",
+      "audio/sexy/30.mp3",
+      "audio/sexy/31.mp3",
+      "audio/sexy/32.mp3",
+      "audio/sexy/33.mp3",
+      "audio/sexy/34.mp3",
+      "audio/sexy/35.mp3",
+      "audio/sexy/36.mp3",
+      "audio/sexy/37.mp3",
+      "audio/sexy/38.mp3",
+      "audio/sexy/39.mp3",
+      "audio/sexy/40.mp3",
+      "audio/sexy/41.mp3",
+      "audio/sexy/42.mp3",
+      "audio/sexy/43.mp3",
+      "audio/sexy/44.mp3",
+      "audio/sexy/45.mp3",
+      "audio/sexy/46.mp3",
+      "audio/sexy/47.mp3",
+      "audio/sexy/48.mp3",
+      "audio/sexy/49.mp3",
+      "audio/sexy/50.mp3",
+      "audio/sexy/51.mp3",
+      "audio/sexy/52.mp3",
+      "audio/sexy/53.mp3",
+      "audio/sexy/54.mp3",
+      "audio/sexy/55.mp3",
+      "audio/sexy/56.mp3",
+      "audio/sexy/57.mp3",
+      "audio/sexy/58.mp3",
+      "audio/sexy/59.mp3",
+      "doc/logo.png"
+    ]
+  },
+  "commit_count": 61,
+  "file_count": 99,
+  "todos": [],
+  "repository": "spank",
+  "source_repository": "https://github.com/taigrr/spank"
+}

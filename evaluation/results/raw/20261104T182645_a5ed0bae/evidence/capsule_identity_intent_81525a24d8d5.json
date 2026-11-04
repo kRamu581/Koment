@@ -1,0 +1,213 @@
+{
+  "revision": "81525a24d8d5c30c9ebc117c475d3d001a3ea588",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "81525a24d8d5c30c9ebc117c475d3d001a3ea588",
+    "message": "feat: migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types) (#17)\n\n## Summary\n\nMigrate to astrid-sdk 0.6.0 targeting wasm32-wasip2 (Component Model).\n\n- Remove `extism-pdk` dependency\n- Update `astrid-sdk` to 0.6.0 (from crates.io)\n- Migrate IPC APIs: `recv_bytes`/`poll_bytes` → typed `PollResult`\n- Migrate `hooks::trigger(&[u8])` → `hooks::trigger(&str)`\n- Migrate `log::log(\"level\", msg)` → typed `log::info(msg)` etc.\n- Add `[[topic]]` declarations to Capsule.toml where applicable\n- Build target: wasm32-wasip2",
+    "changed_files": [
+      "Capsule.toml",
+      "Cargo.toml",
+      "src/lib.rs"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/Capsule.toml b/Capsule.toml\nindex cc697b5..5c8b5b1 100644\n--- a/Capsule.toml\n+++ b/Capsule.toml\n@@ -34,6 +34,17 @@ action = \"tool_execute_save_identity\"\n event = \"tool.v1.request.describe\"\n action = \"tool_describe\"\n \n+[[topic]]\n+name = \"spark.v1.response.ready\"\n+direction = \"publish\"\n+description = \"Published when the system prompt has been built\"\n+wit_type = \"build-response\"\n+\n+[[topic]]\n+name = \"agent.v1.response\"\n+direction = \"publish\"\n+description = \"Published to send command results back to the user\"\n+\n [[command]]\n name = \"identity-export\"\n description = \"Export agent identity (spark config) to home://.config/spark.toml\"\ndiff --git a/Cargo.toml b/Cargo.toml\nindex facb683..d4d2fbd 100644\n--- a/Cargo.toml\n+++ b/Cargo.toml\n@@ -9,13 +9,14 @@ publish = false\n crate-type = [\"cdylib\"]\n \n [dependencies]\n-astrid-sdk = { version = \"0.5.3\", features = [\"derive\"] }\n-extism-pdk = \"1.4.1\"\n+astrid-sdk = { version = \"0.6.0\", features = [\"derive\"] }\n serde = { version = \"1.0\", features = [\"derive\"] }\n serde_json = \"1.0\"\n toml = \"0.8\"\n \n [profile.release]\n-codegen-units = 1\n+opt-level = \"z\"\n lto = true\n+codegen-units = 1\n strip = true\n+panic = \"abort\"\ndiff --git a/src/lib.rs b/src/lib.rs\nindex f68fa48..c1657eb 100644\n--- a/src/lib.rs\n+++ b/src/lib.rs\n@@ -162,10 +162,9 @@ impl IdentityBuilder {\n                 }\n                 Ok(_) => {} // Empty callsign — treat as stub, don't onboard.\n                 Err(e) => {\n-                    let _ = log::log(\n-                        \"warn\",\n-                        format!(\"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"),\n-                    );\n+                    log::warn(format!(\n+                        \"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"\n+                    ));\n                 }\n             }\n         }\n@@ -203,7 +202,7 @@ impl IdentityBuilder {\n         match text.trim() {\n             \"identity-export\" => {\n                 let toml = self.spark.to_toml();\n-                fs::write(spark_path, &toml)?;\n+                fs::write(spark_path, toml.as_bytes())?;\n \n                 ipc::publish_json(\n                     \"agent.v1.response\",\n@@ -247,7 +246,7 @@ impl IdentityBuilder {\n \n         // Persist to spark.toml so identity survives KV resets.\n         let toml = self.spark.to_toml();\n-        fs::write(SPARK_CONFIG_PATH, &toml)?;\n+        fs::write(SPARK_CONFIG_PATH, toml.as_bytes())?;\n \n         Ok(serde_json::json!({\n             \"status\": \"ok\",\n@@ -259,7 +258,7 @@ impl IdentityBuilder {\n /// Parse spark.toml into a `SparkConfig`.\n fn parse_spark_toml(content: &str) -> SparkConfig {\n     toml::from_str(content).unwrap_or_else(|e| {\n-        let _ = log::warn(format!(\"Failed to parse spark.toml, using defaults: {e}\"));\n+        log::warn(format!(\"Failed to parse spark.toml, using defaults: {e}\"));\n         SparkConfig::default()\n     })\n }\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "81525a24d8d5c30c9ebc117c475d3d001a3ea588",
+      "message": "feat: migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types) (#17)\n\n## Summary\n\nMigrate to astrid-sdk 0.6.0 targeting wasm32-wasip2 (Component Model).\n\n- Remove `extism-pdk` dependency\n- Update `astrid-sdk` to 0.6.0 (from crates.io)\n- Migrate IPC APIs: `recv_bytes`/`poll_bytes` → typed `PollResult`\n- Migrate `hooks::trigger(&[u8])` → `hooks::trigger(&str)`\n- Migrate `log::log(\"level\", msg)` → typed `log::info(msg)` etc.\n- Add `[[topic]]` declarations to Capsule.toml where applicable\n- Build target: wasm32-wasip2"
+    },
+    {
+      "hash": "8c79da7e03843cc7c3660a6d2052771566b8643f",
+      "message": "chore: fix author metadata (#16)\n\nUpdate authors from `Astrid Core Team` to `Joshua J. Bouw\n<dev@joshuajbouw.com>` and `Unicity Labs <info@unicity-labs.com>`."
+    },
+    {
+      "hash": "3d710b18928bc2018def5a644144b0722376714d",
+      "message": "feat: save_identity tool — LLM persists identity after onboarding (#15)\n\nThe LLM needs to persist its chosen identity after the onboarding\nconversation. save_identity writes both KV state and spark.toml. The\nonboarding prompt instructs the LLM to call it."
+    },
+    {
+      "hash": "5f253bc1eb1e1c2aec7287045b6823c00216e016",
+      "message": "chore: bump astrid-sdk to 0.5.3 + reproducible builds (#14)\n\n- astrid-sdk 0.5.3 (HostResult wire format, interceptor chain fix)\n- rust-toolchain.toml: pin rustc 1.94.0 + rustfmt + clippy\n- [profile.release]: codegen-units=1, lto=true, strip=true\n- release.yml: BLAKE3 hash in release assets"
+    },
+    {
+      "hash": "2af9f2e883e84f1bbdc61aceffc25a35507b6e0e",
+      "message": "Revert \"chore: bump astrid-sdk to 0.5.3 + reproducible builds\"\n\nThis reverts commit 74ba0a069212e0d529502d67f1cdf506dc516e28."
+    },
+    {
+      "hash": "74ba0a069212e0d529502d67f1cdf506dc516e28",
+      "message": "chore: bump astrid-sdk to 0.5.3 + reproducible builds\n\n- astrid-sdk 0.5.3 (HostResult wire format, interceptor chain fix)\n- rust-toolchain.toml: pin rustc 1.94.0\n- [profile.release]: codegen-units=1, lto=true, strip=true\n- release.yml: BLAKE3 hash in release assets"
+    },
+    {
+      "hash": "0039e0425a6e7b8d5e7df00ad8fae3884178f3be",
+      "message": "fix: auto-detect existing spark.toml on first build request (#13)\n\n## Summary\n\n- When KV state says `onboarded=false` but `home://.config/spark.toml`\nexists on disk, auto-load the config and set `onboarded=true`\n- Guards against empty stubs (requires non-empty `callsign`)\n- Makes the system resilient to KV resets\n\n## Dependencies\n\nRequires SDK 0.5.3+ (`fs::read_to_string` status prefix from\nunicity-astrid/sdk-rust#25) to avoid WASM traps on file-not-found.\n\n## Test plan\n\n- [x] Spark persona \"Nova\" loaded from spark.toml on persistent daemon\n- [x] Onboarding prompt shown when no spark.toml exists\n- [x] Verified via `--snapshot-tui` in smoke test #604\n\nPart of unicity-astrid/astrid#604"
+    },
+    {
+      "hash": "64bf5e03fac6ee3066705159818c4d395443b4b5",
+      "message": "chore: bump astrid-sdk to 0.5.2 (#12)\n\nBumps `astrid-sdk` to 0.5.2 which fixes `tool_describe` `FnResult`\ncompatibility."
+    },
+    {
+      "hash": "35a36103438181872cd4c781815a0225ab9ce4b6",
+      "message": "fix: store spark.toml in home:// not cwd:// (#11)\n\n## Summary\n\nspark.toml is the LLM's persistent identity — it belongs in\n`home://spark.toml` (principal home), not the project CWD. It should\nfollow the user across all projects.\n\nAlso removes `cwd_dir` env entirely — identity has no project-scoped\nfiles.\n\nPart of unicity-astrid/astrid#601.\n\n## Changes\n\n- `src/lib.rs`: spark path changed to `home://spark.toml`\n- `Capsule.toml`: capabilities changed to `fs_read/write = [\"home://\"]`,\n`[env]` removed\n\n## Test Plan\n\n- [x] Builds cleanly against `wasm32-wasip1`\n- [ ] `/identity-export` writes to\n`~/.astrid/home/{principal}/spark.toml`\n- [ ] `/identity-import` reads from same path"
+    },
+    {
+      "hash": "8dcb2e96336853813c5db5ce770a1a0fe3903dc6",
+      "message": "refactor: rename workspace:// VFS scheme to cwd:// (#10)\n\n## Summary\n\nRenames `workspace://` VFS scheme to `cwd://` across this capsule\n(companion to core rename PR).\n\n`workspace://` implied a structured project workspace concept, but the\nscheme simply maps to the daemon's CWD at boot. `cwd://` is accurate,\ngeneric, and immediately understood.\n\nFind-and-replace only — no behaviour change.\n\n## Test plan\n\n- [ ] Capsule builds cleanly against updated kernel\n- [ ] Smoke test passes"
+    },
+    {
+      "hash": "7d5aaaa705092f8a283bfd7bc05ccff7d8837009",
+      "message": "chore: bump astrid-sdk to 0.5.0 (#9)\n\n## Summary\n\nBump `astrid-sdk` dependency to 0.5.0.\n\nSDK 0.5.0 rewires `#[astrid::tool]` to generate IPC interceptor arms\ninstead of the removed `astrid_tool_call` export. Non-tool capsules are\nunaffected functionally — this is a straight version bump.\n\n## Changes\n\n- `astrid-sdk` version: `0.4.0` / `0.3.0` → `0.5.0`\n\n## Test Plan\n\n- [x] `cargo build --target wasm32-wasip1 --release` passes"
+    },
+    {
+      "hash": "ad0ce4d99b445eab631c9eafca80372a27ec2311",
+      "message": "feat: rename identity.v1 topics to spark.v1 (#8)\n\n## Summary\n\nRename IPC topics from `identity.v1.*` to `spark.v1.*` to align with the\n`astrid:spark` WIT interface name.\n\n## Changes\n\n- `identity.v1.request.build` → `spark.v1.request.build` in Capsule.toml\nand src/lib.rs\n- `identity.v1.response.ready` → `spark.v1.response.ready` in\nCapsule.toml and src/lib.rs\n\n### Re: topic string constants\n\nGemini suggests extracting hardcoded topic strings to constants. Valid\nidea, but this is a cross-capsule concern — every capsule has hardcoded\ntopic strings. Extracting constants in one capsule without the others\ncreates inconsistency. Tracked as a follow-up when the SDK provides\ngenerated constants from WIT definitions.\n\n## Checklist\n\n- [x] Capsule.toml topics updated\n- [x] Source code topic strings updated"
+    },
+    {
+      "hash": "46165ad4a841b7f82f667809f77099e6b0a70ff8",
+      "message": "feat: add [imports]/[exports] interface declarations (#7)\n\n## Summary\n\nReplace old `[dependencies]` provides/requires string arrays with\n`[imports]`/`[exports]` namespaced TOML tables using semver versioning.\n\n## Changes\n\n- Add `[imports.astrid]` and/or `[exports.astrid]` sections\n- Remove old `[dependencies]` section (if present)\n- Import versions use semver requirements (`^1.0`)\n- Export versions use exact semver (`1.0.0`)\n\n## Checklist\n\n- [x] Capsule.toml updated"
+    },
+    {
+      "hash": "2787ff98e8055af84fb193bb5aac2b1890476a80",
+      "message": "ci: add WASM release pipeline (#5)\n\nAdds a release workflow that triggers on tag push (`v*`). Builds the\nrelease WASM binary (`wasm32-wasip1`) and creates a GitHub release with\nthe `.wasm` file as a release asset.\n\nThis enables `astrid init` to download pre-built binaries instead of\nbuilding from source.\n\n## Changes\n\n- New `.github/workflows/release.yml` — tag-triggered WASM build and\nrelease"
+    },
+    {
+      "hash": "718f3419b621a256ee65caeffe6da533e84c09cd",
+      "message": "feat: self-contained identity with KV state, onboarding, and import/export (#4)\n\n## Summary\n\n- Moves spark config from explicit `kv::get/set` calls to struct fields\non `IdentityBuilder`, backed by the `#[capsule]` macro's stateful KV\ndispatch (`&mut self`)\n- Adds `onboarded: bool` flag — on first boot the system prompt includes\na natural onboarding instruction asking the agent to introduce itself\nand derive an identity from the conversation\n- Skips the identity preamble until onboarding is complete so the model\nhas no pre-anchored name before the user interacts\n- Adds `/identity-export` and `/identity-import` commands for persisting\nspark config to `.astrid/spark.toml`\n- Adds `set_identity` tool for the LLM to save the configured identity\n\n## Test plan\n\n- [x] Fresh install: confirm onboarding prompt fires and agent\nintroduces itself without a pre-set name\n- [x] Call `set_identity` with config and confirm subsequent sessions\nuse the configured identity\n- [x] Run `/identity-export` and confirm `.astrid/spark.toml` is written\n- [x] Run `/identity-import` and confirm identity is loaded from file"
+    },
+    {
+      "hash": "a571b452d484b473585575d51e8804e999e05d36",
+      "message": "chore: bump astrid-sdk to 0.3.0 (#3)\n\nBump astrid-sdk dependency from current version to 0.3.0."
+    },
+    {
+      "hash": "fa220677e10c8b010614d5b46210bc023dc1b0c6",
+      "message": "feat: add tool descriptions and capsule-level docs (#2)\n\nAdd doc comments to tools and capsule impl blocks so LLMs get\ndescriptions when deciding which tool to call. Depends on\nunicity-astrid/sdk-rust#7."
+    },
+    {
+      "hash": "bd62e9278018e465f1fff09c8dcd8f396df5ba8a",
+      "message": "fix(deps): resolve astrid-sdk from crates.io registry (#1)\n\n## Summary\n- Remove local `path` override from `astrid-sdk` dependency that only\nexists in the polyrepo workspace\n- Bump `astrid-sdk` from `0.1.1` to `0.2.0` (published on crates.io)\n- CI was failing because the path `../../core/crates/astrid-sdk` does\nnot exist when only this repo is checked out\n\n## Test plan\n- CI should now resolve `astrid-sdk` from crates.io and pass the build\n- Verified locally: `cargo check --target wasm32-unknown-unknown`\nsucceeds against published 0.2.0"
+    },
+    {
+      "hash": "70f014c76e27940b7f0400967c0f1a7b35f05240",
+      "message": "docs: add README and LICENSE files consistent with kernel repo"
+    },
+    {
+      "hash": "bc67d4e24f811f8603b772c9942886d8216431b3",
+      "message": "ci: simplify workflow, resolve core deps from registry"
+    },
+    {
+      "hash": "6ac26a3a76375d324bfda4921090213fd5f5977d",
+      "message": "ci: add WASM build workflow and cargo config"
+    },
+    {
+      "hash": "ea03ba625b4af159fde479734ff0fa6a1edfc2fd",
+      "message": "init: extract astrid-capsule-identity as standalone capsule"
+    }
+  ],
+  "file_histories": [
+    {
+      "file": "src/lib.rs",
+      "introducing_commit": {
+        "hash": "ea03ba625b4af159fde479734ff0fa6a1edfc2fd"
+      },
+      "total_changes": 9
+    }
+  ],
+  "files": [
+    ".cargo/config.toml",
+    ".gitattributes",
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml",
+    ".gitignore",
+    "Capsule.toml",
+    "Cargo.toml",
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "README.md",
+    "rust-toolchain.toml",
+    "src/lib.rs"
+  ],
+  "file": "src/lib.rs",
+  "region": [
+    165,
+    167
+  ],
+  "source": "                    log::warn(format!(\n                        \"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"\n                    ));",
+  "blame_commits": [
+    "81525a24d8d5c30c9ebc117c475d3d001a3ea588"
+  ],
+  "diff": "diff --git a/Capsule.toml b/Capsule.toml\nindex cc697b5..5c8b5b1 100644\n--- a/Capsule.toml\n+++ b/Capsule.toml\n@@ -34,6 +34,17 @@ action = \"tool_execute_save_identity\"\n event = \"tool.v1.request.describe\"\n action = \"tool_describe\"\n \n+[[topic]]\n+name = \"spark.v1.response.ready\"\n+direction = \"publish\"\n+description = \"Published when the system prompt has been built\"\n+wit_type = \"build-response\"\n+\n+[[topic]]\n+name = \"agent.v1.response\"\n+direction = \"publish\"\n+description = \"Published to send command results back to the user\"\n+\n [[command]]\n name = \"identity-export\"\n description = \"Export agent identity (spark config) to home://.config/spark.toml\"\ndiff --git a/Cargo.toml b/Cargo.toml\nindex facb683..d4d2fbd 100644\n--- a/Cargo.toml\n+++ b/Cargo.toml\n@@ -9,13 +9,14 @@ publish = false\n crate-type = [\"cdylib\"]\n \n [dependencies]\n-astrid-sdk = { version = \"0.5.3\", features = [\"derive\"] }\n-extism-pdk = \"1.4.1\"\n+astrid-sdk = { version = \"0.6.0\", features = [\"derive\"] }\n serde = { version = \"1.0\", features = [\"derive\"] }\n serde_json = \"1.0\"\n toml = \"0.8\"\n \n [profile.release]\n-codegen-units = 1\n+opt-level = \"z\"\n lto = true\n+codegen-units = 1\n strip = true\n+panic = \"abort\"\ndiff --git a/src/lib.rs b/src/lib.rs\nindex f68fa48..c1657eb 100644\n--- a/src/lib.rs\n+++ b/src/lib.rs\n@@ -162,10 +162,9 @@ impl IdentityBuilder {\n                 }\n                 Ok(_) => {} // Empty callsign — treat as stub, don't onboard.\n                 Err(e) => {\n-                    let _ = log::log(\n-                        \"warn\",\n-                        format!(\"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"),\n-                    );\n+                    log::warn(format!(\n+                        \"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"\n+                    ));\n                 }\n             }\n         }\n@@ -203,7 +202,7 @@ impl IdentityBuilder {\n         match text.trim() {\n             \"identity-export\" => {\n                 let toml = self.spark.to_toml();\n-                fs::write(spark_path, &toml)?;\n+                fs::write(spark_path, toml.as_bytes())?;\n \n                 ipc::publish_json(\n                     \"agent.v1.response\",\n@@ -247,7 +246,7 @@ impl IdentityBuilder {\n \n         // Persist to spark.toml so identity survives KV resets.\n         let toml = self.spark.to_toml();\n-        fs::write(SPARK_CONFIG_PATH, &toml)?;\n+        fs::write(SPARK_CONFIG_PATH, toml.as_bytes())?;\n \n         Ok(serde_json::json!({\n             \"status\": \"ok\",\n@@ -259,7 +258,7 @@ impl IdentityBuilder {\n /// Parse spark.toml into a `SparkConfig`.\n fn parse_spark_toml(content: &str) -> SparkConfig {\n     toml::from_str(content).unwrap_or_else(|e| {\n-        let _ = log::warn(format!(\"Failed to parse spark.toml, using defaults: {e}\"));\n+        log::warn(format!(\"Failed to parse spark.toml, using defaults: {e}\"));\n         SparkConfig::default()\n     })\n }\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/Capsule.toml b/Capsule.toml",
+      "header": "@@ -34,6 +34,17 @@ action = \"tool_execute_save_identity\"",
+      "text": "@@ -34,6 +34,17 @@ action = \"tool_execute_save_identity\"\n event = \"tool.v1.request.describe\"\n action = \"tool_describe\"\n \n+[[topic]]\n+name = \"spark.v1.response.ready\"\n+direction = \"publish\"\n+description = \"Published when the system prompt has been built\"\n+wit_type = \"build-response\"\n+\n+[[topic]]\n+name = \"agent.v1.response\"\n+direction = \"publish\"\n+description = \"Published to send command results back to the user\"\n+\n [[command]]\n name = \"identity-export\"\n description = \"Export agent identity (spark config) to home://.config/spark.toml\"\n",
+      "id": "hunk_cfe6364669712f486183"
+    },
+    {
+      "file_header": "diff --git a/Cargo.toml b/Cargo.toml",
+      "header": "@@ -9,13 +9,14 @@ publish = false",
+      "text": "@@ -9,13 +9,14 @@ publish = false\n crate-type = [\"cdylib\"]\n \n [dependencies]\n-astrid-sdk = { version = \"0.5.3\", features = [\"derive\"] }\n-extism-pdk = \"1.4.1\"\n+astrid-sdk = { version = \"0.6.0\", features = [\"derive\"] }\n serde = { version = \"1.0\", features = [\"derive\"] }\n serde_json = \"1.0\"\n toml = \"0.8\"\n \n [profile.release]\n-codegen-units = 1\n+opt-level = \"z\"\n lto = true\n+codegen-units = 1\n strip = true\n+panic = \"abort\"\n",
+      "id": "hunk_4bc5d0d49f617261e1d3"
+    },
+    {
+      "file_header": "diff --git a/src/lib.rs b/src/lib.rs",
+      "header": "@@ -162,10 +162,9 @@ impl IdentityBuilder {",
+      "text": "@@ -162,10 +162,9 @@ impl IdentityBuilder {\n                 }\n                 Ok(_) => {} // Empty callsign — treat as stub, don't onboard.\n                 Err(e) => {\n-                    let _ = log::log(\n-                        \"warn\",\n-                        format!(\"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"),\n-                    );\n+                    log::warn(format!(\n+                        \"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"\n+                    ));\n                 }\n             }\n         }\n",
+      "id": "hunk_d78971e2fb6220f86120"
+    },
+    {
+      "file_header": "diff --git a/src/lib.rs b/src/lib.rs",
+      "header": "@@ -203,7 +202,7 @@ impl IdentityBuilder {",
+      "text": "@@ -203,7 +202,7 @@ impl IdentityBuilder {\n         match text.trim() {\n             \"identity-export\" => {\n                 let toml = self.spark.to_toml();\n-                fs::write(spark_path, &toml)?;\n+                fs::write(spark_path, toml.as_bytes())?;\n \n                 ipc::publish_json(\n                     \"agent.v1.response\",\n",
+      "id": "hunk_f1b4b9312edb5d4a2d28"
+    },
+    {
+      "file_header": "diff --git a/src/lib.rs b/src/lib.rs",
+      "header": "@@ -247,7 +246,7 @@ impl IdentityBuilder {",
+      "text": "@@ -247,7 +246,7 @@ impl IdentityBuilder {\n \n         // Persist to spark.toml so identity survives KV resets.\n         let toml = self.spark.to_toml();\n-        fs::write(SPARK_CONFIG_PATH, &toml)?;\n+        fs::write(SPARK_CONFIG_PATH, toml.as_bytes())?;\n \n         Ok(serde_json::json!({\n             \"status\": \"ok\",\n",
+      "id": "hunk_37c2a9d63cc35381fe54"
+    },
+    {
+      "file_header": "diff --git a/src/lib.rs b/src/lib.rs",
+      "header": "@@ -259,7 +258,7 @@ impl IdentityBuilder {",
+      "text": "@@ -259,7 +258,7 @@ impl IdentityBuilder {\n /// Parse spark.toml into a `SparkConfig`.\n fn parse_spark_toml(content: &str) -> SparkConfig {\n     toml::from_str(content).unwrap_or_else(|e| {\n-        let _ = log::warn(format!(\"Failed to parse spark.toml, using defaults: {e}\"));\n+        log::warn(format!(\"Failed to parse spark.toml, using defaults: {e}\"));\n         SparkConfig::default()\n     })\n }\n",
+      "id": "hunk_d585879e2fa57a0e19a4"
+    }
+  ],
+  "features": {
+    "commit_count": 22,
+    "file_count": 12,
+    "last_commit_age_days": 160.75302793165508,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 1,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "README.md"
+    ],
+    "dependency_manifests": [
+      "Cargo.toml"
+    ],
+    "deployment_files": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/release.yml"
+    ],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": []
+  },
+  "commit_count": 22,
+  "file_count": 12,
+  "todos": [],
+  "repository": "capsule_identity",
+  "source_repository": "https://github.com/unicity-aos/capsule-identity"
+}

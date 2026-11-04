@@ -1,0 +1,1682 @@
+[
+  {
+    "case_id": "aicar_intent_07b121617c2a",
+    "method": "git",
+    "prediction_sha256": "8aa647d260bacdd67a0b3c0c24495c70225390bcf6fad056062aabcaf7a30585",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: migrate agents to Gemini, update frontend error handling, and fix API bugs",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_07b121617c2a",
+    "method": "git_script",
+    "prediction_sha256": "7a41979786c8fe781e312560646094e46384f0c5116764c7542a3a9512412e17",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: migrate agents to Gemini, update frontend error handling, and fix API bugs",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_07b121617c2a",
+    "method": "llm",
+    "prediction_sha256": "e9e3b145b06b8c8491e379584511c842d1e6526a306002b54b233f35da203de6",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: migrate agents to Gemini, update frontend error handling, and fix API bugs",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Migrate AI agents from OpenAI to Gemini, update frontend error handling and API routing, and fix API bugs.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_07b121617c2a",
+    "method": "aicar",
+    "prediction_sha256": "310a24936110e26e2564e064f01fe0975507e0f7e44b1fb2aa2c239f349ea9ce",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The selected region in backend/agents/intent_agent.py was originally introduced in commit 1e253587774cc4063533fe62311f2c7d2a9816a3.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Commit 07b121617c2a064e5e16c43db73a4ee852de864c updated the region to use Google Gemini instead of OpenAI.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "A local fallback mechanism was added to return a local analysis structure when USE_GEMINI_ANALYSIS is not true.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The selected region in backend/agents/intent_agent.py was originally introduced to set up an OpenAI client and define the analyze_intent function using GPT-4. Later, commit 07b121617c2a064e5e16c43db73a4ee852de864c modified the region to migrate the agent from OpenAI to Google's Gemini SDK (importing google.genai and initializing genai.Client with GEMINI_API_KEY) and added a local fallback mechanism when USE_GEMINI_ANALYSIS is not set to true.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_df3ad517cd35",
+    "method": "git",
+    "prediction_sha256": "58d92fae0ead5932c50cd0f0b17d5333c3e2c25dea2ff6741d0aa9980eab733e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Step 38: Generate initial research paper draft",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_df3ad517cd35",
+    "method": "git_script",
+    "prediction_sha256": "0611a133447ccb4c4121a030567633a5267a41fcea8f5385e17d3385395e5303",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initial commit: Agentic Code Archaeology",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_df3ad517cd35",
+    "method": "llm",
+    "prediction_sha256": "0caa6959f11f794b9053574677b006218dc3e0a92a8b5e461f50e1bdd2aadd2b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Step 38: Generate initial research paper draft",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Generate initial research paper draft and add corresponding evaluation metrics, test results, error handling improvements in backend/main.py, and environment/gitignore configurations.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_df3ad517cd35",
+    "method": "aicar",
+    "prediction_sha256": "3190acab07b70e489ee798d233cf3b911e87746fd70bb31fea7b1b21461b1cec",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initialize FastAPI application imports, database session dependency, request models, repository analysis services, health scoring utilities, analysis agents, workflow graph, and CORS middleware.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_1e253587774c",
+    "method": "git",
+    "prediction_sha256": "882061023554e22c80fc56164220c12650d382682bbb840a613bf833a8e0fcae",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initial commit: Agentic Code Archaeology",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_1e253587774c",
+    "method": "git_script",
+    "prediction_sha256": "aff8de51a6370f10dbc55d89e4daa743f248ad2bd1c81dcfe3a01ae3158d3e3e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initial commit: Agentic Code Archaeology",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_1e253587774c",
+    "method": "llm",
+    "prediction_sha256": "9da787be9c541000587578ceb1ad38a4e7273af57bb0ea5b660f9c730125fd43",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initial commit: Agentic Code Archaeology",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_intent_1e253587774c",
+    "method": "aicar",
+    "prediction_sha256": "b088b0974bd36e691dd1ddf946e82df0c38affd597396525e0162e7717fea5a3",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initialize the intent agent module by setting up OpenAI client integration and defining the analyze_intent function to construct an LLM prompt from commit information, file histories, and evidence maps.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "import os\nimport json\nfrom openai import OpenAI\n\nclient = OpenAI(\n    api_key=os.getenv(\"OPENAI_API_KEY\")\n)\n\n\ndef analyze_intent(commit, file_histories, evidence_map):\n\n    prompt = f\"\"\"\nYou are an Evidence-Based Software Code Archaeology AI Agent.\n\nYour goal is to reconstruct WHY a code change exists.\n\nCOMMIT HASH:\n{commit[\"hash\"]}\n\nCOMMIT MESSAGE:\n{commit[\"message\"]}\n\nCHANGED FILES:\n{commit[\"changed_files\"]}\n\nACTUAL CODE DIFF:\n{commit.get(\"diff\", [])}\n\nFILE HISTORY:\n{file_histories}",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_ebf357841b73",
+    "method": "git",
+    "prediction_sha256": "1e824063a082150a64d047e437528fb2edd518233bd2939cc02c43f1b8a3e275",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix(train): make NaN fast-fail check explicit",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_ebf357841b73",
+    "method": "git_script",
+    "prediction_sha256": "a71c8193aa39a68540a14710530775471f1616d0018b32eabdb4b6fa8e88750e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix(train): make NaN fast-fail check explicit",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_ebf357841b73",
+    "method": "llm",
+    "prediction_sha256": "daa8d8a2f6820b089374a2cb65da42e24377a385430d534bcf91461e43b33121",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Import the math module to support making the NaN fast-fail check explicit.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_ebf357841b73",
+    "method": "aicar",
+    "prediction_sha256": "c8ec3fdbf473bca21518611c2b8b3349afda9dace3d42df73110f586fe3558c7",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "import math",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The import of math was introduced in commit ebf357841b7358ae106b2f7ac378f9ec97b975f6 to support the explicit NaN check in train.py.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The import statement 'import math' was added to provide access to mathematical functions, specifically used in the explicit NaN check for training loss.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_09ebea439db4",
+    "method": "git",
+    "prediction_sha256": "ba28d1e0f9cc91eedc3987c7c8c1c0b756c7ee1f4df86b8cf0443e8642815a74",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Guard against infinite loop when no training shards exist, fix README typo\n\nAdd assertion after filtering val_path from parquet_paths for the \"train\"\nsplit so an empty list fails fast instead of spinning in a silent infinite\nloop. Also remove stray article \"a\" in README (\"a three files\" → \"three\nfiles\").\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_09ebea439db4",
+    "method": "git_script",
+    "prediction_sha256": "0ba1d0e3846208e95a0a3d058939f589835c5bf56d9a5b28bd45ee960bfad4bc",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Guard against infinite loop when no training shards exist, fix README typo\n\nAdd assertion after filtering val_path from parquet_paths for the \"train\"\nsplit so an empty list fails fast instead of spinning in a silent infinite\nloop. Also remove stray article \"a\" in README (\"a three files\" → \"three\nfiles\").\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_09ebea439db4",
+    "method": "llm",
+    "prediction_sha256": "1d1852891a82e320568436912ab149882173f49d7e187e8f4e8e23fe1920386b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Guard against infinite loop when no training shards exist, fix README typo",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Add assertion after filtering val_path from parquet_paths for the \"train\" split so an empty list fails fast instead of spinning in a silent infinite loop.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "assert len(parquet_paths) > 0, \"No training shards found.\"",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Guard against infinite loop when no training shards exist by adding an assertion after filtering val_path from parquet_paths for the train split.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_09ebea439db4",
+    "method": "aicar",
+    "prediction_sha256": "5cc5bdc1cbce27378233c8cd5e8fa51d74aa93de761d91f0a38ab3224b9db218",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Guard against infinite loop when no training shards exist, fix README typo",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Add assertion after filtering val_path from parquet_paths for the \"train\" split so an empty list fails fast instead of spinning in a silent infinite loop.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "assert len(parquet_paths) > 0, \"No training shards found.\"",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Guard against infinite loop when no training shards exist by failing fast with an assertion if the parquet paths list is empty after filtering out the validation path.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_b5ba8ac00d64",
+    "method": "git",
+    "prediction_sha256": "592112551033ce28eb4374c52a3df8c057cff920b53b67f8ec8c92393b8002fd",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix NaN loss not caught by fast-fail check\n\n`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN\ncomparisons always return False. When an agent experiment produces\nNaN (e.g. from an aggressive LR change), the run wastes the full\n5-minute budget instead of failing fast.\n\n`not (x <= 100)` catches both >100 and NaN with no added complexity.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_b5ba8ac00d64",
+    "method": "git_script",
+    "prediction_sha256": "2e121ad8f9f14c9a8c78a5ec66d203625ed506380847b867706f6c2e4df996b4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix NaN loss not caught by fast-fail check\n\n`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN\ncomparisons always return False. When an agent experiment produces\nNaN (e.g. from an aggressive LR change), the run wastes the full\n5-minute budget instead of failing fast.\n\n`not (x <= 100)` catches both >100 and NaN with no added complexity.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_b5ba8ac00d64",
+    "method": "llm",
+    "prediction_sha256": "2eb5f4847536be0cf760715b0b025768da52e4740850e137404756f0d03b012a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix NaN loss not caught by fast-fail check",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN comparisons always return False.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "`not (x <= 100)` catches both >100 and NaN with no added complexity.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Fix NaN loss not caught by fast-fail check by changing the condition to abort if loss is exploding or NaN.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_intent_b5ba8ac00d64",
+    "method": "aicar",
+    "prediction_sha256": "7b24afd733bcf1372925c5104bd1909a43d5804e7de725d5d43c4afa8e5e9477",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix NaN loss not caught by fast-fail check",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN comparisons always return False.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "When an agent experiment produces NaN (e.g. from an aggressive LR change), the run wastes the full 5-minute budget instead of failing fast.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "`not (x <= 100)` catches both >100 and NaN with no added complexity.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "# Fast fail: abort if loss is exploding or NaN",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "if not train_loss_f <= 100:",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The region exists to implement a fast-fail check during training that aborts the run if the training loss is exploding or becomes NaN, preventing wasted execution time.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_430e2a8630f9",
+    "method": "git",
+    "prediction_sha256": "f305eaad4f70d0c263bd33baadfaf0e36e5fddae000b6ef0babffd5c3a37f08a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: add Claude session transfer command (#374)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_430e2a8630f9",
+    "method": "git_script",
+    "prediction_sha256": "8be9d4f0b0a370b6ba960a71084786f6b9b636401cc33c92a8f851aa02b97211",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: add Claude session transfer command (#374)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_430e2a8630f9",
+    "method": "llm",
+    "prediction_sha256": "c74718fcac8df313ca1eceb1f5f43f35a6b8a064d4f5c3a338e16a50fa0b225d",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: add Claude session transfer command (#374)",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Add a Claude session transfer command to allow users to convert and continue the current Claude Code session directly within a Codex thread.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_430e2a8630f9",
+    "method": "aicar",
+    "prediction_sha256": "664d86acde960d8b00e1d8cda83d596c1dc7210c2778d007a1159b0b64f16bfb",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "  ExternalAgentConfigImportParams,",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "  ExternalAgentConfigImportResponse,",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Defines TypeScript types ExternalAgentConfigImportParams and ExternalAgentConfigImportResponse for Codex app-server protocol integration.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_62c351a7bfeb",
+    "method": "git",
+    "prediction_sha256": "1768846f7bc10754a95cf58c95c4b38a31ac371a720982075b3b90a7b4877430",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Use app-server auth status for Codex readiness (#177)\n\n* Use app-server auth status for Codex readiness\n\n* fix: reuse existing app server for auth checks",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_62c351a7bfeb",
+    "method": "git_script",
+    "prediction_sha256": "e72f27399851083cca4389ebeee8c3860e1352c6f4ca7aadf46528690d8c492a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Use app-server auth status for Codex readiness (#177)\n\n* Use app-server auth status for Codex readiness\n\n* fix: reuse existing app server for auth checks",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_62c351a7bfeb",
+    "method": "llm",
+    "prediction_sha256": "b3cfed95d2b0cf9e058fff7644e57ed76d596964f557c2d5a6344d02eb938a62",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Use app-server auth status for Codex readiness (#177)",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Use app-server auth status and reuse existing broker sessions for Codex readiness and checks.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_62c351a7bfeb",
+    "method": "aicar",
+    "prediction_sha256": "27037125eee8a2cc5c57ec101e13a85b7fbef015cb46b7a92153e87df9ff7194",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "reuseExistingBroker?: boolean;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The `reuseExistingBroker` option is added to `CodexAppServerClientOptions` to allow clients to specify whether an existing broker session should be reused.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The `reuseExistingBroker` property is added to `CodexAppServerClientOptions` in the app-server protocol definition to support reusing an existing broker session.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_c69527eb18d0",
+    "method": "git",
+    "prediction_sha256": "c98dc0e94f7b7c45da73aeac1ac4d8e90d5e010d5e580ff9f36be5ffcfe827e4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initial commit\n\nCo-authored-by: Codex <noreply@openai.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_intent_c69527eb18d0",
+    "method": "git_script",
+    "prediction_sha256": "6990678128b3b6e368fff1af96e5ccaa0a92ecfefe44672af32442ba15ef59d0",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initial commit\n\nCo-authored-by: Codex <noreply@openai.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_17169e858cd6",
+    "method": "git",
+    "prediction_sha256": "b11071ecb7b2eb8b4b7bdb3218f84d9a51ab5236975fa1296e0a2470d7e6e20b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: resample audio to speaker rate to fix custom pack speed/pitch issues (#73)\n\nThe speaker is initialized once with the first played file's sample rate,\nbut subsequent files were never resampled to it. Custom packs with mixed\nsample rates (common after WAV->MP3 conversion) therefore played sped up,\nslowed down, or distorted depending on which file initialized the speaker.\n\nResample every stream to the speaker's rate, folding the --speed flag into\nthe same resample. Also bump Go directive and update dependencies.\n\nFixes #60",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_17169e858cd6",
+    "method": "git_script",
+    "prediction_sha256": "5e540ededf1cd6021a660c243000e7831d961970f1bd32156b1978d28ed661fc",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: resample audio to speaker rate to fix custom pack speed/pitch issues (#73)\n\nThe speaker is initialized once with the first played file's sample rate,\nbut subsequent files were never resampled to it. Custom packs with mixed\nsample rates (common after WAV->MP3 conversion) therefore played sped up,\nslowed down, or distorted depending on which file initialized the speaker.\n\nResample every stream to the speaker's rate, folding the --speed flag into\nthe same resample. Also bump Go directive and update dependencies.\n\nFixes #60",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_17169e858cd6",
+    "method": "llm",
+    "prediction_sha256": "07e51f5ea7f838977ef460961bb8366ecf934f82db100118a25b5e2adae75c92",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The speaker is initialized once with the first played file's sample rate, but subsequent files were never resampled to it.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Resample every stream to the speaker's rate, folding the --speed flag into the same resample.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Resample audio streams to match the speaker's sample rate and fold playback speed adjustments into the same resampling step, preventing speed, pitch, or distortion issues with mixed-rate custom sound packs.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_17169e858cd6",
+    "method": "aicar",
+    "prediction_sha256": "33a7b4ca4216622f3c8ba3df26157f6d5ab1c4d697f88a736a1d3724b27e9dfb",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "speakerSampleRate is the sample rate the speaker was initialized with.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The speaker is initialized exactly once, using the rate of the first file played.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Every subsequent file must be resampled to this rate or it will play at the wrong speed/pitch.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "var speakerSampleRate beep.SampleRate",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Store the sample rate that the audio speaker was initialized with so that subsequent audio files can be properly resampled to match it.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_6cb0a739865d",
+    "method": "git",
+    "prediction_sha256": "46e5b4da135c94927166e86910c55205f299a62d4f96bc6802c8def88080b7e8",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: Add lizard sound\n\nAdding a lizard sound from the Tom the Lizard meme. The sound is free\nfor use (https://lizardbutton.org/download/).",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_6cb0a739865d",
+    "method": "git_script",
+    "prediction_sha256": "3f5100cfc076d8aa12bfcd4cd933231976739f5490b7d747a56d31e9ee96600c",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: Add lizard sound\n\nAdding a lizard sound from the Tom the Lizard meme. The sound is free\nfor use (https://lizardbutton.org/download/).",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_6cb0a739865d",
+    "method": "llm",
+    "prediction_sha256": "1cf98cda1a3a0675e1aaca624e08a043cc7e9f4ff566b1e05aee45f72be76a65",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add lizard sound",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Add embedded lizard audio assets and command line flags for lizard mode.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Add a new lizard sound mode originating from the Tom the Lizard meme, featuring escalating intensity based on slap frequency similar to sexy mode.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_6cb0a739865d",
+    "method": "aicar",
+    "prediction_sha256": "db19ac8cdfaf28802152a0fd315d19e884f0638ad7b7261afc64ce175cdd9811",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Embed audio files from the lizard directory to support an escalating sound mode ('lizard mode') triggered by physical impacts.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "//go:embed audio/lizard/*.mp3\nvar lizardAudio embed.FS\n",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_dbde6a217264",
+    "method": "git",
+    "prediction_sha256": "0106526d91f62c70fbac7d8c1e8ade4d7cfb257fc2ee2d623e01b1712d0f211a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: apply stdio set command (amplitude/cooldown) in detection loop",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_dbde6a217264",
+    "method": "git_script",
+    "prediction_sha256": "145c126e2ca9dcc8d8f0cad7fae907ce0d458e1727bba7b1342b5a157ff84e1f",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: apply stdio set command (amplitude/cooldown) in detection loop",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_dbde6a217264",
+    "method": "llm",
+    "prediction_sha256": "0e792749f3be93adba04efed38e3c31963e949159e17fa0c716be0eae486c461",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Apply stdio set command (amplitude/cooldown) in detection loop",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_intent_dbde6a217264",
+    "method": "aicar",
+    "prediction_sha256": "f4c654e59bd8129de3e2f1c6563e67628e6cc03c09a13bc52527a42bcbefc653",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The selected region checks whether the elapsed time since the last yell exceeds the cooldown period, continuing to the next iteration if it does not.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_0d21e35cf05b",
+    "method": "git",
+    "prediction_sha256": "257319bc73613ea6b0962ee77cdba4169fec6c3dc0eeb7d9dbd7b2263522330b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: persist identity capsule state (#26)\n\n## Summary\n- mark the identity capsule stateful so `save_identity` mutations\npersist through capsule KV\n- split prompt assembly behind a testable loader seam and cover\nonboarding, saved identity, and spark-file recovery behavior\n- update the README to describe the current `spark.v1.*` / tool topics\nand stateful identity contract\n\n## Validation\n- `cargo fmt --check`\n- `cargo test --target aarch64-apple-darwin -- --quiet`\n- `cargo build`\n\n---------\n\nCo-authored-by: gemini-code-assist[bot] <176961590+gemini-code-assist[bot]@users.noreply.github.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_0d21e35cf05b",
+    "method": "git_script",
+    "prediction_sha256": "3d0b926e73880f56867faf166ab4242de5c2991eb9dc017b08cff530919960ce",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: persist identity capsule state (#26)\n\n## Summary\n- mark the identity capsule stateful so `save_identity` mutations\npersist through capsule KV\n- split prompt assembly behind a testable loader seam and cover\nonboarding, saved identity, and spark-file recovery behavior\n- update the README to describe the current `spark.v1.*` / tool topics\nand stateful identity contract\n\n## Validation\n- `cargo fmt --check`\n- `cargo test --target aarch64-apple-darwin -- --quiet`\n- `cargo build`\n\n---------\n\nCo-authored-by: gemini-code-assist[bot] <176961590+gemini-code-assist[bot]@users.noreply.github.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_0d21e35cf05b",
+    "method": "llm",
+    "prediction_sha256": "490ebe169d4ad898ed4902303f35573a64f0470d2c4a0ecf89e2192c0978cec4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Mark the identity capsule stateful so save_identity mutations persist through capsule KV",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "#[capsule(state)]",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Mark the identity capsule stateful so save_identity mutations persist through capsule KV, and split prompt assembly behind a testable loader seam with corresponding unit tests.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_0d21e35cf05b",
+    "method": "aicar",
+    "prediction_sha256": "1ec62eb35c5d08ffb0f51af8105d01ee0f852a3e4e084b1a5f66169513212a8e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "#[capsule(state)]",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The selected region marks the identity capsule stateful.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Mark the identity capsule as stateful so mutations persist through capsule KV.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_81525a24d8d5",
+    "method": "git",
+    "prediction_sha256": "917b94b9903a61403be0eb8351c643ba99034038a15b662e97ca5e94cddb3a93",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types) (#17)\n\n## Summary\n\nMigrate to astrid-sdk 0.6.0 targeting wasm32-wasip2 (Component Model).\n\n- Remove `extism-pdk` dependency\n- Update `astrid-sdk` to 0.6.0 (from crates.io)\n- Migrate IPC APIs: `recv_bytes`/`poll_bytes` → typed `PollResult`\n- Migrate `hooks::trigger(&[u8])` → `hooks::trigger(&str)`\n- Migrate `log::log(\"level\", msg)` → typed `log::info(msg)` etc.\n- Add `[[topic]]` declarations to Capsule.toml where applicable\n- Build target: wasm32-wasip2",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_81525a24d8d5",
+    "method": "git_script",
+    "prediction_sha256": "0f9b3da766fbabc770bb6bd949d508ee7c205e4895f6286f217da4a16c020aef",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types) (#17)\n\n## Summary\n\nMigrate to astrid-sdk 0.6.0 targeting wasm32-wasip2 (Component Model).\n\n- Remove `extism-pdk` dependency\n- Update `astrid-sdk` to 0.6.0 (from crates.io)\n- Migrate IPC APIs: `recv_bytes`/`poll_bytes` → typed `PollResult`\n- Migrate `hooks::trigger(&[u8])` → `hooks::trigger(&str)`\n- Migrate `log::log(\"level\", msg)` → typed `log::info(msg)` etc.\n- Add `[[topic]]` declarations to Capsule.toml where applicable\n- Build target: wasm32-wasip2",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_81525a24d8d5",
+    "method": "llm",
+    "prediction_sha256": "645b4b1c907a2d2ae5fba353973e7619ee0389839ada22f3c42795808210b9ab",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Migrate logging calls from the generic log::log function to the typed log::warn function as part of the SDK 0.6.0 upgrade.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "                    log::warn(format!(\n                        \"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"\n                    ));",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_81525a24d8d5",
+    "method": "aicar",
+    "prediction_sha256": "ec803ef6a95bc60bdedafdfeec860ba3b49937bffdf9dd72a4d84d1f4e4045be",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "log::warn(format!(\n                        \"Failed to parse {SPARK_CONFIG_PATH} during auto-detect: {e}\"\n                    ));",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The code region logs a warning using the typed SDK log function when failing to parse the spark configuration path during auto-detection.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Log a warning message when parsing the spark configuration path fails during auto-detection, using the typed SDK logging function.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_3d710b18928b",
+    "method": "git",
+    "prediction_sha256": "6b0e3961a226276acd7ed00ee6e93fe507a1359fd9b4711c7a2b76b0f1321fa5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: save_identity tool — LLM persists identity after onboarding (#15)\n\nThe LLM needs to persist its chosen identity after the onboarding\nconversation. save_identity writes both KV state and spark.toml. The\nonboarding prompt instructs the LLM to call it.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_3d710b18928b",
+    "method": "git_script",
+    "prediction_sha256": "2ca22c0ab72592eb14b799757a6ad01a611ad64fe275c92ed231cf66f2731afc",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: save_identity tool — LLM persists identity after onboarding (#15)\n\nThe LLM needs to persist its chosen identity after the onboarding\nconversation. save_identity writes both KV state and spark.toml. The\nonboarding prompt instructs the LLM to call it.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_3d710b18928b",
+    "method": "llm",
+    "prediction_sha256": "125f29431c44941bc32f6c62cc8328dae66a47b3da76d8b2ed5463b91174ded4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The LLM needs to persist its chosen identity after the onboarding conversation. save_identity writes both KV state and spark.toml. The onboarding prompt instructs the LLM to call it.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "call `save_identity` to save it. Always call it — if the user wants to skip,",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Rename the set_identity tool to save_identity, update capabilities and interceptors in Capsule.toml, and persist the identity configuration to spark.toml when called.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_intent_3d710b18928b",
+    "method": "aicar",
+    "prediction_sha256": "cbbb96779a28f20e70cd425214abdc1f408a0d936d5d9e8de69f1dcd9dc7da30",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "call `save_identity` to save it. Always call it — if the user wants to skip,",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Update the onboarding instructions to reference the newly renamed save_identity tool instead of set_identity.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_363b985b8611",
+    "method": "git",
+    "prediction_sha256": "bd3ead36998801fe116cee535d2539ab77f0c78409ce0ac17959d810eac7099f",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Revert \"rename seve_file to sever_file\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_363b985b8611",
+    "method": "git_script",
+    "prediction_sha256": "f609ed30638014e84760149ff0d51eea2cf1790dfb7f3dc4bef1a02f40f95188",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Revert \"rename seve_file to sever_file\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_363b985b8611",
+    "method": "llm",
+    "prediction_sha256": "d32c9b7437974917020365d821951dd76425c88febf5df5f7f4e6fb56671da37",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Revert \"rename seve_file to sever_file\"",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "void serve_file(int, const char *);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "serve_file(client, path);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "void serve_file(int client, const char *filename)",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Revert the renaming of serve_file to sever_file",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_363b985b8611",
+    "method": "aicar",
+    "prediction_sha256": "a54cfbfcdc57014a07928c99a16622ca8fd4fd24f66d40847e7020dc35c20f84",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "void serve_file(int, const char *);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The selected region declares the function signature for serve_file, which is used to serve files to clients when requests are not handled as CGI.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_9a7081cd253f",
+    "method": "git",
+    "prediction_sha256": "6dcb3b216aa3045a6b3b2a144b493f4c94e4014554781c6c31c855af2ab72c51",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "rename seve_file to sever_file",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_9a7081cd253f",
+    "method": "git_script",
+    "prediction_sha256": "bfe51a7e0b0f53e45aa5e2b48e00c7f09509d0213ecacb2ec4b7cbd032791953",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "rename seve_file to sever_file",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_9a7081cd253f",
+    "method": "llm",
+    "prediction_sha256": "77ee8d15312a6231b2c321ee6758c42add890d50252a8317bb2ba60b4b6f562a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "rename seve_file to sever_file",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_intent_9a7081cd253f",
+    "method": "aicar",
+    "prediction_sha256": "a5448d7584a061e46ff7bd8d9d881f1b8578aba3e144a4e1c5fc89f6ebe16499",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "void sever_file(int, const char *);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The selected region provides a function declaration for sever_file, which corresponds to renaming serve_file.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_f2d7b5b2ccf0",
+    "method": "git",
+    "prediction_sha256": "7d5a01bbf0a678866d547c62383f196eebed0622554566bebbf4bdc35fa81be1",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "More Java 11 examples",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_f2d7b5b2ccf0",
+    "method": "git_script",
+    "prediction_sha256": "cdf3c9455acc8ebbfbd8b48abf3ee59104df779ba7f6891bc6805cf9ce83ee7a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Java 11 HttpClient examples",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_f2d7b5b2ccf0",
+    "method": "llm",
+    "prediction_sha256": "6d40bedbe7e91cfdc2fa1a3f381f101cefec8409aa2cd65aad07f039829035c9",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Initialize the HttpClient instance after building the request in HttpClientExamples.java.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "@@ -19,26 +19,25 @@ public class HttpClientExamples {\n     }\n \n     private static void syncRequest() throws IOException, InterruptedException {\n-        var client = HttpClient.newHttpClient();\n         var request = HttpRequest.newBuilder()\n                 .uri(URI.create(\"https://winterbe.com\"))\n                 .build();\n+        var client = HttpClient.newHttpClient();\n         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());\n         System.out.println(response.body());\n     }\n \n     private static void asyncRequest() {\n-        var client = HttpClient.newHttpClient();\n         var request = HttpRequest.newBuilder()\n                 .uri(URI.create(\"https://winterbe.com\"))\n                 .build();\n+        var client = HttpClient.newHttpClient();\n         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())\n                 .thenApply(HttpResponse::body)\n                 .thenAccept(System.out::println);\n     }\n \n     private static void postData() throws IOException, InterruptedException {\n-        var client = HttpClient.newHttpClient();\n         var request = HttpRequest.newBuilder()\n                 .uri(URI.create(\"https://postman-echo.com/post\"))\n                 .timeout(Duration.ofSeconds(30))\n",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_f2d7b5b2ccf0",
+    "method": "aicar",
+    "prediction_sha256": "476bfc71be51dcf7f30b8efc3e654fc7d759a4a9f2d379e96532f86e50f735f0",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "More Java 11 examples",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The intent of this commit is to provide more Java 11 examples by updating the HttpClientExamples class and introducing new utility examples in Misc.java along with a dummy resource file.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_4b92b43d5329",
+    "method": "git",
+    "prediction_sha256": "356f560c6f95249897d126f9a9729e1b7d90875dcd6fce65dec4b3969b428069",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Java 11 HttpClient examples",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_4b92b43d5329",
+    "method": "git_script",
+    "prediction_sha256": "821418910a518b89406e7b5f6c8f5243f7cc810b3310d46e876aec2ca5ac5063",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Java 11 HttpClient examples",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_intent_4b92b43d5329",
+    "method": "llm",
+    "prediction_sha256": "733a3ffc268d65df0c45a3a27ba887271a10f230dd484910047a5136a2197e75",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Java 11 HttpClient examples",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The file implements HttpClientExamples class with methods demonstrating synchronous requests, asynchronous requests, data posting, and basic authentication using Java 11 HttpClient.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Provide examples of Java 11 HttpClient usage",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_dd145de984c0",
+    "method": "git",
+    "prediction_sha256": "ac6e3809d67a63243d2352cb643502c42c5c3ada0c1c4a8d22fde0cefffeadd4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Make CacheException extend Throwable",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_dd145de984c0",
+    "method": "git_script",
+    "prediction_sha256": "5583bb861061368d0968cf0b9227798839d36e6fd586201da908d6b02dc67f89",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Make CacheException extend Throwable",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_dd145de984c0",
+    "method": "llm",
+    "prediction_sha256": "c3b80080516b8ca6e597803bf9239654c74a2b51636536347a94f9c19ae09b99",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Make CacheException extend Throwable",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "interface CacheException extends \\Throwable",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_dd145de984c0",
+    "method": "aicar",
+    "prediction_sha256": "0ddc54c386d291bfefcecc795ed44a619568c048fd7d765b62532ad38ab0d83b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Interface used for all types of exceptions thrown by the implementing library.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "interface CacheException extends \\Throwable",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The CacheException interface was introduced to serve as an interface for all types of exceptions thrown by the implementing library and was later updated to extend \\Throwable.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The CacheException interface is used for all types of exceptions thrown by the implementing library and extends \\Throwable.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_19a4d7c04df3",
+    "method": "git",
+    "prediction_sha256": "ff1b9d999355eac14b3b600bcaddf8b588e8258995167e2e79e3e56bb1f537f4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add return types\n\nThis is a breaking change since implementations without return types are considered to be \"widening\" them, which is not allowed in PHP.\n\nImplementations that implement v3, however, are also implementing v1 and v2 as of PHP 7.4, so such implementations can use a require statement of `^1|^2|^3`.  Usage libraries also can use a require statement of `^1|^2|^3`",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_19a4d7c04df3",
+    "method": "git_script",
+    "prediction_sha256": "210d099cd7e3076a62972ec1677f4fd98eca3504b375f9dcc298fe1072aa3f90",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add return types\n\nThis is a breaking change since implementations without return types are considered to be \"widening\" them, which is not allowed in PHP.\n\nImplementations that implement v3, however, are also implementing v1 and v2 as of PHP 7.4, so such implementations can use a require statement of `^1|^2|^3`.  Usage libraries also can use a require statement of `^1|^2|^3`",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_19a4d7c04df3",
+    "method": "llm",
+    "prediction_sha256": "122f3bd21422ee0d13be950bce18c9825b92e6ab0d83cf250f02321f5f0f84c1",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add return types",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Add return types to the CacheInterface methods",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_intent_19a4d7c04df3",
+    "method": "aicar",
+    "prediction_sha256": "f6636d393867b1e507ebf79aa0c3073c4f819dbffe944d4557438556bb3486f6",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The purpose of the selected region is to define the get method signature in the CacheInterface with a mixed return type annotation.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function get(string $key, mixed $default = null): mixed;",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_3cf85cc33fee",
+    "method": "git",
+    "prediction_sha256": "642ff089d9f04b3b7f02c85af6cf06eedc8623751b6f2af3005d1b7c923560d7",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "v0.1.0",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_3cf85cc33fee",
+    "method": "git_script",
+    "prediction_sha256": "40fbe40f137a3b352a91881f2bd34d6fb0a702493dbe73fe9a2a42ad31fd5ab5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "v0.1.0",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_3cf85cc33fee",
+    "method": "llm",
+    "prediction_sha256": "d4f164623f3dc2837daf06df1cf603da33a964d50886af88213715435dbc0269",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "VERSION = \"0.1.0\"",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The version string of Synx was updated to \"0.1.0\" in lib/synx/version.rb.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Update the version string of Synx to \"0.1.0\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_3cf85cc33fee",
+    "method": "aicar",
+    "prediction_sha256": "a080525d09cf0a27fe27c81702f3be5a3de9b603e5b2f13c4ba02e33d46702fa",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "  VERSION = \"0.1.0\"",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Defines the VERSION constant for the Synx module as \"0.1.0\".",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_9efde0115e82",
+    "method": "git",
+    "prediction_sha256": "8362b0e910b9790a7a482686988651f5f78a6c20687edd8c6d270ee984812954",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "When synx'ing, also sort entries by if they are a group/file, then name.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_9efde0115e82",
+    "method": "git_script",
+    "prediction_sha256": "87dd13b5f7be451a16922b96dfb33232d0dcfbf42bb0134ee9b6ddc1716b4cb2",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "When synx'ing, also sort entries by if they are a group/file, then name.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_9efde0115e82",
+    "method": "llm",
+    "prediction_sha256": "20dae38845cf0b27019a4031d34cf9f17f09b85499b6a66b4a6991fc28affe9c",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "When synx'ing, also sort entries by if they are a group/file, then name.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_intent_9efde0115e82",
+    "method": "aicar",
+    "prediction_sha256": "cbb36b3ce4016188d2adcdf051a00dcb4b8002f478c4573e149f9693c601b361",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "When synx'ing, also sort entries by if they are a group/file, then name.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The region sorts children such that PBXGroup objects come before non-PBXGroup objects, followed by sorting by display name.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The selected region exists to sort project entries and group children by whether they are groups or files, and then by their display name during the synchronization process.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,196 @@
+{
+  "revision": "b5ba8ac00d64d38fd5b69714fe398b61c56d8160",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "b5ba8ac00d64d38fd5b69714fe398b61c56d8160",
+    "message": "fix NaN loss not caught by fast-fail check\n\n`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN\ncomparisons always return False. When an agent experiment produces\nNaN (e.g. from an aggressive LR change), the run wastes the full\n5-minute budget instead of failing fast.\n\n`not (x <= 100)` catches both >100 and NaN with no added complexity.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+    "changed_files": [
+      "train.py"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/train.py b/train.py\nindex 6994fb9..1378bab 100644\n--- a/train.py\n+++ b/train.py\n@@ -565,8 +565,8 @@ while True:\n \n     train_loss_f = train_loss.item()\n \n-    # Fast fail: abort if loss is exploding\n-    if train_loss_f > 100:\n+    # Fast fail: abort if loss is exploding or NaN\n+    if not train_loss_f <= 100:\n         print(\"FAIL\")\n         exit(1)\n \n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "b5ba8ac00d64d38fd5b69714fe398b61c56d8160",
+      "message": "fix NaN loss not caught by fast-fail check\n\n`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN\ncomparisons always return False. When an agent experiment produces\nNaN (e.g. from an aggressive LR change), the run wastes the full\n5-minute budget instead of failing fast.\n\n`not (x <= 100)` catches both >100 and NaN with no added complexity.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    },
+    {
+      "hash": "068d93da75aa45f72ba482046f108241aaaf1b8e",
+      "message": "clarify that results.tsv should not be committed, leave untracked"
+    },
+    {
+      "hash": "c92bee55ebc339e8b1501f6b5c9cfb54835a9de8",
+      "message": "some docs on what to play with to make autoresearch better on smaller computers"
+    },
+    {
+      "hash": "2224cd7cae18f3e8e168a452f474592cfce1c2bd",
+      "message": "reshuffle readme a bit and link to tiny stories for apple silicon guidance"
+    },
+    {
+      "hash": "f16ece488fd8a9c363ac26bd7ca7e14abfef554f",
+      "message": "clarification to baseline run instruction, there was some language from a previous version that wasn't fully cleaned up"
+    },
+    {
+      "hash": "9264224a3cd92dd4efe39cc173672c9a07b78d12",
+      "message": "add notable fork mlx"
+    },
+    {
+      "hash": "500114a035cb63a4fc1829036e064b22870c61b4",
+      "message": "Honor --download-workers instead of hardcoding 8 download workers"
+    },
+    {
+      "hash": "7043095a183dd69b2d9062da2a730cfee0e3b48b",
+      "message": "add macos fork"
+    },
+    {
+      "hash": "777e4437905890a2be66bf4d0758c2f1da0a9368",
+      "message": "fix(prepare): honor --download-workers"
+    },
+    {
+      "hash": "6fdefa7265d1cb2346e63c6f8b9824f5ff389a83",
+      "message": "instruct the agent to also read README, should be good context"
+    },
+    {
+      "hash": "b0d047425faf747e130b4758fd744e18a5f136f9",
+      "message": "clarify note on platforms"
+    },
+    {
+      "hash": "8a5c4869bdac309814d594466a95869e4c53950e",
+      "message": "bunch of small changes to docs and files, and a teaser figure with a blooper :)"
+    },
+    {
+      "hash": "032d2036954a6c41a268005e6a50fc5b18f4a0a7",
+      "message": "minor tweaks, pin val shard"
+    },
+    {
+      "hash": "47ec1ade0a42ef929c3d2ac9be92cc6475966584",
+      "message": "tweaks to docs for both humans and agents"
+    },
+    {
+      "hash": "ada84e52472409dc23ea421a6db245c57950a7da",
+      "message": "soften the language just a bit"
+    },
+    {
+      "hash": "bd7553449414cca25a48efc6572f3479f4a80d23",
+      "message": "Fix agent crash blindspot by forcing it to read traceback"
+    },
+    {
+      "hash": "bdf0c0d5201795fcbc0ec20487a03561b407cdcc",
+      "message": "Allow agent to diagnose crashes by reading the python stack trace"
+    },
+    {
+      "hash": "bb54287479ef4079adfc472287d1bd4b40c928fe",
+      "message": "Merge pull request #2 from marcinbogdanski/fix/fa3-non-hopper-fallback\n\nadd fallback FA3 kernel for non-Hopper GPUs"
+    },
+    {
+      "hash": "17b480aa6511e20a71c60b9541d2491263eab921",
+      "message": "add fallback FA3 kernel for non-Hopper GPUs"
+    },
+    {
+      "hash": "9c383a8c94d1fc047d43a592dbd6327d22ccfac0",
+      "message": "add analysis notebook for convenience"
+    },
+    {
+      "hash": "69eb7f9b99c128544dfed6d3e120d1bc1e44a471",
+      "message": "cleanup more references to spawn.sh"
+    },
+    {
+      "hash": "ae81d559043d2692ac085b733d32bcbe172cf57b",
+      "message": "remove spawn.sh reference from README (file was deleted)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    },
+    {
+      "hash": "4ab35a919b47ef66e508b400635820a7febb1ea1",
+      "message": "also ref twitter"
+    },
+    {
+      "hash": "1e207aaf2131df2a4efde060e7c38f5d98935bc3",
+      "message": "dam, erase experimental file from before that snuck through in my purge"
+    },
+    {
+      "hash": "2a70301b103fcddae6efeaf3cceaa5f88f5fdb24",
+      "message": "small tweak readme"
+    },
+    {
+      "hash": "b11d6f283f866eb7e10fb776a4b8553fef873fd5",
+      "message": "initial commit"
+    }
+  ],
+  "file_histories": [
+    {
+      "file": "train.py",
+      "introducing_commit": {
+        "hash": "b11d6f283f866eb7e10fb776a4b8553fef873fd5"
+      },
+      "total_changes": 4
+    }
+  ],
+  "files": [
+    ".gitignore",
+    ".python-version",
+    "README.md",
+    "analysis.ipynb",
+    "prepare.py",
+    "program.md",
+    "progress.png",
+    "pyproject.toml",
+    "train.py",
+    "uv.lock"
+  ],
+  "file": "train.py",
+  "region": [
+    568,
+    569
+  ],
+  "source": "    # Fast fail: abort if loss is exploding or NaN\n    if not train_loss_f <= 100:",
+  "blame_commits": [
+    "b5ba8ac00d64d38fd5b69714fe398b61c56d8160"
+  ],
+  "diff": "diff --git a/train.py b/train.py\nindex 6994fb9..1378bab 100644\n--- a/train.py\n+++ b/train.py\n@@ -565,8 +565,8 @@ while True:\n \n     train_loss_f = train_loss.item()\n \n-    # Fast fail: abort if loss is exploding\n-    if train_loss_f > 100:\n+    # Fast fail: abort if loss is exploding or NaN\n+    if not train_loss_f <= 100:\n         print(\"FAIL\")\n         exit(1)\n \n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/train.py b/train.py",
+      "header": "@@ -565,8 +565,8 @@ while True:",
+      "text": "@@ -565,8 +565,8 @@ while True:\n \n     train_loss_f = train_loss.item()\n \n-    # Fast fail: abort if loss is exploding\n-    if train_loss_f > 100:\n+    # Fast fail: abort if loss is exploding or NaN\n+    if not train_loss_f <= 100:\n         print(\"FAIL\")\n         exit(1)\n \n",
+      "id": "hunk_73708bf452e29ed53ab7"
+    }
+  ],
+  "features": {
+    "commit_count": 26,
+    "file_count": 10,
+    "last_commit_age_days": 197.05736820943287,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "README.md",
+      "program.md"
+    ],
+    "dependency_manifests": [
+      "pyproject.toml"
+    ],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": [
+      "progress.png",
+      "uv.lock"
+    ]
+  },
+  "commit_count": 26,
+  "file_count": 10,
+  "todos": [],
+  "repository": "autoresearch",
+  "source_repository": "https://github.com/karpathy/autoresearch"
+}
