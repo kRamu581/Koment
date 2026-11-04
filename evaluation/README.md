@@ -9,9 +9,12 @@ python -m pytest -q
 python evaluation/runners/run_all.py --smoke
 ```
 
-The default runner (without `--smoke`) fails on missing human labels. Smoke mode
-runs real Git evidence without scoring accuracy. `--live` explicitly enables
-Gemini with GEMINI_API_KEY and GEMINI_MODEL in the process environment.
+The active dataset currently has 50 cases marked labelled. The scored offline
+pilot is archived as
+`results/raw/20261031T064515_7bbee3b3/`; its labels were AI-assisted and reviewed
+by one annotator, so treat its metrics as exploratory. Use `--smoke` for an
+explicitly unscored run. `--live` enables Gemini with GEMINI_API_KEY and
+GEMINI_MODEL in the process environment.
 
 Methods reuse `backend/evaluation/baselines/` and the existing application agents.
 Outputs contain immutable per-run raw evidence/predictions, timing CSV, processed

@@ -10,6 +10,10 @@ import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+load_dotenv()
 
 from backend.evaluation.baselines import git_baseline, git_script_baseline, llm_baseline, agentic_system
 from backend.services.evidence_verifier import audit, prediction_hash

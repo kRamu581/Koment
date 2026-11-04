@@ -45,7 +45,7 @@ Software repositories preserve commits, diffs, and file histories, but these art
 
 The application extracts recent commits, selected diffs, limited file histories, and TODO/FIXME markers. Its workflow invokes intent analysis, conditionally invokes scope analysis, invokes recovery analysis, and generates a report. The result includes heuristic health measures and a graph linking commits to changed files. Offline operation is available, but its fallbacks are deliberately limited: intent is primarily derived from the latest commit message, scope receives changed-file names rather than per-hunk code evidence, and recovery/health values are uncalibrated heuristics. A separate evaluation pipeline prepares evidence from pinned Git revisions and supports baselines and metrics; it is distinct from the dashboard workflow.
 
-The active evaluation dataset contains 9 repositories and 50 candidate cases: 23 intent, 18 scope, and 9 recovery. All 50 cases are pending human annotation. An archived offline smoke run completed 150 method executions with no scored cases; it is not a comparative performance experiment. Reported software verification includes 47 passing Python tests, 10 passing frontend tests, passing frontend lint and production build, six passing local smoke checks, and a live demonstration of public-repository analysis, saved history, report generation, and comparison. Real Gemini and GitHub OAuth exchanges were not verified because credentials were not configured.
+The active evaluation dataset contains 9 repositories, 572 reachable commits, and 50 cases: 23 intent, 18 scope, and 9 recovery. All 50 are marked labelled by one annotator; the annotation rationales state that labels were AI-assisted and reviewed/confirmed by that annotator. The scored offline run completed 150 method executions successfully, skipped 50 Gemini calls, and recorded no execution errors. AICAR obtained 0/23 normalized exact-match intent accuracy and 0 scope F1; recovery nDCG was unavailable because no ranking was returned. Exact-extractive evidence support was 23/23, which is not a semantic correctness measure. These are exploratory results on a single-annotator label set, not evidence of general performance or superiority. Reported software verification includes 47 passing Python tests, 10 passing frontend tests, passing frontend lint and production build, six passing local smoke checks, and a live demonstration of public-repository analysis, saved history, report generation, and comparison. Real Gemini and GitHub OAuth exchanges were not verified because credentials were not configured.
 
 The results establish selected software functionality, not research effectiveness. This report makes no claim of measured intent accuracy, scope precision/recall/F1, recovery nDCG, statistical significance, time savings, or superiority over baselines.
 
@@ -84,7 +84,7 @@ The results establish selected software functionality, not research effectivenes
 - **Table 5.3.** Persisted database entities.
 - **Table 7.1.** Reported software verification results.
 - **Table 8.1.** Active evaluation dataset and annotation status.
-- **Table 8.2.** Archived unscored smoke-run record.
+- **Table 8.2.** Scored offline pilot results.
 - **Table 9.1.** Verified capabilities and principal limitations.
 - **Table C.1.** Archived evaluation record.
 - **Table D.1.** Submission placeholders requiring student or faculty input.
@@ -265,7 +265,7 @@ The dotted connections indicate optional or separate paths. The graph represents
 
 ## 5.2 LangGraph Workflow
 
-Figure 5.2 shows the current control flow. Scope analysis is conditional on having task text, changed files, and at least two commits in the workflow history.
+Figure 5.2 shows the current control flow. Scope analysis is conditional on a latest commit with changed files and a task source. The task comes from the user's description when provided, otherwise from the latest commit message.
 
 ### Figure 5.2. Implemented full-analysis workflow
 
@@ -274,7 +274,7 @@ flowchart TD
     A[Full-analysis API request] --> B[Clone and extract repository]
     B --> C[Build initial state and evidence map]
     C --> D[Intent node]
-    D --> E{At least 2 commits and task plus changed files?}
+    D --> E{Latest commit has changed files and task text exists?}
     E -- Yes --> F[Scope node]
     E -- No --> G[Recovery node]
     F --> G
@@ -304,7 +304,7 @@ The empty-history path in the workflow returns an unknown intent, but the full-a
 | Health calculation | Weighted score derived from counts and recovery-output text | Implemented heuristic; not calibrated or validated |
 | Graph service/UI | Build and display commit-to-file links | Implemented; describes change history, not file dependencies |
 | SQLite persistence | Store analyses and OAuth connections | Implemented; test/demo used isolated databases |
-| Evaluation pipeline | Pinned evidence, methods, schema validation, metrics and reporting | Separate evaluation tooling; current dataset is unlabelled |
+| Evaluation pipeline | Pinned evidence, methods, schema validation, metrics and reporting | Separate tooling; scored pilot uses one AI-assisted, reviewed annotation set |
 
 ## 5.4 Backend API
 
@@ -367,7 +367,7 @@ The live application path does not use the separate pinned-evidence claim verifi
 
 ## 6.3 Scope Analysis
 
-The user may provide a task goal. If no explicit changed-file list was supplied, the API uses the latest commit's changed files. The workflow runs scope only when a task and file list exist and there are at least two commits in the extracted history. The application agent receives file names rather than the full per-hunk diff as its scope input. Offline mode returns `INSUFFICIENT_EVIDENCE`.
+The user may provide a task goal. If no explicit changed-file list was supplied, the workflow uses the latest commit's changed files. If the user supplies no task, the scope node can derive one from the latest commit message. Scope runs when a latest commit, changed files, and a non-empty task source are available; it does not require two commits. The application agent receives file names rather than the full per-hunk diff as its scope input. Offline mode returns `INSUFFICIENT_EVIDENCE`.
 
 The evaluation pipeline has a separate scope task that validates stable hunk IDs and can measure classifications when ground truth exists. That capability should not be conflated with the dashboard scope path.
 
@@ -420,7 +420,7 @@ The research-evaluation package is separate from the dashboard workflow:
 6. Metrics are computed only for labelled cases. Missing ground truth prevents a scored run; smoke mode is explicitly unscored.
 7. The pipeline writes raw evidence/predictions, manifests, timing records, processed results, and reports.
 
-This pipeline provides infrastructure for a later empirical evaluation; it does not itself supply human labels or establish effectiveness.
+The active cases now contain labels and a scored offline pilot is archived. The pipeline does not establish label independence or predictive validity; the current labels were AI-assisted and reviewed by one annotator.
 
 # Chapter 7 — Testing and Verification
 
@@ -492,41 +492,38 @@ Passing software tests show that selected code paths behave as asserted by the t
 
 ## 8.1 Active Dataset
 
-The active manifest contains 9 registered repositories and 566 reachable commits at the recorded revisions. Case files contain 23 intent cases, 18 scope task/diff pairs, and 9 recovery candidates. All 50 cases are pending annotation. Recovery candidates have not all been confirmed as unfinished projects.
+The active manifest contains 9 registered repositories and 572 reachable commits at the recorded revisions. Case files contain 23 intent cases, 18 scope task/diff pairs, and 9 recovery candidates. All 50 cases are marked labelled by one annotator (`kanam Ramu`); the annotation rationales state that they were AI-assisted and reviewed/confirmed by that annotator. There is no independent second annotator or inter-rater agreement. The dataset and its labels should therefore be treated as an exploratory pilot set rather than independently adjudicated ground truth.
 
 ### Table 8.1. Active evaluation dataset and annotation status
 
 | Dataset item | Current candidate count | Label status |
 |---|---:|---|
 | Registered repositories | 9 | Repository registrations, not outcome labels |
-| Intent cases | 23 | 23 pending |
-| Scope task/diff pairs | 18 | 18 pending |
-| Recovery candidates | 9 | 9 pending; unfinished status unconfirmed |
-| Total task cases | 50 | 0 labelled; 50 pending |
-| Commits reachable at registered revisions | 566 | Git-derived count, not a labelled outcome |
+| Intent cases | 23 | 23 marked labelled |
+| Scope task/diff pairs | 18 | 361 hunks labelled: 339 in-scope, 22 out-of-scope |
+| Recovery candidates | 9 | 9 marked labelled; unfinished eligibility recorded |
+| Total task cases | 50 | 50 marked labelled by one annotator |
+| Commits reachable at registered revisions | 572 | Git-derived count, not a labelled outcome |
 | Design targets in annotation guide | 25 repositories; 40 intent; 30 scope; 20 recovery; approximately 1,800 commits | Targets only, not achieved sample counts |
 
 Intent and scope cases may come from the same source repositories, so task-case counts should not be read as independent repository counts. The targets in the annotation guide are not statistical power guarantees.
 
-## 8.2 Archived Smoke Run
+## 8.2 Scored Offline Pilot
 
-The archived run `20261014T152850_5739f230` is labelled `unscored_smoke`. The canonical run manifest at `evaluation/results/raw/20261014T152850_5739f230/manifest.json` records:
+The saved run is `20261031T064515_7bbee3b3`. Its manifest marks 50 cases labelled and scored, with 200 method attempts, 150 successful offline executions, 0 errors, and 50 skipped executions. Gemini was disabled, so the single-prompt model was not evaluated. See `evaluation/results/raw/20261031T064515_7bbee3b3/evaluation_report.md` for the run report.
 
-### Table 8.2. Archived unscored smoke-run record
+### Table 8.2. Scored offline pilot outcomes
 
-| Field | Recorded value |
-|---|---|
-| Run ID and status | `20261014T152850_5739f230`; `unscored_smoke` |
-| Candidate cases | 23 intent; 18 scope; 9 recovery |
-| Repositories and commits | 9 repositories; 566 reachable commits |
-| Annotation | 0 labelled; 50 pending |
-| Attempts | 200 |
-| Executed / successful / errors / skipped | 150 / 150 / 0 / 50 |
-| Scored cases | 0 |
-| Live LLM | Disabled |
-| Source | `evaluation/results/raw/20261014T152850_5739f230/manifest.json` and `evaluation/reports/evaluation_report.md` |
+| Method | Intent exact match | Scope precision / recall / F1 | Recovery nDCG | Exact-extractive evidence support |
+|---|---:|---|---:|---:|
+| Git baseline | 0/23 (0%) | N/A / 0 / 0 | N/A | 23/23 (100%) |
+| Git log/blame script | 0/23 (0%) | N/A / 0 / 0 | N/A | 23/23 (100%) |
+| AICAR | 0/23 (0%) | N/A / 0 / 0 | N/A | 23/23 (100%) |
+| Single-prompt Gemini | Not run | Not run | Not run | Not run |
 
-The run exercised configured offline methods against evidence packs. Its accuracy, precision, recall, F1, evidence-support rate, and nDCG are unavailable (`null`), not zero. It is not a completed comparative experiment.
+For AICAR, the introducing-commit exact-match accuracy was also 0/23. In scope evaluation, all 361 hunk predictions were `unclear`; precision is undefined because no positive predictions were made, while recall and F1 are zero under the configured metric. Recovery nDCG is unavailable because the offline method returned no ranking. Exact-extractive support checks quote matching only and does not establish semantic entailment or prediction correctness.
+
+These are results for one offline run against a single-annotator, AI-assisted/reviewed label set. They are not independent validation, do not establish generalization, and must not be presented as evidence of superiority. The strict intent metric also measures normalized exact match, not semantic equivalence.
 
 ## 8.3 Evaluation Metrics Defined by the Pipeline
 
@@ -538,7 +535,7 @@ The pipeline defines metrics for future use after annotation:
 - **Recovery nDCG:** graded ranking metric based on recovery relevance grades and requires at least two distinct labelled repositories.
 - **Evidence support:** automatic credit is limited to exact extractive claims; semantic interpretations require human review.
 
-Metric definitions are not results. No values are reported for these measures because no cases are labelled.
+The metrics are reported above only for the saved scored run. Their definitions and limitations should accompany every reported value.
 
 # Chapter 9 — Results, Limitations, and Discussion
 
@@ -550,7 +547,7 @@ These results demonstrate integration and selected software functionality. They 
 
 ## 9.2 Research Results
 
-There are no scored research results. The active dataset has no human-labelled cases, and the archived smoke run scored zero cases. No intent accuracy, scope precision/recall/F1, recovery nDCG, statistical significance, speedup, or time-saving figure is reported. There is no evidence that AICAR outperforms Git-based or single-prompt baselines.
+The scored pilot reports 0/23 normalized exact-match intent accuracy and 0 scope F1 for AICAR. Recovery nDCG is unavailable because the offline method returned no ranking; the Gemini method was skipped. The Git and Git-script baselines also scored 0/23 on intent exact match and 0 scope F1. Thus, the run provides no evidence that AICAR outperforms either baseline. Because annotations were AI-assisted and reviewed by one annotator, and no independent adjudication or inter-rater agreement is available, the results should be treated as exploratory and not as validated performance.
 
 ## 9.3 Implementation Limitations
 
@@ -561,12 +558,12 @@ There are no scored research results. The active dataset has no human-labelled c
 | Repository analysis | Public GitHub cloning and extraction were exercised live | Resource checks occur after clone; private access was not live-tested |
 | Intent | Offline output is shown in the dashboard | It is primarily derived from the latest commit message and has low confidence |
 | Scope | Task and changed-file input and visible fallback are implemented | Application path does not provide hunk-level code evidence; offline response is insufficient evidence |
-| Recovery | Summary and recommendation text are generated | Generic offline recommendation and uncalibrated score; no human recovery labels |
+| Recovery | Summary and recommendation text are generated | Generic offline recommendation and uncalibrated score; pilot labels do not validate recovery quality |
 | Health score | Deterministic arithmetic is displayed | Commit/TODO counts and substrings are not validated measures of project health |
 | Evidence | Evaluation pipeline resolves references and exact quotes | Does not establish semantic entailment and is not integrated into live dashboard workflow |
 | History | Full-analysis result persisted and reloaded in demo | Routes are not scoped to authenticated owners in the inspected implementation |
 | OAuth/Gemini | Optional integration code and configuration exist | Credentials absent; real end-to-end integrations not verified |
-| Evaluation | Pinned evidence and metric tooling exist | 50 pending cases, zero labelled cases; no comparative conclusions |
+| Evaluation | Pinned evidence, 50 labelled cases, and a scored offline run exist | Single-annotator AI-assisted/reviewed labels; weak metrics; no superiority conclusion |
 
 ## 9.4 Security, Reliability, and Deployment Considerations
 
@@ -574,9 +571,9 @@ GitHub OAuth tokens are encrypted in the database, and the browser cookie is con
 
 Before public deployment, analysis history should be protected by explicit authorization and ownership rules. Repository cloning should be constrained at the acquisition stage, not only by checks after cloning. Rate limiting, concurrency controls, structured operational logging, database migrations, and production API routing also require review. The development Vite proxy is not itself a production deployment configuration.
 
-## 9.5 Discrepancy Found in Supporting Documentation
+## 9.5 Annotation and Interpretation Caveat
 
-The revised research paper `evaluation/research_paper_revised.md` contains a sentence in its evaluation section saying the archived manifest has “50 intent, 18 scope, and 9 recovery candidates.” This conflicts with the active run manifest and evaluation report, which both give **23 intent, 18 scope, and 9 recovery** candidates (50 total). This final-year report uses the canonical manifest/report counts. The research paper was not changed as part of this task; the discrepancy should be corrected separately before submission.
+All case records identify the same annotator, and their rationales say the labels were AI-assisted and reviewed/confirmed by that annotator. The evaluator's `labelled` status confirms that required label fields are present; it does not certify annotation independence or eliminate bias. The 0/23 strict intent exact-match score may reflect both method limitations and mismatch between generated predictions and accepted textual labels. Independent review, a preregistered adjudication process, and a second run on frozen adjudicated labels are needed before stronger conclusions.
 
 # Chapter 10 — Conclusion and Future Enhancements
 
@@ -584,16 +581,16 @@ The revised research paper `evaluation/research_paper_revised.md` contains a sen
 
 AICAR is an implemented software prototype for exploring code intent, task scope, and project recovery through a unified repository-analysis interface. Its present application includes a React dashboard, a FastAPI backend, Git extraction, a conditional LangGraph workflow, heuristic score calculation, a commit-to-file graph, SQLite persistence, history retrieval, and repository comparison. Public-repository analysis, report generation, saved-result reload, comparison, local routes, and selected test/build paths were reported as verified.
 
-The evidence does not show that the agent outputs are accurate or superior to other methods. Offline intent relies on commit-message evidence; application scope analysis receives filenames rather than per-hunk code; recovery and health outputs are heuristic and uncalibrated; and the separate evaluation dataset has no human labels. The defensible project outcome is therefore an integrated prototype and evaluation infrastructure with identified limitations, not a validated predictive system.
+The scored pilot shows weak measured performance under its current labels: AICAR achieved 0/23 intent exact matches and 0 scope F1, and its offline recovery path returned no ranking. The labels were AI-assisted and reviewed by one annotator, so the measurements are not independently validated. Offline intent relies on commit-message evidence; application scope analysis receives filenames rather than per-hunk code; and recovery and health outputs are heuristic and uncalibrated. The defensible project outcome is an integrated prototype and an exploratory evaluation with negative or unavailable task metrics, not a validated predictive system.
 
 ## 10.2 Future Enhancements
 
 Priority future work includes:
 
-1. Annotate repository cases with traceable task and code evidence; confirm recovery-project eligibility.
-2. Freeze labels before running methods and archive complete raw predictions and run manifests.
+1. Independently review and adjudicate the existing AI-assisted labels; confirm recovery-project eligibility and record the process.
+2. Freeze adjudicated labels before rerunning methods and archive complete raw predictions and run manifests.
 3. Integrate hunk-level scope inputs and evidence-verification results into the live workflow.
-4. Evaluate intent, scope, and recovery separately using the predeclared metrics and labelled data.
+4. Improve intent and scope behavior, then evaluate intent, scope, and recovery separately using the predeclared metrics and frozen labelled data.
 5. Calibrate or rename health measures and validate rankings against human judgments.
 6. Test real Gemini and GitHub OAuth integrations with controlled credentials and documented consent.
 7. Add history authorization, clone/resource controls, request limits, and a migration/deployment plan before public deployment.
@@ -640,22 +637,23 @@ No future-work item is represented as completed in this report.
 
 ## Appendix C — Evaluation Record Summary
 
-### Table C.1. Archived evaluation record
+### Table C.1. Scored offline evaluation record
 
 | Field | Recorded value |
 |---|---|
-| Run ID | `20261014T152850_5739f230` |
-| Run status | `unscored_smoke` |
+| Run ID | `20261031T064515_7bbee3b3` |
+| Run status | `scored` |
 | Candidate cases | 23 intent, 18 scope, 9 recovery |
-| Repositories and commits | 9 repositories; 566 reachable commits |
-| Annotation | 0 labelled; 50 pending |
+| Repositories and commits | 9 repositories; 572 reachable commits |
+| Annotation | 50 marked labelled by one AI-assisted, reviewed single annotator |
 | Attempts | 200 |
 | Executed / successful / errors / skipped | 150 / 150 / 0 / 50 |
-| Scored cases | 0 |
+| Scored cases | 50 |
 | Live LLM | Disabled |
-| Interpretation | Execution check only; no measured research performance |
+| AICAR intent / scope / recovery | 0/23 exact match; scope F1 0; recovery nDCG unavailable |
+| Interpretation | Exploratory pilot; not independent validation or evidence of superiority |
 
-**Source:** `evaluation/results/raw/20261014T152850_5739f230/manifest.json` and `evaluation/reports/evaluation_report.md`.
+**Source:** `evaluation/results/raw/20261031T064515_7bbee3b3/manifest.json` and `evaluation/results/raw/20261031T064515_7bbee3b3/evaluation_report.md`.
 
 ## Appendix D — Items Requiring Student or Faculty Input
 
@@ -669,7 +667,7 @@ No future-work item is represented as completed in this report.
 | Acknowledgements | Student(s) to write only if desired and factually supported |
 | Final bibliography formatting | Verify against faculty/college citation guidance |
 | Figures/screenshots | Capture from a real running demo; insert actual images and captions |
-| Revised paper candidate counts | Correct the “50 intent” inconsistency in the separate paper file before submission |
+| Revised paper results | Verify the scored pilot, annotation caveat, metrics, and bibliography before submission |
 | Ethics, plagiarism, AI-use, and originality declarations | Confirm the current college rules and complete as required |
 
 ## Appendix E — Consistency and Integrity Checklist

@@ -1,4 +1,4 @@
-# Manual annotation required before research evaluation
+# Annotation protocol and current evaluation status
 
 The paper's claimed scores are not labels and are never used by this pipeline.
 The legacy `dataset/*_examples.json` and old saved metrics are unverified examples.
@@ -13,10 +13,15 @@ start blank. Automated preparation extracts Git facts only.
 | Intent cases | 23 (20 newly added) | 40 | 17 |
 | Scope task/diff pairs | 18 (15 newly added) | 30 | 12 |
 | Distinct recovery candidate repositories | 9 (unfinished status unconfirmed) | 20 | at least 11 |
-| Total analysis cases | 50, none labelled | 90 | 40 |
-| Commits reachable at registered revisions | 566 | approximately 1,800 | approximately 1,234 |
+| Total analysis cases | 50, all marked labelled | 90 | 40 |
+| Commits reachable at registered revisions | 572 | approximately 1,800 | approximately 1,228 |
 
-The targets describe the proposed experiment, not a statistical power guarantee.
+The current 50 labels are attributed to one annotator (`kanam Ramu`); the case
+rationales state that annotation was AI-assisted and reviewed/confirmed by that
+annotator. No independent second annotator or inter-rater agreement is recorded.
+Treat the current labels and scored run as an exploratory pilot, not independent
+gold-standard validation. The targets describe the proposed experiment, not a
+statistical power guarantee.
 Repositories may contribute both intent and scope cases and belong to the recovery
 cohort. They need not total 40 + 30 + 20 distinct repositories. Count commit SHAs
 within each repository; forked/shared histories require deduplication in a larger study.
@@ -27,7 +32,8 @@ The eight additions have 20–200 commits reachable from their pinned revisions.
 Activity is classified from GitHub `pushed_at` metadata as of 2026-10-14:
 active means pushed within the previous 12 months; abandoned means no push for
 more than three years. Repositories between those thresholds were not selected.
-All generated annotations remain pending.
+At present, all 50 case records have `labelled` status. This reflects completion
+of required fields and the annotator's review, not independent adjudication.
 
 | ID | Language | Activity | Commits at pin | Pinned revision |
 |---|---|---|---:|---|
@@ -65,7 +71,8 @@ The original AICAR seed case IDs and selected regions are:
 The matching scope IDs are `aicar_scope_07b121617c2a` (26 hunks),
 `aicar_scope_df3ad517cd35` (8 hunks), and `aicar_scope_1e253587774c`
 (60 hunks). The recovery candidate is `aicar_recovery` at its pinned revision.
-These remain alongside the generated cases; all 50 annotations are pending.
+These remain alongside the generated cases; all 50 annotations are marked
+labelled, with the single-annotator caveat above.
 
 ### Intent: `datasets/intent_cases.json`
 
@@ -100,9 +107,8 @@ exclusion rule fixed before running the methods.
 
 ### Scope: `datasets/scope_cases.json`
 
-The 18 scope cases contain 252 text hunks in total: 94 in the original AICAR
-cases and 158 in the new batch. Their full real diffs and stable `hunk_<digest>`
-IDs are already populated.
+The 18 scope cases contain 361 labelled text hunks in total: 339 `in-scope` and
+22 `out-of-scope`. Their full diffs and stable `hunk_<digest>` IDs are populated.
 Each candidate requires:
 
 - `task`: the original intended task, taken from an actual issue, requirement,

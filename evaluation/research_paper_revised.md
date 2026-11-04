@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Understanding why code was introduced, whether a change matches an intended task, and whether an inactive project is feasible to resume are related software-maintenance problems. This paper presents AICAR (Agentic Intent, Creep, and Recovery), a prototype that combines Git repository extraction, a React dashboard, a FastAPI service, a LangGraph workflow, optional Gemini calls, and SQLite persistence. Its workflow extracts recent commits, selected diffs and file histories; invokes intent, optional scope, and recovery agents; computes a heuristic health score; and returns a commit-to-file graph and report. These capabilities are not equally mature: offline intent uses commit-message evidence, scope analysis receives changed-file names rather than per-hunk code evidence, and recovery and health estimates are uncalibrated. A separate pinned-revision evaluation pipeline exists, but its current dataset has 50 candidate cases and no human-labelled cases. An archived offline smoke run completed 150 method executions with no scored cases. The current software test rerun passed 47 Python tests and 10 frontend tests; these results establish selected implementation behavior, not research accuracy. The paper therefore reports an implemented prototype and its verification limits, not a validated comparative study.
+Understanding why code was introduced, whether a change matches an intended task, and whether an inactive project is feasible to resume are related software-maintenance problems. This paper presents AICAR (Agentic Intent, Creep, and Recovery), a prototype that combines Git repository extraction, a React dashboard, a FastAPI service, a LangGraph workflow, optional Gemini calls, and SQLite persistence. Its workflow extracts recent commits, selected diffs and file histories; invokes intent, optional scope, and recovery agents; computes a heuristic health score; and returns a commit-to-file graph and report. These capabilities are not equally mature: offline intent uses commit-message evidence, scope analysis receives changed-file names rather than per-hunk code evidence, and recovery and health estimates are uncalibrated. The active pinned-revision dataset contains 9 repositories and 50 cases (23 intent, 18 scope, and 9 recovery), all marked labelled by one annotator whose rationales state that annotation was AI-assisted and reviewed/confirmed. In the scored offline run, AICAR achieved 0/23 normalized exact-match intent accuracy and 0 scope F1; recovery nDCG was unavailable because no ranking was returned. These pilot results are limited by the annotation design and do not establish general performance or superiority.
 
 **Index Terms** - software repository analysis, code intent, scope analysis, project recovery, multi-agent systems, software maintenance.
 
@@ -16,7 +16,7 @@ Software repositories preserve commits, diffs, and file histories that can help 
 
 The project addresses a practical integration problem rather than a demonstrated research-performance gap. Its prototype accepts GitHub repository URLs, extracts repository evidence, produces agent outputs and heuristic measures, and presents results through a web interface. Optional GitHub OAuth supports private-repository access. Optional Gemini use is controlled by configuration. Without live model use, the implemented agents provide fallbacks that are intentionally limited.
 
-This paper distinguishes executable application behavior from evaluation infrastructure and from research hypotheses. The active evaluation dataset contains candidate cases but no human labels, so there is no basis for reporting predictive accuracy or comparing AICAR with baselines. The paper makes no claim that the prototype outperforms Git tools or a single-prompt model.
+This paper distinguishes executable application behavior from evaluation infrastructure and from research hypotheses. A scored offline pilot is now available, but all labels were supplied by one annotator and the annotation rationales describe AI-assisted review. The results are therefore exploratory and do not establish predictive validity, generalization, or superiority over Git tools or a single-prompt model.
 
 The implementation contributions reported here are:
 
@@ -58,7 +58,7 @@ Temporary Git clone -> GitPython extraction
  v
 LangGraph application workflow
  |-> Intent agent
- |-> Scope agent only when task and changed files exist and history has >= 2 commits
+ |-> Scope agent when the latest commit has changed files and task text exists
  |-> Recovery agent
  |-> Final report agent
  v
@@ -74,7 +74,7 @@ The development proxy is configured in `frontend/vite.config.ts`. It is not a pr
 
 ### B. Agent Workflow
 
-The compiled LangGraph begins with the intent node. It routes to scope only when the recent history has at least two commits and both a task description and changed-file list are available. Scope then precedes recovery; otherwise the graph routes directly to recovery. The report node follows recovery. An empty-history intent fallback exists in the graph, although the full-analysis API rejects repositories without commits.
+The compiled LangGraph begins with the intent node. It routes to scope when a latest commit has changed files and a task source is available. The task source is the user description when supplied, otherwise the scope node can derive it from the latest commit message. Scope then precedes recovery; otherwise the graph routes directly to recovery. The report node follows recovery. An empty-history intent fallback exists in the graph, although the full-analysis API rejects repositories without commits.
 
 **Algorithm 1: Current full-analysis workflow**
 
@@ -85,7 +85,7 @@ Input: GitHub repository URL, optional task description, optional changed files
 2. Reject the request if repository extraction reports no commits or an error.
 3. Build the initial LangGraph state and evidence map.
 4. Run intent agent on the latest commit, file histories, and evidence map.
-5. If at least two commits exist and task and changed files are present:
+5. If the latest commit has changed files and task text is available:
       run scope agent on task description and changed-file names.
    Otherwise:
       mark scope as skipped or not available in workflow state.
@@ -109,7 +109,7 @@ The evidence verifier in `backend/services/evidence_verifier.py` is used by the 
 | Repository graph | Commit nodes linked to modified-file nodes | Implemented; the graph describes recorded commit/file relationships, not a dependency graph. |
 | Saved history | SQLite storage of full analysis results and history endpoints | Implemented and API-tested with an isolated database; public-user access control was not part of these tests. |
 | GitHub OAuth | Signed state, HTTP-only cookie, encrypted token storage, repository listing | Implemented with mocked exchange tests; real GitHub credentials and live OAuth were not tested. |
-| Evaluation pipeline | Pinned evidence, baselines, prediction validation, citation checks and metrics | Implemented as research tooling; currently unscored because ground truth is absent. |
+| Evaluation pipeline | Pinned evidence, baselines, prediction validation, citation checks and metrics | One offline scored pilot; single-annotator AI-assisted labels and weak task metrics limit conclusions. |
 
 ## IV. Heuristic Health Measure
 
@@ -139,19 +139,21 @@ The active manifest and case files describe the following candidate data. Intent
 | Item | Available | Annotation status | Source |
 |---|---:|---|---|
 | Source repositories | 9 | Not an annotation label | `evaluation/datasets/repositories.json` |
-| Intent cases | 23 | 23 pending | `evaluation/datasets/intent_cases.json` |
-| Scope task/diff pairs | 18 | 18 pending | `evaluation/datasets/scope_cases.json` |
-| Recovery candidates | 9 | 9 pending; unfinished status unconfirmed | `evaluation/datasets/recovery_cases.json` |
-| Total task cases | 50 | 0 labelled; 50 pending | Current run manifest and annotation guide |
-| Commits reachable at registered revisions | 566 | Extracted Git fact, not a case label | Current evaluation report/manifest |
+| Intent cases | 23 | 23 marked labelled | `evaluation/datasets/intent_cases.json` |
+| Scope task/diff pairs | 18 | 18 marked labelled | `evaluation/datasets/scope_cases.json` |
+| Recovery candidates | 9 | 9 marked labelled; unfinished status recorded | `evaluation/datasets/recovery_cases.json` |
+| Total task cases | 50 | 50 marked labelled by one annotator | Scored run `20261031T064515_7bbee3b3` |
+| Commits reachable at registered revisions | 572 | Extracted Git fact, not a case label | Scored run manifest |
 
-The annotation guide lists larger design targets of 25 repositories, 40 intent cases, 30 scope pairs, 20 recovery projects, and approximately 1,800 commits. These are targets, not observed sample sizes. Recovery eligibility has not been confirmed by human annotation. No annotator count, inter-rater agreement, adjudication, or participant study is reported because none is documented in the active dataset.
+The annotation rationales state that labels were AI-assisted and reviewed/confirmed by a single annotator (`kanam Ramu`). No independent second annotator, inter-rater agreement, or adjudication is documented. The annotation guide's larger targets—25 repositories, 40 intent cases, 30 scope pairs, 20 recovery projects, and approximately 1,800 commits—remain targets, not observed sample sizes. The results should be treated as an exploratory pilot, not independent gold-standard validation.
 
 ### B. Evaluation Pipeline and Smoke Run
 
 The evaluation package has a pinned-revision evidence path, offline Git and Git-script baselines, an AICAR task-agent method, and a single-prompt LLM method that is skipped when live provider execution is disabled. Its metrics include normalized exact-match intent accuracy, scope precision/recall/F1, recovery nDCG, and an exact-extractive evidence-support measure. The metric definitions do not make them observed results.
 
-The saved run `20261014T152850_5739f230` is explicitly `unscored_smoke`. Its manifest records 50 intent, 18 scope, and 9 recovery candidates, 9 repositories, 566 commits, 0 labelled cases, and 50 pending cases. It records 200 attempts, 150 executions, 150 successful executions, 0 errors, 50 skipped executions, and 0 scored cases. The LLM method did not run because the model was disabled. Every accuracy, precision, recall, F1, evidence-support rate, and nDCG value is unavailable (`null`), not zero. This run demonstrates that configured offline methods can execute on evidence packs; it provides no estimate of task performance.
+The saved run `20261031T064515_7bbee3b3` is marked `scored` and records 9 repositories, 572 commits, 50 labelled cases, 200 method attempts, 150 successful offline executions, 0 errors, 50 skipped executions, and 50 scored cases. Gemini was disabled, accounting for the skipped calls. The result file is `evaluation/results/raw/20261031T064515_7bbee3b3/evaluation_report.md`.
+
+The annotations are single-annotator and AI-assisted/reviewed. This run is therefore a scored pilot against the current labels, not an independently adjudicated benchmark. Its outputs are not interchangeable with validated ground truth.
 
 ### C. Software Verification
 
@@ -170,9 +172,16 @@ The Python test run copied the current tests to a temporary workspace and set `D
 
 ## VI. Results
 
-No labelled research cases were available, and the live LLM method was disabled in the recorded smoke run. Consequently, this paper reports no measured intent accuracy, scope precision/recall/F1, recovery nDCG, semantic evidence-support rate, runtime improvement, or time savings. Such quantities cannot be inferred from the software test results or from successful execution of unlabelled cases.
+The scored offline pilot produced the following AICAR outcomes:
 
-The verified result is narrower: the application has working local components and automated tests for selected paths; the current dataset and evaluation pipeline do not yet establish whether the agents' conclusions are correct or better than a baseline.
+| Task | Pilot result | Interpretation |
+|---|---|---|
+| Intent | 0/23 normalized exact matches; 0/23 introducing-commit matches | Strict label-matching result; not a full semantic judgment |
+| Scope | 0/18 decision accuracy; precision unavailable; recall 0; F1 0 | The gold set has 339 in-scope and 22 out-of-scope hunks; all 361 AICAR hunk predictions were `unclear` |
+| Recovery | nDCG unavailable | No predicted recovery ranking was returned |
+| Evidence support | 23/23 exact-extractive claims supported | Exact-quote support only; not semantic entailment or conclusion correctness |
+
+The Git and Git-script baselines also scored 0/23 on intent exact match and 0 scope F1. The single-prompt Gemini method was skipped because live model execution was disabled. These measurements reflect one offline run and a single-annotator, AI-assisted/reviewed label set; they do not establish reliable generalization or superiority. Software tests remain implementation checks, not research predictions.
 
 ## VII. Limitations and Threats to Validity
 
@@ -180,19 +189,19 @@ The verified result is narrower: the application has working local components an
 2. **Scope evidence:** the dashboard scope agent receives changed-file names rather than per-hunk diffs. A filename alone is insufficient to determine semantic task relevance.
 3. **Intent evidence:** the offline intent fallback largely repeats the latest commit message. A commit message may be incomplete, ambiguous, or unrelated to the selected code region.
 4. **Citation support:** the evaluation verifier can resolve citations and award credit for exact extractive quotes; it does not automatically establish semantic entailment. It is not integrated into the live dashboard path.
-5. **Dataset and labels:** all 50 active candidate cases are pending annotation. Repository selection, task provenance, human gold labels, and recovery eligibility are therefore unverified.
+5. **Dataset and labels:** all 50 cases are marked labelled by one annotator, and the rationales report AI-assisted annotation reviewed/confirmed by that annotator. There is no independent annotation or inter-rater agreement. The limited cohort and possible label/metric mismatch constrain interpretation; results should not be treated as validated gold-standard performance.
 6. **External services:** real Gemini calls, GitHub OAuth, private-repository cloning, provider timeouts, and production deployment were not verified. The OAuth tests use mocked HTTP responses.
 7. **Research design:** no participant study, independent annotation study, inter-rater agreement, or measured user-time comparison is available.
-8. **Reproducibility:** the recorded smoke run is offline and unscored. Its timing includes shared validation/extraction and is not a controlled model or end-to-end latency comparison.
+8. **Reproducibility:** the scored run is offline, single-run, and has no live LLM results. Its timing includes shared validation/extraction and is not a controlled model or end-to-end latency comparison.
 9. **Security and operations:** the application stores GitHub authorizations and analysis results. Authorization boundaries, clone resource controls, production routing, and database migration strategy require separate review before public deployment.
 
 ## VIII. Conclusion and Future Work
 
 AICAR is an implemented prototype that combines repository extraction, a conditional LangGraph workflow, optional Gemini integration, SQLite result storage, a React dashboard, project comparison, and a commit-to-file graph. Automated tests verify selected API, workflow, evaluation, and UI behaviors. The project also contains a separate pinned-evidence evaluation pipeline.
 
-The evidence available for this paper does not demonstrate accurate intent reconstruction, scope-creep detection, or recovery ranking. Scope analysis in the live path is based on filenames rather than individual code hunks; offline agent behavior is deliberately limited; the health score is heuristic; and all active research cases lack human labels. Accordingly, AICAR should be described as a prototype with an evaluation framework, not as a validated framework that outperforms existing methods.
+The scored pilot provides initial negative results: exact-match intent accuracy and scope F1 are both zero for AICAR under the current offline method and labels, while recovery ranking remains unavailable. All labels were supplied by one annotator and described as AI-assisted/reviewed, so these results need independent adjudication before stronger conclusions. Scope analysis in the live path is also based on filenames rather than individual code hunks, and the health score remains heuristic. AICAR should be described as a prototype with an exploratory evaluation, not as a validated framework that outperforms existing methods.
 
-Priority future work is to complete and provenance-check human annotations; verify recovery-project eligibility; run the preregistered offline and live evaluation without changing labels after observing predictions; integrate diff/hunk-level scope evidence and citation checks into the application path; calibrate or rename the health measure; test live GitHub and Gemini integrations; and address production authorization and resource-control concerns. Results should be added only after those tasks produce traceable artifacts.
+Priority future work is to independently review and adjudicate the existing AI-assisted labels, report inter-rater agreement if a second annotator is available, improve the intent and scope methods, and rerun the frozen dataset without changing labels after observing predictions. Additional work includes integrating hunk-level scope evidence and citation checks into the application path, calibrating or renaming the health measure, testing live GitHub and Gemini integrations, and addressing production authorization and resource-control concerns.
 
 ## References
 
@@ -211,10 +220,11 @@ Priority future work is to complete and provenance-check human annotations; veri
 | 1,932 projects; 315 (16%) abandoned; 128 (41%) of abandoned projects survived | Primary arXiv record and abstract for [1]. |
 | Health-score weights 0.40/0.35/0.25; component multipliers and caps | `backend/services/health_score.py`. |
 | Extraction limits: ten recent commits; up to five file histories; up to five diff files; 3,000-character per-file diff cap | `backend/services/repository_analyzer.py`. |
-| 9 repositories; 23 intent, 18 scope, 9 recovery cases; 50 total; 0 labelled; 50 pending; 566 commits | `evaluation/results/raw/20261014T152850_5739f230/manifest.json`, active datasets, and `evaluation/reports/evaluation_report.md`. |
+| 9 repositories; 23 intent, 18 scope, 9 recovery cases; 50 total; 50 marked labelled; 572 commits | `evaluation/results/raw/20261031T064515_7bbee3b3/manifest.json` and active datasets. |
 | 25/40/30/20/approximately 1,800 research design targets | `evaluation/ANNOTATION_GUIDE.md`; explicitly labelled targets, not observations. |
-| 200 attempts; 150 successful executions; 0 errors; 50 skipped; 0 scored cases | Saved smoke-run manifest `evaluation/results/raw/20261014T152850_5739f230/manifest.json`. |
+| 200 attempts; 150 successful executions; 0 errors; 50 skipped; 50 scored cases | Saved scored-run manifest `evaluation/results/raw/20261031T064515_7bbee3b3/manifest.json`. |
+| AICAR intent exact match 0/23; scope recall/F1 0; recovery nDCG unavailable; exact-extractive support 23/23 | `evaluation/results/raw/20261031T064515_7bbee3b3/evaluation_report.md`; interpret with the single-annotator caveat. |
 | 47 Python tests; 5 OAuth-focused tests; 10 frontend tests | Rerun outputs from 22 October 2026 in the audit session. |
 | Six demo endpoints, 0 available at check time | `scripts/smoke_test.py` check list and rerun output; endpoints were not running. |
 
-No performance or research-accuracy result is asserted in this draft. Section/table/figure numbering is document structure, not empirical evidence.
+Reported pilot metrics are limited to the specified offline run and label set; they are not claims of general performance. Section/table/figure numbering is document structure, not empirical evidence.

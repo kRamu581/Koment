@@ -1,6 +1,12 @@
 """Lazy Gemini access: offline analysis requires neither a key nor the SDK."""
 import json
 import os
+import time
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+load_dotenv()
 
 
 def generate(prompt, structured=False):
@@ -11,12 +17,20 @@ def generate(prompt, structured=False):
         raise RuntimeError("Set GEMINI_MODEL explicitly for reproducible live execution")
     from google import genai
     from google.genai import types
+    from google.genai.errors import ClientError, ServerError
     with genai.Client(api_key=os.environ["GEMINI_API_KEY"]) as client:
-        response = client.models.generate_content(
-            model=model, contents=prompt,
-            config=types.GenerateContentConfig(temperature=0, response_mime_type="application/json" if structured else "text/plain"),
-        )
-    return json.loads(response.text) if structured else response.text
+        for attempt in range(5):
+            try:
+                response = client.models.generate_content(
+                    model=model, contents=prompt,
+                    config=types.GenerateContentConfig(temperature=0, response_mime_type="application/json" if structured else "text/plain"),
+                )
+                return json.loads(response.text) if structured else response.text
+            except (ClientError, ServerError) as e:
+                if ("429" in str(e) or "RESOURCE_EXHAUSTED" in str(e) or "503" in str(e)) and attempt < 4:
+                    time.sleep(4 * (attempt + 1))
+                    continue
+                raise
 
 
 def structured_prediction(task, pack, specialized=False):

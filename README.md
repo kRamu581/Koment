@@ -4,13 +4,13 @@
 
 AICAR is a research-oriented software prototype for exploring why repository code changes exist, whether changes correspond to a task, and what evidence may inform recovery of an unfinished project. It combines Git-based repository extraction, a conditional LangGraph workflow, a React dashboard, SQLite persistence, and optional Gemini and GitHub OAuth integrations.
 
-> **Research integrity:** This is an implemented prototype, not a validated predictive system. The working evaluation dataset contains 50 candidate cases and zero human-labelled cases. The archived smoke run scored zero cases. No accuracy, precision, recall, F1, nDCG, statistical-significance, time-saving, or superiority result is established.
+> **Research integrity:** The active evaluation dataset contains 50 cases marked labelled by one annotator (23 intent, 18 scope, 9 recovery); the annotation rationales say they were AI-assisted and reviewed/confirmed by that annotator. The scored offline run `20261031T064515_7bbee3b3` executed 150 methods successfully and skipped 50 Gemini calls. On this pilot, AICAR exact-match intent accuracy was 0/23, scope F1 was 0, recovery nDCG was unavailable because no ranking was returned, and exact-extractive evidence support was 23/23 (not semantic validation). These single-annotator results are exploratory, not evidence of general performance or superiority.
 
 ## Abstract
 
 Software repositories preserve commits, changed paths, diffs, and file histories, but these records do not by themselves explain why code was introduced, whether a patch matches an intended task, or what work may remain in an inactive project. AICAR collects selected repository evidence and presents intent, scope, and recovery analysis paths in one web application. The frontend uses React 19, TypeScript, Vite, React Router, and Axios; the backend uses FastAPI, Pydantic, SQLAlchemy/SQLite, GitPython, and LangGraph. Optional Gemini calls provide model-assisted narratives, and optional GitHub OAuth supports account-linked repository access.
 
-The full-analysis workflow extracts Git evidence, invokes intent analysis, conditionally invokes scope analysis, invokes recovery analysis, builds a report, calculates code-defined health heuristics, creates a commit-to-file graph, and persists the result. Offline behavior is available but limited: intent is primarily based on the newest commit message, the dashboard scope agent receives changed-file names rather than code hunks, and recovery and health outputs are not calibrated. A separate evaluation pipeline operates on pinned Git evidence and requires human annotations before scoring. Its working dataset contains 9 repositories, 566 reachable commits, 23 intent cases, 18 scope cases, and 9 recovery candidates; all 50 cases are pending annotation. This report describes software behavior and does not claim research effectiveness.
+The full-analysis workflow extracts Git evidence, invokes intent analysis, conditionally invokes scope analysis, invokes recovery analysis, builds a report, calculates code-defined health heuristics, creates a commit-to-file graph, and persists the result. Offline behavior is available but limited: intent is primarily based on the newest commit message, the dashboard scope agent receives changed-file names rather than code hunks, and recovery and health outputs are not calibrated. A separate evaluation pipeline operates on pinned Git evidence. Its active dataset contains 9 repositories, 572 reachable commits, and 50 cases (23 intent, 18 scope, 9 recovery), all marked labelled by one annotator. The saved offline pilot is scored but does not establish general research effectiveness.
 
 ## Problem and Motivation
 
@@ -38,7 +38,7 @@ Understanding a repository change can require correlating commit messages, diffs
 | History/report | Save full-analysis result, generate report, list and reload analyses | Implemented; database is local SQLite |
 | GitHub OAuth | Optional OAuth callback, signed state, encrypted stored token, repository listing | Code is implemented; real OAuth exchange was not verified in the demo |
 | Gemini | Optional provider calls when explicitly enabled and configured | Not verified end-to-end in the demo; offline fallback was used |
-| Evaluation pipeline | Pinned evidence, Git/Git-script baselines, AICAR method, schema validation, evidence checks, metrics | Experimental infrastructure; no labelled cases or scored results |
+| Evaluation pipeline | Pinned evidence, Git/Git-script baselines, AICAR method, schema validation, evidence checks, metrics | One scored offline pilot; annotations are single-annotator and AI-assisted/reviewed; results are exploratory |
 
 These are implementation descriptions, not claims of research novelty or superiority.
 
@@ -48,7 +48,7 @@ These are implementation descriptions, not claims of research novelty or superio
 2. FastAPI validates the request. The repository analyzer clones the repository to a temporary directory and extracts selected recent commits, changed paths, diffs, file histories, and TODO/FIXME markers.
 3. The full-analysis endpoint constructs workflow state and invokes LangGraph:
    - intent analysis runs first;
-   - scope runs only if at least two commit entries, a task, and changed files are available;
+   - scope runs when the latest commit has changed files and a task is available from the user or latest commit message;
    - recovery and report steps then run.
 4. The backend calculates heuristic health values and creates a graph linking commits to changed files.
 5. `/full-analysis` stores the result in SQLite. The frontend displays the result; the history page lists saved analyses.
@@ -108,7 +108,7 @@ The intent agent receives the newest commit, selected file histories, and an evi
 
 ### Scope-Creep Analysis
 
-The task may be entered by the user. If a task is supplied without an explicit changed-file list, `/full-analysis` can use changed files from the newest commit. The application scope agent receives filenames, not line-level or hunk-level diff evidence. Offline mode reports `INSUFFICIENT_EVIDENCE`. The separate evaluator includes hunk-oriented cases, but its labels remain pending and those cases are not the live dashboard implementation.
+The task may be entered by the user. If a task is supplied without an explicit changed-file list, `/full-analysis` can use changed files from the newest commit. The application scope agent receives filenames, not line-level or hunk-level diff evidence. Offline mode reports `INSUFFICIENT_EVIDENCE`. The separate evaluator includes hunk-oriented cases; those scored cases are separate from the live dashboard implementation.
 
 ### Recovery Recommendations
 
@@ -308,6 +308,12 @@ These results were reported from local demo verification on **22 October 2026**.
 | Frontend lint | Passed; exit code 0 | Oxlint |
 | TypeScript and production build | Passed; exit code 0 | Build was directed to a temporary output directory |
 | Local smoke checks | 6 of 6 passed | Backend health/history/status and frontend routes |
+| Evaluation cases | 50 labelled; 50 scored in saved run `20261031T064515_7bbee3b3` | One annotator; rationales state AI-assisted and reviewed/confirmed |
+| Offline evaluation executions | 150 successful; 0 errors; 50 skipped | Four methods attempted; Gemini disabled, so one method was skipped per case |
+| AICAR intent | 0/23 normalized exact matches (0%) | Strict text metric; not a semantic accuracy estimate |
+| AICAR scope | Recall 0; F1 0; precision unavailable | No positive predictions; 361 hunk predictions abstained as unclear |
+| AICAR recovery | nDCG unavailable | No recovery ranking was returned |
+| AICAR evidence support | 23/23 exact-extractive claims supported (100%) | Quote matching only; not semantic entailment or conclusion correctness |
 | Public GitHub analysis | Verified live | Public repository clone, report, persistence/history reload |
 | Repository comparison | Verified live | Two public repositories; heuristic scores only |
 | Gemini live calls | Not verified | Key/model not configured |
@@ -333,22 +339,22 @@ Frontend tests and production build do not validate research effectiveness.
 
 The evaluation package is separate from the dashboard. It validates repository provenance and pinned revisions, reconstructs Git evidence packs, runs Git and Git-script baselines alongside an AICAR task-agent method, optionally runs a single-prompt Gemini method, validates prediction schemas, audits evidence references, and computes metrics only when human labels are present.
 
-The expanded local candidate dataset contains:
+The active candidate dataset contains:
 
 | Item | Working-tree count | Annotation |
 |---|---:|---|
 | Registered repositories | 9 | Source/revision records |
-| Reachable commits at pins | 566 | Git-derived count |
-| Intent candidates | 23 | All pending |
-| Scope task/diff candidates | 18 | All pending |
-| Recovery candidates | 9 | Eligibility unconfirmed |
-| Total candidates | 50 | 0 labelled; 50 pending |
+| Reachable commits at pins | 572 | Git-derived count in the scored run |
+| Intent cases | 23 | All marked labelled |
+| Scope task/diff cases | 18 | All marked labelled |
+| Recovery candidates | 9 | All marked labelled; unfinished eligibility recorded in annotations |
+| Total cases | 50 | 50 labelled by one annotator |
 
-The annotation guide's proposed targets are 25 repositories, 40 intent, 30 scope, 20 recovery, and approximately 1,800 commits. These are targets, not achieved counts. Source repository checkouts and expanded code-derived evidence packs are excluded from this publication; obtain and inspect the approved source repositories at the manifest's pinned revisions before running the expanded dataset. The tracked public branch retains its previous, smaller evaluation data.
+The annotation rationales state that annotation was AI-assisted and reviewed/confirmed by the same annotator. There is no independent second annotator or inter-rater agreement. The annotation guide's proposed targets are 25 repositories, 40 intent, 30 scope, 20 recovery, and approximately 1,800 commits; these are targets, not achieved counts.
 
-Archived run `20261014T152850_5739f230` is `unscored_smoke`: 200 attempts, 150 executed and successful calls, 0 errors, 50 skipped, and 0 scored cases. Gemini was disabled. The run demonstrates selected offline execution only. Metric values are unavailable (`null`), not zero.
+The saved run `20261031T064515_7bbee3b3` is marked `scored`: 200 attempts, 150 successful offline executions, 0 errors, 50 skipped Gemini calls, and 50 scored cases. AICAR scored 0/23 on normalized exact-match intent accuracy and 0 on scope F1; recovery nDCG is unavailable because the method returned no ranking. Exact-extractive evidence support was 23/23, a quote-matching check rather than a semantic correctness score.
 
-Metric definitions include normalized exact-match intent accuracy, introducing-commit accuracy, scope precision/recall/F1 with unclear-label handling, recovery nDCG, and an exact-extractive evidence-support measure. Metric definitions are not results; no labels currently support a research score.
+These are exploratory pilot measurements on one AI-assisted, single-annotator dataset. Intent exact-match results are sensitive to the accepted-answer labels; scope abstentions count against recall; and recovery has no ranking score. The LLM method was disabled. The results do not establish reliable generalization or superiority over baselines.
 
 ### Reproducibility
 
@@ -358,7 +364,7 @@ python -m pytest -q
 python evaluation/runners/run_all.py --smoke
 ```
 
-The smoke command writes artifacts under `evaluation/results/`. A scored run requires completing the human annotation workflow in `evaluation/ANNOTATION_GUIDE.md`; do not treat the smoke run as a comparative experiment. Live evaluation additionally requires `GEMINI_API_KEY` and `GEMINI_MODEL`.
+The runner writes artifacts under `evaluation/results/`. Use `--smoke` for an explicitly unscored run; the default runner scores the currently labelled cases. Live Gemini comparison additionally requires `GEMINI_API_KEY` and `GEMINI_MODEL`. Preserve frozen labels and archive a new manifest for any rerun.
 
 ## Limitations
 
@@ -366,7 +372,8 @@ The smoke command writes artifacts under `evaluation/results/`. A scored run req
 - Dashboard scope uses filenames rather than per-hunk code evidence; offline output abstains.
 - Offline recovery output is generic and health/recommendation scores are uncalibrated.
 - The separate evidence verifier is not integrated into the live dashboard workflow.
-- The expanded evaluation candidates have zero labels; research effectiveness is unvalidated.
+- The scored pilot has one AI-assisted, single-annotator label set and shows 0/23 exact-match intent accuracy and 0 scope F1 for AICAR; recovery nDCG is unavailable.
+- No independent annotation, inter-rater agreement, or validation on a held-out cohort is available.
 - Gemini and real GitHub OAuth were not tested end-to-end in the reported demo.
 - Clone/resource limits and production hardening need further review.
 - History is not a complete multi-user authorization system. Keep the development server bound to loopback unless proper deployment access controls are added.
@@ -383,8 +390,8 @@ The smoke command writes artifacts under `evaluation/results/`. A scored run req
 
 ## Future Work
 
-1. Complete evidence-linked human annotations and confirm recovery-case eligibility.
-2. Run scored, reproducible evaluations against the defined baselines.
+1. Independently review and adjudicate the AI-assisted annotations; measure inter-rater agreement before making stronger claims.
+2. Improve the intent and scope methods, then rerun the frozen, labelled cases and preserve the poor pilot results for comparison.
 3. Provide actual diff hunks and task-source evidence to dashboard scope analysis.
 4. Integrate claim verification into the live workflow and evaluate semantic support.
 5. Calibrate or rename health/recovery measures using independent human judgments.
