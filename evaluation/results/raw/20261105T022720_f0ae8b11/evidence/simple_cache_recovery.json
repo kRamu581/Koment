@@ -1,0 +1,183 @@
+{
+  "revision": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+    "message": "Merge pull request #26 from PaolaRuby/patch-1\n\nUpdate .gitattributes",
+    "changed_files": [],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/.gitattributes b/.gitattributes\nindex b263871..215c786 100644\n--- a/.gitattributes\n+++ b/.gitattributes\n@@ -7,4 +7,5 @@\n /.travis.yml        export-ignore\n /phpunit.xml.dist   export-ignore\n /.scrutinizer.yml   export-ignore\n+/.editorconfig      export-ignore\n /tests              export-ignore\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+      "message": "Merge pull request #26 from PaolaRuby/patch-1\n\nUpdate .gitattributes"
+    },
+    {
+      "hash": "be3dd16badd3efcb9bb05bc4e01cec8f7257001e",
+      "message": "Update .gitattributes"
+    },
+    {
+      "hash": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+      "message": "Merge pull request #24 from navarr/return-types\n\nAdd Parameter & Return Types (versions 3 of the library)"
+    },
+    {
+      "hash": "8707bf3cea6f710bf6ef05491234e3ab06f6432a",
+      "message": "Merge pull request #25 from php-fig/param-types\n\nAdd Parameter Types (versions 2 of the library)"
+    },
+    {
+      "hash": "dd145de984c0120833237e3913bf1fb3ec7f6dc7",
+      "message": "Make CacheException extend Throwable"
+    },
+    {
+      "hash": "66e27efc65ddef47d3008c243a235ab9359b5754",
+      "message": "Merge pull request #21 from J0WI/patch-1\n\nUpdate url to HTTPS"
+    },
+    {
+      "hash": "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e",
+      "message": "Add return types\n\nThis is a breaking change since implementations without return types are considered to be \"widening\" them, which is not allowed in PHP.\n\nImplementations that implement v3, however, are also implementing v1 and v2 as of PHP 7.4, so such implementations can use a require statement of `^1|^2|^3`.  Usage libraries also can use a require statement of `^1|^2|^3`"
+    },
+    {
+      "hash": "0f32180d22812f91e618c1a77bffcbfde8d94fe2",
+      "message": "Add parameter types\n\nThis is a breaking change since consumers may be providing entities that can be converted to a string.\n\nImplementations that implement v2, however, are also implementing v1 as of PHP 7.2, so such implementations can use a require statement of `^1|^2`. Usage libraries also can use a require statement of `^1|^2` so long as they are passing the specific variable type"
+    },
+    {
+      "hash": "8ffc7a5b36fa083afd48e7977aa76be8b501275f",
+      "message": "Update iterable doc types to identify values and in some cases keys"
+    },
+    {
+      "hash": "138d67470aec4282bee64376227edce94b6de4a4",
+      "message": "Update url to HTTPS"
+    },
+    {
+      "hash": "5a7b96b1dda5d957e01bc1bfe77dcca09c5a7474",
+      "message": "Merge pull request #20 from polishExperiment/patch-1\n\nUpdate CacheInterface.php"
+    },
+    {
+      "hash": "0ca494d45dfb02eea8b2a57a9460263e6ab988c2",
+      "message": "Update CacheInterface.php"
+    },
+    {
+      "hash": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+      "message": "Include slash at the beginning for DateInterval"
+    },
+    {
+      "hash": "753fa598e8f3b9966c886fe13f370baa45ef0e24",
+      "message": "Add link to spec"
+    },
+    {
+      "hash": "413539bbeeecee69c8af87a7329b591295b7af1b",
+      "message": "Update README to point at implementations"
+    },
+    {
+      "hash": "c671bf12e2e3d06e8af28421177b15b9f29d55e0",
+      "message": "Update to latest spec docblocks"
+    },
+    {
+      "hash": "7dcf8811a19f589909a041bbca3cefe57f6b37f5",
+      "message": "Merge pull request #6 from matthiasmullie/master\n\nUpdate reflecting suggestions since opening final review"
+    },
+    {
+      "hash": "30b99284d85efc2ea868452c29d35b451766a953",
+      "message": "Update reflecting suggestions since opening final review\n\n* Remove CounterInterface from this spec\n* Add CacheException & InvalidArgumentException interfaces\n* Return success status (bool) on delete, clear & deleteMultiple\n* Introduce a default value for getMultiple\n* Various documentation clarifications"
+    },
+    {
+      "hash": "13f43ba7f6d5ce37c6c115c26a5f653c2d9c1e18",
+      "message": "Removing PSR-6 bridge"
+    },
+    {
+      "hash": "f37b0569d0427a51a6b32eb6f342d27953f0dc4a",
+      "message": "Renaming exists() to has()"
+    },
+    {
+      "hash": "219449e3f6ab18e9317e3c01b6d7bdd9534b2ab7",
+      "message": "Add PSR-6 Bridge to the simplecache project"
+    },
+    {
+      "hash": "840c9e15b03632f825735a659dcc53f3ecfbe8e4",
+      "message": "Update interfaces according to latest spec version"
+    },
+    {
+      "hash": "6b67c817eb0e6a933e12dc29ef90ccbb53d8dc79",
+      "message": "Merge pull request #1 from jlaswell/patch-1\n\nMake namespacing consistent with spec"
+    },
+    {
+      "hash": "fa760be9769ff5198ffc9f70154b2f90fb06c4d3",
+      "message": "Make namespacing consistent with spec"
+    },
+    {
+      "hash": "65016252502e891b9847561fc5e106734574f0c9",
+      "message": "Add readme warning"
+    },
+    {
+      "hash": "21fd1d438c312dee9ced6e77bfb1d94bd9f995c9",
+      "message": "Add the interfaces from PSR-16"
+    },
+    {
+      "hash": "a960db084939da4a8d83be44e75015720c1b0eb5",
+      "message": "Add composer stuff"
+    },
+    {
+      "hash": "aab01a3e8122e84d3f4efcc92aa473bdb28b952c",
+      "message": "Initial commit with base files"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    "LICENSE.md",
+    "README.md",
+    "composer.json",
+    "src/CacheException.php",
+    "src/CacheInterface.php",
+    "src/InvalidArgumentException.php"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/.gitattributes b/.gitattributes\nindex b263871..215c786 100644\n--- a/.gitattributes\n+++ b/.gitattributes\n@@ -7,4 +7,5 @@\n /.travis.yml        export-ignore\n /phpunit.xml.dist   export-ignore\n /.scrutinizer.yml   export-ignore\n+/.editorconfig      export-ignore\n /tests              export-ignore\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/.gitattributes b/.gitattributes",
+      "header": "@@ -7,4 +7,5 @@",
+      "text": "@@ -7,4 +7,5 @@\n /.travis.yml        export-ignore\n /phpunit.xml.dist   export-ignore\n /.scrutinizer.yml   export-ignore\n+/.editorconfig      export-ignore\n /tests              export-ignore\n",
+      "id": "hunk_b5753a45aa6e7f38925b"
+    }
+  ],
+  "features": {
+    "commit_count": 28,
+    "file_count": 9,
+    "last_commit_age_days": 1628.0221483020252,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "LICENSE.md",
+      "README.md"
+    ],
+    "dependency_manifests": [],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": []
+  },
+  "commit_count": 28,
+  "file_count": 9,
+  "todos": [],
+  "repository": "simple_cache",
+  "source_repository": "https://github.com/php-fig/simple-cache"
+}

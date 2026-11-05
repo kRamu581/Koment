@@ -1,0 +1,909 @@
+{
+  "revision": "8a56cf39ab5ad9ebf1aeeabd13282fb8ed7982fc",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "8a56cf39ab5ad9ebf1aeeabd13282fb8ed7982fc",
+    "message": "Update xcodeproj version dependency to match latest Cocoapods version",
+    "changed_files": [
+      "synx.gemspec"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/synx.gemspec b/synx.gemspec\nindex 54609cf..0811f5f 100644\n--- a/synx.gemspec\n+++ b/synx.gemspec\n@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|\n \n   spec.add_dependency \"clamp\", \"~> 0.6\"\n   spec.add_dependency \"colorize\", \"~> 0.7\"\n-  spec.add_dependency \"xcodeproj\", \"~> 0.20.0\"\n+  spec.add_dependency \"xcodeproj\", \"~> 0.24.1\"\n end\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "8a56cf39ab5ad9ebf1aeeabd13282fb8ed7982fc",
+      "message": "Update xcodeproj version dependency to match latest Cocoapods version"
+    },
+    {
+      "hash": "b627219fa93d46c0de7bd0dc009580e6b02f63bb",
+      "message": "v0.0.61"
+    },
+    {
+      "hash": "226c33ef0bccd5270fd402e6f8b4d8b24db39b3a",
+      "message": "Fix thsi formatting in the CHANGELOG"
+    },
+    {
+      "hash": "fd40dad9c0a29cb7a6883bbbe13d9cece4786951",
+      "message": "CHANGELOG and Version bumps"
+    },
+    {
+      "hash": "938eca419ff79f9a50efe4cb2acfa0a2cd28a6f8",
+      "message": "Merge pull request #63 from archaeopterasa/localization_fix\n\nFixes handling of localized project files"
+    },
+    {
+      "hash": "e9dfa3cd8e032ced89439739e5a5214f789a5833",
+      "message": "Minor path cleanup"
+    },
+    {
+      "hash": "56769a7f60a55d4664b251654dab8c0f11d792f3",
+      "message": "Fixes handling of localized project files\n\nMade changes so synx understands Xcode's weird subfolder structure for localized files and folders (PBXVariantGroup), added a file with multiple localizations to the dummy project, and updated the tests."
+    },
+    {
+      "hash": "cb6a66b93d5cee26927d00a26b7c2306c46f61b1",
+      "message": "Merge pull request #60 from venmo/marklarr/restrict_synx_as_root\n\nProhibit running Synx as root to avoid file permission issues."
+    },
+    {
+      "hash": "5954f1fb29b46c5a62c6b7c330ece647e99a07fb",
+      "message": "[CHANGELOG]"
+    },
+    {
+      "hash": "d0107cc4fc0dc1b8827e787c2314d4d5e994a398",
+      "message": "Merge remote-tracking branch 'origin/master' into marklarr/restrict_synx_as_root"
+    },
+    {
+      "hash": "2cea7ca26c9ade25c805df99ccaf38c67561b9cb",
+      "message": "Merge pull request #61 from venmo/marklarr/version_command\n\nAdd version command"
+    },
+    {
+      "hash": "fdaca5b98c03455008174aa151dbf127c8c28df6",
+      "message": "[CHANGELOG]"
+    },
+    {
+      "hash": "bf431004921e01d6d9231bdf17bc7ae4c37275a9",
+      "message": "Add changelog"
+    },
+    {
+      "hash": "c5d876c5573349c252d191fe24982efa1582dde9",
+      "message": "Add flag for showing synx version."
+    },
+    {
+      "hash": "abcec91a8444b168ac353f5c864fa9c1e2658152",
+      "message": "Prohibit running Synx as root to avoid file permission issues."
+    },
+    {
+      "hash": "1f42b402d2454d6b3bb2381d935824d5f88c4057",
+      "message": "[Release] v0.0.54"
+    },
+    {
+      "hash": "0b2a7cf2f1ea74c8532c80b5c2db64eed7136871",
+      "message": "[Gemspec] Use the new xcodeproj."
+    },
+    {
+      "hash": "a52d4592cb08c8b0726a1f229c52c85b4738245d",
+      "message": "v0.0.53"
+    },
+    {
+      "hash": "f32ca6839a32091c7d70ed1b327af90488b0b99c",
+      "message": "Merge pull request #51 from dbachrach/master\n\nPods as a default exclusion + Fix for Exclusion path crash"
+    },
+    {
+      "hash": "7712b3a1ffdac44b60aaf5b2250eefefdccc47fd",
+      "message": "Fix prepending '/' issue"
+    },
+    {
+      "hash": "246b570c2b74adec2cf64ab73cd10913ecffd32d",
+      "message": "#49 and #50"
+    },
+    {
+      "hash": "0acb45307680034b01039b27ff6277d4fe5845f6",
+      "message": "Merge pull request #39 from alexgenco/xcodeproj_ext\n\nSeparate xcodeproj monkey patching"
+    },
+    {
+      "hash": "7407c7ffe52b011a5a430881a1f28c007a2fd108",
+      "message": "Separate xcodeproj monkey patching\n\nMoves all xcodeproj monkeypatching into synx/xcodeproj_ext following the\ndirectory structure of their respective class hierarchies."
+    },
+    {
+      "hash": "9d7052d274ccf698eb9b9f9dc431eb3427c50478",
+      "message": "Merge pull request #37 from alexgenco/remove_test_output\n\nRemove output from tests"
+    },
+    {
+      "hash": "c9424731d1504384ce310c21171fe01290fccfa7",
+      "message": "Remove output from tests\n\nTabber accepts an :output option, which points to $stdout by default.\nTests set this option to a StringIO object instead."
+    },
+    {
+      "hash": "9dec221cff9b0989919d3a66624375e4c49a1bcc",
+      "message": "Merge pull request #38 from alexgenco/fix_requires\n\nFix various `require` and `File.join` calls."
+    },
+    {
+      "hash": "e11706fa6750ecf92589e2a19d3545cb493f46cc",
+      "message": "Merge pull request #36 from alexgenco/refactor_tabber\n\nRemove class variables from Tabber"
+    },
+    {
+      "hash": "fa38cd75cf43a30e92188ee6c78f53b1a5bfaa98",
+      "message": "Fix various `require` and `File.join` calls.\n\nIn many cases it's safe to assume the load path will be setup correctly\nat runtime, eliminating the need for absolute paths. For instance, in\nyour bin/synx executable, RubyGems sets the load path such that you can\njust `require \"synx\"`. When you use RSpec, it also sets the load path to\nallow you to use `require \"spec_helper\"`.\n\nI also cleaned up the `File.join(File.dirname(__FILE__)...` stuff to use\nthe more idiomatic `File.expand_path`."
+    },
+    {
+      "hash": "b031242f639166f885c3f3c081c86949afc042d8",
+      "message": "Remove class variables from Tabber\n\n@@vars are generally considered a Bad Thing in Ruby.\nSee http://bit.ly/1kcit9V for a quick rationale."
+    },
+    {
+      "hash": "128e650e4ea6c773041506f139b98a878f6c1fcd",
+      "message": "Merge pull request #35 from sethfri/master\n\nFix misspelling of 'amended'"
+    },
+    {
+      "hash": "173e9652157a0e28cd0848b164200a44506277d0",
+      "message": "Fix misspelling of 'amended'"
+    },
+    {
+      "hash": "7e487bfad92b4f554eed1b9561db3842b8c6f506",
+      "message": "Merge pull request #32 from samsymons/no-color\n\nAdd support for the --no-color option."
+    },
+    {
+      "hash": "415b1de055d25e189dd4c51b70c08168602e5172",
+      "message": "Test that omitting the no_color option will allow colors to be printed."
+    },
+    {
+      "hash": "917d080e2de197c6f4c96bc4f1b19413fdb42b02",
+      "message": "Add support for the --no-color option.\n\nThe `colored` gem was replaced with `colorize`. It has a very\nsimilar API but comes with a few extra methods to remove or check\ncolors.\n\nThe Tabber class has had an options hash added to it, to make\nfurther additions easier."
+    },
+    {
+      "hash": "55858c507c5813e351e03e517cc41758bb3785fa",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "5e643ce9b10266483cae26720e66663aa52763d2",
+      "message": "Merge pull request #31 from samsymons/readme-update\n\nDocument the --quiet option."
+    },
+    {
+      "hash": "a56d1697c03d5c1e38f2f1e648689224d2577919",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "f47f0eada51c7ac2cdcce913fa7d42ff1d6f05a4",
+      "message": "Document the --quiet option."
+    },
+    {
+      "hash": "77b0f0606c36a178b52498ff81e3c6ec909b0410",
+      "message": "release 0.0.52"
+    },
+    {
+      "hash": "49c5a2219692d6bdc93539f8afbca0f57fa8b149",
+      "message": "Merge pull request #30 from venmo/marklarr/localization_and_huge_bug_fix\n\nen.lproj syncing"
+    },
+    {
+      "hash": "3fdd073674a8a2c81d98113ef4c7e413411282a9",
+      "message": "don't shove everything onto one line"
+    },
+    {
+      "hash": "911132d9558429c4f43aeb726960fe517370c435",
+      "message": "Ignore . and .."
+    },
+    {
+      "hash": "82103213018844adb19e1f958da315c093339ee9",
+      "message": "Smarter way of finding out if a file/folder was being tracked by the xcodeproj or not. Way less efficient, but doesn't fail like the old way did."
+    },
+    {
+      "hash": "a998a04b0461e76a59a6881ecfc7788043a1a3ff",
+      "message": "Add support for en.lproj being a group already vs not a group already. Can't get rid of en.lproj even if it's not a group because Xcode needs it"
+    },
+    {
+      "hash": "8337a3820235fca4308e61e59e479b6b3083086b",
+      "message": "add better test failure message, lets you know which files/folders caused the failure"
+    },
+    {
+      "hash": "871c25fc12795c44e9f48735d128bed9c790b313",
+      "message": "Merge pull request #29 from samsymons/quiet-flag\n\nAdd support for a --quiet option."
+    },
+    {
+      "hash": "ae8c9d12ce91d452db997d4a0af8549d6fdae4c0",
+      "message": "Move the quiet option check into set_options."
+    },
+    {
+      "hash": "e26f61b4910ba736930e81bb78267b3074722373",
+      "message": "Add support for a --quiet option."
+    },
+    {
+      "hash": "d6f7328236db653108f2332dfa338c61142c2a84",
+      "message": "0.0.51"
+    },
+    {
+      "hash": "a3ccff330a4dff537aba012d749c9ec1771aeb37",
+      "message": "Merge pull request #22 from mplewis/master\n\nFix regex escaping causing sync issues on paths with special characters"
+    },
+    {
+      "hash": "2b108d8e51ef22c3fd52d6b4973bcca84a872ba2",
+      "message": "Replace regex startswith with the start_with method to avoid regex escaping issues"
+    },
+    {
+      "hash": "fff31181fef9af5dd85bd5dc662217014f7b873d",
+      "message": "Merge pull request #21 from venmo/marklarr/hidden_files\n\nChange Dir globbing to also find hidden files. Ignore .DS_Store."
+    },
+    {
+      "hash": "f8d024008bc9f5f1b13f5f2a7e8bf7f305bd4cb3",
+      "message": "Change Dir globbing to also find hidden files. Ignore .DS_Store."
+    },
+    {
+      "hash": "ae1f587fd61c2b9e220599a73ee4a0d7eae46f0a",
+      "message": "0.0.5"
+    },
+    {
+      "hash": "e9d64eccd4de94e40385ab0b3337efdeba4defeb",
+      "message": "Merge pull request #17 from venmo/marklarr/forward_slashes_in_groups\n\nAbort sync if project has groups containing a forward slash"
+    },
+    {
+      "hash": "74d94a0d549b4d16499c4ac455e81f845115b9e3",
+      "message": "Merge pull request #18 from venmo/marklarr/better_exclusions\n\nbe more forgiving with exclusion paths"
+    },
+    {
+      "hash": "1559a27783becaaa695cb71dbbbb3aec44cd7b69",
+      "message": "Test was passing, because group_exclusions was getting mutated, but it wasn't clear. Make the expected value more clear."
+    },
+    {
+      "hash": "a0e53c3d36d96ae15b696b48a966fa3619c1135b",
+      "message": "pry-debugger has issues on ruby 2.0.0"
+    },
+    {
+      "hash": "ab672dba221fb08c66cad522e8b49d86c1bff0e1",
+      "message": "be more forgiving with exclusion names by prepending a '/' if it's not there"
+    },
+    {
+      "hash": "8c88bd7ae05aeb970f5d5f12bb6497c6179327a6",
+      "message": "remove coveralls"
+    },
+    {
+      "hash": "26f1c95454e9871aeb7dcac7c3d60278a3f93034",
+      "message": "Abort sync if project has groups containing a forward slash"
+    },
+    {
+      "hash": "4c17ccf1377282f7a8ea4581723e6e2517162fad",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "4b69c021386e67def141d80abe94121fcc30fe4c",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "92ddb8735ed2140f85e2331bd5a9d7ec5c455cf2",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "deac04818baf4d20dd439a6fed1bd8182b384d62",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "56939143276025f234f3f19f185eec560df70e0f",
+      "message": "0.0.4"
+    },
+    {
+      "hash": "4bdb95654577e3a9cbe741a3100743102ac4783e",
+      "message": "Merge pull request #11 from venmo/marklarr/aggregate_targets_2\n\nAllow all abstract targets to have build settings changed"
+    },
+    {
+      "hash": "2fc4fe441d8e488dfd2cdb9c8725bdb29bf40cac",
+      "message": "There's more than just native_targets that have build settings -- move code for build settings out onto abstract target."
+    },
+    {
+      "hash": "79a82e8e4c68ddf005061f7410a90b9edc951ae2",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "5b4fc9379d0a495091bbb64ae541dcfcfff3be79",
+      "message": "Update LICENSE.txt"
+    },
+    {
+      "hash": "da93bc61a110eb87efb2874eb3720b53969327da",
+      "message": "Merge pull request #7 from venmo/ayaka/links\n\nLinkify contributors."
+    },
+    {
+      "hash": "093fac85bae16ef1e7f10ea0e3bdb1f79041b0ad",
+      "message": "Linkify contributors."
+    },
+    {
+      "hash": "e04a16b40e742baacc1080a7f60caefd0a476a51",
+      "message": "Merge branch 'master' of github.com:venmo/synxronize"
+    },
+    {
+      "hash": "0ad658a7632966ace2e820c98a791aaf2228f7e3",
+      "message": "Change wording of description and summary"
+    },
+    {
+      "hash": "887fbca8d2d41a993163668379068631a5ad781a",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "465f7ac2125f55bb24336e63266a4ebcca7967ba",
+      "message": "v0.0.3"
+    },
+    {
+      "hash": "4295ade232c06e64c8da0f9d18e19a608832e89c",
+      "message": "Merge pull request #5 from venmo/marklarr/mkdir_error2\n\nAccommodate for case insensitive dir names"
+    },
+    {
+      "hash": "6477f9f0aba75e31d874872b5ecb0eb57b9ad2df",
+      "message": "Remove no longer needed call to rmtree"
+    },
+    {
+      "hash": "100dabcd51177082be567cbd2a739a2bf5b8371f",
+      "message": "Merge branch 'marklarr/mkdir_error2' of github.com:venmo/synxronize into marklarr/mkdir_error2"
+    },
+    {
+      "hash": "1daf370ac8358d904bd501e97918d674a8a47aa4",
+      "message": "Accommodate for the fact that directory names on OS X are apparently case insensitive\n\nMove to a better solution"
+    },
+    {
+      "hash": "35fba34edeef55806970162cbfb9925822d7c3e6",
+      "message": "Move to a better solution"
+    },
+    {
+      "hash": "26e6afcc2691c9a12586bff2b801f1360024a892",
+      "message": "accompany for the fact that directory names on OS X are apparently case insensitive"
+    },
+    {
+      "hash": "0bfed8f1c52eb32f0cf8879ab46a950b9f7d1c26",
+      "message": "rm a directory after syncing it to prevent trying to sync it again later on"
+    },
+    {
+      "hash": "571414ec9fefecba3e788cd2e0482fbdc326834a",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "6d8bedf363a16a4aa94acb8c598caf7b70e12588",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "5fb9e211d6d5af656b7524918c985f1253123404",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "31b5f0b4e206cabbccbdf5849026af25ecec2427",
+      "message": "Merge pull request #2 from mattt/master\n\nRemoving mention of Gemfile from installation instructions"
+    },
+    {
+      "hash": "bcac8bccb4d301c9f0eb694c8e1c9f08ca99b5b9",
+      "message": "Removing mention of Gemfile from installation instructions\n\nRealistically, most people installing this tool will not be invoking it within the context of a Ruby context. I found these details confusing—or at the very least, unexpected—on my first read-through."
+    },
+    {
+      "hash": "c985ff13580219209374b51404005f4914d1e2fb",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "2260e11c745972f125df7b43bcd81a2cb4f2c717",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "f6f387232c0e41fbca4e0df37df9007b80c13fda",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "88700e0b2536fc6350a3d986d44e374991885631",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "e0670642295c8f21e5efb3842a1843da18875e55",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "3af3f7b8e3b48555aedf19231ed853667f2dfbdb",
+      "message": "0.0.2"
+    },
+    {
+      "hash": "5b9f43a0d443146c035806b036e1310365ad6dc1",
+      "message": "Merge branch 'master' of github.com:venmo/synxronize"
+    },
+    {
+      "hash": "8c9624fd33c938b0f8d54906147e7bc76209210b",
+      "message": "add coveralls"
+    },
+    {
+      "hash": "a7ade8cda4b5135b51d806efd8699afc6666a05e",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "346201f2c214c7085797523b157dd7b819686b4f",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "e4dda6a1e7ca65c2734c84e31be19d0ebb257d48",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "364a8e5ade2563dadadcb578471023b91865f6b3",
+      "message": "Merge pull request #1 from venmo/marklarr/dev\n\nFirst release"
+    },
+    {
+      "hash": "cba16816ebaa12566759ff6e69c0f096489d7f5a",
+      "message": "run on OS X for CoreFoundation (required by xcodeproj)"
+    },
+    {
+      "hash": "fbf054029a36218b4b18831f391a1554afeffd48",
+      "message": "Merge branch 'marklarr/dev' of github.com:venmo/synxronize into marklarr/dev"
+    },
+    {
+      "hash": "8fcb0919c1b7f0e7b103c217b2a006e626a151d3",
+      "message": "run on OS X for CoreFoundation (required by xcodeproj)"
+    },
+    {
+      "hash": "d59a5be8a9c6f673aac5752b98ed8bce973969dd",
+      "message": "remove unsed images"
+    },
+    {
+      "hash": "4b9bfbff563bed2d73f41f6ebc573775a4bd75ba",
+      "message": "lock in gems to versions"
+    },
+    {
+      "hash": "904680d4a573a62cc2b0ced5bf0f4d45b7f13674",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "70404133429f26b6234155b99e8af49edcfbe504",
+      "message": "new images thanks to @virajbindra"
+    },
+    {
+      "hash": "4bdb425b12f864129e75a4d16553b117c58d941b",
+      "message": "try this ruby version"
+    },
+    {
+      "hash": "6b74a573605c8f4674eb68223f184f28050e271e",
+      "message": "change ruby version"
+    },
+    {
+      "hash": "3b68390ea1f29ec4d0aa17fabeddbc6771769fd6",
+      "message": "add travis"
+    },
+    {
+      "hash": "92748b35e0e6e01135e51832192c868d5c6e784a",
+      "message": "change gemspec wording"
+    },
+    {
+      "hash": "10c6aebf1270cdb3aad4114c829033e41a0e136c",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "bcab8a41ec9bc9396ca725ffb23c44a80b1f2f87",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "6ad582ac916dc066f317268ee8c0d372e0ba7371",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "0837840084193071a3dab8620fdf1c2c04eead7e",
+      "message": "fix before/after image"
+    },
+    {
+      "hash": "9d2bcd56007986910f07ba71ffec25c83da92f60",
+      "message": "fix before/after image"
+    },
+    {
+      "hash": "fce1a8cfa7ef4cac9b72d7e62707180bedf091bd",
+      "message": "add ocmock before/after image"
+    },
+    {
+      "hash": "cdd6ff5aac853a9a9cebbe614c30e5adaee9ab57",
+      "message": "Merge branch 'marklarr/dev' of github.com:venmo/synxronize into marklarr/dev"
+    },
+    {
+      "hash": "bc33361a0217344f15c2ccbcc8612201f1ba8ee9",
+      "message": "crunch before & after into one image"
+    },
+    {
+      "hash": "f560ef183b3c816009770af9162f4e091a2a509c",
+      "message": "make synx gif larger"
+    },
+    {
+      "hash": "8cde7bb65826cdee776650ca2ed1667b065b9ea4",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "a8e0bc865a5da106239c97485f251630c4eff27e",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "a9dc69b4891a25408ee767afff890b9392ace163",
+      "message": "remove tabs from terminal in gif"
+    },
+    {
+      "hash": "84dd45f561f339dfa35dad484c9d20b5f3d28ef1",
+      "message": "add piece about Xcode groups"
+    },
+    {
+      "hash": "af9f76b33f3a912b2eca194523b453930782280c",
+      "message": "add a better description"
+    },
+    {
+      "hash": "191b0ee96c55f5ad59f8ed0b10873afc2e10bef6",
+      "message": "add rubygem version badge"
+    },
+    {
+      "hash": "68ed1e5a1a60453d294d67663ccf87d05238ba61",
+      "message": "make the gif loop"
+    },
+    {
+      "hash": "b69f3610d3be466bdf6602c0856972f480b90a7a",
+      "message": "remove all docs from the gem"
+    },
+    {
+      "hash": "445dc6b4439cb9d81cdc6409e982f3dfa9087102",
+      "message": "Merge branch 'marklarr/dev' of github.com:venmo/synxronize into marklarr/dev"
+    },
+    {
+      "hash": "1638a85b6026dd7adc5d97c51c6b6366b2dd68ea",
+      "message": "replace gif with one that has larger terminal text"
+    },
+    {
+      "hash": "56c21471a0ec7bd3c4ef03671449f6739b2a2664",
+      "message": "Update README.md\n\ntypo"
+    },
+    {
+      "hash": "b19d37d94aa83671746d06fac38444ad4f061d83",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "7d3302d3f8f5bc98195e5686833ff5e69b7ad5c4",
+      "message": "add more options to README"
+    },
+    {
+      "hash": "6f8f9d52f7041a314365956aa8b13784901d754a",
+      "message": "use dup instead of clone"
+    },
+    {
+      "hash": "2318ecce55e9cd245abf46cc8028b515e8f6b7a2",
+      "message": "provide second argument"
+    },
+    {
+      "hash": "a4b7a6278730f193cbe09847c9f446539a1a8cb4",
+      "message": "print better message for excluded folders. Allow user to override exclusions and set themselves"
+    },
+    {
+      "hash": "5945224a865a9a545441bbc44bd312787756942f",
+      "message": "fix image refs"
+    },
+    {
+      "hash": "0822744416dbefb0ee42a85574061383ad421904",
+      "message": "add images to readme"
+    },
+    {
+      "hash": "7ec367413f1649f15563ec1a2fa11d8272db2736",
+      "message": "images for readmegit s"
+    },
+    {
+      "hash": "aefdddc9c21357b5aadb1566d7f64920261cf71b",
+      "message": "change to cleaner implementation"
+    },
+    {
+      "hash": "75e125807954a2811572a2310242d67c9d0a020f",
+      "message": "Change output wording, and also prune xibs"
+    },
+    {
+      "hash": "cd20d2da8d689f69101cd92c99201cc58dda50af",
+      "message": "add prune flag"
+    },
+    {
+      "hash": "a1f2d4551180cdd0dcb2d9bb41ed24f83bad6935",
+      "message": "add support for pruning the project of unused source and image files"
+    },
+    {
+      "hash": "da61fd60e230c2e3f9f30e5c4a8b4199b086a08d",
+      "message": "recurse through folders that are not in xcode project as well, checking their files"
+    },
+    {
+      "hash": "1f1db0aca9deca116d401c4c472527d226f8908c",
+      "message": "indent after folder name is printed"
+    },
+    {
+      "hash": "424497c8396d8a2bf02112e5a658d8200065ee1e",
+      "message": "verify that group exclusions exist before setting"
+    },
+    {
+      "hash": "aaae1a505cc10349f59ba3cba5fd22930eeacb8f",
+      "message": "format like others, with parens"
+    },
+    {
+      "hash": "ee9c2073f14615e8a6d5f7c1533f4e088f505475",
+      "message": "add 'Other files' to expected structures"
+    },
+    {
+      "hash": "3f381038c3e11d29a0e3d2729a5da81422497c28",
+      "message": "Ensure that groups don't have multiple parents"
+    },
+    {
+      "hash": "b4763f5b1e2536ab44a921c37233a8283cfac53a",
+      "message": "forgot to rename this"
+    },
+    {
+      "hash": "6d69414b7694744ce155caa8e72ec245c5773170",
+      "message": "remove duplicate files from groups"
+    },
+    {
+      "hash": "2abdf8f28168eaa06b86ed079a69fbf12dbb3601",
+      "message": "private method is private"
+    },
+    {
+      "hash": "7068ce854d498a60be610700f9615aec66f223e9",
+      "message": "rename synxronize to synx"
+    },
+    {
+      "hash": "0abbfc33a3827f964ec3f5bd8cf81047d860d9ed",
+      "message": "incorporate some output for the user"
+    },
+    {
+      "hash": "654689c6ec542e5d096d1381decc572698c1fb6a",
+      "message": "add back tear down"
+    },
+    {
+      "hash": "71a78fb7fb78d62f912063df9b2ff7eb04d743e1",
+      "message": "tabber for putsing out with tabs. specs."
+    },
+    {
+      "hash": "6039d15143128d86991efc0a838ebbe69862faee",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "850073f33a059b7fd86d2d43e65a22e248505764",
+      "message": "Update README.md"
+    },
+    {
+      "hash": "5025612d24f40c7b35aaf768fd29ae2c87bfd0fb",
+      "message": "usage instructions"
+    },
+    {
+      "hash": "1b731a87f45ced596fbdf65df2597157f9591856",
+      "message": "add period"
+    },
+    {
+      "hash": "7d1992160361ec1e1d23a4de38e5292b26b9d13f",
+      "message": "verbiage"
+    },
+    {
+      "hash": "d9ff00dddef51ad0f9d74534ab4d60c487b3232d",
+      "message": "Add executable for synxronize\nFinish gemspec"
+    },
+    {
+      "hash": "60efa5c889d4ad1074dec354e9c2d287bca3166d",
+      "message": "Test that build settings are changed accordingly"
+    },
+    {
+      "hash": "fc17eb1d17775f30e6df4e876ea80ea48ad79b80",
+      "message": "Handle lproj folders by simply copying them over as-is, since they are encoding strangely inside the pbxproj"
+    },
+    {
+      "hash": "f8197def89e87c3705cdc633755200fd8ed85a08",
+      "message": "Tests for expected group structure"
+    },
+    {
+      "hash": "930cb9e1ad05c26ed131e12ae4427a2301deb9e9",
+      "message": "Set instance variable to nil before each test"
+    },
+    {
+      "hash": "3310bb71fd529f04ca09cd2583cc4b32590a934d",
+      "message": "Add test dummy into gitignore"
+    },
+    {
+      "hash": "a3dc51bb40339baecec7cb904481f3d011b65aed",
+      "message": "copy over dummy into another directory, and then blow it away on the tear down, to avoid dirtying the git index."
+    },
+    {
+      "hash": "813c85ba3d717bdf34d0076ab3e8a459918c03cd",
+      "message": "Make expected file structure yml to aid in specs"
+    },
+    {
+      "hash": "8c5836b915eddefa02b2e05d1b466e2cbb71f0f7",
+      "message": "start integration test"
+    },
+    {
+      "hash": "7ec5dabe15fbcaa5624793dacb230b20133c6815",
+      "message": "add Products to exclusions"
+    },
+    {
+      "hash": "514bc1e8f84b47d038204b81ae15748122d8eb6c",
+      "message": "need this to be private"
+    },
+    {
+      "hash": "503fde67d98bd863855c1077f41d6ffa4669bf8d",
+      "message": "typo"
+    },
+    {
+      "hash": "6ef1b981355c4e4ed8ac2c46bd1fbcb92f9de849",
+      "message": "Need to move files after the sync, because folders that aren't in Xcodeproj might contain files that are, and we need to move those out before moving the folder"
+    },
+    {
+      "hash": "86a24700b21cc6df542ab4abcf98e0daf6f047bd",
+      "message": "typo"
+    },
+    {
+      "hash": "0ccd63d6637c6d69be470266ab1009ddb5108ea1",
+      "message": "Make a totally messed up xcodeproj"
+    },
+    {
+      "hash": "1ca9caf67e5a816d36edd4d2117e1f0e2b0310e9",
+      "message": "This can go into the sync recursion too"
+    },
+    {
+      "hash": "b2233a13e8e8e90240408a1224f105fdcc05b3cf",
+      "message": "Remove debugging puts. Can actually sync_path during the sync, apparently, and it won't mess up real_path"
+    },
+    {
+      "hash": "5f3f8f2cf300a35a6de36c4e34c7bf2f2a42dd54",
+      "message": "Just did this :D"
+    },
+    {
+      "hash": "c8937cd42843e6a9a6a8887de3b6febc36129bab",
+      "message": "Preserve directories that aren't in the xcode project but are in the physical structure. Handle xcdatamodel version_groups"
+    },
+    {
+      "hash": "fa0f9206ea63b40d27209946c9d898e1eb703a9d",
+      "message": "using hierarchy_path cleans things up a bit"
+    },
+    {
+      "hash": "c5a0f465f9e9720f3c8bfc38e10f7d81cc9fc6b6",
+      "message": "Refactor. Handle changed build setting paths."
+    },
+    {
+      "hash": "901f19c02e350a78060e3291782562b5f2d4441a",
+      "message": "Refactor my terrible code"
+    },
+    {
+      "hash": "dbdbf5aaf097ce7ec4e0dca74bf48f280354cf83",
+      "message": "remove venmo project from tests :)"
+    },
+    {
+      "hash": "cc96b06fb9b5fddb5de2374d92caeeb25752a053",
+      "message": "remove unused module"
+    },
+    {
+      "hash": "abd7a059058c475103b6e664e8c8a01e9e61420c",
+      "message": "Exclusions settable"
+    },
+    {
+      "hash": "244d02e1319eef877c0418dc9f60f60a2c6e6570",
+      "message": "Skip libraries and frameworks. By setting all source_trees to group, we don't have to worry about paths, just filenames"
+    },
+    {
+      "hash": "94b629e10e288ccc0b17f96eac1c27daec612ca6",
+      "message": "clean up logic b moving out into more methods."
+    },
+    {
+      "hash": "45ff3c5b42487ee9dbe040001d93c1ef2b09674b",
+      "message": "Add pry to debug tests. Sync the projects."
+    },
+    {
+      "hash": "1fddbfe088cf347f82f8ce75ff31f4ddce36529f",
+      "message": "don't track this xcode file"
+    },
+    {
+      "hash": "16ee1a622947efb73da30bac409ed896405ec17f",
+      "message": "ignore xcode files"
+    },
+    {
+      "hash": "a7925b312df52e15af1f928cb68922c75bc4edbc",
+      "message": "test memoization"
+    },
+    {
+      "hash": "8a741fa019e255375e268160baa229a997fd85a7",
+      "message": "more tests, dummy xcodeproj for testing"
+    },
+    {
+      "hash": "88c4b1e57750cb36c78b9dd53099942a7ee2fb1f",
+      "message": "Create a new Synxchronize::Project"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".gitignore",
+    ".travis.yml",
+    "CHANGELOG.md",
+    "Gemfile",
+    "LICENSE.txt",
+    "README.md",
+    "Rakefile",
+    "bin/synx",
+    "docs/images/synx-Xcode.jpg",
+    "docs/images/synx-finder-before-after.png",
+    "docs/images/synx-logo.png",
+    "docs/images/synx.gif",
+    "lib/synx.rb",
+    "lib/synx/project.rb",
+    "lib/synx/tabber.rb",
+    "lib/synx/version.rb",
+    "lib/synx/xcodeproj_ext.rb",
+    "lib/synx/xcodeproj_ext/project/object/abstract_object.rb",
+    "lib/synx/xcodeproj_ext/project/object/abstract_target.rb",
+    "lib/synx/xcodeproj_ext/project/object/pbx_file_reference.rb",
+    "lib/synx/xcodeproj_ext/project/object/pbx_group.rb",
+    "spec/dummy/dummy.xcodeproj/project.pbxproj",
+    "spec/dummy/dummy.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+    "spec/dummy/dummy.xcodeproj/xcuserdata/marklarsen.xcuserdatad/xcschemes/dummy.xcscheme",
+    "spec/dummy/dummy.xcodeproj/xcuserdata/marklarsen.xcuserdatad/xcschemes/xcschememanagement.plist",
+    "spec/dummy/dummy/AlreadySynced/Core Data.xcdatamodeld/.xccurrentversion",
+    "spec/dummy/dummy/AlreadySynced/Core Data.xcdatamodeld/Core Data 2.xcdatamodel/contents",
+    "spec/dummy/dummy/AlreadySynced/Core Data.xcdatamodeld/Core Data 3.xcdatamodel/contents",
+    "spec/dummy/dummy/AlreadySynced/Core Data.xcdatamodeld/Core Data 4.xcdatamodel/contents",
+    "spec/dummy/dummy/AlreadySynced/Core Data.xcdatamodeld/Core Data.xcdatamodel/contents",
+    "spec/dummy/dummy/AlreadySynced/FolderNotInXcodeProj/AnotherFileNotInXcodeProj.h",
+    "spec/dummy/dummy/AlreadySynced/FolderNotInXcodeProj/NSObject+abc.h",
+    "spec/dummy/dummy/AlreadySynced/FolderNotInXcodeProj/NSObject+abc.m",
+    "spec/dummy/dummy/AlreadySynced/FolderNotInXcodeProj/Wowwww.h",
+    "spec/dummy/dummy/AlreadySynced/FolderNotInXcodeProj/Wowwww.m",
+    "spec/dummy/dummy/AlreadySynced/Woot.h",
+    "spec/dummy/dummy/AlreadySynced/Woot.m",
+    "spec/dummy/dummy/AlreadySynced/stuff.xml",
+    "spec/dummy/dummy/FileNotInXcodeProj.h",
+    "spec/dummy/dummy/ManyFiles.h",
+    "spec/dummy/dummy/ManyFiles.m",
+    "spec/dummy/dummy/Wow.h",
+    "spec/dummy/dummy/Wow.m",
+    "spec/dummy/dummy/data.json",
+    "spec/dummy/dummy/dummy-Prefix.pch",
+    "spec/dummy/dummy/dummy.h",
+    "spec/dummy/dummy/dummy.m",
+    "spec/dummy/dummy/en.lproj/Localizable.strings",
+    "spec/dummy/dummy/en.lproj/de.lproj/Localizable.strings",
+    "spec/dummy/dummy/folderWithGroupNotLinked/data.json",
+    "spec/dummy/dummy/image-not-in-xcodeproj.png",
+    "spec/dummy/dummy/image.png",
+    "spec/dummy/dummyTests/dummyTests-Info.plist",
+    "spec/dummy/dummyTests/dummyTests-prefix.pch",
+    "spec/dummy/dummyTests/dummyTests.m",
+    "spec/dummy/dummyTests/en.lproj/InfoPlist.strings",
+    "spec/spec_helper.rb",
+    "spec/synx/expected_file_structure.yml",
+    "spec/synx/expected_group_structure.yml",
+    "spec/synx/project_spec.rb",
+    "spec/synx/tabber_spec.rb",
+    "spec/synx/xcodeproj_ext/project/object/pbx_group_spec.rb",
+    "synx.gemspec"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/synx.gemspec b/synx.gemspec\nindex 54609cf..0811f5f 100644\n--- a/synx.gemspec\n+++ b/synx.gemspec\n@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|\n \n   spec.add_dependency \"clamp\", \"~> 0.6\"\n   spec.add_dependency \"colorize\", \"~> 0.7\"\n-  spec.add_dependency \"xcodeproj\", \"~> 0.20.0\"\n+  spec.add_dependency \"xcodeproj\", \"~> 0.24.1\"\n end\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/synx.gemspec b/synx.gemspec",
+      "header": "@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|",
+      "text": "@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|\n \n   spec.add_dependency \"clamp\", \"~> 0.6\"\n   spec.add_dependency \"colorize\", \"~> 0.7\"\n-  spec.add_dependency \"xcodeproj\", \"~> 0.20.0\"\n+  spec.add_dependency \"xcodeproj\", \"~> 0.24.1\"\n end\n",
+      "id": "hunk_f07f0c6741e710dc7c21"
+    }
+  ],
+  "features": {
+    "commit_count": 194,
+    "file_count": 63,
+    "last_commit_age_days": 4151.929011727952,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 1,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "CHANGELOG.md",
+      "README.md"
+    ],
+    "dependency_manifests": [],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": [
+      "docs/images/synx-Xcode.jpg",
+      "docs/images/synx-finder-before-after.png",
+      "docs/images/synx-logo.png",
+      "docs/images/synx.gif"
+    ]
+  },
+  "commit_count": 194,
+  "file_count": 63,
+  "todos": [],
+  "repository": "synx",
+  "source_repository": "https://github.com/venmo/synx",
+  "task": "Update xcodeproj runtime dependency in synx.gemspec to match latest CocoaPods version."
+}

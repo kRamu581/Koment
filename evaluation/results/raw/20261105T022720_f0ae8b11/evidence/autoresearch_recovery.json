@@ -1,0 +1,221 @@
+{
+  "revision": "228791fb499afffb54b46200aca536f79142f117",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "228791fb499afffb54b46200aca536f79142f117",
+    "message": "Merge pull request #342 from kaizen-38/feat/bug-fix\n\nfix(analysis): define best_bpb before y-axis scaling",
+    "changed_files": [],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/analysis.ipynb b/analysis.ipynb\nindex 8455ea4..bef1883 100644\n--- a/analysis.ipynb\n+++ b/analysis.ipynb\n@@ -134,8 +134,9 @@\n     \"ax.grid(True, alpha=0.2)\\n\",\n     \"\\n\",\n     \"# Y-axis: from just below best to just above baseline\\n\",\n-    \"margin = (baseline_bpb - best) * 0.15\\n\",\n-    \"ax.set_ylim(best - margin, baseline_bpb + margin)\\n\",\n+    \"best_bpb = kept_bpb.min()\\n\",\n+    \"margin = (baseline_bpb - best_bpb) * 0.15\\n\",\n+    \"ax.set_ylim(best_bpb - margin, baseline_bpb + margin)\\n\",\n     \"\\n\",\n     \"plt.tight_layout()\\n\",\n     \"plt.savefig(\\\"progress.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n\",\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "228791fb499afffb54b46200aca536f79142f117",
+      "message": "Merge pull request #342 from kaizen-38/feat/bug-fix\n\nfix(analysis): define best_bpb before y-axis scaling"
+    },
+    {
+      "hash": "e6d79c123441a53d91bb8df7adf4db45cf120bf1",
+      "message": "Enhance README with more project context and links\n\nAdded additional context and references to the README."
+    },
+    {
+      "hash": "f32ab047a298737d459ac9ded1bc2fc399505159",
+      "message": "fix(analysis): define best_bpb before y-axis scaling"
+    },
+    {
+      "hash": "32a1460f626e28479d427c033ee485bf5f86875a",
+      "message": "Merge pull request #301 from indianspeedster/master\n\nadd AMD ROCm fork to notable forks section"
+    },
+    {
+      "hash": "513fe6fceef9b37b6c24c8dc0f1050dee451c1ff",
+      "message": "add AMD ROCm fork to notable forks section"
+    },
+    {
+      "hash": "c2450add72cc80317be1fe8111974b892da10944",
+      "message": "Guard against infinite loop when no training shards exist, fix README typo"
+    },
+    {
+      "hash": "0be1e4fdf9882ea3b387ff432f2547246fc556bc",
+      "message": "fix NaN loss not caught by fast-fail check"
+    },
+    {
+      "hash": "ebf357841b7358ae106b2f7ac378f9ec97b975f6",
+      "message": "fix(train): make NaN fast-fail check explicit"
+    },
+    {
+      "hash": "09ebea439db47bf08f925fc1654dc30415a58c64",
+      "message": "Guard against infinite loop when no training shards exist, fix README typo\n\nAdd assertion after filtering val_path from parquet_paths for the \"train\"\nsplit so an empty list fails fast instead of spinning in a silent infinite\nloop. Also remove stray article \"a\" in README (\"a three files\" → \"three\nfiles\").\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    },
+    {
+      "hash": "c12eef778edafc89cd7ce036a7f500ddb5397a65",
+      "message": "Include beginner's guide to neural networks\n\nAdded a resource link for beginners in neural networks."
+    },
+    {
+      "hash": "b5ba8ac00d64d38fd5b69714fe398b61c56d8160",
+      "message": "fix NaN loss not caught by fast-fail check\n\n`train_loss_f > 100` silently passes on NaN because IEEE 754 NaN\ncomparisons always return False. When an agent experiment produces\nNaN (e.g. from an aggressive LR change), the run wastes the full\n5-minute budget instead of failing fast.\n\n`not (x <= 100)` catches both >100 and NaN with no added complexity.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    },
+    {
+      "hash": "068d93da75aa45f72ba482046f108241aaaf1b8e",
+      "message": "clarify that results.tsv should not be committed, leave untracked"
+    },
+    {
+      "hash": "c92bee55ebc339e8b1501f6b5c9cfb54835a9de8",
+      "message": "some docs on what to play with to make autoresearch better on smaller computers"
+    },
+    {
+      "hash": "2224cd7cae18f3e8e168a452f474592cfce1c2bd",
+      "message": "reshuffle readme a bit and link to tiny stories for apple silicon guidance"
+    },
+    {
+      "hash": "f16ece488fd8a9c363ac26bd7ca7e14abfef554f",
+      "message": "clarification to baseline run instruction, there was some language from a previous version that wasn't fully cleaned up"
+    },
+    {
+      "hash": "9264224a3cd92dd4efe39cc173672c9a07b78d12",
+      "message": "add notable fork mlx"
+    },
+    {
+      "hash": "500114a035cb63a4fc1829036e064b22870c61b4",
+      "message": "Honor --download-workers instead of hardcoding 8 download workers"
+    },
+    {
+      "hash": "7043095a183dd69b2d9062da2a730cfee0e3b48b",
+      "message": "add macos fork"
+    },
+    {
+      "hash": "777e4437905890a2be66bf4d0758c2f1da0a9368",
+      "message": "fix(prepare): honor --download-workers"
+    },
+    {
+      "hash": "6fdefa7265d1cb2346e63c6f8b9824f5ff389a83",
+      "message": "instruct the agent to also read README, should be good context"
+    },
+    {
+      "hash": "b0d047425faf747e130b4758fd744e18a5f136f9",
+      "message": "clarify note on platforms"
+    },
+    {
+      "hash": "8a5c4869bdac309814d594466a95869e4c53950e",
+      "message": "bunch of small changes to docs and files, and a teaser figure with a blooper :)"
+    },
+    {
+      "hash": "032d2036954a6c41a268005e6a50fc5b18f4a0a7",
+      "message": "minor tweaks, pin val shard"
+    },
+    {
+      "hash": "47ec1ade0a42ef929c3d2ac9be92cc6475966584",
+      "message": "tweaks to docs for both humans and agents"
+    },
+    {
+      "hash": "ada84e52472409dc23ea421a6db245c57950a7da",
+      "message": "soften the language just a bit"
+    },
+    {
+      "hash": "bd7553449414cca25a48efc6572f3479f4a80d23",
+      "message": "Fix agent crash blindspot by forcing it to read traceback"
+    },
+    {
+      "hash": "bdf0c0d5201795fcbc0ec20487a03561b407cdcc",
+      "message": "Allow agent to diagnose crashes by reading the python stack trace"
+    },
+    {
+      "hash": "bb54287479ef4079adfc472287d1bd4b40c928fe",
+      "message": "Merge pull request #2 from marcinbogdanski/fix/fa3-non-hopper-fallback\n\nadd fallback FA3 kernel for non-Hopper GPUs"
+    },
+    {
+      "hash": "17b480aa6511e20a71c60b9541d2491263eab921",
+      "message": "add fallback FA3 kernel for non-Hopper GPUs"
+    },
+    {
+      "hash": "9c383a8c94d1fc047d43a592dbd6327d22ccfac0",
+      "message": "add analysis notebook for convenience"
+    },
+    {
+      "hash": "69eb7f9b99c128544dfed6d3e120d1bc1e44a471",
+      "message": "cleanup more references to spawn.sh"
+    },
+    {
+      "hash": "ae81d559043d2692ac085b733d32bcbe172cf57b",
+      "message": "remove spawn.sh reference from README (file was deleted)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+    },
+    {
+      "hash": "4ab35a919b47ef66e508b400635820a7febb1ea1",
+      "message": "also ref twitter"
+    },
+    {
+      "hash": "1e207aaf2131df2a4efde060e7c38f5d98935bc3",
+      "message": "dam, erase experimental file from before that snuck through in my purge"
+    },
+    {
+      "hash": "2a70301b103fcddae6efeaf3cceaa5f88f5fdb24",
+      "message": "small tweak readme"
+    },
+    {
+      "hash": "b11d6f283f866eb7e10fb776a4b8553fef873fd5",
+      "message": "initial commit"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".gitignore",
+    ".python-version",
+    "README.md",
+    "analysis.ipynb",
+    "prepare.py",
+    "program.md",
+    "progress.png",
+    "pyproject.toml",
+    "train.py",
+    "uv.lock"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/analysis.ipynb b/analysis.ipynb\nindex 8455ea4..bef1883 100644\n--- a/analysis.ipynb\n+++ b/analysis.ipynb\n@@ -134,8 +134,9 @@\n     \"ax.grid(True, alpha=0.2)\\n\",\n     \"\\n\",\n     \"# Y-axis: from just below best to just above baseline\\n\",\n-    \"margin = (baseline_bpb - best) * 0.15\\n\",\n-    \"ax.set_ylim(best - margin, baseline_bpb + margin)\\n\",\n+    \"best_bpb = kept_bpb.min()\\n\",\n+    \"margin = (baseline_bpb - best_bpb) * 0.15\\n\",\n+    \"ax.set_ylim(best_bpb - margin, baseline_bpb + margin)\\n\",\n     \"\\n\",\n     \"plt.tight_layout()\\n\",\n     \"plt.savefig(\\\"progress.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n\",\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/analysis.ipynb b/analysis.ipynb",
+      "header": "@@ -134,8 +134,9 @@",
+      "text": "@@ -134,8 +134,9 @@\n     \"ax.grid(True, alpha=0.2)\\n\",\n     \"\\n\",\n     \"# Y-axis: from just below best to just above baseline\\n\",\n-    \"margin = (baseline_bpb - best) * 0.15\\n\",\n-    \"ax.set_ylim(best - margin, baseline_bpb + margin)\\n\",\n+    \"best_bpb = kept_bpb.min()\\n\",\n+    \"margin = (baseline_bpb - best_bpb) * 0.15\\n\",\n+    \"ax.set_ylim(best_bpb - margin, baseline_bpb + margin)\\n\",\n     \"\\n\",\n     \"plt.tight_layout()\\n\",\n     \"plt.savefig(\\\"progress.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n\",\n",
+      "id": "hunk_f766edf9f10699bdbcca"
+    }
+  ],
+  "features": {
+    "commit_count": 36,
+    "file_count": 10,
+    "last_commit_age_days": 180.71251867239584,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "README.md",
+      "program.md"
+    ],
+    "dependency_manifests": [
+      "pyproject.toml"
+    ],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": [
+      "progress.png",
+      "uv.lock"
+    ]
+  },
+  "commit_count": 36,
+  "file_count": 10,
+  "todos": [],
+  "repository": "autoresearch",
+  "source_repository": "https://github.com/karpathy/autoresearch"
+}

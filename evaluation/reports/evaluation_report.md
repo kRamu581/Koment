@@ -2,17 +2,17 @@
 
 ## Experimental setup
 
-Run `20261104T175916_803228cd`: **unscored_smoke**. Pinned Git objects; shared evidence per case. Python 3.11.0. Model: gemini-3.5-flash. All measurements below come from this run.
+Run `20261105T022720_f0ae8b11`: **scored**. Pinned Git objects; shared evidence per case. Python 3.11.0. Model: gemini-3.5-flash-lite. All measurements below come from this run.
 
 ## Dataset size
 
 {
-  "intent": 23,
+  "intent": 0,
   "scope": 0,
-  "recovery": 0,
+  "recovery": 9,
   "repositories": 9,
   "commits": 572,
-  "labelled": 23,
+  "labelled": 9,
   "pending": 0
 }
 
@@ -57,15 +57,15 @@ Out-of-scope is the positive class. Gold unclear hunks are excluded from binary 
 
 ## Recovery nDCG
 
-Git baseline: {'ndcg': None, 'repositories': 0, 'predicted_ranking': [], 'ground_truth_ranking': []}
-Git log/blame script: {'ndcg': None, 'repositories': 0, 'predicted_ranking': [], 'ground_truth_ranking': []}
-Single-prompt LLM: {'ndcg': None, 'repositories': 0, 'predicted_ranking': [], 'ground_truth_ranking': []}
-Proposed AICAR: {'ndcg': None, 'repositories': 0, 'predicted_ranking': [], 'ground_truth_ranking': []}
+Git baseline: {'ndcg': None, 'repositories': 9, 'predicted_ranking': [], 'ground_truth_ranking': ['simple_cache_recovery', 'autoresearch_recovery', 'aicar_recovery', 'tinyhttpd_recovery', 'synx_recovery', 'codex_plugin_cc_recovery', 'capsule_identity_recovery', 'spank_recovery', 'java8_tutorial_recovery']}
+Git log/blame script: {'ndcg': None, 'repositories': 9, 'predicted_ranking': [], 'ground_truth_ranking': ['simple_cache_recovery', 'autoresearch_recovery', 'aicar_recovery', 'tinyhttpd_recovery', 'synx_recovery', 'codex_plugin_cc_recovery', 'capsule_identity_recovery', 'spank_recovery', 'java8_tutorial_recovery']}
+Single-prompt LLM: {'ndcg': None, 'repositories': 9, 'predicted_ranking': [], 'ground_truth_ranking': ['simple_cache_recovery', 'autoresearch_recovery', 'aicar_recovery', 'tinyhttpd_recovery', 'synx_recovery', 'codex_plugin_cc_recovery', 'capsule_identity_recovery', 'spank_recovery', 'java8_tutorial_recovery']}
+Proposed AICAR: {'ndcg': None, 'repositories': 9, 'predicted_ranking': [], 'ground_truth_ranking': ['simple_cache_recovery', 'autoresearch_recovery', 'aicar_recovery', 'tinyhttpd_recovery', 'synx_recovery', 'codex_plugin_cc_recovery', 'capsule_identity_recovery', 'spank_recovery', 'java8_tutorial_recovery']}
 Full-cohort nDCG uses gain 2^grade-1 and log2(position+1) discounts, grades 0..3; deterministic case-ID tie break. At least two distinct human-labelled repositories are required. Any missing score makes the cohort metric unavailable.
 
 ## Analysis time
 
-Measured pipeline seconds: 490.157165; shared validation/extraction: 245.733884. Executed: 92; successful: 47; errors: 45; skipped: 0. See timings.csv for timestamps and actual input counts. validation/extraction plus method execution; shared extraction is measured separately, report/plot generation excluded. No scaling trend or speedup is inferred from a single smoke run.
+Measured pipeline seconds: 165.501400; shared validation/extraction: 117.485984. Executed: 36; successful: 36; errors: 0; skipped: 0. See timings.csv for timestamps and actual input counts. validation/extraction plus method execution; shared extraction is measured separately, report/plot generation excluded. No scaling trend or speedup is inferred from a single smoke run.
 
 ## Comparison table
 

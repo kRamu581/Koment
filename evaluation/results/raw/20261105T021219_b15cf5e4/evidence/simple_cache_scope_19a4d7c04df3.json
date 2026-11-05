@@ -1,0 +1,201 @@
+{
+  "revision": "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e",
+  "as_of": "2026-09-22T17:13:38.613295+00:00",
+  "commit": {
+    "hash": "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e",
+    "message": "Add return types\n\nThis is a breaking change since implementations without return types are considered to be \"widening\" them, which is not allowed in PHP.\n\nImplementations that implement v3, however, are also implementing v1 and v2 as of PHP 7.4, so such implementations can use a require statement of `^1|^2|^3`.  Usage libraries also can use a require statement of `^1|^2|^3`",
+    "changed_files": [
+      "composer.json",
+      "src/CacheInterface.php"
+    ],
+    "diff": [
+      {
+        "file": "(complete commit patch)",
+        "diff": "diff --git a/composer.json b/composer.json\nindex be86dc9..82f1665 100644\n--- a/composer.json\n+++ b/composer.json\n@@ -19,7 +19,7 @@\n     },\n     \"extra\": {\n         \"branch-alias\": {\n-            \"dev-master\": \"2.0.x-dev\"\n+            \"dev-master\": \"3.0.x-dev\"\n         }\n     }\n }\ndiff --git a/src/CacheInterface.php b/src/CacheInterface.php\nindex cb05d2f..671e340 100644\n--- a/src/CacheInterface.php\n+++ b/src/CacheInterface.php\n@@ -15,7 +15,7 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function get(string $key, mixed $default = null);\n+    public function get(string $key, mixed $default = null): mixed;\n \n     /**\n      * Persists data in the cache, uniquely referenced by a key with an optional expiration TTL time.\n@@ -31,7 +31,7 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null);\n+    public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null): bool;\n \n     /**\n      * Delete an item from the cache by its unique key.\n@@ -43,14 +43,14 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function delete(string $key);\n+    public function delete(string $key): bool;\n \n     /**\n      * Wipes clean the entire cache's keys.\n      *\n      * @return bool True on success and false on failure.\n      */\n-    public function clear();\n+    public function clear(): bool;\n \n     /**\n      * Obtains multiple cache items by their unique keys.\n@@ -64,7 +64,7 @@ interface CacheInterface\n      *   MUST be thrown if $keys is neither an array nor a Traversable,\n      *   or if any of the $keys are not a legal value.\n      */\n-    public function getMultiple(iterable $keys, mixed $default = null);\n+    public function getMultiple(iterable $keys, mixed $default = null): iterable;\n \n     /**\n      * Persists a set of key => value pairs in the cache, with an optional TTL.\n@@ -80,7 +80,7 @@ interface CacheInterface\n      *   MUST be thrown if $values is neither an array nor a Traversable,\n      *   or if any of the $values are not a legal value.\n      */\n-    public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null);\n+    public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null): bool;\n \n     /**\n      * Deletes multiple cache items in a single operation.\n@@ -93,7 +93,7 @@ interface CacheInterface\n      *   MUST be thrown if $keys is neither an array nor a Traversable,\n      *   or if any of the $keys are not a legal value.\n      */\n-    public function deleteMultiple(iterable $keys);\n+    public function deleteMultiple(iterable $keys): bool;\n \n     /**\n      * Determines whether an item is present in the cache.\n@@ -110,5 +110,5 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function has(string $key);\n+    public function has(string $key): bool;\n }\n"
+      }
+    ]
+  },
+  "commit_history": [
+    {
+      "hash": "19a4d7c04df3b8e1bc7f68d7913221c6d731f89e",
+      "message": "Add return types\n\nThis is a breaking change since implementations without return types are considered to be \"widening\" them, which is not allowed in PHP.\n\nImplementations that implement v3, however, are also implementing v1 and v2 as of PHP 7.4, so such implementations can use a require statement of `^1|^2|^3`.  Usage libraries also can use a require statement of `^1|^2|^3`"
+    },
+    {
+      "hash": "0f32180d22812f91e618c1a77bffcbfde8d94fe2",
+      "message": "Add parameter types\n\nThis is a breaking change since consumers may be providing entities that can be converted to a string.\n\nImplementations that implement v2, however, are also implementing v1 as of PHP 7.2, so such implementations can use a require statement of `^1|^2`. Usage libraries also can use a require statement of `^1|^2` so long as they are passing the specific variable type"
+    },
+    {
+      "hash": "8ffc7a5b36fa083afd48e7977aa76be8b501275f",
+      "message": "Update iterable doc types to identify values and in some cases keys"
+    },
+    {
+      "hash": "5a7b96b1dda5d957e01bc1bfe77dcca09c5a7474",
+      "message": "Merge pull request #20 from polishExperiment/patch-1\n\nUpdate CacheInterface.php"
+    },
+    {
+      "hash": "0ca494d45dfb02eea8b2a57a9460263e6ab988c2",
+      "message": "Update CacheInterface.php"
+    },
+    {
+      "hash": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+      "message": "Include slash at the beginning for DateInterval"
+    },
+    {
+      "hash": "753fa598e8f3b9966c886fe13f370baa45ef0e24",
+      "message": "Add link to spec"
+    },
+    {
+      "hash": "413539bbeeecee69c8af87a7329b591295b7af1b",
+      "message": "Update README to point at implementations"
+    },
+    {
+      "hash": "c671bf12e2e3d06e8af28421177b15b9f29d55e0",
+      "message": "Update to latest spec docblocks"
+    },
+    {
+      "hash": "7dcf8811a19f589909a041bbca3cefe57f6b37f5",
+      "message": "Merge pull request #6 from matthiasmullie/master\n\nUpdate reflecting suggestions since opening final review"
+    },
+    {
+      "hash": "30b99284d85efc2ea868452c29d35b451766a953",
+      "message": "Update reflecting suggestions since opening final review\n\n* Remove CounterInterface from this spec\n* Add CacheException & InvalidArgumentException interfaces\n* Return success status (bool) on delete, clear & deleteMultiple\n* Introduce a default value for getMultiple\n* Various documentation clarifications"
+    },
+    {
+      "hash": "13f43ba7f6d5ce37c6c115c26a5f653c2d9c1e18",
+      "message": "Removing PSR-6 bridge"
+    },
+    {
+      "hash": "f37b0569d0427a51a6b32eb6f342d27953f0dc4a",
+      "message": "Renaming exists() to has()"
+    },
+    {
+      "hash": "219449e3f6ab18e9317e3c01b6d7bdd9534b2ab7",
+      "message": "Add PSR-6 Bridge to the simplecache project"
+    },
+    {
+      "hash": "840c9e15b03632f825735a659dcc53f3ecfbe8e4",
+      "message": "Update interfaces according to latest spec version"
+    },
+    {
+      "hash": "6b67c817eb0e6a933e12dc29ef90ccbb53d8dc79",
+      "message": "Merge pull request #1 from jlaswell/patch-1\n\nMake namespacing consistent with spec"
+    },
+    {
+      "hash": "fa760be9769ff5198ffc9f70154b2f90fb06c4d3",
+      "message": "Make namespacing consistent with spec"
+    },
+    {
+      "hash": "65016252502e891b9847561fc5e106734574f0c9",
+      "message": "Add readme warning"
+    },
+    {
+      "hash": "21fd1d438c312dee9ced6e77bfb1d94bd9f995c9",
+      "message": "Add the interfaces from PSR-16"
+    },
+    {
+      "hash": "a960db084939da4a8d83be44e75015720c1b0eb5",
+      "message": "Add composer stuff"
+    },
+    {
+      "hash": "aab01a3e8122e84d3f4efcc92aa473bdb28b952c",
+      "message": "Initial commit with base files"
+    }
+  ],
+  "file_histories": [],
+  "files": [
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    "LICENSE.md",
+    "README.md",
+    "composer.json",
+    "src/CacheException.php",
+    "src/CacheInterface.php",
+    "src/InvalidArgumentException.php"
+  ],
+  "file": null,
+  "region": null,
+  "source": null,
+  "blame_commits": [],
+  "diff": "diff --git a/composer.json b/composer.json\nindex be86dc9..82f1665 100644\n--- a/composer.json\n+++ b/composer.json\n@@ -19,7 +19,7 @@\n     },\n     \"extra\": {\n         \"branch-alias\": {\n-            \"dev-master\": \"2.0.x-dev\"\n+            \"dev-master\": \"3.0.x-dev\"\n         }\n     }\n }\ndiff --git a/src/CacheInterface.php b/src/CacheInterface.php\nindex cb05d2f..671e340 100644\n--- a/src/CacheInterface.php\n+++ b/src/CacheInterface.php\n@@ -15,7 +15,7 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function get(string $key, mixed $default = null);\n+    public function get(string $key, mixed $default = null): mixed;\n \n     /**\n      * Persists data in the cache, uniquely referenced by a key with an optional expiration TTL time.\n@@ -31,7 +31,7 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null);\n+    public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null): bool;\n \n     /**\n      * Delete an item from the cache by its unique key.\n@@ -43,14 +43,14 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function delete(string $key);\n+    public function delete(string $key): bool;\n \n     /**\n      * Wipes clean the entire cache's keys.\n      *\n      * @return bool True on success and false on failure.\n      */\n-    public function clear();\n+    public function clear(): bool;\n \n     /**\n      * Obtains multiple cache items by their unique keys.\n@@ -64,7 +64,7 @@ interface CacheInterface\n      *   MUST be thrown if $keys is neither an array nor a Traversable,\n      *   or if any of the $keys are not a legal value.\n      */\n-    public function getMultiple(iterable $keys, mixed $default = null);\n+    public function getMultiple(iterable $keys, mixed $default = null): iterable;\n \n     /**\n      * Persists a set of key => value pairs in the cache, with an optional TTL.\n@@ -80,7 +80,7 @@ interface CacheInterface\n      *   MUST be thrown if $values is neither an array nor a Traversable,\n      *   or if any of the $values are not a legal value.\n      */\n-    public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null);\n+    public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null): bool;\n \n     /**\n      * Deletes multiple cache items in a single operation.\n@@ -93,7 +93,7 @@ interface CacheInterface\n      *   MUST be thrown if $keys is neither an array nor a Traversable,\n      *   or if any of the $keys are not a legal value.\n      */\n-    public function deleteMultiple(iterable $keys);\n+    public function deleteMultiple(iterable $keys): bool;\n \n     /**\n      * Determines whether an item is present in the cache.\n@@ -110,5 +110,5 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function has(string $key);\n+    public function has(string $key): bool;\n }\n",
+  "hunks": [
+    {
+      "file_header": "diff --git a/composer.json b/composer.json",
+      "header": "@@ -19,7 +19,7 @@",
+      "text": "@@ -19,7 +19,7 @@\n     },\n     \"extra\": {\n         \"branch-alias\": {\n-            \"dev-master\": \"2.0.x-dev\"\n+            \"dev-master\": \"3.0.x-dev\"\n         }\n     }\n }\n",
+      "id": "hunk_d2fcdbf27c2546d9f175"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -15,7 +15,7 @@ interface CacheInterface",
+      "text": "@@ -15,7 +15,7 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function get(string $key, mixed $default = null);\n+    public function get(string $key, mixed $default = null): mixed;\n \n     /**\n      * Persists data in the cache, uniquely referenced by a key with an optional expiration TTL time.\n",
+      "id": "hunk_b14d64f40612870b97db"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -31,7 +31,7 @@ interface CacheInterface",
+      "text": "@@ -31,7 +31,7 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null);\n+    public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null): bool;\n \n     /**\n      * Delete an item from the cache by its unique key.\n",
+      "id": "hunk_54323b8da9d6a3c24329"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -43,14 +43,14 @@ interface CacheInterface",
+      "text": "@@ -43,14 +43,14 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function delete(string $key);\n+    public function delete(string $key): bool;\n \n     /**\n      * Wipes clean the entire cache's keys.\n      *\n      * @return bool True on success and false on failure.\n      */\n-    public function clear();\n+    public function clear(): bool;\n \n     /**\n      * Obtains multiple cache items by their unique keys.\n",
+      "id": "hunk_1779d724e7239a5a4123"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -64,7 +64,7 @@ interface CacheInterface",
+      "text": "@@ -64,7 +64,7 @@ interface CacheInterface\n      *   MUST be thrown if $keys is neither an array nor a Traversable,\n      *   or if any of the $keys are not a legal value.\n      */\n-    public function getMultiple(iterable $keys, mixed $default = null);\n+    public function getMultiple(iterable $keys, mixed $default = null): iterable;\n \n     /**\n      * Persists a set of key => value pairs in the cache, with an optional TTL.\n",
+      "id": "hunk_a0c5452d5720eb93b401"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -80,7 +80,7 @@ interface CacheInterface",
+      "text": "@@ -80,7 +80,7 @@ interface CacheInterface\n      *   MUST be thrown if $values is neither an array nor a Traversable,\n      *   or if any of the $values are not a legal value.\n      */\n-    public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null);\n+    public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null): bool;\n \n     /**\n      * Deletes multiple cache items in a single operation.\n",
+      "id": "hunk_42c4741dd868aadc702f"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -93,7 +93,7 @@ interface CacheInterface",
+      "text": "@@ -93,7 +93,7 @@ interface CacheInterface\n      *   MUST be thrown if $keys is neither an array nor a Traversable,\n      *   or if any of the $keys are not a legal value.\n      */\n-    public function deleteMultiple(iterable $keys);\n+    public function deleteMultiple(iterable $keys): bool;\n \n     /**\n      * Determines whether an item is present in the cache.\n",
+      "id": "hunk_f4cb12c11c2370213fb7"
+    },
+    {
+      "file_header": "diff --git a/src/CacheInterface.php b/src/CacheInterface.php",
+      "header": "@@ -110,5 +110,5 @@ interface CacheInterface",
+      "text": "@@ -110,5 +110,5 @@ interface CacheInterface\n      * @throws \\Psr\\SimpleCache\\InvalidArgumentException\n      *   MUST be thrown if the $key string is not a legal value.\n      */\n-    public function has(string $key);\n+    public function has(string $key): bool;\n }\n",
+      "id": "hunk_0e3239db507db591b058"
+    }
+  ],
+  "features": {
+    "commit_count": 21,
+    "file_count": 9,
+    "last_commit_age_days": 1852.0879353390624,
+    "readme_files": [
+      "README.md"
+    ],
+    "readme_nonempty": true,
+    "test_files": [],
+    "todo_count": 0,
+    "entrypoint_candidates": [],
+    "documentation_files": [
+      "LICENSE.md",
+      "README.md"
+    ],
+    "dependency_manifests": [],
+    "deployment_files": [],
+    "core_feature_completeness": null,
+    "dependency_status": "not executed",
+    "deployment_status": "not verified",
+    "runnable_entrypoint": "not executed",
+    "readme_completeness": "requires human assessment",
+    "excluded_text_files": []
+  },
+  "commit_count": 21,
+  "file_count": 9,
+  "todos": [],
+  "repository": "simple_cache",
+  "source_repository": "https://github.com/php-fig/simple-cache",
+  "task": "Add return type declarations across CacheInterface methods to align with PHP 8+ type system for PSR-16 v3."
+}

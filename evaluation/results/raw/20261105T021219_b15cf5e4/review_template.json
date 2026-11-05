@@ -1,0 +1,1197 @@
+[
+  {
+    "case_id": "aicar_scope_07b121617c2a",
+    "method": "git",
+    "prediction_sha256": "0f1f97dcb3da80f7775a7fcbb186eb3c67a379e767e0f89638c3c9e98dbd8a92",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_07b121617c2a",
+    "method": "git_script",
+    "prediction_sha256": "cb1c721d71039b72aecffe4648c5cf0f0da03a4c7619fb53328839dc28a3e640",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_07b121617c2a",
+    "method": "llm",
+    "prediction_sha256": "4707403968e2d696ab653d8d07c79a465797ccd8221d1c876042ea83db1284ee",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: migrate agents to Gemini, update frontend error handling, and fix API bugs",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit updates research paper draft evaluation metrics which is out of scope for migrating AI agents from OpenAI to Google Gemini.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_07b121617c2a",
+    "method": "aicar",
+    "prediction_sha256": "f26b357197534b2822c60890287e1a0d6b66da7fbc0360eb4a329c9b40086c8c",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: migrate agents to Gemini, update frontend error handling, and fix API bugs",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The research paper draft update is documentation and results reporting separate from the core migration task.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_df3ad517cd35",
+    "method": "git",
+    "prediction_sha256": "93c5298dd258e35e70b721f4a28d45149ae4bf4806a0bf39cec390bfe7c4c45f",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_df3ad517cd35",
+    "method": "git_script",
+    "prediction_sha256": "fd2474796bb03fdf105df17aa4ba0b6959b44c065bf96618b1807134a7dcb9f5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_df3ad517cd35",
+    "method": "llm",
+    "prediction_sha256": "af3e98d5c6d07315644661ae0e9b823ff5b93bfc6d8224af15c95d0cc8159746",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The commit introduces initial research paper draft and supporting configuration, backend error handling/comparison update, and evaluation documentation/results.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "OPENAI_API_KEY=your_key_here",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": ".env and other cache/build exclusions added to .gitignore.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_df3ad517cd35",
+    "method": "aicar",
+    "prediction_sha256": "e47d0b6d608ce5bb3b3be05772b1b8b3ce8ef389eb2a874a6beb6c5a7a4298ec",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Draft the initial research paper for the Agentic Code Archaeology framework.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Step 38: Generate initial research paper draft",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_1e253587774c",
+    "method": "git",
+    "prediction_sha256": "bbbb69e57b66db3e4f73c7a4e7613cde32043dd70b97b09c387e40c1ed769ec6",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_1e253587774c",
+    "method": "git_script",
+    "prediction_sha256": "5aac93883eab0a4dec6223f69fc7ce1baeefbe43445046c26cd77ac157e32e5f",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_1e253587774c",
+    "method": "llm",
+    "prediction_sha256": "0582ae9619cfbedf868381d39255d5a21564a2102bc034eb5b8ba635d92e9c1a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The initial commit establishes the Agentic Code Archaeology prototype including backend API, LangGraph agent workflow, and React frontend.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_1e253587774c",
+    "method": "aicar",
+    "prediction_sha256": "3fd15ba9fe6409e339a6c1f2516301c623b5c81ca62812efb564267224f1e75c",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Create the initial Agentic Code Archaeology prototype including backend API, LangGraph agent workflow, and React frontend.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_4a1e36778e68",
+    "method": "git",
+    "prediction_sha256": "eb9284c0822b9829cbda46e8cacf35ef3e73de80988e92c6203fcba1c83b661d",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_4a1e36778e68",
+    "method": "git_script",
+    "prediction_sha256": "f768f7f6509721e16bbd6605e36a5f907fae18c0477c086327b0c3ebe5c0a0d6",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_4a1e36778e68",
+    "method": "llm",
+    "prediction_sha256": "02857938a3ba786f1ca86b80ab04e13816bfeff29dc43268bafe942b98d378df",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Step 39: Generate initial FYP report draft",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit adds the initial Final Year Project report draft in evaluation/fyp_report_draft.md.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_4a1e36778e68",
+    "method": "aicar",
+    "prediction_sha256": "66b7ffdde91955a5b13dbca52c81f63963b2260fbc7b51c634c8918745db76c4",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Step 39: Generate initial FYP report draft",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_f2fe724bc459",
+    "method": "git",
+    "prediction_sha256": "571d4993b5543a1093f84f1d70b46d950b5fb5f384b1d758d8701e043ef1adea",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_f2fe724bc459",
+    "method": "git_script",
+    "prediction_sha256": "a1bd665309230a4ef2322b95f0d3a1215e9270075df7692eb902121a0ff5b0f7",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_f2fe724bc459",
+    "method": "llm",
+    "prediction_sha256": "5e5927998f47d6468eed95c81fdec014442c2c8dec70768af33049e12c09441b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "docs: align README with current implementation\n\nDocument the current main-branch architecture, setup, API behavior, offline fallbacks, and evaluation limits without unsupported claims.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_f2fe724bc459",
+    "method": "aicar",
+    "prediction_sha256": "fc50c5fc61ffde439fe923eedfd3e0c172f65d2633f1e763f05e5054feb8616d",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Align README documentation with current implementation architecture and verification status.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_9f3754220cdf",
+    "method": "git",
+    "prediction_sha256": "8c076ed7094b9854f4453edd81a2b1ce70b5aa1cc0b13459fb389c97cfe9ed48",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_9f3754220cdf",
+    "method": "git_script",
+    "prediction_sha256": "45346afb8545767fdbab84399abd9a04e9d81fba20a817bc2c823dda5139d13c",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_9f3754220cdf",
+    "method": "llm",
+    "prediction_sha256": "35baf8e051ad46763a18623161cdf2196364ee81ea8754cdaf4b5627eb839fb0",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: strengthen online Intent, Scope, and Recovery agents for web app\n\n- Richer Gemini prompts for the three core features\n- Scope receives commit diffs when available\n- Auto-derive task from latest commit message when user leaves task empty\n- Clearer recovery and final report structure for dashboard display\n- .env.example documents online (USE_GEMINI_ANALYSIS=true) setup",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_9f3754220cdf",
+    "method": "aicar",
+    "prediction_sha256": "128a79421c531e07c3c87c00f4f694f9a7bb316867c6209199343e1e089dee38",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "feat: strengthen online Intent, Scope, and Recovery agents for web app\n\n- Richer Gemini prompts for the three core features\n- Scope receives commit diffs when available\n- Auto-derive task from latest commit message when user leaves task empty\n- Clearer recovery and final report structure for dashboard display\n- .env.example documents online (USE_GEMINI_ANALYSIS=true) setup",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_b5e536a0dbd9",
+    "method": "git",
+    "prediction_sha256": "512065eb3af8954759735c7807117f2316841d905ac16a2cac49d1188b10ff22",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_b5e536a0dbd9",
+    "method": "git_script",
+    "prediction_sha256": "435d5c9d67963da414ec0802ab24ce3697972bba2a839b891c1aeb848076a910",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_b5e536a0dbd9",
+    "method": "llm",
+    "prediction_sha256": "5a9a70a4dfdf5c9503ee0f2fa0d7696388c1f400c8f5f8b908de4c530ff82339",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Annotate reviewed intent cases",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit updates evaluation/datasets/intent_cases.json to annotate reviewed intent cases with status, annotator, rationale, gold_intent, accepted_intents, introducing_commit, introducing_commit_candidates, and supporting_commits.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_b5e536a0dbd9",
+    "method": "aicar",
+    "prediction_sha256": "c4e8d1c9cc18def3c5819a780b0edc30a0481cf111f849364882d1e8d5c03b8a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Annotate reviewed intent cases in intent_cases.json with accepted ground truth explanations and citations.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "evaluation/datasets/intent_cases.json",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_672f7a1e5217",
+    "method": "git",
+    "prediction_sha256": "57087a28b4b70719c348ad4ce35c89910e9f76900ac11482a0b139188a414d74",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_672f7a1e5217",
+    "method": "git_script",
+    "prediction_sha256": "096add5dbe50a1db81bfabf2790698dfd5faa769a3fcb52eaaef688a454ade59",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_f6dab085e19f",
+    "method": "git",
+    "prediction_sha256": "40ae2c285c898b92fd1f92075258a57645c1fa170f1e9eeff70221807a46b4af",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_scope_f6dab085e19f",
+    "method": "git_script",
+    "prediction_sha256": "d854b7efae96370303d1052d4fa88636346d9c256c325800e55ba9e9cfade827",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_dd145de984c0",
+    "method": "git",
+    "prediction_sha256": "f38358c3df179c4c513d892e7a8bf92a8637978d5a3ad0917a513c216a4d06d9",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_dd145de984c0",
+    "method": "git_script",
+    "prediction_sha256": "c975f9cc42bfbb75498b3629dfc2adb8f06802eea6b74cd44a001b628e7f48ee",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_dd145de984c0",
+    "method": "llm",
+    "prediction_sha256": "4bb55b0661a63882ae5611614083df536505ee38fa571a4c29be69a71132f65e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "interface CacheException extends \\Throwable",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_dd145de984c0",
+    "method": "aicar",
+    "prediction_sha256": "2e9e8d8e700b7da19ba8bd55dd6cdb97943670b796b849671e9c05525197f9e5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Make CacheException extend \\Throwable",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_9efde0115e82",
+    "method": "git",
+    "prediction_sha256": "f53ea5066d7732c614f84ec5a47404551b9c634f64bb51d03dee16636829b239",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_9efde0115e82",
+    "method": "git_script",
+    "prediction_sha256": "453f92dab128f491db7348ab821de76e0317427310bada152004778296978904",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_9efde0115e82",
+    "method": "llm",
+    "prediction_sha256": "11a0a314ad32b511d6ad4f5c86fa72ad2c2ebd32f6203a127e15898d2195c1f5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "When synx'ing, also sort entries by if they are a group/file, then name.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_9efde0115e82",
+    "method": "aicar",
+    "prediction_sha256": "670b4f7d1860efe1a135f9352be61709365d45c0aadc2480866f0a9b8542b3de",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "When synx'ing, also sort entries by if they are a group/file, then name.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_363b985b8611",
+    "method": "git",
+    "prediction_sha256": "bf05198ae4fa2129f25c082bea9da96b596f10a63141c1620fd0065c0d530ccb",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_363b985b8611",
+    "method": "git_script",
+    "prediction_sha256": "02196e85e29b200c443aee0836fd991b12797a9582a4545fd1a2fd800b10034a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_363b985b8611",
+    "method": "llm",
+    "prediction_sha256": "825ca191eb125a116e9e2d94d425e53dc4d29884180235c445af0d9326d83c71",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The commit reverts the rename of seve_file to sever_file, changing sever_file back to serve_file in declaration, call site, and definition.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-void sever_file(int, const char *);\n+void serve_file(int, const char *);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-            sever_file(client, path);\n+            serve_file(client, path);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-void sever_file(int client, const char *filename)\n+void serve_file(int client, const char *filename)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_363b985b8611",
+    "method": "aicar",
+    "prediction_sha256": "d0e95005ab3f194ba4d5da9b32b1cbc580ad9bcb810b78697f34fc8dae4d96b8",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The commit reverts the typo rename of seve_file to sever_file, changing sever_file back to serve_file across the function declaration, call site, and definition.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-void sever_file(int, const char *);\n+void serve_file(int, const char *);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-            sever_file(client, path);\n+            serve_file(client, path);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-void sever_file(int client, const char *filename)\n+void serve_file(int client, const char *filename)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_19a4d7c04df3",
+    "method": "git",
+    "prediction_sha256": "51d0bdd335149464f092c9f95d00c0a3090f5ac2a9a77995d61ea486ed63886a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_19a4d7c04df3",
+    "method": "git_script",
+    "prediction_sha256": "2235432a1caf7a71bc27616353252762ec241b126b350143a8126f43329530cf",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_19a4d7c04df3",
+    "method": "llm",
+    "prediction_sha256": "0a67fb513d9a34ece59985b63447640f9b1c9721b0100b955761a0fb071e4ca8",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add return types",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "This is a breaking change since implementations without return types are considered to be \"widening\" them, which is not allowed in PHP.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_19a4d7c04df3",
+    "method": "aicar",
+    "prediction_sha256": "00b4e5697f89877920440b7bae42bef61f2028b5d91463b303f73bfc0c913e8a",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add return type declarations across CacheInterface methods to align with PHP 8+ type system for PSR-16 v3.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "\"dev-master\": \"3.0.x-dev\"",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function get(string $key, mixed $default = null): mixed;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function set(string $key, mixed $value, null|int|\\DateInterval $ttl = null): bool;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function delete(string $key): bool;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function clear(): bool;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function getMultiple(iterable $keys, mixed $default = null): iterable;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function setMultiple(iterable $values, null|int|\\DateInterval $ttl = null): bool;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function deleteMultiple(iterable $keys): bool;",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "public function has(string $key): bool;",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_3cf85cc33fee",
+    "method": "git",
+    "prediction_sha256": "2aa9109bf7afb71b8779dc36ce500233e1e239cefdc75ae14980ee9e9933e0a3",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_3cf85cc33fee",
+    "method": "git_script",
+    "prediction_sha256": "6eaf7a9108c4f2fe1bed40d1e211ee43d53784b2e5db93ce890ab04836f3a924",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_3cf85cc33fee",
+    "method": "llm",
+    "prediction_sha256": "569f58e1233e71bdb03ad38a0d02e63e576753ed6245d2fe5999866fe9b89cf7",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The commit 3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f bumps the Synx gem version from \"0.0.61\" to \"0.1.0\".",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_3cf85cc33fee",
+    "method": "aicar",
+    "prediction_sha256": "5134d7b0833b6694dacd2ccb7a82dce8f035727eb978ec74babfc8492d381b06",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Bump Synx gem version to 0.1.0 for release.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "VERSION = \"0.1.0\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_9a7081cd253f",
+    "method": "git",
+    "prediction_sha256": "ab7db359c421d93314ecf25f34fa59adb7fc17f29eb61ddc311d51cbe08a4216",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_9a7081cd253f",
+    "method": "git_script",
+    "prediction_sha256": "6b4ea8648bad844e6143f6c7c6570b6dee4ca411b76d7cd2bcada19f0ad41edf",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_9a7081cd253f",
+    "method": "llm",
+    "prediction_sha256": "794c9105596dbfef929e43b7a94f9a7d2f1882c7a0c703dec24756e31946249b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "rename seve_file to sever_file",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_9a7081cd253f",
+    "method": "aicar",
+    "prediction_sha256": "37b8f425c71f50a28a09548728cf7996cd76913dcc7de61514484e9536f7ba44",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Rename serve_file to sever_file across declaration, call site, and definition.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-void serve_file(int, const char *);\n+void sever_file(int, const char *);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-            serve_file(client, path);\n+            sever_file(client, path);",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-void serve_file(int client, const char *filename)\n+void sever_file(int client, const char *filename)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_0f32180d2281",
+    "method": "git",
+    "prediction_sha256": "3eabdd79e83506bfb4e73a93797b7709f2b8a308563197fee961fab409443e0b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_0f32180d2281",
+    "method": "git_script",
+    "prediction_sha256": "9c27c264a1afb39176786876562117274aa8d0fe03f9cd879bf55b5c3762102b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_0f32180d2281",
+    "method": "llm",
+    "prediction_sha256": "13d9270e92fd9cabe11a979451d69c935fc5276a106d354c2c61c3519e310709",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add parameter types",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_scope_0f32180d2281",
+    "method": "aicar",
+    "prediction_sha256": "7cbbbbdccc372860d251b951fed88fb5421e331fafdbdfbe55828b8c44610c12",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The task specifies adding parameter type declarations across CacheInterface methods and updating composer PHP requirement to ^7.2 for PSR-16 v2.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit updates composer.json PHP requirement from \">=5.3.0\" to \">=8.0.0\".",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit updates composer.json branch-alias from \"1.0.x-dev\" to \"2.0.x-dev\".",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The task expects PHP requirement update to ^7.2, whereas the commit updates it to >=8.0.0, making the composer.json changes out-of-scope.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_8a56cf39ab5a",
+    "method": "git",
+    "prediction_sha256": "0ce5f2a2b68d795e8fb758691734c65f2b51a377f3bffc21460e91d81aafabe2",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_8a56cf39ab5a",
+    "method": "git_script",
+    "prediction_sha256": "03f9993a31c6a1f67a17a4bec28eb7758c3add167470215fa4778ca473d61df1",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_8a56cf39ab5a",
+    "method": "llm",
+    "prediction_sha256": "0a63c97d0a70649080c27e48f39288584d96e2fa1864c0582e62ab1f7860129e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Update xcodeproj version dependency to match latest Cocoapods version",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "-  spec.add_dependency \"xcodeproj\", \"~> 0.20.0\"\n+  spec.add_dependency \"xcodeproj\", \"~> 0.24.1\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_scope_8a56cf39ab5a",
+    "method": "aicar",
+    "prediction_sha256": "a4ccc81a5c840957582c93c7ce3d92609da2a394abeb7bc07989fc4f547e23aa",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Update xcodeproj version dependency to match latest Cocoapods version",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "spec.add_dependency \"xcodeproj\", \"~> 0.24.1\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_aa658bbe5686",
+    "method": "git",
+    "prediction_sha256": "276802db92cb3292e236ee6df01454c285e332080c165e82610c2b3c592ecc81",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_aa658bbe5686",
+    "method": "git_script",
+    "prediction_sha256": "33f569d3fc7296d1971eed1c10452c93592ee5beae8d67874bba3839add6d84b",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_aa658bbe5686",
+    "method": "llm",
+    "prediction_sha256": "75279029923f4d91d087a77bcb16a9cfb89202436a42e6eb85e8040f693808ba",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The commit adds a license file to the repository.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_scope_aa658bbe5686",
+    "method": "aicar",
+    "prediction_sha256": "138e098e0fe0931453a971ace54144a8267d61ae63fc68c6e22e970ba4091ac8",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Add open source software license file to the project repository root.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "diff --git a/LICENSE b/LICENSE\nnew file mode 100644\nindex 0000000..5f21020\n--- /dev/null\n+++ b/LICENSE\n@@ -0,0 +1,40 @@",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  }
+]

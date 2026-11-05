@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "run_id": "20261104T175916_803228cd",
-  "status": "unscored_smoke",
-  "start_time": "2026-11-04T17:55:11.084317+00:00",
-  "end_time": "2026-11-04T18:03:21.240938+00:00",
-  "total_seconds": 490.1571650999995,
-  "preparation_seconds": 245.73388389999946,
+  "run_id": "20261105T022720_f0ae8b11",
+  "status": "scored",
+  "start_time": "2026-11-05T02:25:23.372247+00:00",
+  "end_time": "2026-11-05T02:28:08.883000+00:00",
+  "total_seconds": 165.50139959999797,
+  "preparation_seconds": 117.48598359999596,
   "timing_scope": "validation/extraction plus method execution; shared extraction is measured separately, report/plot generation excluded",
   "dataset": {
-    "intent": 23,
+    "intent": 0,
     "scope": 0,
-    "recovery": 0,
+    "recovery": 9,
     "repositories": 9,
     "commits": 572,
-    "labelled": 23,
+    "labelled": 9,
     "pending": 0
   },
   "targets_not_observed": {
@@ -23,17 +23,17 @@
     "recovery": 20,
     "commits_approximate": 1800
   },
-  "attempts": 92,
-  "executed": 92,
-  "successful": 47,
-  "errors": 45,
+  "attempts": 36,
+  "executed": 36,
+  "successful": 36,
+  "errors": 0,
   "skipped": 0,
-  "scored_cases": 0,
+  "scored_cases": 9,
   "methods": {
     "git": {
       "name": "Git baseline",
       "task_status": {
-        "intent": "unscored smoke"
+        "recovery": "complete"
       },
       "intent": {
         "accuracy": null,
@@ -56,23 +56,33 @@
       },
       "recovery": {
         "ndcg": null,
-        "repositories": 0,
+        "repositories": 9,
         "predicted_ranking": [],
-        "ground_truth_ranking": []
+        "ground_truth_ranking": [
+          "simple_cache_recovery",
+          "autoresearch_recovery",
+          "aicar_recovery",
+          "tinyhttpd_recovery",
+          "synx_recovery",
+          "codex_plugin_cc_recovery",
+          "capsule_identity_recovery",
+          "spank_recovery",
+          "java8_tutorial_recovery"
+        ]
       },
       "evidence": {
         "supported": 0,
         "total_verifiable": 0,
         "rate": null
       },
-      "analysis_seconds": 0.03222760000244307,
-      "executed": 23,
+      "analysis_seconds": 0.00914490001014201,
+      "executed": 9,
       "mode": "offline"
     },
     "git_script": {
       "name": "Git log/blame script",
       "task_status": {
-        "intent": "unscored smoke"
+        "recovery": "complete"
       },
       "intent": {
         "accuracy": null,
@@ -95,23 +105,33 @@
       },
       "recovery": {
         "ndcg": null,
-        "repositories": 0,
+        "repositories": 9,
         "predicted_ranking": [],
-        "ground_truth_ranking": []
+        "ground_truth_ranking": [
+          "simple_cache_recovery",
+          "autoresearch_recovery",
+          "aicar_recovery",
+          "tinyhttpd_recovery",
+          "synx_recovery",
+          "codex_plugin_cc_recovery",
+          "capsule_identity_recovery",
+          "spank_recovery",
+          "java8_tutorial_recovery"
+        ]
       },
       "evidence": {
         "supported": 0,
         "total_verifiable": 0,
         "rate": null
       },
-      "analysis_seconds": 0.04890880000311881,
-      "executed": 23,
+      "analysis_seconds": 0.006448799991630949,
+      "executed": 9,
       "mode": "offline"
     },
     "llm": {
       "name": "Single-prompt LLM",
       "task_status": {
-        "intent": "unscored smoke"
+        "recovery": "complete"
       },
       "intent": {
         "accuracy": null,
@@ -134,23 +154,33 @@
       },
       "recovery": {
         "ndcg": null,
-        "repositories": 0,
+        "repositories": 9,
         "predicted_ranking": [],
-        "ground_truth_ranking": []
+        "ground_truth_ranking": [
+          "simple_cache_recovery",
+          "autoresearch_recovery",
+          "aicar_recovery",
+          "tinyhttpd_recovery",
+          "synx_recovery",
+          "codex_plugin_cc_recovery",
+          "capsule_identity_recovery",
+          "spank_recovery",
+          "java8_tutorial_recovery"
+        ]
       },
       "evidence": {
         "supported": 0,
         "total_verifiable": 0,
         "rate": null
       },
-      "analysis_seconds": 177.10812509999596,
-      "executed": 23,
+      "analysis_seconds": 26.729880799990497,
+      "executed": 9,
       "mode": "live"
     },
     "aicar": {
       "name": "Proposed AICAR",
       "task_status": {
-        "intent": "unscored smoke"
+        "recovery": "complete"
       },
       "intent": {
         "accuracy": null,
@@ -173,17 +203,27 @@
       },
       "recovery": {
         "ndcg": null,
-        "repositories": 0,
+        "repositories": 9,
         "predicted_ranking": [],
-        "ground_truth_ranking": []
+        "ground_truth_ranking": [
+          "simple_cache_recovery",
+          "autoresearch_recovery",
+          "aicar_recovery",
+          "tinyhttpd_recovery",
+          "synx_recovery",
+          "codex_plugin_cc_recovery",
+          "capsule_identity_recovery",
+          "spank_recovery",
+          "java8_tutorial_recovery"
+        ]
       },
       "evidence": {
         "supported": 0,
         "total_verifiable": 0,
         "rate": null
       },
-      "analysis_seconds": 66.7176913999956,
-      "executed": 23,
+      "analysis_seconds": 21.023932000010973,
+      "executed": 9,
       "mode": "live"
     }
   },
@@ -197,7 +237,7 @@
       "matplotlib": "3.11.1"
     },
     "git_version": "git version 2.47.1.windows.2",
-    "code_revision": "c0a0d01f914b26231dc9d31d563c243fe4ff293e",
+    "code_revision": "aca2236fa8a68d47b39405b987a41a2850e60faf",
     "code_sha256": {
       "backend\\agents\\__init__.py": "25c63c58f2b35056207b1c15d5ec8a22e4f5272359ccc2630729e53d2cf163f2",
       "backend\\agents\\intent_agent.py": "e02828128fce90803720fdf301129cb7b9d95c819844109a0669303447060946",
@@ -226,7 +266,7 @@
       "backend\\services\\git_evidence.py": "3bb8026a47fb37d38cc82fd7b7279a2d959e9c2c413bf8f2d5aee79c4b76db1f",
       "backend\\services\\github_oauth.py": "c254f30499462a9a6031ec92a0ead1fc8722d468d8f089e2fd6b2f26241c3b8a",
       "backend\\services\\health_score.py": "55ba780e3de60027986fb2fe4a2264cd1f5255ac77ace028ecd3702dd5883a29",
-      "backend\\services\\llm.py": "0e4c3996e1ae91141f29b13f2b0209eefb8de5f703dee3c9505e0a7a68b737ec",
+      "backend\\services\\llm.py": "fad07135f7d70a7ba385b1eff37aa2e74b94c7a77f63c4eeb1a714c6846f9515",
       "backend\\services\\project_recommender.py": "b5d0296e3a76167929290c8bf65040cfc48b43fa00d2051563660c56541b840d",
       "backend\\services\\repository_analyzer.py": "b7cb791916e69724fbce007c723cf416e064cc8c95bacb9147fdb38486b5db86",
       "backend\\services\\repository_graph.py": "cc24bd13ba8f1de36b637effc7c4324585179b934b7d5eec1e06f491e8acc3a2",
@@ -248,7 +288,7 @@
       "repositories.json": "573951abdd32f7f7a77913006fb3e7eda59388d5624b927cce50c3895188185c",
       "scope_cases.json": "4fbcdddf245a778ab28a574bc6f0e5c8d2f27e25956a3f3f1d8f3117c358e709"
     },
-    "model": "gemini-3.5-flash",
+    "model": "gemini-3.5-flash-lite",
     "temperature": 0,
     "evidence_as_of": "2026-09-22T17:13:38.613295+00:00"
   }

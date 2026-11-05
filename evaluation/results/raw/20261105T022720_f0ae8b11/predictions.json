@@ -1,0 +1,2646 @@
+[
+  {
+    "case_id": "simple_cache_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "simple_cache",
+    "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_b5753a45aa6e7f38925b"
+    ],
+    "evidence_sha256": "fa3366c2a0fb1c7d1722065547a5b01623deed31e23f3e77c0fd72147bb307e8",
+    "repositories": 1,
+    "files": 9,
+    "commits": 28,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:20.870883+00:00",
+    "end_time": "2026-11-05T02:27:20.870883+00:00",
+    "total_seconds": 0.00043700000242097303,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "simple_cache_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "simple_cache",
+    "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_b5753a45aa6e7f38925b"
+    ],
+    "evidence_sha256": "fa3366c2a0fb1c7d1722065547a5b01623deed31e23f3e77c0fd72147bb307e8",
+    "repositories": 1,
+    "files": 9,
+    "commits": 28,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:20.870883+00:00",
+    "end_time": "2026-11-05T02:27:20.871881+00:00",
+    "total_seconds": 0.0004301000008126721,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 28,
+        "files": 9,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "c946ca01a3e9101a8edecfa626350eaedb71f6dfeccbde7e0bed3738122db5c3",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "simple_cache_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "simple_cache",
+    "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_b5753a45aa6e7f38925b"
+    ],
+    "evidence_sha256": "fa3366c2a0fb1c7d1722065547a5b01623deed31e23f3e77c0fd72147bb307e8",
+    "repositories": 1,
+    "files": 9,
+    "commits": 28,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:20.871881+00:00",
+    "end_time": "2026-11-05T02:27:25.870898+00:00",
+    "total_seconds": 5.009084299999813,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "+/.editorconfig      export-ignore",
+          "kind": "quote",
+          "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+          "file": ".gitattributes",
+          "hunk": "hunk_b5753a45aa6e7f38925b",
+          "quote": "+/.editorconfig      export-ignore"
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "645365681d60592a36bb9cae8acb5967649b11c5965288b38990255813de6a85",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "+/.editorconfig      export-ignore",
+            "kind": "quote",
+            "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+            "file": ".gitattributes",
+            "hunk": "hunk_b5753a45aa6e7f38925b",
+            "quote": "+/.editorconfig      export-ignore"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "simple_cache_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "simple_cache",
+    "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_b5753a45aa6e7f38925b"
+    ],
+    "evidence_sha256": "fa3366c2a0fb1c7d1722065547a5b01623deed31e23f3e77c0fd72147bb307e8",
+    "repositories": 1,
+    "files": 9,
+    "commits": 28,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:25.870898+00:00",
+    "end_time": "2026-11-05T02:27:27.870594+00:00",
+    "total_seconds": 2.0020575000016834,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Update .gitattributes",
+          "kind": "quote",
+          "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+          "file": null,
+          "hunk": null,
+          "quote": "Update .gitattributes"
+        },
+        {
+          "text": "+/.editorconfig      export-ignore",
+          "kind": "quote",
+          "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+          "file": ".gitattributes",
+          "hunk": "hunk_b5753a45aa6e7f38925b",
+          "quote": "+/.editorconfig      export-ignore"
+        },
+        {
+          "text": "The commit 2d280c2aaa23a120f35d55cfde8581954a8e77fa successfully merges pull request #26 to add .editorconfig to export-ignore in .gitattributes.",
+          "kind": "interpretation",
+          "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+          "file": ".gitattributes",
+          "hunk": "hunk_b5753a45aa6e7f38925b",
+          "quote": "+/.editorconfig      export-ignore"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "Update .gitattributes",
+              "kind": "quote",
+              "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+              "file": null,
+              "hunk": null,
+              "quote": "Update .gitattributes"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          },
+          {
+            "claim": {
+              "text": "+/.editorconfig      export-ignore",
+              "kind": "quote",
+              "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+              "file": ".gitattributes",
+              "hunk": "hunk_b5753a45aa6e7f38925b",
+              "quote": "+/.editorconfig      export-ignore"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          },
+          {
+            "claim": {
+              "text": "The commit 2d280c2aaa23a120f35d55cfde8581954a8e77fa successfully merges pull request #26 to add .editorconfig to export-ignore in .gitattributes.",
+              "kind": "interpretation",
+              "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+              "file": ".gitattributes",
+              "hunk": "hunk_b5753a45aa6e7f38925b",
+              "quote": "+/.editorconfig      export-ignore"
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          }
+        ],
+        "supported": 2,
+        "total_verifiable": 3,
+        "unsupported": 1
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "6ef9b442c8c1d2ca2cb5103a39404c27654e23ae5eac7b574ef437121fdc0da7",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Update .gitattributes",
+            "kind": "quote",
+            "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+            "file": null,
+            "hunk": null,
+            "quote": "Update .gitattributes"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "+/.editorconfig      export-ignore",
+            "kind": "quote",
+            "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+            "file": ".gitattributes",
+            "hunk": "hunk_b5753a45aa6e7f38925b",
+            "quote": "+/.editorconfig      export-ignore"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "The commit 2d280c2aaa23a120f35d55cfde8581954a8e77fa successfully merges pull request #26 to add .editorconfig to export-ignore in .gitattributes.",
+            "kind": "interpretation",
+            "commit": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+            "file": ".gitattributes",
+            "hunk": "hunk_b5753a45aa6e7f38925b",
+            "quote": "+/.editorconfig      export-ignore"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 2,
+      "total_verifiable": 3,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "autoresearch",
+    "commit": "228791fb499afffb54b46200aca536f79142f117",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_f766edf9f10699bdbcca"
+    ],
+    "evidence_sha256": "e20d5ee9693d53ff891cad791e6e3a417b5979384f1496e8947aae25219d790e",
+    "repositories": 1,
+    "files": 10,
+    "commits": 36,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:27.886209+00:00",
+    "end_time": "2026-11-05T02:27:27.886209+00:00",
+    "total_seconds": 0.0010939999992842786,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "autoresearch",
+    "commit": "228791fb499afffb54b46200aca536f79142f117",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_f766edf9f10699bdbcca"
+    ],
+    "evidence_sha256": "e20d5ee9693d53ff891cad791e6e3a417b5979384f1496e8947aae25219d790e",
+    "repositories": 1,
+    "files": 10,
+    "commits": 36,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:27.886209+00:00",
+    "end_time": "2026-11-05T02:27:27.886209+00:00",
+    "total_seconds": 0.0009968000013031997,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 36,
+        "files": 10,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "7402f8caec6efd8da38f76d5138aab96bcb95518045de2e7689e4f491f370d8c",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "autoresearch",
+    "commit": "228791fb499afffb54b46200aca536f79142f117",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_f766edf9f10699bdbcca"
+    ],
+    "evidence_sha256": "e20d5ee9693d53ff891cad791e6e3a417b5979384f1496e8947aae25219d790e",
+    "repositories": 1,
+    "files": 10,
+    "commits": 36,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:27.886209+00:00",
+    "end_time": "2026-11-05T02:27:30.476157+00:00",
+    "total_seconds": 2.5921533000000636,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "fix(analysis): define best_bpb before y-axis scaling",
+          "kind": "quote",
+          "commit": "228791fb499afffb54b46200aca536f79142f117",
+          "file": null,
+          "hunk": null,
+          "quote": "fix(analysis): define best_bpb before y-axis scaling"
+        },
+        {
+          "text": "best_bpb = kept_bpb.min()",
+          "kind": "quote",
+          "commit": "228791fb499afffb54b46200aca536f79142f117",
+          "file": "analysis.ipynb",
+          "hunk": "hunk_f766edf9f10699bdbcca",
+          "quote": "\"best_bpb = kept_bpb.min()\\n\","
+        },
+        {
+          "text": "margin = (baseline_bpb - best_bpb) * 0.15",
+          "kind": "quote",
+          "commit": "228791fb499afffb54b46200aca536f79142f117",
+          "file": "analysis.ipynb",
+          "hunk": "hunk_f766edf9f10699bdbcca",
+          "quote": "\"margin = (baseline_bpb - best_bpb) * 0.15\\n\","
+        },
+        {
+          "text": "ax.set_ylim(best_bpb - margin, baseline_bpb + margin)",
+          "kind": "quote",
+          "commit": "228791fb499afffb54b46200aca536f79142f117",
+          "file": "analysis.ipynb",
+          "hunk": "hunk_f766edf9f10699bdbcca",
+          "quote": "\"ax.set_ylim(best_bpb - margin, baseline_bpb + margin)\\n\","
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "75975b675c2787c92cd38844deb3befbf681b1f6dcd491919d069df132662e75",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "fix(analysis): define best_bpb before y-axis scaling",
+            "kind": "quote",
+            "commit": "228791fb499afffb54b46200aca536f79142f117",
+            "file": null,
+            "hunk": null,
+            "quote": "fix(analysis): define best_bpb before y-axis scaling"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "best_bpb = kept_bpb.min()",
+            "kind": "quote",
+            "commit": "228791fb499afffb54b46200aca536f79142f117",
+            "file": "analysis.ipynb",
+            "hunk": "hunk_f766edf9f10699bdbcca",
+            "quote": "\"best_bpb = kept_bpb.min()\\n\","
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "margin = (baseline_bpb - best_bpb) * 0.15",
+            "kind": "quote",
+            "commit": "228791fb499afffb54b46200aca536f79142f117",
+            "file": "analysis.ipynb",
+            "hunk": "hunk_f766edf9f10699bdbcca",
+            "quote": "\"margin = (baseline_bpb - best_bpb) * 0.15\\n\","
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "ax.set_ylim(best_bpb - margin, baseline_bpb + margin)",
+            "kind": "quote",
+            "commit": "228791fb499afffb54b46200aca536f79142f117",
+            "file": "analysis.ipynb",
+            "hunk": "hunk_f766edf9f10699bdbcca",
+            "quote": "\"ax.set_ylim(best_bpb - margin, baseline_bpb + margin)\\n\","
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 4,
+      "unsupported": 3
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "autoresearch",
+    "commit": "228791fb499afffb54b46200aca536f79142f117",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_f766edf9f10699bdbcca"
+    ],
+    "evidence_sha256": "e20d5ee9693d53ff891cad791e6e3a417b5979384f1496e8947aae25219d790e",
+    "repositories": 1,
+    "files": 10,
+    "commits": 36,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:30.476157+00:00",
+    "end_time": "2026-11-05T02:27:32.463990+00:00",
+    "total_seconds": 1.9823531000001822,
+    "mode": "live",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [
+        {
+          "text": "fix(analysis): define best_bpb before y-axis scaling",
+          "kind": "quote",
+          "commit": "228791fb499afffb54b46200aca536f79142f117",
+          "file": null,
+          "hunk": null,
+          "quote": "fix(analysis): define best_bpb before y-axis scaling"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "fix(analysis): define best_bpb before y-axis scaling",
+              "kind": "quote",
+              "commit": "228791fb499afffb54b46200aca536f79142f117",
+              "file": null,
+              "hunk": null,
+              "quote": "fix(analysis): define best_bpb before y-axis scaling"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          }
+        ],
+        "supported": 1,
+        "total_verifiable": 1,
+        "unsupported": 0
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "e13c796be0fdbef78f1f8d2283851c7bfcc72cbec7c79c1c7fb005cf688ae775",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "fix(analysis): define best_bpb before y-axis scaling",
+            "kind": "quote",
+            "commit": "228791fb499afffb54b46200aca536f79142f117",
+            "file": null,
+            "hunk": null,
+            "quote": "fix(analysis): define best_bpb before y-axis scaling"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "aicar_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "aicar",
+    "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_e985047595e6a53b6941",
+      "hunk_4b84f7a76ee35ef1da07"
+    ],
+    "evidence_sha256": "47abc832df174029b6824268d27faaf37c5819de2d6bfaa47151c9290eb55269",
+    "repositories": 1,
+    "files": 173,
+    "commits": 10,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:32.463990+00:00",
+    "end_time": "2026-11-05T02:27:32.463990+00:00",
+    "total_seconds": 0.0006855000028735958,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "aicar_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "aicar",
+    "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_e985047595e6a53b6941",
+      "hunk_4b84f7a76ee35ef1da07"
+    ],
+    "evidence_sha256": "47abc832df174029b6824268d27faaf37c5819de2d6bfaa47151c9290eb55269",
+    "repositories": 1,
+    "files": 173,
+    "commits": 10,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:32.463990+00:00",
+    "end_time": "2026-11-05T02:27:32.463990+00:00",
+    "total_seconds": 0.0005579999997280538,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 10,
+        "files": 173,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "0ddd8a13bde52d314306be8c2025cb97aa4be103b30161dc2d9da0b68227f1da",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "aicar_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "aicar",
+    "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_e985047595e6a53b6941",
+      "hunk_4b84f7a76ee35ef1da07"
+    ],
+    "evidence_sha256": "47abc832df174029b6824268d27faaf37c5819de2d6bfaa47151c9290eb55269",
+    "repositories": 1,
+    "files": 173,
+    "commits": 10,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:32.463990+00:00",
+    "end_time": "2026-11-05T02:27:34.417699+00:00",
+    "total_seconds": 1.9460811999961152,
+    "mode": "live",
+    "prediction": {
+      "score": null,
+      "confidence": "MEDIUM",
+      "claims": [
+        {
+          "text": "Annotate reviewed intent cases",
+          "kind": "quote",
+          "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+          "file": null,
+          "hunk": null,
+          "quote": "Annotate reviewed intent cases\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "7c2dc01cceb3d885114f2de72e362c074220ebef3f92395965c54d8b8d4c2e1e",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Annotate reviewed intent cases",
+            "kind": "quote",
+            "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+            "file": null,
+            "hunk": null,
+            "quote": "Annotate reviewed intent cases\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "aicar_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "aicar",
+    "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_e985047595e6a53b6941",
+      "hunk_4b84f7a76ee35ef1da07"
+    ],
+    "evidence_sha256": "47abc832df174029b6824268d27faaf37c5819de2d6bfaa47151c9290eb55269",
+    "repositories": 1,
+    "files": 173,
+    "commits": 10,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:34.417699+00:00",
+    "end_time": "2026-11-05T02:27:37.390030+00:00",
+    "total_seconds": 2.9773515000051702,
+    "mode": "live",
+    "prediction": {
+      "score": 0.85,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The repository contains 10 commits, 173 files, multiple documentation files, test files, and entry points such as backend/main.py and frontend/package.json.",
+          "kind": "interpretation",
+          "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+          "file": null,
+          "hunk": null,
+          "quote": null
+        },
+        {
+          "text": "Dependency status is marked as not executed, deployment status as not verified, and runnable entrypoint as not executed.",
+          "kind": "quote",
+          "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+          "file": null,
+          "hunk": null,
+          "quote": "dependency_status\": \"not executed"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "The repository contains 10 commits, 173 files, multiple documentation files, test files, and entry points such as backend/main.py and frontend/package.json.",
+              "kind": "interpretation",
+              "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+              "file": null,
+              "hunk": null,
+              "quote": null
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          },
+          {
+            "claim": {
+              "text": "Dependency status is marked as not executed, deployment status as not verified, and runnable entrypoint as not executed.",
+              "kind": "quote",
+              "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+              "file": null,
+              "hunk": null,
+              "quote": "dependency_status\": \"not executed"
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          }
+        ],
+        "supported": 0,
+        "total_verifiable": 2,
+        "unsupported": 2
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "414a5318d48a1be4051708beb636a344fb6810197bb17ee0b1ecd037df73da49",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "The repository contains 10 commits, 173 files, multiple documentation files, test files, and entry points such as backend/main.py and frontend/package.json.",
+            "kind": "interpretation",
+            "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+            "file": null,
+            "hunk": null,
+            "quote": null
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "Dependency status is marked as not executed, deployment status as not verified, and runnable entrypoint as not executed.",
+            "kind": "quote",
+            "commit": "b5e536a0dbd900b476e78cb09c790724b1bf2ff2",
+            "file": null,
+            "hunk": null,
+            "quote": "dependency_status\": \"not executed"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 2,
+      "unsupported": 2
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "tinyhttpd",
+    "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_3cc7a834111476dad3ce"
+    ],
+    "evidence_sha256": "ef9a92a9077c1b3f7bb4306aa6829ebf0fcc8b8b49bd43d45658e3a89031ecf1",
+    "repositories": 1,
+    "files": 9,
+    "commits": 25,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:37.390030+00:00",
+    "end_time": "2026-11-05T02:27:37.390030+00:00",
+    "total_seconds": 0.00038070000300649554,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "tinyhttpd",
+    "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_3cc7a834111476dad3ce"
+    ],
+    "evidence_sha256": "ef9a92a9077c1b3f7bb4306aa6829ebf0fcc8b8b49bd43d45658e3a89031ecf1",
+    "repositories": 1,
+    "files": 9,
+    "commits": 25,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:37.390030+00:00",
+    "end_time": "2026-11-05T02:27:37.390030+00:00",
+    "total_seconds": 0.0003986999945482239,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 25,
+        "files": 9,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "77535f5a6a00cf66ce2714400029fb087f58dbee4e2671fa5098495221c202ca",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "tinyhttpd",
+    "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_3cc7a834111476dad3ce"
+    ],
+    "evidence_sha256": "ef9a92a9077c1b3f7bb4306aa6829ebf0fcc8b8b49bd43d45658e3a89031ecf1",
+    "repositories": 1,
+    "files": 9,
+    "commits": 25,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:37.390030+00:00",
+    "end_time": "2026-11-05T02:27:40.375118+00:00",
+    "total_seconds": 2.9776989000019967,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Update README.md",
+          "kind": "quote",
+          "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+          "file": null,
+          "hunk": null,
+          "quote": "Update README.md"
+        },
+        {
+          "text": "The commit updates README.md by adding a message from the original author, J. David Blackstone.",
+          "kind": "interpretation",
+          "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+          "file": "README.md",
+          "hunk": "hunk_3cc7a834111476dad3ce",
+          "quote": "+\n+以下内容来臠源作者:\n+\n+  This software is copyright 1999 by J. David Blackstone.  Permission\nis granted to redistribute and modify this software under the terms of\nthe GNU General Public License, available at http://www.gnu.org/ .\n+\n+  If you use this software or examine the code, I would appreciate\nknowing and would be overjoyed to hear about it at\njdavidb@sourceforge.net ."
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "6df0dd960de5f4a75c1875e136a97b60dddbb86899f0ba806e3809a57b8a6f97",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Update README.md",
+            "kind": "quote",
+            "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+            "file": null,
+            "hunk": null,
+            "quote": "Update README.md"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "The commit updates README.md by adding a message from the original author, J. David Blackstone.",
+            "kind": "interpretation",
+            "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+            "file": "README.md",
+            "hunk": "hunk_3cc7a834111476dad3ce",
+            "quote": "+\n+以下内容来臠源作者:\n+\n+  This software is copyright 1999 by J. David Blackstone.  Permission\nis granted to redistribute and modify this software under the terms of\nthe GNU General Public License, available at http://www.gnu.org/ .\n+\n+  If you use this software or examine the code, I would appreciate\nknowing and would be overjoyed to hear about it at\njdavidb@sourceforge.net ."
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 2,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "tinyhttpd",
+    "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_3cc7a834111476dad3ce"
+    ],
+    "evidence_sha256": "ef9a92a9077c1b3f7bb4306aa6829ebf0fcc8b8b49bd43d45658e3a89031ecf1",
+    "repositories": 1,
+    "files": 9,
+    "commits": 25,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:40.375118+00:00",
+    "end_time": "2026-11-05T02:27:43.039276+00:00",
+    "total_seconds": 2.668587000000116,
+    "mode": "live",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [
+        {
+          "text": "Update README.md",
+          "kind": "quote",
+          "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+          "file": null,
+          "hunk": null,
+          "quote": "Update README.md"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "Update README.md",
+              "kind": "quote",
+              "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+              "file": null,
+              "hunk": null,
+              "quote": "Update README.md"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          }
+        ],
+        "supported": 1,
+        "total_verifiable": 1,
+        "unsupported": 0
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "07318084c1f46505e45d68fc539cc53e01c203e2d2456f9447cbdd66fb88da59",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Update README.md",
+            "kind": "quote",
+            "commit": "fbd25cf755075d803cba09201a8f0dd6ac347c27",
+            "file": null,
+            "hunk": null,
+            "quote": "Update README.md"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "synx_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "synx",
+    "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_ddcc761f8e138a106fd6"
+    ],
+    "evidence_sha256": "d7c43e17ab0fbc70f3bfcab3830718b106cc04bf1ac97266d30a82dca9c7d7c3",
+    "repositories": 1,
+    "files": 63,
+    "commits": 200,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:43.039276+00:00",
+    "end_time": "2026-11-05T02:27:43.039276+00:00",
+    "total_seconds": 0.001702000001387205,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "synx_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "synx",
+    "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_ddcc761f8e138a106fd6"
+    ],
+    "evidence_sha256": "d7c43e17ab0fbc70f3bfcab3830718b106cc04bf1ac97266d30a82dca9c7d7c3",
+    "repositories": 1,
+    "files": 63,
+    "commits": 200,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:43.039276+00:00",
+    "end_time": "2026-11-05T02:27:43.039276+00:00",
+    "total_seconds": 0.00072080000245478,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 200,
+        "files": 63,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "bd52cd8fd0384823126073d50dbf8a3b2e5f58df175108ea5c1d245248b5a76d",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "synx_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "synx",
+    "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_ddcc761f8e138a106fd6"
+    ],
+    "evidence_sha256": "d7c43e17ab0fbc70f3bfcab3830718b106cc04bf1ac97266d30a82dca9c7d7c3",
+    "repositories": 1,
+    "files": 63,
+    "commits": 200,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:43.039276+00:00",
+    "end_time": "2026-11-05T02:27:45.295984+00:00",
+    "total_seconds": 2.2484213999996427,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "module Synx\n  VERSION = \"0.1.0\"\n end",
+          "kind": "quote",
+          "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+          "file": "lib/synx/version.rb",
+          "hunk": "hunk_ddcc761f8e138a106fd6",
+          "quote": "module Synx\n  VERSION = \"0.1.0\"\n end"
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "5458dc2208b6957df73d0804f9446252309d912e7ac34ed8971ebd4b54880115",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "module Synx\n  VERSION = \"0.1.0\"\n end",
+            "kind": "quote",
+            "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+            "file": "lib/synx/version.rb",
+            "hunk": "hunk_ddcc761f8e138a106fd6",
+            "quote": "module Synx\n  VERSION = \"0.1.0\"\n end"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "synx_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "synx",
+    "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_ddcc761f8e138a106fd6"
+    ],
+    "evidence_sha256": "d7c43e17ab0fbc70f3bfcab3830718b106cc04bf1ac97266d30a82dca9c7d7c3",
+    "repositories": 1,
+    "files": 63,
+    "commits": 200,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:27:45.295984+00:00",
+    "end_time": "2026-11-05T02:27:46.573081+00:00",
+    "total_seconds": 1.2802789999986999,
+    "mode": "live",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [
+        {
+          "text": "VERSION = \"0.1.0\"",
+          "kind": "quote",
+          "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+          "file": "lib/synx/version.rb",
+          "hunk": "hunk_ddcc761f8e138a106fd6",
+          "quote": "VERSION = \"0.1.0\""
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "VERSION = \"0.1.0\"",
+              "kind": "quote",
+              "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+              "file": "lib/synx/version.rb",
+              "hunk": "hunk_ddcc761f8e138a106fd6",
+              "quote": "VERSION = \"0.1.0\""
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          }
+        ],
+        "supported": 1,
+        "total_verifiable": 1,
+        "unsupported": 0
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "32d9a11ee0f408849d046571b59bec3dc53eba9305070e8d553fea7ffd6c3036",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "VERSION = \"0.1.0\"",
+            "kind": "quote",
+            "commit": "3cf85cc33fee8e40f9e18c2ba34eef1b92f8317f",
+            "file": "lib/synx/version.rb",
+            "hunk": "hunk_ddcc761f8e138a106fd6",
+            "quote": "VERSION = \"0.1.0\""
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "codex_plugin_cc",
+    "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_0309871619d05687c2ef",
+      "hunk_17d59e070e1020d6cf71",
+      "hunk_69d98b904e5d3626a75d",
+      "hunk_c6f32796ec1e45e990cf",
+      "hunk_35e6075937fbda906d55",
+      "hunk_7a18a364cbcc9233cf6a",
+      "hunk_917d032c504699eb0bc8",
+      "hunk_edb7da02d4fc461e627f"
+    ],
+    "evidence_sha256": "953218522a9881a280cc1044824bed1f54076191bc335081029480d196985f5b",
+    "repositories": 1,
+    "files": 63,
+    "commits": 29,
+    "code_regions": 8,
+    "start_time": "2026-11-05T02:27:46.588712+00:00",
+    "end_time": "2026-11-05T02:27:46.588712+00:00",
+    "total_seconds": 0.0010913000005530193,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "codex_plugin_cc",
+    "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_0309871619d05687c2ef",
+      "hunk_17d59e070e1020d6cf71",
+      "hunk_69d98b904e5d3626a75d",
+      "hunk_c6f32796ec1e45e990cf",
+      "hunk_35e6075937fbda906d55",
+      "hunk_7a18a364cbcc9233cf6a",
+      "hunk_917d032c504699eb0bc8",
+      "hunk_edb7da02d4fc461e627f"
+    ],
+    "evidence_sha256": "953218522a9881a280cc1044824bed1f54076191bc335081029480d196985f5b",
+    "repositories": 1,
+    "files": 63,
+    "commits": 29,
+    "code_regions": 8,
+    "start_time": "2026-11-05T02:27:46.588712+00:00",
+    "end_time": "2026-11-05T02:27:46.588712+00:00",
+    "total_seconds": 0.000985500002570916,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 29,
+        "files": 63,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "0c91fb8f57e2ed2a637ddaa0c02bbee36f85d2fa7735150551944bc81173d725",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "codex_plugin_cc",
+    "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_0309871619d05687c2ef",
+      "hunk_17d59e070e1020d6cf71",
+      "hunk_69d98b904e5d3626a75d",
+      "hunk_c6f32796ec1e45e990cf",
+      "hunk_35e6075937fbda906d55",
+      "hunk_7a18a364cbcc9233cf6a",
+      "hunk_917d032c504699eb0bc8",
+      "hunk_edb7da02d4fc461e627f"
+    ],
+    "evidence_sha256": "953218522a9881a280cc1044824bed1f54076191bc335081029480d196985f5b",
+    "repositories": 1,
+    "files": 63,
+    "commits": 29,
+    "code_regions": 8,
+    "start_time": "2026-11-05T02:27:46.588712+00:00",
+    "end_time": "2026-11-05T02:27:50.793908+00:00",
+    "total_seconds": 4.200841099998797,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": null,
+          "hunk": null,
+          "quote": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump"
+        },
+        {
+          "text": "The commit updates version from 1.0.5 to 1.0.6 across marketplace.json, package-lock.json, package.json, and plugin.json.",
+          "kind": "interpretation",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": ".claude-plugin/marketplace.json",
+          "hunk": "hunk_0309871619d05687c2ef",
+          "quote": "\"version\": \"1.0.6\""
+        },
+        {
+          "text": "Git functions in plugins/codex/scripts/lib/git.mjs are updated to explicitly pass shell: false.",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": "plugins/codex/scripts/lib/git.mjs",
+          "hunk": "hunk_35e6075937fbda906d55",
+          "quote": "// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.\n function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }"
+        },
+        {
+          "text": "runCommand in plugins/codex/scripts/lib/process.mjs honors options.shell overrides.",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": "plugins/codex/scripts/lib/process.mjs",
+          "hunk": "hunk_7a18a364cbcc9233cf6a",
+          "quote": "-    shell: process.platform === \"win32\" ? (process.env.SHELL || true) : false,\n+    shell: options.shell ?? (process.platform === \"win32\" ? (process.env.SHELL || true) : false),"
+        },
+        {
+          "text": "A test was added to verify default branch names with special characters are passed to git literally.",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": "tests/git.test.mjs",
+          "hunk": "hunk_917d032c504699eb0bc8",
+          "quote": "+test(\"default branch names with special characters are passed to git literally\", () => {\n+  const cwd = makeTempDir();\n+  const branchName = \"main&branch-helper&x\";\n+  const helperOutputPath = path.join(cwd, \"branch-helper-output\");\n+  initGitRepo(cwd);\n+  fs.writeFileSync(path.join(cwd, \"branch-helper.cmd\"), \"@echo branch-helper>branch-helper-output\\r\\n\");\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('base');\\n\");\n+  run(\"git\", [\"add\", \"app.js\", \"branch-helper.cmd\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"base\"], { cwd });\n+  run(\"git\", [\"branch\", \"-m\", branchName], { cwd, shell: false });\n+  run(\"git\", [\"update-ref\", `refs/remotes/origin/${branchName}`, branchName], { cwd, shell: false });\n+  run(\"git\", [\"symbolic-ref\", \"refs/remotes/origin/HEAD\", `refs/remotes/origin/${branchName}`], {\n+    cwd,\n+    shell: false\n+  });\n+  run(\"git\", [\"checkout\", \"-b\", \"feature/test\"], { cwd });\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('feature');\\n\");\n+  run(\"git\", [\"add\", \"app.js\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"feature\"], { cwd });\n+\n+  const target = resolveReviewTarget(cwd, {});\n+  const context = collectReviewContext(cwd, target);\n+\n+  assert.equal(target.mode, \"branch\");\n+  assert.equal(target.baseRef, branchName);\n+  assert.match(context.content, /Branch Diff/);\n+  assert.equal(fs.existsSync(helperOutputPath), false);\n+});"
+        },
+        {
+          "text": "The test helper run function in tests/helpers.mjs supports options.shell overrides.",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": "tests/helpers.mjs",
+          "hunk": "hunk_edb7da02d4fc461e627f",
+          "quote": "-    shell: process.platform === \"win32\" && !path.isAbsolute(command),\n+    shell: options.shell ?? (process.platform === \"win32\" && !path.isAbsolute(command)),"
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "8be81bb83a0aacf05830fbaef5dd3352830cd3b6762692ffdf41724702916970",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": null,
+            "hunk": null,
+            "quote": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "The commit updates version from 1.0.5 to 1.0.6 across marketplace.json, package-lock.json, package.json, and plugin.json.",
+            "kind": "interpretation",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": ".claude-plugin/marketplace.json",
+            "hunk": "hunk_0309871619d05687c2ef",
+            "quote": "\"version\": \"1.0.6\""
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "Git functions in plugins/codex/scripts/lib/git.mjs are updated to explicitly pass shell: false.",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": "plugins/codex/scripts/lib/git.mjs",
+            "hunk": "hunk_35e6075937fbda906d55",
+            "quote": "// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.\n function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "runCommand in plugins/codex/scripts/lib/process.mjs honors options.shell overrides.",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": "plugins/codex/scripts/lib/process.mjs",
+            "hunk": "hunk_7a18a364cbcc9233cf6a",
+            "quote": "-    shell: process.platform === \"win32\" ? (process.env.SHELL || true) : false,\n+    shell: options.shell ?? (process.platform === \"win32\" ? (process.env.SHELL || true) : false),"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "A test was added to verify default branch names with special characters are passed to git literally.",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": "tests/git.test.mjs",
+            "hunk": "hunk_917d032c504699eb0bc8",
+            "quote": "+test(\"default branch names with special characters are passed to git literally\", () => {\n+  const cwd = makeTempDir();\n+  const branchName = \"main&branch-helper&x\";\n+  const helperOutputPath = path.join(cwd, \"branch-helper-output\");\n+  initGitRepo(cwd);\n+  fs.writeFileSync(path.join(cwd, \"branch-helper.cmd\"), \"@echo branch-helper>branch-helper-output\\r\\n\");\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('base');\\n\");\n+  run(\"git\", [\"add\", \"app.js\", \"branch-helper.cmd\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"base\"], { cwd });\n+  run(\"git\", [\"branch\", \"-m\", branchName], { cwd, shell: false });\n+  run(\"git\", [\"update-ref\", `refs/remotes/origin/${branchName}`, branchName], { cwd, shell: false });\n+  run(\"git\", [\"symbolic-ref\", \"refs/remotes/origin/HEAD\", `refs/remotes/origin/${branchName}`], {\n+    cwd,\n+    shell: false\n+  });\n+  run(\"git\", [\"checkout\", \"-b\", \"feature/test\"], { cwd });\n+  fs.writeFileSync(path.join(cwd, \"app.js\"), \"console.log('feature');\\n\");\n+  run(\"git\", [\"add\", \"app.js\"], { cwd });\n+  run(\"git\", [\"commit\", \"-m\", \"feature\"], { cwd });\n+\n+  const target = resolveReviewTarget(cwd, {});\n+  const context = collectReviewContext(cwd, target);\n+\n+  assert.equal(target.mode, \"branch\");\n+  assert.equal(target.baseRef, branchName);\n+  assert.match(context.content, /Branch Diff/);\n+  assert.equal(fs.existsSync(helperOutputPath), false);\n+});"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "The test helper run function in tests/helpers.mjs supports options.shell overrides.",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": "tests/helpers.mjs",
+            "hunk": "hunk_edb7da02d4fc461e627f",
+            "quote": "-    shell: process.platform === \"win32\" && !path.isAbsolute(command),\n+    shell: options.shell ?? (process.platform === \"win32\" && !path.isAbsolute(command)),"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 6,
+      "unsupported": 5
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "codex_plugin_cc",
+    "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_0309871619d05687c2ef",
+      "hunk_17d59e070e1020d6cf71",
+      "hunk_69d98b904e5d3626a75d",
+      "hunk_c6f32796ec1e45e990cf",
+      "hunk_35e6075937fbda906d55",
+      "hunk_7a18a364cbcc9233cf6a",
+      "hunk_917d032c504699eb0bc8",
+      "hunk_edb7da02d4fc461e627f"
+    ],
+    "evidence_sha256": "953218522a9881a280cc1044824bed1f54076191bc335081029480d196985f5b",
+    "repositories": 1,
+    "files": 63,
+    "commits": 29,
+    "code_regions": 8,
+    "start_time": "2026-11-05T02:27:50.794908+00:00",
+    "end_time": "2026-11-05T02:27:53.495232+00:00",
+    "total_seconds": 2.705152399998042,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Remove shell expansion for git commands (#447)",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": null,
+          "hunk": null,
+          "quote": "Remove shell expansion for git commands (#447)"
+        },
+        {
+          "text": "Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.",
+          "kind": "quote",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": "plugins/codex/scripts/lib/git.mjs",
+          "hunk": "hunk_35e6075937fbda906d55",
+          "quote": "// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell."
+        },
+        {
+          "text": "The commit successfully disables shell expansion for git and gitChecked functions by passing shell: false explicitly.",
+          "kind": "interpretation",
+          "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+          "file": "plugins/codex/scripts/lib/git.mjs",
+          "hunk": "hunk_35e6075937fbda906d55",
+          "quote": "function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "Remove shell expansion for git commands (#447)",
+              "kind": "quote",
+              "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+              "file": null,
+              "hunk": null,
+              "quote": "Remove shell expansion for git commands (#447)"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          },
+          {
+            "claim": {
+              "text": "Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.",
+              "kind": "quote",
+              "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+              "file": "plugins/codex/scripts/lib/git.mjs",
+              "hunk": "hunk_35e6075937fbda906d55",
+              "quote": "// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell."
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          },
+          {
+            "claim": {
+              "text": "The commit successfully disables shell expansion for git and gitChecked functions by passing shell: false explicitly.",
+              "kind": "interpretation",
+              "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+              "file": "plugins/codex/scripts/lib/git.mjs",
+              "hunk": "hunk_35e6075937fbda906d55",
+              "quote": "function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }"
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          }
+        ],
+        "supported": 1,
+        "total_verifiable": 3,
+        "unsupported": 2
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "e037767bc2e04c43509fa2afb07f9af3acd963b93ef3fb5917273afd0fb88772",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Remove shell expansion for git commands (#447)",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": null,
+            "hunk": null,
+            "quote": "Remove shell expansion for git commands (#447)"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.",
+            "kind": "quote",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": "plugins/codex/scripts/lib/git.mjs",
+            "hunk": "hunk_35e6075937fbda906d55",
+            "quote": "// Git is directly executable on Windows. Repository-derived arguments must never pass through a shell."
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "The commit successfully disables shell expansion for git and gitChecked functions by passing shell: false explicitly.",
+            "kind": "interpretation",
+            "commit": "db52e28f4d9ded852ab3942cea316258ae4ef346",
+            "file": "plugins/codex/scripts/lib/git.mjs",
+            "hunk": "hunk_35e6075937fbda906d55",
+            "quote": "function git(cwd, args, options = {}) {\n-  return runCommand(\"git\", args, { cwd, ...options });\n+  return runCommand(\"git\", args, { cwd, ...options, shell: false });\n }\n \n function gitChecked(cwd, args, options = {}) {\n-  return runCommandChecked(\"git\", args, { cwd, ...options });\n+  return runCommandChecked(\"git\", args, { cwd, ...options, shell: false });\n }"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 3,
+      "unsupported": 2
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "capsule_identity",
+    "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_929d15f85944d0b7d23e",
+      "hunk_5bd96555d2cdcc3d03c8",
+      "hunk_d4be2d72ebdca3f374c9"
+    ],
+    "evidence_sha256": "9c1c5362db26086ef1e020d97d4af760962dd0be1d86fdb1d4f006f9bcdf6644",
+    "repositories": 1,
+    "files": 13,
+    "commits": 32,
+    "code_regions": 3,
+    "start_time": "2026-11-05T02:27:53.511644+00:00",
+    "end_time": "2026-11-05T02:27:53.512641+00:00",
+    "total_seconds": 0.0009075999987544492,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "capsule_identity",
+    "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_929d15f85944d0b7d23e",
+      "hunk_5bd96555d2cdcc3d03c8",
+      "hunk_d4be2d72ebdca3f374c9"
+    ],
+    "evidence_sha256": "9c1c5362db26086ef1e020d97d4af760962dd0be1d86fdb1d4f006f9bcdf6644",
+    "repositories": 1,
+    "files": 13,
+    "commits": 32,
+    "code_regions": 3,
+    "start_time": "2026-11-05T02:27:53.512641+00:00",
+    "end_time": "2026-11-05T02:27:53.512641+00:00",
+    "total_seconds": 0.0006671999944956042,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 32,
+        "files": 13,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "d5027b5a3e37436a54ea85423a6431d662299521cf9c06d0cb51435f3c21f3a2",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "capsule_identity",
+    "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_929d15f85944d0b7d23e",
+      "hunk_5bd96555d2cdcc3d03c8",
+      "hunk_d4be2d72ebdca3f374c9"
+    ],
+    "evidence_sha256": "9c1c5362db26086ef1e020d97d4af760962dd0be1d86fdb1d4f006f9bcdf6644",
+    "repositories": 1,
+    "files": 13,
+    "commits": 32,
+    "code_regions": 3,
+    "start_time": "2026-11-05T02:27:53.512641+00:00",
+    "end_time": "2026-11-05T02:27:55.573258+00:00",
+    "total_seconds": 2.0624772000010125,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "chore: release 0.2.0 (#27)\n\n## Changes since v0.1.0\n\n- Migrate to per-domain WIT and `wasm32-unknown-unknown` target\n- Migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types)\n- Publish componentized `.capsule` artifact (was raw wasm)\n- Bump astrid-sdk to 0.7.1\n\nTagging happens post-merge.",
+          "kind": "quote",
+          "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+          "file": null,
+          "hunk": null,
+          "quote": "chore: release 0.2.0 (#27)\n\n## Changes since v0.1.0\n\n- Migrate to per-domain WIT and `wasm32-unknown-unknown` target\n- Migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types)\n- Publish componentized `.capsule` artifact (was raw wasm)\n- Bump astrid-sdk to 0.7.1\n\nTagging happens post-merge."
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "f0487ba02ff24815e76233f02d9965aed40cd3d13c2e7dc6a135cad42fffc2b6",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "chore: release 0.2.0 (#27)\n\n## Changes since v0.1.0\n\n- Migrate to per-domain WIT and `wasm32-unknown-unknown` target\n- Migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types)\n- Publish componentized `.capsule` artifact (was raw wasm)\n- Bump astrid-sdk to 0.7.1\n\nTagging happens post-merge.",
+            "kind": "quote",
+            "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+            "file": null,
+            "hunk": null,
+            "quote": "chore: release 0.2.0 (#27)\n\n## Changes since v0.1.0\n\n- Migrate to per-domain WIT and `wasm32-unknown-unknown` target\n- Migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types)\n- Publish componentized `.capsule` artifact (was raw wasm)\n- Bump astrid-sdk to 0.7.1\n\nTagging happens post-merge."
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "capsule_identity",
+    "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_929d15f85944d0b7d23e",
+      "hunk_5bd96555d2cdcc3d03c8",
+      "hunk_d4be2d72ebdca3f374c9"
+    ],
+    "evidence_sha256": "9c1c5362db26086ef1e020d97d4af760962dd0be1d86fdb1d4f006f9bcdf6644",
+    "repositories": 1,
+    "files": 13,
+    "commits": 32,
+    "code_regions": 3,
+    "start_time": "2026-11-05T02:27:55.573258+00:00",
+    "end_time": "2026-11-05T02:27:57.422511+00:00",
+    "total_seconds": 1.8604386000006343,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "chore: release 0.2.0 (#27)",
+          "kind": "quote",
+          "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+          "file": null,
+          "hunk": null,
+          "quote": "chore: release 0.2.0 (#27)"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "chore: release 0.2.0 (#27)",
+              "kind": "quote",
+              "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+              "file": null,
+              "hunk": null,
+              "quote": "chore: release 0.2.0 (#27)"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          }
+        ],
+        "supported": 1,
+        "total_verifiable": 1,
+        "unsupported": 0
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "e50f12e5dec3c3b72dd971dd718ca54108f277d29d5e15f55870aee9c2095c38",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "chore: release 0.2.0 (#27)",
+            "kind": "quote",
+            "commit": "1364a437f30122558a70ad703acc23d48f144ee6",
+            "file": null,
+            "hunk": null,
+            "quote": "chore: release 0.2.0 (#27)"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "spank_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "spank",
+    "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_98a30b130750ddb8ecc6",
+      "hunk_b2b86ff0ed8bb434648a"
+    ],
+    "evidence_sha256": "82532d38c495500655f1a1291efcedc3334e37d331a2812193e3a14fa381b999",
+    "repositories": 1,
+    "files": 99,
+    "commits": 62,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:57.440559+00:00",
+    "end_time": "2026-11-05T02:27:57.441553+00:00",
+    "total_seconds": 0.001382099995680619,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "spank_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "spank",
+    "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_98a30b130750ddb8ecc6",
+      "hunk_b2b86ff0ed8bb434648a"
+    ],
+    "evidence_sha256": "82532d38c495500655f1a1291efcedc3334e37d331a2812193e3a14fa381b999",
+    "repositories": 1,
+    "files": 99,
+    "commits": 62,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:57.441553+00:00",
+    "end_time": "2026-11-05T02:27:57.442554+00:00",
+    "total_seconds": 0.0011317999960738234,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 62,
+        "files": 99,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "27aee9c3fe5f43af7b3874eea78277a83c8c4c7c7af2db43e99dfdb89c5fee12",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "spank_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "spank",
+    "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_98a30b130750ddb8ecc6",
+      "hunk_b2b86ff0ed8bb434648a"
+    ],
+    "evidence_sha256": "82532d38c495500655f1a1291efcedc3334e37d331a2812193e3a14fa381b999",
+    "repositories": 1,
+    "files": 99,
+    "commits": 62,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:27:57.442554+00:00",
+    "end_time": "2026-11-05T02:28:00.778050+00:00",
+    "total_seconds": 3.338646999996854,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>",
+          "kind": "quote",
+          "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+          "file": null,
+          "hunk": null,
+          "quote": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>"
+        },
+        {
+          "text": "The star history chart URL in README-zh.md was updated from api.star-history.com to afterglow.watch.",
+          "kind": "interpretation",
+          "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+          "file": "README-zh.md",
+          "hunk": "hunk_98a30b130750ddb8ecc6",
+          "quote": "-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+        },
+        {
+          "text": "The star history chart URL in README.md was updated from api.star-history.com to afterglow.watch.",
+          "kind": "interpretation",
+          "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+          "file": "README.md",
+          "hunk": "hunk_b2b86ff0ed8bb434648a",
+          "quote": "-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "f688711602ff6185269342611b65b84b8caa3c54be50531cf5ca55b044923c37",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>",
+            "kind": "quote",
+            "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+            "file": null,
+            "hunk": null,
+            "quote": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "The star history chart URL in README-zh.md was updated from api.star-history.com to afterglow.watch.",
+            "kind": "interpretation",
+            "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+            "file": "README-zh.md",
+            "hunk": "hunk_98a30b130750ddb8ecc6",
+            "quote": "-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "The star history chart URL in README.md was updated from api.star-history.com to afterglow.watch.",
+            "kind": "interpretation",
+            "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+            "file": "README.md",
+            "hunk": "hunk_b2b86ff0ed8bb434648a",
+            "quote": "-[![Star History Chart](https://api.star-history.com/svg?repos=taigrr/spank&type=date&legend=top-left)](https://www.star-history.com/#taigrr/spank&type=date&legend=top-left)\n+[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 3,
+      "unsupported": 2
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "spank_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "spank",
+    "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_98a30b130750ddb8ecc6",
+      "hunk_b2b86ff0ed8bb434648a"
+    ],
+    "evidence_sha256": "82532d38c495500655f1a1291efcedc3334e37d331a2812193e3a14fa381b999",
+    "repositories": 1,
+    "files": 99,
+    "commits": 62,
+    "code_regions": 2,
+    "start_time": "2026-11-05T02:28:00.778050+00:00",
+    "end_time": "2026-11-05T02:28:03.750115+00:00",
+    "total_seconds": 2.9682404000050155,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The repository is complete with documentation updates for the star history chart in README.md and README-zh.md.",
+          "kind": "interpretation",
+          "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+          "file": "README.md",
+          "hunk": "hunk_b2b86ff0ed8bb434648a",
+          "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+        },
+        {
+          "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+          "kind": "quote",
+          "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+          "file": "README.md",
+          "hunk": "hunk_b2b86ff0ed8bb434648a",
+          "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+        },
+        {
+          "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+          "kind": "quote",
+          "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+          "file": "README-zh.md",
+          "hunk": "hunk_98a30b130750ddb8ecc6",
+          "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "The repository is complete with documentation updates for the star history chart in README.md and README-zh.md.",
+              "kind": "interpretation",
+              "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+              "file": "README.md",
+              "hunk": "hunk_b2b86ff0ed8bb434648a",
+              "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          },
+          {
+            "claim": {
+              "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+              "kind": "quote",
+              "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+              "file": "README.md",
+              "hunk": "hunk_b2b86ff0ed8bb434648a",
+              "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          },
+          {
+            "claim": {
+              "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+              "kind": "quote",
+              "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+              "file": "README-zh.md",
+              "hunk": "hunk_98a30b130750ddb8ecc6",
+              "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          }
+        ],
+        "supported": 2,
+        "total_verifiable": 3,
+        "unsupported": 1
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "10f87c91c4dbfaa5ce0478e4dd6c4e800fa8fca2844b519f97c7d2b498a6a96d",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "The repository is complete with documentation updates for the star history chart in README.md and README-zh.md.",
+            "kind": "interpretation",
+            "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+            "file": "README.md",
+            "hunk": "hunk_b2b86ff0ed8bb434648a",
+            "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+            "kind": "quote",
+            "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+            "file": "README.md",
+            "hunk": "hunk_b2b86ff0ed8bb434648a",
+            "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        },
+        {
+          "claim": {
+            "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+            "kind": "quote",
+            "commit": "a5f95a002fb29dfc3f705b74565d656239976a54",
+            "file": "README-zh.md",
+            "hunk": "hunk_98a30b130750ddb8ecc6",
+            "quote": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 2,
+      "total_verifiable": 3,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "task": "recovery",
+    "method": "git",
+    "repository": "java8_tutorial",
+    "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_9ca6b34f06513cdd7497"
+    ],
+    "evidence_sha256": "8cf5fb9b6e027819c464555eb661df522335bc7782a458e164103c9175ba2df1",
+    "repositories": 1,
+    "files": 82,
+    "commits": 150,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:28:03.753107+00:00",
+    "end_time": "2026-11-05T02:28:03.755102+00:00",
+    "total_seconds": 0.0014647000061813742,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores"
+    },
+    "status": "ok",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "task": "recovery",
+    "method": "git_script",
+    "repository": "java8_tutorial",
+    "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_9ca6b34f06513cdd7497"
+    ],
+    "evidence_sha256": "8cf5fb9b6e027819c464555eb661df522335bc7782a458e164103c9175ba2df1",
+    "repositories": 1,
+    "files": 82,
+    "commits": 150,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:28:03.755102+00:00",
+    "end_time": "2026-11-05T02:28:03.755102+00:00",
+    "total_seconds": 0.000559899999643676,
+    "mode": "offline",
+    "prediction": {
+      "score": null,
+      "confidence": "LOW",
+      "claims": [],
+      "reason": "Git does not supply recoverability scores",
+      "history_summary": {
+        "commits": 150,
+        "files": 82,
+        "region_blame": []
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "c63fb4b23fb5f8733042a76804a5160b6c74b9699c8951ec6eb9ebc62680caf9",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Uncited classification/ranking",
+            "kind": "interpretation"
+          },
+          "resolved": false,
+          "supported": false,
+          "reason": "unknown commit"
+        }
+      ],
+      "supported": 0,
+      "total_verifiable": 1,
+      "unsupported": 1
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "task": "recovery",
+    "method": "llm",
+    "repository": "java8_tutorial",
+    "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_9ca6b34f06513cdd7497"
+    ],
+    "evidence_sha256": "8cf5fb9b6e027819c464555eb661df522335bc7782a458e164103c9175ba2df1",
+    "repositories": 1,
+    "files": 82,
+    "commits": 150,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:28:03.755102+00:00",
+    "end_time": "2026-11-05T02:28:06.105179+00:00",
+    "total_seconds": 2.3544763999962015,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Copyright (c) 2023 Benjamin Winterberg",
+          "kind": "quote",
+          "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+          "file": "LICENSE",
+          "hunk": "hunk_9ca6b34f06513cdd7497",
+          "quote": "Copyright (c) 2023 Benjamin Winterberg"
+        }
+      ]
+    },
+    "status": "ok",
+    "prediction_sha256": "4223b37de8502c57cad403285e5bfa6ebe82e60621879f4359f11336e2252b1f",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "Copyright (c) 2023 Benjamin Winterberg",
+            "kind": "quote",
+            "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+            "file": "LICENSE",
+            "hunk": "hunk_9ca6b34f06513cdd7497",
+            "quote": "Copyright (c) 2023 Benjamin Winterberg"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 1,
+      "unsupported": 0
+    },
+    "metrics": null
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "task": "recovery",
+    "method": "aicar",
+    "repository": "java8_tutorial",
+    "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+    "file": null,
+    "region": null,
+    "hunks": [
+      "hunk_9ca6b34f06513cdd7497"
+    ],
+    "evidence_sha256": "8cf5fb9b6e027819c464555eb661df522335bc7782a458e164103c9175ba2df1",
+    "repositories": 1,
+    "files": 82,
+    "commits": 150,
+    "code_regions": 1,
+    "start_time": "2026-11-05T02:28:06.105179+00:00",
+    "end_time": "2026-11-05T02:28:08.689702+00:00",
+    "total_seconds": 2.5794725000014296,
+    "mode": "live",
+    "prediction": {
+      "score": 1.0,
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The repository is an update to the LICENSE file updating the copyright year to 2023.",
+          "kind": "interpretation",
+          "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+          "file": "LICENSE",
+          "hunk": "hunk_9ca6b34f06513cdd7497",
+          "quote": "@@ -1,6 +1,6 @@\n The MIT License (MIT)\n \n-Copyright (c) 2017 Benjamin Winterberg\n+Copyright (c) 2023 Benjamin Winterberg\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n"
+        },
+        {
+          "text": "Copyright (c) 2023 Benjamin Winterberg",
+          "kind": "quote",
+          "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+          "file": "LICENSE",
+          "hunk": "hunk_9ca6b34f06513cdd7497",
+          "quote": "Copyright (c) 2023 Benjamin Winterberg"
+        }
+      ],
+      "evidence_audit": {
+        "claims": [
+          {
+            "claim": {
+              "text": "The repository is an update to the LICENSE file updating the copyright year to 2023.",
+              "kind": "interpretation",
+              "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+              "file": "LICENSE",
+              "hunk": "hunk_9ca6b34f06513cdd7497",
+              "quote": "@@ -1,6 +1,6 @@\n The MIT License (MIT)\n \n-Copyright (c) 2017 Benjamin Winterberg\n+Copyright (c) 2023 Benjamin Winterberg\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n"
+            },
+            "resolved": true,
+            "supported": false,
+            "reason": "semantic support requires human review; no automatic credit"
+          },
+          {
+            "claim": {
+              "text": "Copyright (c) 2023 Benjamin Winterberg",
+              "kind": "quote",
+              "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+              "file": "LICENSE",
+              "hunk": "hunk_9ca6b34f06513cdd7497",
+              "quote": "Copyright (c) 2023 Benjamin Winterberg"
+            },
+            "resolved": true,
+            "supported": true,
+            "reason": "verified exact extractive claim"
+          }
+        ],
+        "supported": 1,
+        "total_verifiable": 2,
+        "unsupported": 1
+      }
+    },
+    "status": "ok",
+    "prediction_sha256": "642a65d9f73db96e94fb8aafc2a0f0d7b9a7c74f46b1e75e94ee2f263932d2af",
+    "evidence_audit": {
+      "claims": [
+        {
+          "claim": {
+            "text": "The repository is an update to the LICENSE file updating the copyright year to 2023.",
+            "kind": "interpretation",
+            "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+            "file": "LICENSE",
+            "hunk": "hunk_9ca6b34f06513cdd7497",
+            "quote": "@@ -1,6 +1,6 @@\n The MIT License (MIT)\n \n-Copyright (c) 2017 Benjamin Winterberg\n+Copyright (c) 2023 Benjamin Winterberg\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n"
+          },
+          "resolved": true,
+          "supported": false,
+          "reason": "semantic support requires human review; no automatic credit"
+        },
+        {
+          "claim": {
+            "text": "Copyright (c) 2023 Benjamin Winterberg",
+            "kind": "quote",
+            "commit": "9b79999be76274f0c11a5b1d4a4fff4e785dc774",
+            "file": "LICENSE",
+            "hunk": "hunk_9ca6b34f06513cdd7497",
+            "quote": "Copyright (c) 2023 Benjamin Winterberg"
+          },
+          "resolved": true,
+          "supported": true,
+          "reason": "verified exact extractive claim"
+        }
+      ],
+      "supported": 1,
+      "total_verifiable": 2,
+      "unsupported": 1
+    },
+    "metrics": null
+  }
+]

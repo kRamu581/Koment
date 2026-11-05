@@ -1,0 +1,637 @@
+[
+  {
+    "case_id": "simple_cache_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_recovery",
+    "method": "git_script",
+    "prediction_sha256": "c946ca01a3e9101a8edecfa626350eaedb71f6dfeccbde7e0bed3738122db5c3",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_recovery",
+    "method": "llm",
+    "prediction_sha256": "645365681d60592a36bb9cae8acb5967649b11c5965288b38990255813de6a85",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "+/.editorconfig      export-ignore",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "simple_cache_recovery",
+    "method": "aicar",
+    "prediction_sha256": "6ef9b442c8c1d2ca2cb5103a39404c27654e23ae5eac7b574ef437121fdc0da7",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Update .gitattributes",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "+/.editorconfig      export-ignore",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit 2d280c2aaa23a120f35d55cfde8581954a8e77fa successfully merges pull request #26 to add .editorconfig to export-ignore in .gitattributes.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "method": "git_script",
+    "prediction_sha256": "7402f8caec6efd8da38f76d5138aab96bcb95518045de2e7689e4f491f370d8c",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "method": "llm",
+    "prediction_sha256": "75975b675c2787c92cd38844deb3befbf681b1f6dcd491919d069df132662e75",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix(analysis): define best_bpb before y-axis scaling",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "best_bpb = kept_bpb.min()",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "margin = (baseline_bpb - best_bpb) * 0.15",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "ax.set_ylim(best_bpb - margin, baseline_bpb + margin)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "autoresearch_recovery",
+    "method": "aicar",
+    "prediction_sha256": "e13c796be0fdbef78f1f8d2283851c7bfcc72cbec7c79c1c7fb005cf688ae775",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix(analysis): define best_bpb before y-axis scaling",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_recovery",
+    "method": "git_script",
+    "prediction_sha256": "0ddd8a13bde52d314306be8c2025cb97aa4be103b30161dc2d9da0b68227f1da",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_recovery",
+    "method": "llm",
+    "prediction_sha256": "7c2dc01cceb3d885114f2de72e362c074220ebef3f92395965c54d8b8d4c2e1e",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Annotate reviewed intent cases",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "aicar_recovery",
+    "method": "aicar",
+    "prediction_sha256": "414a5318d48a1be4051708beb636a344fb6810197bb17ee0b1ecd037df73da49",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The repository contains 10 commits, 173 files, multiple documentation files, test files, and entry points such as backend/main.py and frontend/package.json.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Dependency status is marked as not executed, deployment status as not verified, and runnable entrypoint as not executed.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "method": "git_script",
+    "prediction_sha256": "77535f5a6a00cf66ce2714400029fb087f58dbee4e2671fa5098495221c202ca",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "method": "llm",
+    "prediction_sha256": "6df0dd960de5f4a75c1875e136a97b60dddbb86899f0ba806e3809a57b8a6f97",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Update README.md",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit updates README.md by adding a message from the original author, J. David Blackstone.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "tinyhttpd_recovery",
+    "method": "aicar",
+    "prediction_sha256": "07318084c1f46505e45d68fc539cc53e01c203e2d2456f9447cbdd66fb88da59",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Update README.md",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_recovery",
+    "method": "git_script",
+    "prediction_sha256": "bd52cd8fd0384823126073d50dbf8a3b2e5f58df175108ea5c1d245248b5a76d",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_recovery",
+    "method": "llm",
+    "prediction_sha256": "5458dc2208b6957df73d0804f9446252309d912e7ac34ed8971ebd4b54880115",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "module Synx\n  VERSION = \"0.1.0\"\n end",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "synx_recovery",
+    "method": "aicar",
+    "prediction_sha256": "32d9a11ee0f408849d046571b59bec3dc53eba9305070e8d553fea7ffd6c3036",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "VERSION = \"0.1.0\"",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "method": "git_script",
+    "prediction_sha256": "0c91fb8f57e2ed2a637ddaa0c02bbee36f85d2fa7735150551944bc81173d725",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "method": "llm",
+    "prediction_sha256": "8be81bb83a0aacf05830fbaef5dd3352830cd3b6762692ffdf41724702916970",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Remove shell expansion for git commands (#447)\n\n* Remove shell expansion for git commands\n\n* Version bump",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit updates version from 1.0.5 to 1.0.6 across marketplace.json, package-lock.json, package.json, and plugin.json.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Git functions in plugins/codex/scripts/lib/git.mjs are updated to explicitly pass shell: false.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "runCommand in plugins/codex/scripts/lib/process.mjs honors options.shell overrides.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "A test was added to verify default branch names with special characters are passed to git literally.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The test helper run function in tests/helpers.mjs supports options.shell overrides.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "codex_plugin_cc_recovery",
+    "method": "aicar",
+    "prediction_sha256": "e037767bc2e04c43509fa2afb07f9af3acd963b93ef3fb5917273afd0fb88772",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Remove shell expansion for git commands (#447)",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Git is directly executable on Windows. Repository-derived arguments must never pass through a shell.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The commit successfully disables shell expansion for git and gitChecked functions by passing shell: false explicitly.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "method": "git_script",
+    "prediction_sha256": "d5027b5a3e37436a54ea85423a6431d662299521cf9c06d0cb51435f3c21f3a2",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "method": "llm",
+    "prediction_sha256": "f0487ba02ff24815e76233f02d9965aed40cd3d13c2e7dc6a135cad42fffc2b6",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: release 0.2.0 (#27)\n\n## Changes since v0.1.0\n\n- Migrate to per-domain WIT and `wasm32-unknown-unknown` target\n- Migrate to SDK 0.6.0 (wasmtime Component Model + WIT-driven types)\n- Publish componentized `.capsule` artifact (was raw wasm)\n- Bump astrid-sdk to 0.7.1\n\nTagging happens post-merge.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "capsule_identity_recovery",
+    "method": "aicar",
+    "prediction_sha256": "e50f12e5dec3c3b72dd971dd718ca54108f277d29d5e15f55870aee9c2095c38",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "chore: release 0.2.0 (#27)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_recovery",
+    "method": "git_script",
+    "prediction_sha256": "27aee9c3fe5f43af7b3874eea78277a83c8c4c7c7af2db43e99dfdb89c5fee12",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_recovery",
+    "method": "llm",
+    "prediction_sha256": "f688711602ff6185269342611b65b84b8caa3c54be50531cf5ca55b044923c37",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "fix: broken star history chart in the READMEs (#74)\n\nCo-authored-by: me93-ghb <me93-ghb@users.noreply.github.com>",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The star history chart URL in README-zh.md was updated from api.star-history.com to afterglow.watch.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "The star history chart URL in README.md was updated from api.star-history.com to afterglow.watch.",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "spank_recovery",
+    "method": "aicar",
+    "prediction_sha256": "10f87c91c4dbfaa5ce0478e4dd6c4e800fa8fca2844b519f97c7d2b498a6a96d",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The repository is complete with documentation updates for the star history chart in README.md and README-zh.md.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "[![Star History Chart](https://afterglow.watch/svg?repos=taigrr/spank&type=date&legend=top-left)](https://afterglow.watch)",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "method": "git",
+    "prediction_sha256": "22f21a02239b14b36b49738e00e1e0e8a0af1c278704413336795c297f3fe3c5",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "method": "git_script",
+    "prediction_sha256": "c63fb4b23fb5f8733042a76804a5160b6c74b9699c8951ec6eb9ebc62680caf9",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Uncited classification/ranking",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "method": "llm",
+    "prediction_sha256": "4223b37de8502c57cad403285e5bfa6ebe82e60621879f4359f11336e2252b1f",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "Copyright (c) 2023 Benjamin Winterberg",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  },
+  {
+    "case_id": "java8_tutorial_recovery",
+    "method": "aicar",
+    "prediction_sha256": "642a65d9f73db96e94fb8aafc2a0f0d7b9a7c74f46b1e75e94ee2f263932d2af",
+    "intent_correct": null,
+    "annotator": null,
+    "rationale": null,
+    "claims": [
+      {
+        "text": "The repository is an update to the LICENSE file updating the copyright year to 2023.",
+        "supported": null,
+        "rationale": null
+      },
+      {
+        "text": "Copyright (c) 2023 Benjamin Winterberg",
+        "supported": null,
+        "rationale": null
+      }
+    ]
+  }
+]
